@@ -134,6 +134,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .opt b{font:700 15px/1.2 var(--body)}
 .opt p{grid-column:1/-1;font-size:12.5px;line-height:1.3;color:var(--dim)}
 .seg{display:flex;gap:4px}
+.opt .seg.wide{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr)} .opt .seg.wide button{padding-left:4px;padding-right:4px}
 .seg button{min-width:58px;min-height:40px;padding:0 10px;background:var(--raise);font:700 12px/1 var(--body);letter-spacing:.1em;color:var(--dim)}
 .seg button.on{background:var(--volt);color:var(--onacc)}
 
@@ -981,11 +982,12 @@ function merge(s) {
   if (s.cls && typeof s.cls === 'object') Object.assign(meta.cls, s.cls);
   if (typeof s.sel === 'string' && CLS.some(c => c.id === s.sel) && meta.cls[s.sel]) meta.sel = s.sel;
   meta.mute = !!s.mute;
-  if (s.opt && typeof s.opt === 'object') for (const k of ['side', 'lock', 'flip']) if (typeof s.opt[k] === 'boolean') meta.opt[k] = s.opt[k];
+  if (s.opt && typeof s.opt === 'object') for (const k of ['side', 'lock', 'flip', 'auto']) if (typeof s.opt[k] === 'boolean') meta.opt[k] = s.opt[k];
   if (typeof s.pseudo === 'string') meta.pseudo = cleanName(s.pseudo);
   if (typeof s.dev === 'string' && /^[a-z0-9]{20,40}$/.test(s.dev)) meta.dev = s.dev;
   for (const k of ['lbRun', 'lbSent']) if (s[k] && typeof s[k] === 'object') for (const m in s[k]) if (WORLDS.some(w => w.id === m)) meta[k][m] = s[k][m];
-  if (!s.v8) meta.opt.side = true;   // le jeu démarre de côté par défaut
+  if (!s.v8) meta.opt.side = true;
+  if (meta.opt.auto) window.addEventListener('pointerdown', startAuto, { once: true });   // le jeu démarre de côté par défaut
   meta.v8 = true;
   for (const k of ['wdone', 'wbest', 'skins']) if (s[k] && typeof s[k] === 'object') Object.assign(meta[k], s[k]);
   if (typeof s.skin === 'string' && meta.skins[s.skin] && SKINS.some(k => k.id === s.skin)) meta.skin = s.skin;
@@ -1109,6 +1111,31 @@ function vpFix() {
   window.scrollTo(0, 0); for (const [e, t] of sc) e.scrollTop = t;
   setTimeout(resize, 60);
 }
+/* Mode AUTO : le capteur de gravité dit comment le téléphone est tenu, même avec la rotation verrouillée. */
+let autoLand = false, autoFlip = false, autoOn = false, autoCand = null, autoT = 0;
+const IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+function onMotion(e) {
+  const g = e.accelerationIncludingGravity; if (!g || g.x == null) return;
+  const k = IOS ? -1 : 1, x = g.x * k, y = g.y * k, ax = Math.abs(x), ay = Math.abs(y);
+  let want = null;
+  if (ax > 6 && ax > ay + 2) want = x > 0 ? 'L' : 'R';     // haut du téléphone tourné à gauche (L) ou à droite (R)
+  else if (ay > 6 && ay > ax + 2) want = 'P';
+  if (!want) return;
+  const cur = !autoLand ? 'P' : autoFlip ? 'R' : 'L';
+  if (want === cur) { autoCand = null; return; }
+  const now = performance.now();
+  if (autoCand !== want) { autoCand = want; autoT = now; return; }
+  if (now - autoT < 450) return;                              // on attend que la position soit stable
+  autoCand = null; autoLand = want !== 'P'; autoFlip = want === 'R';
+  if (meta.opt.auto) { resize(); if (state === 'menu') measureMenu(); if (!el.layout.hidden) renderLayout(); }
+}
+function startAuto() {
+  if (autoOn) return; autoOn = true;
+  const go = () => window.addEventListener('devicemotion', onMotion);
+  if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function')
+    DeviceMotionEvent.requestPermission().then(r => { if (r === 'granted') go(); else autoOn = false; }).catch(() => { autoOn = false; });
+  else go();
+}
 function resize() {
   let vw = window.innerWidth || document.documentElement.clientWidth, vh = window.innerHeight || document.documentElement.clientHeight;
   // appli installée sur l'écran d'accueil : iOS donne parfois une hauteur trop petite, on prend la taille réelle de l'écran
@@ -1118,7 +1145,7 @@ function resize() {
     const a = Math.min(screen.width, screen.height), b = Math.max(screen.width, screen.height);
     if (vh >= vw) { vw = Math.max(vw, a); vh = Math.max(vh, b); } else { vw = Math.max(vw, b); vh = Math.max(vh, a); }
   }
-  ROT = meta.opt.side && vw < vh; VW = vw; VH = vh; FLIP = ROT && meta.opt.flip;      // « de côté » : sur un écran vertical, tout le jeu pivote d'un quart de tour
+  ROT = (meta.opt.auto ? autoLand : meta.opt.side) && vw < vh; VW = vw; VH = vh; FLIP = ROT && (meta.opt.auto ? autoFlip : meta.opt.flip);      // « de côté » : sur un écran vertical, tout le jeu pivote d'un quart de tour
   W = ROT ? vh : vw; H = ROT ? vw : vh; LAND = W > H * 1.2;
   // marges de l'écran (encoche, coins, barre de l'appli), ramenées dans le repère du jeu, qui peut être pivoté
   const cs = getComputedStyle(insProbe), e2 = { t: parseFloat(cs.paddingTop) || 0, r: parseFloat(cs.paddingRight) || 0, b: parseFloat(cs.paddingBottom) || 0, l: parseFloat(cs.paddingLeft) || 0 };
@@ -2614,10 +2641,11 @@ function hud() {
 }
 /* ---- Réglages : de côté, tir auto, manettes verrouillées, son ---- */
 const OPTS = [
-  { k: 'side', n: 'Jouer de côté', h: 'Avec la rotation de l’écran verrouillée, le jeu reste couché. GAUCHE ou DROITE : le côté où tu tournes le haut de ton téléphone. DROIT : le jeu se joue en vertical.',
-    ch: [['DROIT', () => !meta.opt.side, () => setOpt('side', false)],
-         ['⟲ GAUCHE', () => meta.opt.side && !meta.opt.flip, () => { meta.opt.flip = false; setOpt('side', true); resize(); renderOpts(); }],
-         ['DROITE ⟳', () => meta.opt.side && meta.opt.flip, () => { meta.opt.flip = true; setOpt('side', true); resize(); renderOpts(); }]] },
+  { k: 'side', n: 'Orientation', h: 'AUTO : le jeu suit la position de ton téléphone, même avec la rotation verrouillée. GAUCHE ou DROITE : toujours couché, du côté où tu tournes le haut du téléphone. DROIT : toujours en vertical.',
+    ch: [['AUTO', () => !!meta.opt.auto, () => { startAuto(); setOpt('auto', true); }],
+         ['DROIT', () => !meta.opt.auto && !meta.opt.side, () => { meta.opt.auto = false; meta.opt.side = true; setOpt('side', false); }],
+         ['⟲ GAUCHE', () => !meta.opt.auto && meta.opt.side && !meta.opt.flip, () => { meta.opt.flip = false; meta.opt.auto = false; meta.opt.side = false; setOpt('side', true); }],
+         ['DROITE ⟳', () => !meta.opt.auto && meta.opt.side && meta.opt.flip, () => { meta.opt.flip = true; meta.opt.auto = false; meta.opt.side = false; setOpt('side', true); }]] },
   { k: 'lock', n: 'Sticks fixes', h: 'Sur OUI, les sticks restent à leur place. Sur NON, ils apparaissent là où tu poses le doigt.' },
   { k: 'snd', n: 'Son', h: '' }
 ];
@@ -2626,7 +2654,7 @@ function setOpt(k, v) {
   if (getOpt(k) === v) return;
   if (k === 'snd') { meta.mute = !v; if (v) { initAudio(); uis(() => sfx.card()); } } else meta.opt[k] = v;
   save();
-  if (k === 'side' || k === 'lock' || k === 'flip') { resize(); if (state === 'menu') { renderMenu(); measureMenu(); } }
+  if (k === 'side' || k === 'lock' || k === 'flip' || k === 'auto') { resize(); if (state === 'menu') { renderMenu(); measureMenu(); } }
   if (!el.layout.hidden) renderLayout();
   renderOpts();
 }
@@ -2637,6 +2665,7 @@ function renderOpts() {
     const row = document.createElement('div'); row.className = 'opt';
     const nm = document.createElement('b'); nm.textContent = o.n;
     const seg = document.createElement('div'); seg.className = 'seg'; seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', o.n);
+    if (o.ch && o.ch.length > 3) seg.classList.add('wide');
     const chs = o.ch || [['NON', () => getOpt(o.k) === false, () => setOpt(o.k, false)], ['OUI', () => getOpt(o.k) === true, () => setOpt(o.k, true)]];
     for (const [lab, isOn, act] of chs) {
       const b = document.createElement('button'), on = isOn(); b.type = 'button'; if (on) b.className = 'on';
