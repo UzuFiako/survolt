@@ -1091,10 +1091,27 @@ let state = 'menu', G = null, P = null, T = 0, last = 0, UID = 1, touchMode = fa
 let enemies = [], bullets = [], ebul = [], orbs = [], crystals = [], parts = [], texts = [], bolts = [],
     hazards = [], pickups = [], spawns = [], rings = [], ghosts = [], zones = [];
 
+/* iOS (appli installée) : après le clavier, ou au lancement, la zone d'affichage peut rester trop courte
+   et laisser une bande vide en bas. On garde la plus grande hauteur vue et on force iOS à remesurer l'écran. */
+const INST = () => !!(navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches));
+let peakW = 0, peakH = 0, peakPort = null;
+function vpFix() {
+  const port = innerHeight >= innerWidth;
+  if (peakPort !== port) { peakPort = port; peakW = 0; peakH = 0; }
+  peakW = Math.max(peakW, innerWidth); peakH = Math.max(peakH, innerHeight);
+  if (!INST()) return;
+  const short = peakH - innerHeight > 4 || peakW - innerWidth > 4 || (screen.height && Math.max(innerWidth, innerHeight) < Math.max(screen.width, screen.height) - 4);
+  if (!short) return;
+  const sc = [...document.querySelectorAll('.screen')].map(e => [e, e.scrollTop]);
+  document.documentElement.style.display = 'none'; void document.documentElement.offsetHeight; document.documentElement.style.display = '';
+  window.scrollTo(0, 0); for (const [e, t] of sc) e.scrollTop = t;
+  setTimeout(resize, 60);
+}
 function resize() {
   let vw = window.innerWidth || document.documentElement.clientWidth, vh = window.innerHeight || document.documentElement.clientHeight;
   // appli installée sur l'écran d'accueil : iOS donne parfois une hauteur trop petite, on prend la taille réelle de l'écran
-  const inst = navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches);
+  const inst = INST();
+  if (inst && peakPort === (vh >= vw)) { vw = Math.max(vw, peakW); vh = Math.max(vh, peakH); }
   if (inst && screen.width && screen.height) {
     const a = Math.min(screen.width, screen.height), b = Math.max(screen.width, screen.height);
     if (vh >= vw) { vw = Math.max(vw, a); vh = Math.max(vh, b); } else { vw = Math.max(vw, b); vh = Math.max(vh, a); }
@@ -2569,8 +2586,10 @@ function hud() {
 }
 /* ---- Réglages : de côté, tir auto, manettes verrouillées, son ---- */
 const OPTS = [
-  { k: 'side', n: 'Jouer de côté', h: 'Position de base. Même avec la rotation de l’écran verrouillée, le jeu reste couché. Sur NON, il se joue droit.' },
-  { k: 'flip', n: 'Sens de côté', h: 'Inverse le sens si tu tiens ton téléphone dans l’autre sens.', only: 'side' },
+  { k: 'side', n: 'Jouer de côté', h: 'Avec la rotation de l’écran verrouillée, le jeu reste couché. GAUCHE ou DROITE : le côté où tu tournes le haut de ton téléphone. DROIT : le jeu se joue en vertical.',
+    ch: [['DROIT', () => !meta.opt.side, () => setOpt('side', false)],
+         ['⟲ GAUCHE', () => meta.opt.side && !meta.opt.flip, () => { meta.opt.flip = false; setOpt('side', true); resize(); renderOpts(); }],
+         ['DROITE ⟳', () => meta.opt.side && meta.opt.flip, () => { meta.opt.flip = true; setOpt('side', true); resize(); renderOpts(); }]] },
   { k: 'lock', n: 'Sticks fixes', h: 'Sur OUI, les sticks restent à leur place. Sur NON, ils apparaissent là où tu poses le doigt.' },
   { k: 'snd', n: 'Son', h: '' }
 ];
@@ -2590,10 +2609,11 @@ function renderOpts() {
     const row = document.createElement('div'); row.className = 'opt';
     const nm = document.createElement('b'); nm.textContent = o.n;
     const seg = document.createElement('div'); seg.className = 'seg'; seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', o.n);
-    ['NON', 'OUI'].forEach((lab, i) => {
-      const b = document.createElement('button'), on = getOpt(o.k) === !!i; b.type = 'button'; if (on) b.className = 'on';
-      b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.textContent = lab; b.addEventListener('click', () => setOpt(o.k, !!i)); seg.appendChild(b);
-    });
+    const chs = o.ch || [['NON', () => getOpt(o.k) === false, () => setOpt(o.k, false)], ['OUI', () => getOpt(o.k) === true, () => setOpt(o.k, true)]];
+    for (const [lab, isOn, act] of chs) {
+      const b = document.createElement('button'), on = isOn(); b.type = 'button'; if (on) b.className = 'on';
+      b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.textContent = lab; b.addEventListener('click', () => { act(); save(); }); seg.appendChild(b);
+    }
     row.append(nm, seg);
     if (o.h) { const h = document.createElement('p'); h.textContent = o.h; row.appendChild(h); }
     box.appendChild(row);
@@ -3220,6 +3240,11 @@ $('#bLbBack').addEventListener('click', closeLb);
 $('#bLbName').addEventListener('click', setPseudo);
 $('#lbName').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') setPseudo(); });
 $('#lbName').addEventListener('keyup', e => e.stopPropagation());
+$('#lbName').addEventListener('blur', () => { setTimeout(vpFix, 150); setTimeout(vpFix, 600); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden) setTimeout(vpFix, 200); });
+window.addEventListener('pageshow', () => setTimeout(vpFix, 200));
+window.addEventListener('resize', () => { const port = innerHeight >= innerWidth; if (peakPort !== port) { peakPort = port; peakW = peakH = 0; } peakW = Math.max(peakW, innerWidth); peakH = Math.max(peakH, innerHeight); }, true);
+window.addEventListener('load', () => { setTimeout(vpFix, 300); setTimeout(vpFix, 1200); });
 $('#bAlmBack').addEventListener('click', closeAlm);
 $('#bChBack').addEventListener('click', closeChests);
 $('#bBuyCh').addEventListener('click', () => { if (meta.jet < 10) return; meta.jet -= 10; save(); openChest(rollRar(false)); });
