@@ -676,7 +676,7 @@ makeGlows();
 
 /* ================= Données ================= */
 const baseStats = () => ({
-  dmg: 10, rate: 2.6, bspd: 560, bsize: 5, range: 0.9, multi: 1, scatter: 0, pierce: 0, bounce: 0,
+  dmg: 10, rate: 2.6, bspd: 560, bsize: 5, range: 0.9, multi: 1, gun: 0, scatter: 0, pierce: 0, bounce: 0,
   crit: 0.05, critMul: 2, speed: 215, maxHp: 100, regen: 0, magnet: 100, xpMul: 1, leech: 0, explode: 0,
   chain: 0, homing: 0, drones: 0, rear: 0, side: 0, thorns: 0, frost: 0, shield: 0, nova: 0, storm: 0,
   revive: 0, luck: 0, dashCd: 2.6, ultRate: 1, ultDur: 6, contactRes: 0
@@ -693,28 +693,30 @@ const CLS = [
 /* Mêmes taux que les coffres : Commun 43,9 · Rare 30 · Épique 22 (SR 15 + UR 7) · Mythique 3 · Légendaire 1 */
 const RAR = { c: { n: 'Commun', w: 43.9 }, r: { n: 'Rare', w: 30 }, e: { n: 'Épique', w: 22 }, m: { n: 'Mythique', w: 3 }, l: { n: 'Légendaire', w: 1 } };
 const UP = [
-  { id: 'dmg', n: 'Calibre', d: '+15 % de dégâts', r: 'c', max: 5, c: 'atk', f: s => { s.dmg *= 1.15; } },
-  { id: 'rate', n: 'Cadence', d: '+12 % de cadence de tir', r: 'c', max: 5, c: 'atk', f: s => { s.rate *= 1.12; } },
-  { id: 'hp', n: 'Blindage', d: '+20 PV max, et répare 20 PV', r: 'c', max: 4, c: 'def', f: (s, p) => { s.maxHp += 20; p.hp = Math.min(s.maxHp, p.hp + 20); } },
-  { id: 'spd', n: 'Propulseurs', d: '+8 % de vitesse', r: 'c', max: 3, c: 'mob', f: s => { s.speed *= 1.08; } },
-  { id: 'mag', n: 'Aimant', d: '+35 % de portée de ramassage', r: 'c', max: 3, c: 'mob', f: s => { s.magnet *= 1.35; } },
-  { id: 'vel', n: 'Vélocité', d: 'Tirs 18 % plus rapides, donc plus lointains', r: 'c', max: 3, c: 'atk', f: s => { s.bspd *= 1.18; } },
-  { id: 'regen', n: 'Réparation', d: '+0,6 PV par seconde', r: 'c', max: 3, c: 'def', f: s => { s.regen += 0.6; } },
-  { id: 'big', n: 'Gros calibre', d: 'Tirs 25 % plus gros, +8 % de dégâts', r: 'c', max: 3, c: 'atk', f: s => { s.bsize *= 1.25; s.dmg *= 1.08; } },
-  { id: 'multi', n: 'Canon jumelé', d: '+1 projectile par salve, −8 % de dégâts', r: 'm', max: 2, c: 'atk', f: s => { s.multi += 1; s.dmg *= 0.92; } },
-  { id: 'pierce', n: 'Perforant', d: 'Les tirs traversent 1 ennemi de plus', r: 'r', max: 2, c: 'atk', f: s => { s.pierce += 1; } },
-  { id: 'bounce', n: 'Ricochet', d: 'Les tirs rebondissent vers 1 ennemi de plus', r: 'r', max: 2, c: 'atk', f: s => { s.bounce += 1; } },
-  { id: 'crit', n: 'Coup critique', d: '+10 % de chances de critique', r: 'r', max: 3, c: 'atk', f: s => { s.crit += 0.1; } },
-  { id: 'critd', n: 'Point faible', d: 'Les critiques frappent 60 % plus fort', r: 'r', max: 2, c: 'atk', f: s => { s.critMul += 0.6; } },
-  { id: 'leech', n: 'Siphon', d: '10 % de chances de regagner 2 PV par élimination', r: 'r', max: 2, c: 'def', f: s => { s.leech += 1; } },
-  { id: 'drone', n: 'Satellite', d: '+1 satellite qui percute les ennemis et arrête leurs tirs', r: 'r', max: 3, c: 'spe', f: s => { s.drones += 1; } },
+  { id: 'dmg', n: 'Calibre', d: '+15 % de dégâts', r: 'c', max: 6, c: 'atk', f: s => { s.dmg *= 1.15; } },
+  { id: 'rate', n: 'Cadence', d: '+12 % de cadence de tir', r: 'c', max: 6, c: 'atk', f: s => { s.rate *= 1.12; } },
+  { id: 'hp', n: 'Blindage', d: '+20 PV max, et répare 20 PV', r: 'c', max: 5, c: 'def', f: (s, p) => { s.maxHp += 20; p.hp = Math.min(s.maxHp, p.hp + 20); } },
+  { id: 'spd', n: 'Propulseurs', d: '+8 % de vitesse', r: 'c', max: 4, c: 'mob', f: s => { s.speed *= 1.08; } },
+  { id: 'mag', n: 'Aimant', d: '+35 % de portée de ramassage', r: 'c', max: 4, c: 'mob', f: s => { s.magnet *= 1.35; } },
+  { id: 'vel', n: 'Vélocité', d: 'Tirs 18 % plus rapides, donc plus lointains', r: 'c', max: 4, c: 'atk', f: s => { s.bspd *= 1.18; } },
+  { id: 'regen', n: 'Réparation', d: '+0,6 PV par seconde', r: 'c', max: 4, c: 'def', f: s => { s.regen += 0.6; } },
+  { id: 'big', n: 'Gros calibre', d: 'Tirs 25 % plus gros, +8 % de dégâts', r: 'c', max: 4, c: 'atk', f: s => { s.bsize *= 1.25; s.dmg *= 1.08; } },
+  { id: 'multi', n: '+1 canon', d: 'Un deuxième canon côte à côte', r: 'l', max: 4, c: 'atk',
+    dl: ['Niv. 1 : deux canons côte à côte', 'Niv. 2 : trois canons en cône', 'Niv. 3 : quatre canons, cadence +50 %, dégâts −30 %', 'Niv. 4 : deux gros canons à +200 % de dégâts, plus deux petits canons de chaque côté (7 canons), cadence −10 %'],
+    f: s => { s.gun += 1; if (s.gun === 3) s.rate *= 1.5; if (s.gun === 4) s.rate *= 0.9; } },
+  { id: 'pierce', n: 'Perforant', d: 'Les tirs traversent 1 ennemi de plus', r: 'r', max: 3, c: 'atk', f: s => { s.pierce += 1; } },
+  { id: 'bounce', n: 'Ricochet', d: 'Les tirs rebondissent vers 1 ennemi de plus', r: 'r', max: 3, c: 'atk', f: s => { s.bounce += 1; } },
+  { id: 'crit', n: 'Coup critique', d: '+10 % de chances de critique', r: 'r', max: 4, c: 'atk', f: s => { s.crit += 0.1; } },
+  { id: 'critd', n: 'Point faible', d: 'Les critiques frappent 60 % plus fort', r: 'r', max: 3, c: 'atk', f: s => { s.critMul += 0.6; } },
+  { id: 'leech', n: 'Siphon', d: '10 % de chances de regagner 2 PV par élimination', r: 'r', max: 3, c: 'def', f: s => { s.leech += 1; } },
+  { id: 'drone', n: 'Satellite', d: '+1 satellite qui percute les ennemis et arrête leurs tirs', r: 'r', max: 4, c: 'spe', f: s => { s.drones += 1; } },
   { id: 'rear', n: 'Canon arrière', d: 'Tire aussi vers l’arrière', r: 'r', max: 1, c: 'atk', f: s => { s.rear += 1; } },
-  { id: 'thorns', n: 'Coque à pointes', d: 'Renvoie des dégâts au contact', r: 'r', max: 2, c: 'def', f: s => { s.thorns += 1; } },
-  { id: 'frost', n: 'Cryo', d: 'Les tirs ralentissent les ennemis', r: 'r', max: 2, c: 'spe', f: s => { s.frost += 1; } },
-  { id: 'turbo', n: 'Turbo', d: 'Dash rechargé 20 % plus vite', r: 'r', max: 2, c: 'mob', f: s => { s.dashCd *= 0.8; } },
-  { id: 'xp', n: 'Condensateur', d: '+15 % d’XP', r: 'r', max: 2, c: 'spe', f: s => { s.xpMul *= 1.15; } },
-  { id: 'explode', n: 'Obus explosifs', d: 'Chaque impact explose en zone', r: 'e', max: 2, c: 'atk', f: s => { s.explode += 1; } },
-  { id: 'chain', n: 'Arc électrique', d: 'Chaque impact saute sur les ennemis proches', r: 'e', max: 2, c: 'spe', f: s => { s.chain += 1; } },
+  { id: 'thorns', n: 'Coque à pointes', d: 'Renvoie des dégâts au contact', r: 'r', max: 3, c: 'def', f: s => { s.thorns += 1; } },
+  { id: 'frost', n: 'Cryo', d: 'Les tirs ralentissent les ennemis', r: 'r', max: 3, c: 'spe', f: s => { s.frost += 1; } },
+  { id: 'turbo', n: 'Turbo', d: 'Dash rechargé 20 % plus vite', r: 'r', max: 3, c: 'mob', f: s => { s.dashCd *= 0.8; } },
+  { id: 'xp', n: 'Condensateur', d: '+15 % d’XP', r: 'r', max: 3, c: 'spe', f: s => { s.xpMul *= 1.15; } },
+  { id: 'explode', n: 'Obus explosifs', d: 'Chaque impact explose en zone', r: 'e', max: 3, c: 'atk', f: s => { s.explode += 1; } },
+  { id: 'chain', n: 'Arc électrique', d: 'Chaque impact saute sur les ennemis proches', r: 'e', max: 3, c: 'spe', f: s => { s.chain += 1; } },
   { id: 'homing', n: 'Têtes chercheuses', d: 'Les tirs dévient vers les ennemis', r: 'e', max: 1, c: 'atk', f: s => { s.homing += 1; } },
   { id: 'side', n: 'Canons latéraux', d: 'Tire aussi sur les deux flancs', r: 'e', max: 1, c: 'atk', f: s => { s.side = 1; } },
   { id: 'shield', n: 'Bouclier', d: 'Bloque un coup toutes les 15 s', r: 'e', max: 1, c: 'def', f: (s, p) => { s.shield += 1; p.shieldUp = true; } },
@@ -1650,18 +1652,39 @@ function findTarget() {
   for (const c of crystals) { if (c.dead) continue; const d = dist2(c.x, c.y, P.x, P.y); if (d < bd) { bd = d; best = c; } }
   return best;
 }
-function volley(ang, n) {
+/* Canons de la salve principale : angle, décalage, multiplicateur de dégâts, taille. */
+function gunLayout(s) {
+  const m = s.multi, L = s.gun || 0, sz = s.bsize, out = [];
+  const row = (n, dm, cone) => {
+    if (!cone && n <= 3) for (let i = 0; i < n; i++) out.push({ a: (i - (n - 1) / 2) * 0.02, ox: (i - (n - 1) / 2) * (sz * 2 + 3), dm, k: 1 });
+    else for (let i = 0; i < n; i++) out.push({ a: (i - (n - 1) / 2) * (cone ? 0.16 : 0.1), ox: 0, dm, k: 1 });
+  };
+  if (L <= 1) row(m + L, 1, false);
+  else if (L === 2) row(m + 2, 1, true);
+  else if (L === 3) row(m + 3, 0.7, true);
+  else {
+    row(m, 1, m > 3);                                             // canon(s) central(aux)
+    const g = sz * 2 + 5 + (m > 1 && m <= 3 ? (m - 1) * (sz + 2) * 0.5 : 0);
+    out.push({ a: 0, ox: -g, dm: 3, k: 1.7, big: 1 }, { a: 0, ox: g, dm: 3, k: 1.7, big: 1 });   // deux gros canons
+    for (const a of [-0.55, -0.32, 0.32, 0.55]) out.push({ a, ox: Math.sign(a) * g * 0.9, dm: 0.7, k: 1, side: 1 });   // deux petits de chaque côté
+  }
+  return out;
+}
+function volley(ang, n, lay) {
   if (P.wk === 'tesla') { tesla(ang, n); return; }
   const s = P.s, size = s.bsize, ca = Math.cos(ang), sa = Math.sin(ang), k = P.wk;
+  if (lay && s.scatter) { n = n + (s.gun >= 4 ? 6 : s.gun); lay = null; }
+  if (lay) n = lay.length;
   for (let i = 0; i < n; i++) {
     if (bullets.length > 330) return;
-    let a = ang, ox = 0, v = s.bspd, life = s.range;
-    if (s.scatter) { a += rnd(-0.27, 0.27); v *= rnd(0.8, 1.1); life *= rnd(0.8, 1.1); }
+    let a = ang, ox = 0, v = s.bspd, life = s.range, dm = 1, bk = 1;
+    if (lay) { const g = lay[i]; a += g.a; ox = g.ox; dm = g.dm; bk = g.k; }
+    else if (s.scatter) { a += rnd(-0.27, 0.27); v *= rnd(0.8, 1.1); life *= rnd(0.8, 1.1); }
     else if (n <= 3) { ox = (i - (n - 1) / 2) * (size * 2 + 3); a += (i - (n - 1) / 2) * 0.02; }
     else a += (i - (n - 1) / 2) * 0.1;
     if (k === 'flame') { a += rnd(-0.24, 0.24); v *= rnd(0.75, 1.15); life *= rnd(0.8, 1.1); }
     bullets.push({ x: P.x + ca * (P.r + 17) - sa * ox, y: P.y + sa * (P.r + 17) + ca * ox, vx: Math.cos(a) * v, vy: Math.sin(a) * v,
-      r: size, dmg: s.dmg, life, pierce: s.pierce + (P.over > 0 ? 1 : 0), bounce: s.bounce, hit: null, lastC: 0, dead: false, c: shotKey(), kind: k });
+      r: size * bk, dmg: s.dmg * dm, life, pierce: s.pierce + (P.over > 0 ? 1 : 0), bounce: s.bounce, hit: null, lastC: 0, dead: false, c: shotKey(), kind: k });
     const b = bullets[bullets.length - 1];
     if (k === 'disc') { b.pierce = 999; b.out = true; b.ot = life * 0.5; b.life = life * 2.4; }
     else if (k === 'flame') b.pierce = Math.max(1, b.pierce);
@@ -1794,8 +1817,9 @@ function updPlayer(dt) {
     const rate = s.rate * (P.over > 0 ? 2.2 : 1); let n = 0;
     while (P.cool <= 0 && n++ < 3) {
       P.cool += 1 / rate;
-      volley(P.aim, s.multi);
-      if (s.echo && Math.random() < s.echo) volley(P.aim + rnd(-0.06, 0.06), s.multi);
+      const lay = gunLayout(s);
+      volley(P.aim, s.multi, lay);
+      if (s.echo && Math.random() < s.echo) volley(P.aim + rnd(-0.06, 0.06), s.multi, lay);
       if (s.rear) volley(P.aim + Math.PI, s.rear);
       if (s.side) { volley(P.aim + Math.PI / 2, 1); volley(P.aim - Math.PI / 2, 1); }
       P.recoil = 1; sfx.shoot();
@@ -1976,8 +2000,12 @@ function drawTank(g, x, y, ang, s, r, recoil, hot, sk) {
   if (s.rear) { g.save(); g.rotate(Math.PI); for (let i = 0; i < s.rear; i++) barrel(r + 9, bw * 0.9, (i - (s.rear - 1) / 2) * (bw + 2)); g.restore(); }
   const n = s.multi;
   if (s.scatter) { g.beginPath(); g.moveTo(r * 0.3, -bw * 0.6); g.lineTo(bl - 3, -bw * 1.55); g.lineTo(bl - 3, bw * 1.55); g.lineTo(r * 0.3, bw * 0.6); g.closePath(); g.fill(); g.stroke(); }
-  else if (n <= 3) for (let i = 0; i < n; i++) barrel(bl, bw, (i - (n - 1) / 2) * (s.bsize * 2 + 3));
-  else for (let i = 0; i < n; i++) { g.save(); g.rotate((i - (n - 1) / 2) * 0.17); barrel(bl - 2, bw * 0.8, 0); g.restore(); }
+  else if (!s.gun && n <= 3) for (let i = 0; i < n; i++) barrel(bl, bw, (i - (n - 1) / 2) * (s.bsize * 2 + 3));
+  else if (!s.gun) for (let i = 0; i < n; i++) { g.save(); g.rotate((i - (n - 1) / 2) * 0.17); barrel(bl - 2, bw * 0.8, 0); g.restore(); }
+  else { const lay = gunLayout(s), many = lay.length > 3;
+    for (const q of lay.filter(q => q.side)) { g.save(); g.rotate(q.a * 1.5); barrel(bl - 3, bw * 0.8, q.ox * 0.7); g.restore(); }
+    for (const q of lay.filter(q => q.big)) barrel(bl + 5, bw * 1.35, q.ox);
+    for (const q of lay.filter(q => !q.big && !q.side)) { g.save(); g.rotate(q.a * 1.3); barrel(bl - (many && !s.gun ? 3 : 0), bw * (lay.length > 3 && s.gun < 4 ? 0.8 : 1), q.ox); g.restore(); } }
   g.lineWidth = 3; g.strokeStyle = k.line; g.fillStyle = k.fill;
   hull(g, k.shape, r * 1.12);
   if (k.deco === 'magma') {   // fissures de lave qui pulsent
@@ -3076,7 +3104,7 @@ function renderCards() {
   cardSet.forEach((u, i) => {
     const b = document.createElement('button'), st = P.up[u.id] || 0; b.type = 'button'; b.className = 'card r-' + u.r;
     b.innerHTML = `<span class="ico">${ICON[u.c]}</span><span class="ctx"><span class="rar"></span><b></b><span class="d"></span></span><span class="stk"></span>`;
-    b.querySelector('.rar').textContent = RAR[u.r].n; b.querySelector('b').textContent = u.n; b.querySelector('.d').textContent = u.d;
+    b.querySelector('.rar').textContent = RAR[u.r].n; b.querySelector('b').textContent = u.n; b.querySelector('.d').textContent = u.dl ? u.dl[Math.min(st, u.dl.length - 1)] : u.d;
     b.querySelector('.stk').textContent = u.max >= 1e6 ? '' : st === 0 ? 'NOUVEAU' : `${st + 1}/${u.max}`;
     b.addEventListener('click', () => pickCard(i)); list.appendChild(b);
   });
@@ -3190,6 +3218,9 @@ cv.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('gesturestart', e => e.preventDefault());
 const press = (b, fn) => b.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); fn(); });
 press(el.dash, dash); press(el.ult, ulti); press($('#bPause'), pause); press(el.gear, gearUlt);
+// iOS : si un pointeur est déjà capturé par un stick, on écoute aussi le toucher direct sur les boutons d'action
+for (const [b, fn] of [[el.dash, dash], [el.ult, ulti], [el.gear, gearUlt]]) b.addEventListener('touchstart', e => { e.preventDefault(); e.stopPropagation(); if (performance.now() - (b._t || 0) > 250) fn(); }, { passive: false });
+for (const b of [el.dash, el.ult, el.gear]) b.addEventListener('pointerdown', () => { b._t = performance.now(); }, true);
 const lh = $('#lHandles');
 lh.addEventListener('pointerdown', e => {
   const h = e.target.closest && e.target.closest('.lh'); if (!h) return; e.preventDefault();
