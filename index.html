@@ -283,7 +283,9 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .stdet{position:fixed;inset:0;z-index:30;display:grid;place-items:center;background:rgba(5,4,14,.72);padding:20px}
 .stdet .sheet{max-width:440px;width:100%;max-height:85%;overflow:auto}
 .stdet ul{margin:8px 0 12px;padding-left:18px;font:600 14px/1.5 var(--body)} .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px} .row2 .btn{font-size:13px;padding:0 8px}
-.stnote{margin:2px 0 12px}
+.stnote{margin:2px 0 12px} .stnote a,.stok a{color:var(--ion)}
+.stok{display:flex;gap:10px;align-items:flex-start;font:600 12.5px/1.4 var(--body);color:var(--dim);margin:4px 0 12px} .stok input{width:22px;height:22px;flex:none;accent-color:var(--volt);margin-top:1px}
+#stDetBody .err{color:var(--hot);font:600 13px/1.4 var(--body);margin:0 0 10px}
 .lookhead{display:flex;align-items:center;gap:14px;padding:8px 14px;margin-bottom:10px;background:var(--panel);clip-path:var(--cut);border-radius:var(--rad,0)}
 .lookhead canvas{width:92px;height:92px;flex:none}
 .lookt{display:flex;flex-direction:column;gap:4px;min-width:0} .lookt .lab{margin:0} .lookt b{font:400 20px/1.1 var(--display)} .lookt span{font:600 13px/1.3 var(--body);color:var(--dim)}
@@ -394,6 +396,35 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .pracc{display:flex;flex-direction:column;gap:8px;padding:12px;background:var(--panel);margin-bottom:12px}
 .pracc p{margin:0;font:600 13px/1.45 var(--body);color:var(--dim)} .pracc b{color:var(--ink)} .pracc .err{color:var(--hot)} .pracc .okm{color:var(--ok)}
 .pracc .row2 .btn{min-height:46px}
+.frbtn{margin-bottom:8px;position:relative} .frbtn .nb{display:inline-grid;place-items:center;min-width:22px;height:22px;margin-left:8px;padding:0 6px;border-radius:11px;background:var(--hot);color:#fff;font:800 12px/1 var(--body)}
+.frsrch{display:flex;gap:8px;margin-bottom:6px} .frsrch .btn{flex:none;width:auto;padding:0 14px}
+.frhint{margin:0 0 12px;font:600 12px/1.4 var(--body);color:var(--dim)}
+.frlist{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:6px}
+.frlist li{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:10px;padding:8px 10px;background:var(--panel);cursor:pointer}
+.frlist li canvas{width:44px;height:44px;display:block}
+.frlist .nm{font:700 15px/1.2 var(--body);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.frlist .id{font:600 11px/1.3 ui-monospace,Menlo,monospace;color:var(--dim)}
+.frlist .tg{font:800 10px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;background:var(--raise);color:var(--dim)}
+.frlist .tg.in{background:var(--hot);color:#fff} .frlist .tg.fr{color:var(--ok)}
+.frlist .msg{display:block;cursor:default;text-align:center;color:var(--dim);background:none;font:600 13px/1.4 var(--body);padding:10px}
+.pcard{display:flex;flex-direction:column;gap:10px}
+.pchead{display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:center} .pchead canvas{width:76px;height:76px}
+.pchead .nm{font:400 24px/1.1 var(--display);color:var(--ink);overflow-wrap:anywhere}
+.pcst{display:grid;grid-template-columns:1fr auto auto;gap:6px 12px;padding:10px 12px;background:var(--raise);font:600 13px/1.3 var(--body);color:var(--dim)}
+.pcst b{color:var(--ink);text-align:right} .pcst .rk{color:var(--volt);text-align:right}
+.pcbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px} .pcbtns .btn{font-size:12.5px;padding:0 8px;min-height:42px} .pcbtns .full{grid-column:1/-1}
+.btn.danger{color:var(--hot)}
+.astat{display:flex;align-items:center;gap:8px;font:800 12px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.astat i{width:10px;height:10px;border-radius:50%;background:#7a7a95;flex:none}
+.astat.on{color:var(--ok)} .astat.on i{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+.acard{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:10px 12px;background:var(--raise);font:600 13px/1.35 var(--body);color:var(--dim)}
+.acard b{color:var(--ink);overflow-wrap:anywhere}
+.aid{display:flex;align-items:center;gap:8px} .aid b{font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;color:var(--volt)}
+.aid button{padding:4px 8px;min-height:0;font:700 11px/1 var(--body);background:var(--panel);color:var(--ink);border:1px solid rgba(var(--irgb),.25)}
+.atabs{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid rgba(var(--irgb),.15)}
+.atabs button{min-height:42px;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;color:var(--dim);font:800 12px/1 var(--body);letter-spacing:.1em}
+.atabs button.on{color:var(--ink);border-bottom-color:var(--volt)}
+#bUser{position:relative} #bUser .udot{position:absolute;left:4px;bottom:3px;width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 2px var(--bg,#111),0 0 6px var(--ok)}
 #bUser canvas{width:28px;height:28px;margin:-4px -2px -4px -6px}
 #lbName{flex:1;min-width:0;min-height:44px;padding:0 12px;background:var(--raise);border:2px solid rgba(var(--irgb),.18);color:var(--ink);font:700 16px/1 var(--body);border-radius:var(--rad,0);outline:none}
 #lbName:focus{border-color:var(--volt)}
@@ -595,8 +626,8 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
     <h3 class="lab">Offres spéciales</h3><div id="stPacks" class="stgrid packs"></div>
     <h3 class="lab">Coffres</h3><div id="stChests" class="stgrid"></div>
     <h3 class="lab">Nuggets <small>· contre des diams</small></h3><div id="stNug" class="stgrid"></div>
-    <h3 class="lab">Diams <small>· paiement à venir</small></h3><div id="stDia" class="stgrid"></div>
-    <p class="sub stnote">Les achats en argent réel ne sont pas encore ouverts : tu peux voir le contenu des offres, mais pas les payer pour l’instant.</p>
+    <h3 class="lab">Diams <small>· argent réel</small></h3><div id="stDia" class="stgrid"></div>
+    <p class="sub stnote" id="stNote"></p>
     <button id="bStBack" class="btn" type="button">RETOUR</button>
   </div>
   <div id="stDet" class="stdet" hidden><div class="sheet panel"><div id="stDetBody"></div><div class="row2"><button id="bStBuy" class="btn primary" type="button"></button><button id="bStClose" class="btn" type="button">FERMER</button></div></div></div>
@@ -667,8 +698,18 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
     <div id="prAvs" class="avgrid"></div>
     <h3 class="lab">Compte</h3>
     <div id="prAcc" class="pracc"></div>
+    <button id="bPrFr" class="btn frbtn" type="button">AMIS</button>
     <button id="bPrBack" class="btn" type="button">RETOUR</button>
   </div>
+</div>
+
+<div id="friends" class="screen dim" data-scroll hidden>
+  <div class="sheet panel">
+    <div class="phead"><h2 class="h1">AMIS</h2><span class="sub" id="frMe"></span></div>
+    <div id="frBody"></div>
+    <button id="bFrBack" class="btn" type="button">RETOUR</button>
+  </div>
+  <div id="frDet" class="stdet" hidden><div class="sheet panel"><div id="frDetBody"></div></div></div>
 </div>
 
 <div id="lb" class="screen dim" data-scroll hidden>
@@ -1198,12 +1239,24 @@ const SAVE = 'survolt.v1';
 /* Classement en ligne (Supabase). Colle ici l'adresse du projet et la clé publique (publishable / anon). */
 const LB_URL = 'https://lcwblyekpqqusryizdow.supabase.co';
 const LB_KEY = 'sb_publishable_KGiWxxU_4JD9IJzHmW-gkA_EdMrY8Cm';
+/* Liens de paiement Stripe (Payment Links), un par offre. Vide = « à venir ». */
+const PAY = {
+  d80: 'https://buy.stripe.com/test_cNiaEZ3xid2obsPb1zdMI00',
+  d500: 'https://buy.stripe.com/test_14AdRb5Fq2nK54r9XvdMI01',
+  d1200: 'https://buy.stripe.com/test_eVq9AVfg02nK8gDd9HdMI02',
+  d2600: 'https://buy.stripe.com/test_14A00l0l6geAfJ52v3dMI03',
+  d6500: 'https://buy.stripe.com/test_9B68wRfg02nKfJ58TrdMI04',
+  pack_ocean: 'https://buy.stripe.com/test_bJe9AV2tefawcwT3z7dMI05',
+  pack_volcan: 'https://buy.stripe.com/test_3cIbJ33xi6E0gN98TrdMI06',
+  pack_celeste: ''
+};
+const CGV_URL = 'cgv.html';
 const meta = { shards: 0, best: 0, bestWave: 0, shop: {}, cls: { scout: 1 }, sel: 'scout', mute: false,
   world: 'w1', wdone: {}, wbest: {}, skins: { hexa: 1 }, skin: 'hexa', layout: {},
   jet: 0, chests: [], accs: { none: 1 }, acc: 'none', stuffs: {}, stuff: null, gift: false, alm: {},
   theme: 'neon', inv: [], eq: {}, uid: 1, v5: false, tcol: { hull: '', bar: '', core: '' }, cols: {}, hue: 200, bul: 'theme', buls: { theme: 1 }, found: {},
   opt: { side: true, lock: true, flip: false }, v8: false,
-  pseudo: '', dev: '', lbRun: {}, lbSent: {}, avatar: 'scout', ts: 0, rv: 0 };
+  pseudo: '', dev: '', lbRun: {}, lbSent: {}, avatar: 'scout', ts: 0, rv: 0, paid: [] };
 const META0 = JSON.stringify(meta);   // valeurs de départ, pour repartir de zéro
 const RV = 2;   // version de remise à zéro : toute sauvegarde plus ancienne repart de zéro (on garde seulement les réglages)
 function resetMeta() { const d = JSON.parse(META0); for (const k of Object.keys(meta)) delete meta[k]; Object.assign(meta, d); }   // jouer de côté, sticks fixes
@@ -1217,6 +1270,7 @@ function merge(s) {
   if (s.opt && typeof s.opt === 'object') for (const k of ['side', 'lock', 'flip', 'auto']) if (typeof s.opt[k] === 'boolean') meta.opt[k] = s.opt[k];
   if (typeof s.pseudo === 'string') meta.pseudo = cleanName(s.pseudo);
   if (typeof s.avatar === 'string') meta.avatar = s.avatar;
+  if (Array.isArray(s.paid)) meta.paid = s.paid.filter(x => typeof x === 'string').slice(-300);
   if (Number.isFinite(s.ts)) meta.ts = s.ts;
   for (const k of ['mute', 'v8']) if (typeof s[k] === 'boolean') meta[k] = s[k];
   if (typeof s.dev === 'string' && /^[a-z0-9]{20,40}$/.test(s.dev)) meta.dev = s.dev;
@@ -3014,7 +3068,7 @@ function almLoop(now) {
 /* ================= Interface ================= */
 const COARSE = window.matchMedia && matchMedia('(pointer: coarse)').matches;
 const el = { hud: $('#hud'), menu: $('#menu'), shop: $('#shop'), cards: $('#cards'), pause: $('#pause'), over: $('#over'), opts: $('#opts'),
-  garage: $('#garage'), layout: $('#layout'), alm: $('#alm'), lb: $('#lb'), store: $('#store'), prof: $('#prof'), chests: $('#chests'), chOpen: $('#chestOpen'), gear: $('#bGear'), autoC: $('#autoChip'), autoF: $('#autoF'), wmax: $('#wmax'),
+  garage: $('#garage'), layout: $('#layout'), alm: $('#alm'), lb: $('#lb'), store: $('#store'), prof: $('#prof'), friends: $('#friends'), chests: $('#chests'), chOpen: $('#chestOpen'), gear: $('#bGear'), autoC: $('#autoChip'), autoF: $('#autoF'), wmax: $('#wmax'),
   hpf: $('#hpf'), hpb: $('#hpb'), hpt: $('#hpt'), xpf: $('#xpf'), lv: $('#lv'), wv: $('#wv'), sc: $('#sc'), combo: $('#combo'),
   boss: $('#boss'), bossN: $('#bossN'), bossF: $('#bossF'), dash: $('#bDash'), ult: $('#bUlt') };
 const hc = {};
@@ -3142,7 +3196,7 @@ function renderMenu() {
     ? (meta.opt.lock ? 'Stick gauche pour bouger, stick droit pour viser et tirer. ' : 'Premier doigt pour bouger, deuxième doigt pour viser et tirer. ') + 'Le bonus TIR AUTO fait tirer le tank tout seul pendant 15 s.'
     : 'ZQSD ou flèches pour bouger, clic maintenu pour tirer, Espace pour le dash, E pour la surcharge, Q pour l’ULT de la tenue.';
   $('#bChests span').textContent = meta.chests.length ? `COFFRES (${meta.chests.length})` : 'COFFRES';
-  { const u = $('#bUser'); u.innerHTML = ''; u.appendChild(avatarCv(meta.avatar, 56)); const t = document.createElement('span'); t.id = 'uTag'; t.textContent = meta.pseudo || 'PROFIL'; u.appendChild(t); }
+  { const u = $('#bUser'); u.innerHTML = ''; u.appendChild(avatarCv(meta.avatar, 56)); const t = document.createElement('span'); t.id = 'uTag'; t.textContent = meta.pseudo || 'PROFIL'; u.appendChild(t); if (AUTH) { const d = document.createElement('i'); d.className = 'udot'; u.appendChild(d); } }
   clsTiles($('#clsRow'), $('#clsInfo'), renderMenu);
   // volet des mondes
   const w = worldById(meta.world), wi = WORLDS.indexOf(w), dd = $('#wDrop'); dd.innerHTML = '';
@@ -3829,7 +3883,7 @@ function savesReq(method, qs, body, t) {
 async function cloudPush() {
   const t = await authToken(); if (!t || !AUTH.uid) return false;
   await savesReq('POST', '?on_conflict=user_id', { user_id: AUTH.uid, data: meta, name: meta.pseudo || null, updated_at: new Date().toISOString() }, t);
-  cloudState = 'ok'; cloudAt = Date.now(); renderSync(); return true;
+  cloudState = 'ok'; cloudAt = Date.now(); renderSync(); pushProfile().catch(() => {}); return true;
 }
 /* À la connexion : la progression du compte remplace celle de l'appareil (si le compte est vide, on y envoie celle de l'appareil).
    Au lancement : la sauvegarde la plus récente gagne. */
@@ -3846,6 +3900,7 @@ async function cloudSync(login) {
     if (!el.menu.hidden) { renderMenu(); measureMenu(); } startDemo();
     cloudState = 'ok'; cloudAt = Date.now(); renderSync();
   } else await cloudPush();
+  claimPurchases().catch(() => {});
 }
 function renderSync() {
   const t = $('#prSync'); if (!t) return;
@@ -3860,7 +3915,8 @@ function renderSync() {
   setSession(j, {});
   authCall('user', null, j.access_token, 'GET').then(u => { AUTH.email = u.email; AUTH.uid = u.id; authStore(); return cloudSync(true); }).then(() => { if (recoveryMode || true) openProf(); }).catch(() => {});
 })();
-window.addEventListener('load', () => { if (AUTH && !recoveryMode) cloudSync(false).catch(() => { cloudState = 'err'; }); });
+if (/[?&]paid=/.test(location.search)) { payPending = true; try { history.replaceState(null, '', location.pathname); } catch (e) {} }
+window.addEventListener('load', () => { if (AUTH) { try { renderMenu(); } catch (e) {} } if (AUTH && !recoveryMode) cloudSync(false).catch(() => { cloudState = 'err'; }); });
 document.addEventListener('visibilitychange', () => { if (document.hidden && AUTH) { clearTimeout(pushT); cloudPush().catch(() => {}); } });
 
 /* Photos de profil : les châssis et les tenues légendaires. */
@@ -3875,16 +3931,16 @@ const AVATARS = [
   { id: 'supernova', n: 'Supernova', sk: () => skinById('supernova'), ok: () => !!meta.skins.supernova, how: 'Débloque le skin Supernova.' },
   { id: 'celeste', n: 'Céleste', sk: () => skinById('etoile'), ok: () => false, how: 'Arrive avec le set Dragon céleste.' }
 ];
-function avatarCv(id, z) {
+function avatarCv(id, z, other) {
   const a = AVATARS.find(x => x.id === id) || AVATARS[0], cv = document.createElement('canvas'); cv.width = cv.height = z; const g = cv.getContext('2d');
   const col = a.id === 'abysses' ? '#4fc8ff' : a.id === 'magma' ? '#ff8a3d' : a.id === 'supernova' ? '#ffd23f' : a.id === 'celeste' ? '#c9b6ff' : C.volt;
   const gr = g.createRadialGradient(z / 2, z / 2, 0, z / 2, z / 2, z / 2); gr.addColorStop(0, hexA(col, 0.35)); gr.addColorStop(1, hexA(col, 0.05));
   g.fillStyle = gr; g.beginPath(); g.arc(z / 2, z / 2, z / 2 - 2, 0, TAU); g.fill(); g.lineWidth = Math.max(2, z / 28); g.strokeStyle = col; g.stroke();
-  const c = CLS.find(x => x.id === (a.cls || 'scout')) || CLS[0], st = buildStats(c.id).s, sk = a.sk ? a.sk() : skinById(meta.skin);
+  const c = CLS.find(x => x.id === (a.cls || 'scout')) || CLS[0], st = buildStats(c.id).s, sk = a.sk ? a.sk() : skinById(other ? '' : meta.skin);
   g.save(); g.beginPath(); g.arc(z / 2, z / 2, z / 2 - 3, 0, TAU); g.clip(); drawTank(g, z / 2, z * 0.56, -Math.PI / 2, st, z * 0.2, 0, false, sk); g.restore();
   return cv;
 }
-function openProf() { for (const k of ['menu', 'lb', 'opts']) if (el[k]) el[k].hidden = true; el.prof.hidden = false; el.prof.scrollTop = 0; $('#prName').value = meta.pseudo; renderProf(); }
+function openProf() { for (const k of ['menu', 'lb', 'opts']) if (el[k]) el[k].hidden = true; el.prof.hidden = false; el.prof.scrollTop = 0; $('#prName').value = meta.pseudo; renderProf(); if (AUTH) rpcA('my_friends').then(l => { frList = l || []; updFrBadge(); }).catch(() => {}); }
 function closeProf() { $('#prName').blur(); el.prof.hidden = true; el.menu.hidden = false; renderMenu(); }
 function renderProf() {
   renderSync();
@@ -3899,34 +3955,53 @@ function renderProf() {
   }
   renderAcc();
 }
+function playerId(uid) { return uid ? 'SV-' + String(uid).replace(/-/g, '').slice(0, 8).toUpperCase() : ''; }
+function netErr(e) {
+  const m = (e && e.message) || '';
+  if (e instanceof TypeError || /load failed|failed to fetch|networkerror|network request/i.test(m))
+    return 'Impossible de joindre le serveur. Vérifie ta connexion internet. Si tu joues dans l’aperçu Claude, les comptes y sont bloqués : ouvre le jeu sur uzufiako.github.io/survolt.';
+  return m || 'Erreur.';
+}
+let accMode = 'in'; const accF = { em: '', pw: '', pw2: '' };
 function renderAcc() {
   const box = $('#prAcc'); box.innerHTML = '';
   const msg = () => { if (authMsgTxt) { const p = document.createElement('p'); p.className = authMsgOk ? 'okm' : 'err'; p.textContent = authMsgTxt; box.appendChild(p); } };
   const btn = (txt, cls, fn) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn ' + (cls || ''); b.textContent = txt; b.disabled = authBusy; b.addEventListener('click', fn); return b; };
-  const run = async (fn, okTxt) => { authBusy = true; authMsgTxt = ''; renderAcc(); try { const r = await fn(); authMsgTxt = typeof r === 'string' ? r : okTxt || ''; authMsgOk = true; } catch (e) { authMsgTxt = e.message || 'Erreur.'; authMsgOk = false; } authBusy = false; renderProf(); };
+  const run = async (fn, okTxt) => { authBusy = true; authMsgTxt = ''; renderAcc(); try { const r = await fn(); authMsgTxt = typeof r === 'string' ? r : okTxt || ''; authMsgOk = true; } catch (e) { authMsgTxt = netErr(e); authMsgOk = false; } authBusy = false; renderProf(); try { renderMenu(); } catch (e) {} };
   if (!LB_ON()) { const p = document.createElement('p'); p.textContent = 'Les comptes ne sont pas encore branchés.'; box.appendChild(p); return; }
   if (AUTH && recoveryMode) {
     const p = document.createElement('p'); p.innerHTML = 'Choisis ton <b>nouveau mot de passe</b>.'; const i = document.createElement('input'); i.className = 'tin'; i.type = 'password'; i.autocomplete = 'new-password'; i.placeholder = 'Nouveau mot de passe (6 caractères min.)';
     box.append(p, i); msg(); box.appendChild(btn('ENREGISTRER', 'primary', () => run(async () => { await newPassword(i.value); recoveryMode = false; return 'Mot de passe changé.'; }))); return;
   }
   if (AUTH) {
-    const p = document.createElement('p'); p.innerHTML = 'Connecté : <b></b><br>Ta progression est sauvegardée en ligne : connecte-toi avec le même email sur un autre appareil pour la retrouver.'; p.querySelector('b').textContent = AUTH.email || 'compte';
-    box.appendChild(p); msg();
+    const st = document.createElement('div'); st.className = 'astat on'; st.innerHTML = '<i></i>Compte connecté';
+    const card = document.createElement('div'); card.className = 'acard';
+    card.innerHTML = '<span>Email</span><b class="am"></b><span>ID joueur</span><span class="aid"><b></b><button type="button">COPIER</button></span>';
+    card.querySelector('.am').textContent = AUTH.email || '—';
+    const pid = playerId(AUTH.uid); card.querySelector('.aid b').textContent = pid || '—';
+    card.querySelector('.aid button').addEventListener('click', ev => { const b = ev.currentTarget; try { navigator.clipboard.writeText(pid); b.textContent = 'COPIÉ ✓'; } catch (e) { b.textContent = pid; } setTimeout(() => { b.textContent = 'COPIER'; }, 1500); });
+    const p = document.createElement('p'); p.textContent = 'Ta progression est sauvegardée en ligne. Connecte-toi avec le même email sur un autre appareil pour la retrouver. Donne ton ID joueur au support en cas de souci avec un achat.';
+    box.append(st, card, p); msg();
     const r = document.createElement('div'); r.className = 'row2';
     r.append(btn('SYNCHRONISER', '', () => run(async () => { await cloudPush(); return 'Sauvegarde envoyée.'; })), btn('SE DÉCONNECTER', '', () => run(async () => { await signOut(); return 'Déconnecté. Le jeu continue sur cet appareil.'; })));
     box.appendChild(r); return;
   }
-  const p = document.createElement('p'); p.innerHTML = 'Sans compte, ta progression reste <b>sur cet appareil</b>. Avec un compte (email + mot de passe), tu la retrouves sur tous tes appareils.';
+  const st = document.createElement('div'); st.className = 'astat'; st.innerHTML = '<i></i>Non connecté';
+  const tabs = document.createElement('div'); tabs.className = 'atabs';
+  for (const [m, t] of [['in', 'SE CONNECTER'], ['up', 'CRÉER UN COMPTE']]) { const b = document.createElement('button'); b.type = 'button'; b.textContent = t; if (accMode === m) b.className = 'on'; b.addEventListener('click', () => { accMode = m; authMsgTxt = ''; renderAcc(); }); tabs.appendChild(b); }
+  box.append(st, tabs);
+  const p = document.createElement('p'); p.innerHTML = accMode === 'up' ? 'Crée ton compte avec ton email et un mot de passe. Ta progression actuelle sera <b>sauvegardée en ligne</b> et récupérable sur tous tes appareils.' : 'Déjà un compte ? Connecte-toi pour <b>retrouver ta progression</b>. Sans compte, elle reste seulement sur cet appareil.';
   const em = document.createElement('input'); em.className = 'tin'; em.type = 'email'; em.autocomplete = 'email'; em.placeholder = 'Email'; em.id = 'prEmail';
-  const pw = document.createElement('input'); pw.className = 'tin'; pw.type = 'password'; pw.autocomplete = 'current-password'; pw.placeholder = 'Mot de passe (6 caractères min.)'; pw.id = 'prPw';
-  for (const i of [em, pw]) { i.addEventListener('keydown', e => e.stopPropagation()); i.addEventListener('keyup', e => e.stopPropagation()); i.addEventListener('blur', () => { setTimeout(vpFix, 150); setTimeout(vpFix, 600); }); }
-  box.append(p, em, pw); msg();
+  const pw = document.createElement('input'); pw.className = 'tin'; pw.type = 'password'; pw.autocomplete = accMode === 'up' ? 'new-password' : 'current-password'; pw.placeholder = accMode === 'up' ? 'Choisis un mot de passe (6 caractères min.)' : 'Mot de passe'; pw.id = 'prPw';
+  const pw2 = document.createElement('input'); pw2.className = 'tin'; pw2.type = 'password'; pw2.autocomplete = 'new-password'; pw2.placeholder = 'Confirme le mot de passe';
+  em.value = accF.em; pw.value = accF.pw; pw2.value = accF.pw2;
+  em.addEventListener('input', () => accF.em = em.value); pw.addEventListener('input', () => accF.pw = pw.value); pw2.addEventListener('input', () => accF.pw2 = pw2.value);
+  for (const i of [em, pw, pw2]) { i.addEventListener('keydown', e => e.stopPropagation()); i.addEventListener('keyup', e => e.stopPropagation()); i.addEventListener('blur', () => { setTimeout(vpFix, 150); setTimeout(vpFix, 600); }); }
+  box.append(p, em, pw); if (accMode === 'up') box.appendChild(pw2); msg();
   const v = () => { const e = em.value.trim(); if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)) throw new Error('Adresse email invalide.'); if (pw.value.length < 6) throw new Error('Mot de passe : 6 caractères minimum.'); return e; };
-  const r = document.createElement('div'); r.className = 'row2';
-  r.append(btn('SE CONNECTER', 'primary', () => run(async () => { await signIn(v(), pw.value); return 'Connecté. Progression du compte chargée.'; })),
-    btn('CRÉER UN COMPTE', '', () => run(async () => { const res = await signUp(v(), pw.value); return res === 'confirm' ? 'Compte créé. Ouvre le mail de confirmation, touche le lien, et tu seras connecté.' : 'Compte créé et connecté. Ta progression est sauvegardée en ligne.'; })));
-  box.appendChild(r);
-  box.appendChild(btn('MOT DE PASSE OUBLIÉ', 'ghostb', () => run(async () => { const e = em.value.trim(); if (!/@/.test(e)) throw new Error('Écris ton email au-dessus, puis touche ce bouton.'); await recoverPw(e); return 'Mail envoyé : touche le lien pour choisir un nouveau mot de passe.'; })));
+  if (accMode === 'up') box.appendChild(btn('CRÉER MON COMPTE', 'primary', () => run(async () => { const e = v(); if (pw2.value !== pw.value) throw new Error('Les deux mots de passe ne sont pas identiques.'); const res = await signUp(e, pw.value); return res === 'confirm' ? 'Compte créé. Ouvre le mail de confirmation, touche le lien, et tu seras connecté.' : 'Compte créé et connecté ✓ Ta progression est sauvegardée en ligne.'; })));
+  else box.appendChild(btn('SE CONNECTER', 'primary', () => run(async () => { await signIn(v(), pw.value); return 'Connecté ✓ Progression du compte chargée.'; })));
+  if (accMode === 'in') box.appendChild(btn('MOT DE PASSE OUBLIÉ', 'ghostb', () => run(async () => { const e = em.value.trim(); if (!/@/.test(e)) throw new Error('Écris ton email au-dessus, puis touche ce bouton.'); await recoverPw(e); return 'Mail envoyé : touche le lien pour choisir un nouveau mot de passe.'; })));
 }
 function setNameTag() {
   const n = cleanName($('#prName').value); $('#prName').value = n;
@@ -3938,9 +4013,102 @@ $('#prName').addEventListener('keydown', e => { e.stopPropagation(); if (e.key =
 $('#prName').addEventListener('keyup', e => e.stopPropagation());
 $('#prName').addEventListener('blur', () => { setTimeout(vpFix, 150); setTimeout(vpFix, 600); });
 $('#bPrBack').addEventListener('click', closeProf);
+/* ================= Amis ================= */
+async function rpcA(name, body) {
+  const t = await authToken(); if (!t) throw new Error('Connecte-toi d’abord.');
+  const r = await fetch(API() + '/rest/v1/rpc/' + name, { method: 'POST', headers: { apikey: LB_KEY, Authorization: 'Bearer ' + t, 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}) });
+  const j = await r.json().catch(() => null);
+  if (!r.ok) { const m = (j && (j.message || j.hint)) || ''; if (r.status === 404 || /could not find the function|schema cache/i.test(m)) throw new Error('Les amis ne sont pas encore activés sur le serveur (amis.sql).'); throw new Error(m || 'Erreur serveur.'); }
+  return j;
+}
+function myStats() { const o = {}; for (const m in meta.lbRun) { const r = meta.lbRun[m]; if (r && r.s > 0) o[m] = { s: Math.round(r.s), w: r.w | 0 }; } return o; }
+async function pushProfile() { if (!AUTH) return; await rpcA('save_profile', { p_pseudo: meta.pseudo || '', p_avatar: meta.avatar || 'scout', p_stats: myStats() }); }
+let frList = null, frRes = null, frQ = '', frMsg = '', frBusy = false;
+const REL = { friend: ['AMI', 'fr'], incoming: ['DEMANDE', 'in'], outgoing: ['ENVOYÉE', ''], blocked: ['BLOQUÉ', ''], none: ['', ''] };
+function frRow(c) {
+  const li = document.createElement('li'); li.appendChild(avatarCv(c.avatar, 88, true));
+  const mid = document.createElement('div'); const n = document.createElement('div'); n.className = 'nm'; n.textContent = c.pseudo || 'Sans nom';
+  const id = document.createElement('div'); id.className = 'id'; const best = c.stats && c.stats.inf ? ' · record ' + fmt(c.stats.inf.s) : ''; id.textContent = c.pid + best; mid.append(n, id); li.appendChild(mid);
+  const tg = document.createElement('span'); const r = REL[c.rel] || REL.none; tg.className = 'tg ' + r[1]; tg.textContent = r[0]; if (!r[0]) tg.style.visibility = 'hidden'; li.appendChild(tg);
+  li.addEventListener('click', () => openCard(c)); return li;
+}
+function frSection(title, arr, empty) {
+  const box = document.createDocumentFragment(); const h = document.createElement('h3'); h.className = 'lab'; h.textContent = title + (arr.length ? ' (' + arr.length + ')' : ''); box.appendChild(h);
+  const ul = document.createElement('ul'); ul.className = 'frlist';
+  if (!arr.length) { const li = document.createElement('li'); li.className = 'msg'; li.textContent = empty; ul.appendChild(li); } else arr.forEach(c => ul.appendChild(frRow(c)));
+  box.appendChild(ul); return box;
+}
+function renderFriends() {
+  const b = $('#frBody'); b.innerHTML = '';
+  $('#frMe').textContent = AUTH ? 'Ton ID : ' + playerId(AUTH.uid) : '';
+  if (!AUTH) { const p = document.createElement('p'); p.className = 'frhint'; p.textContent = 'Connecte-toi (ou crée un compte) dans ton Profil pour ajouter des amis.'; b.appendChild(p); return; }
+  const f = document.createElement('div'); f.className = 'frsrch';
+  const i = document.createElement('input'); i.className = 'tin'; i.id = 'frQ'; i.placeholder = 'ID (SV-…), pseudo ou email'; i.autocapitalize = 'off'; i.spellcheck = false; i.value = frQ;
+  const go = document.createElement('button'); go.type = 'button'; go.className = 'btn primary'; go.textContent = 'CHERCHER'; go.disabled = frBusy;
+  const run = async () => { frQ = i.value.trim(); if (frQ.length < 2) { frMsg = 'Tape au moins 2 caractères.'; renderFriends(); return; } frBusy = true; frMsg = ''; renderFriends(); try { frRes = await rpcA('find_players', { p_q: frQ }) || []; if (!frRes.length) frMsg = 'Aucun joueur trouvé.'; } catch (e) { frMsg = netErr(e); frRes = null; } frBusy = false; renderFriends(); };
+  go.addEventListener('click', run); i.addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') run(); }); i.addEventListener('keyup', e => e.stopPropagation()); i.addEventListener('input', () => frQ = i.value);
+  i.addEventListener('blur', () => { setTimeout(vpFix, 150); setTimeout(vpFix, 600); });
+  f.append(i, go); b.appendChild(f);
+  const hint = document.createElement('p'); hint.className = 'frhint'; hint.textContent = frMsg || 'Cherche un joueur par son ID exact, le début de son pseudo, ou son email exact (l’email n’est jamais affiché).'; if (frMsg) hint.style.color = 'var(--hot)'; b.appendChild(hint);
+  if (frRes && frRes.length) b.appendChild(frSection('Résultats', frRes, ''));
+  if (!frList) { const p = document.createElement('p'); p.className = 'frhint'; p.textContent = 'Chargement…'; b.appendChild(p); return; }
+  const by = r => frList.filter(c => c.rel === r);
+  if (by('incoming').length) b.appendChild(frSection('Demandes reçues', by('incoming'), ''));
+  b.appendChild(frSection('Mes amis', by('friend'), 'Pas encore d’amis. Cherche-les au-dessus !'));
+  if (by('outgoing').length) b.appendChild(frSection('Demandes envoyées', by('outgoing'), ''));
+  if (by('blocked').length) b.appendChild(frSection('Bloqués', by('blocked'), ''));
+}
+async function loadFriends() {
+  if (!AUTH) { frList = []; renderFriends(); return; }
+  try { frList = await rpcA('my_friends') || []; } catch (e) { frList = []; frMsg = netErr(e); }
+  renderFriends(); updFrBadge();
+}
+function updFrBadge() {
+  const b = $('#bPrFr'); if (!b) return; const n = (frList || []).filter(c => c.rel === 'incoming').length;
+  b.innerHTML = 'AMIS' + (n ? '<span class="nb">' + n + '</span>' : '');
+}
+const MODE_N = { inf: 'Infini', w1: 'Monde 1', w2: 'Monde 2', w3: 'Monde 3', w4: 'Monde 4' };
+function openCard(c) {
+  const bd = $('#frDetBody'); bd.innerHTML = ''; const box = document.createElement('div'); box.className = 'pcard';
+  const hd = document.createElement('div'); hd.className = 'pchead'; hd.appendChild(avatarCv(c.avatar, 192, true));
+  const t = document.createElement('div'); const n = document.createElement('div'); n.className = 'nm'; n.textContent = c.pseudo || 'Sans nom';
+  const id = document.createElement('div'); id.className = 'aid'; id.innerHTML = '<b></b><button type="button">COPIER</button>'; id.querySelector('b').textContent = c.pid;
+  id.querySelector('button').addEventListener('click', ev => { const bt = ev.currentTarget; try { navigator.clipboard.writeText(c.pid); bt.textContent = 'COPIÉ ✓'; } catch (e) {} setTimeout(() => bt.textContent = 'COPIER', 1500); });
+  const rel = document.createElement('div'); rel.className = 'astat' + (c.rel === 'friend' ? ' on' : ''); rel.innerHTML = '<i></i>' + ({ friend: 'Ami', incoming: 'Veut être ton ami', outgoing: 'Demande envoyée', blocked: 'Bloqué', none: 'Pas encore ami' }[c.rel] || '');
+  t.append(n, id, rel); hd.appendChild(t); box.appendChild(hd);
+  const st = document.createElement('div'); st.className = 'pcst'; st.innerHTML = '<span>Mode</span><span>Record</span><span>Rang</span>';
+  let any = false;
+  for (const m of ['inf', 'w1', 'w2', 'w3', 'w4']) { const r = c.stats && c.stats[m]; if (!r) continue; any = true; const a = document.createElement('span'); a.textContent = MODE_N[m] + ' · vague ' + r.w; const b2 = document.createElement('b'); b2.textContent = fmt(r.s); const k = document.createElement('span'); k.className = 'rk'; k.textContent = c.ranks && c.ranks[m] ? '#' + c.ranks[m] : '—'; st.append(a, b2, k); }
+  if (!any) { const a = document.createElement('span'); a.style.gridColumn = '1/-1'; a.textContent = 'Pas encore de record en ligne.'; st.appendChild(a); }
+  box.appendChild(st);
+  const msg = document.createElement('p'); msg.className = 'frhint'; msg.style.margin = '0'; box.appendChild(msg);
+  const bt = document.createElement('div'); bt.className = 'pcbtns';
+  const B = (txt, act, cls) => { const x = document.createElement('button'); x.type = 'button'; x.className = 'btn ' + (cls || ''); x.textContent = txt;
+    x.addEventListener('click', async () => {
+      if (act === 'block' && !confirmTap(x, 'SÛR ? BLOQUER')) return;
+      if (act === 'remove' && c.rel === 'friend' && !confirmTap(x, 'SÛR ? RETIRER')) return;
+      for (const y of bt.querySelectorAll('button')) y.disabled = true;
+      try { c.rel = await rpcA('friend_action', { p_pid: c.pid, p_act: act }); if (frRes) for (const r of frRes) if (r.pid === c.pid) r.rel = c.rel; await loadFriends(); openCard(c); }
+      catch (e) { msg.textContent = netErr(e); msg.style.color = 'var(--hot)'; for (const y of bt.querySelectorAll('button')) y.disabled = false; }
+    }); return x; };
+  if (c.rel === 'none') bt.append(B('AJOUTER', 'add', 'primary'));
+  if (c.rel === 'incoming') bt.append(B('ACCEPTER', 'accept', 'primary'), B('REFUSER', 'refuse'));
+  if (c.rel === 'outgoing') bt.append(B('ANNULER LA DEMANDE', 'remove'));
+  if (c.rel === 'friend') bt.append(B('RETIRER', 'remove'));
+  if (c.rel === 'blocked') bt.append(B('DÉBLOQUER', 'unblock'));
+  else bt.append(B('BLOQUER', 'block', 'danger'));
+  const cl = document.createElement('button'); cl.type = 'button'; cl.className = 'btn' + (c.rel === 'incoming' ? '' : ' full'); cl.textContent = 'FERMER'; cl.addEventListener('click', () => $('#frDet').hidden = true); bt.appendChild(cl);
+  box.appendChild(bt); bd.appendChild(box); $('#frDet').hidden = false;
+}
+function confirmTap(x, txt) { if (x.dataset.ok) return true; x.dataset.ok = 1; x.textContent = txt; setTimeout(() => { delete x.dataset.ok; }, 3000); return false; }
+function openFriends() { el.prof.hidden = true; el.friends.hidden = false; el.friends.scrollTop = 0; $('#frDet').hidden = true; frMsg = ''; renderFriends(); loadFriends(); pushProfile().catch(() => {}); }
+function closeFriends() { $('#frQ') && $('#frQ').blur(); el.friends.hidden = true; $('#frDet').hidden = true; el.prof.hidden = false; renderProf(); }
+$('#bPrFr').addEventListener('click', openFriends);
+$('#bFrBack').addEventListener('click', closeFriends);
+$('#frDet').addEventListener('click', e => { if (e.target.id === 'frDet') $('#frDet').hidden = true; });
 /* ================= Boutique ================= */
 const NUGP = [{ v: 500, c: 10 }, { v: 1200, c: 20, b: '+20 %' }, { v: 3500, c: 50, b: '+40 %' }, { v: 8000, c: 100, b: '+60 %' }];
-const DIAP = [{ v: 80, e: '0,99 €' }, { v: 500, e: '4,99 €', b: '+25 %' }, { v: 1200, e: '9,99 €', b: '+50 %' }, { v: 2600, e: '19,99 €', b: '+60 %' }, { v: 6500, e: '49,99 €', b: '+60 %' }];
+const DIAP = [{ id: 'd80', v: 80, e: '0,99 €' }, { id: 'd500', v: 500, e: '4,99 €', b: '+25 %' }, { id: 'd1200', v: 1200, e: '9,99 €', b: '+50 %' }, { id: 'd2600', v: 2600, e: '19,99 €', b: '+60 %' }, { id: 'd6500', v: 6500, e: '49,99 €', b: '+60 %' }];
 const STCH = [{ r: 'x', n: 'Coffre mystère', c: 10, d: 'Rareté tirée à l’ouverture, avec les chances habituelles.' }, { r: 'ur', n: 'Coffre épique', c: 60, d: 'Rareté UR garantie.' }, { r: 'mt', n: 'Coffre mythique', c: 150, d: 'Rareté MT garantie.' }, { r: 'lg', n: 'Coffre légendaire', c: 320, d: 'Rareté LG garantie, cosmétiques premium possibles.' }];
 const PACKS = [
   { id: 'ocean', n: 'Pack Océanique', col: '#4fc8ff', set: 'ocean', e: '44,99 €', items: ['Set complet Léviathan océanique (4 pièces LG) : skin Abysses et ULT Typhon', 'Balle premium Glace et couleur Givre', '3 coffres légendaires', '✦ 600 diams', '◆ 8 000 nuggets'] },
@@ -3964,12 +4132,58 @@ function showDet(title, lines, btn, act) {
   for (const l of lines) { const li = document.createElement('li'); li.textContent = l; ul.appendChild(li); } bd.append(h, ul);
   const bb = $('#bStBuy'); bb.innerHTML = btn; bb.disabled = !act; stAct = act; $('#stDet').hidden = false;
 }
+/* ---- Achats en argent réel (Stripe) ---- */
+function payable(id) { return !!PAY[id]; }
+function buyReal(id, label, price) {
+  const link = PAY[id];
+  const lines = [label + ' · ' + price + ' TTC.'];
+  showDet(label, lines, 'PAYER ' + price, () => {
+    if (!AUTH) return 'CONNECTE-TOI D’ABORD (PROFIL)';
+    if (!$('#stOk').checked) return 'COCHE LA CASE CI-DESSUS';
+    const u = link + (link.includes('?') ? '&' : '?') + 'client_reference_id=' + encodeURIComponent(AUTH.uid + '__' + id) + (AUTH.email ? '&prefilled_email=' + encodeURIComponent(AUTH.email) : '');
+    payPending = true; const w = window.open(u, '_blank'); if (!w) location.href = u;
+    return 'PAIEMENT OUVERT…';
+  });
+  const bd = $('#stDetBody'), lab = document.createElement('label'); lab.className = 'stok';
+  lab.innerHTML = '<input type="checkbox" id="stOk"> <span>Je veux recevoir le contenu tout de suite et je renonce à mon droit de rétractation (art. L221-28 du Code de la consommation). J’ai lu les <a target="_blank" rel="noopener">CGV</a>.</span>';
+  lab.querySelector('a').href = CGV_URL; bd.appendChild(lab);
+  if (!AUTH) { const p = document.createElement('p'); p.className = 'err'; p.textContent = 'Il faut un compte (Profil, en haut à gauche) : l’achat est lié à ton compte et tu le retrouves sur tous tes appareils.'; bd.appendChild(p); }
+}
+let payPending = false;
+/* Ce que donne chaque offre payée. */
+function grantOffer(id) {
+  const dp = DIAP.find(x => x.id === id); if (dp) { meta.jet += dp.v; return ['✦ +' + fmt(dp.v) + ' diams'] ; }
+  const pk = { pack_ocean: ['ocean', 'glace', 'givre'], pack_volcan: ['volcan', 'lave', 'braise'], pack_celeste: [null, 'galaxie', 'arcenciel'] }[id];
+  if (!pk) return [];
+  const out = [];
+  if (pk[0]) { for (const sl of GEARK) newItem('gear', pk[0] + '.' + sl, 'lg'); out.push('Set complet ' + GSETS.find(g => g.id === pk[0]).n); }
+  meta.buls[pk[1]] = 1; meta.cols[pk[2]] = 1; out.push('Balle ' + bulById(pk[1]).n + ' et couleur ' + COLITEMS().find(c => c.id === pk[2]).n);
+  for (let i = 0; i < 3; i++) meta.chests.push('lg'); meta.jet += 600; meta.shards += 8000;
+  out.push('3 coffres légendaires', '✦ +600 diams', '◆ +8 000 nuggets');
+  return out;
+}
+/* Récupère les achats payés et pas encore reçus, puis les livre. */
+async function claimPurchases() {
+  if (!AUTH || !LB_ON()) return;
+  const t = await authToken(); if (!t) return;
+  const r = await fetch(API() + '/rest/v1/rpc/claim_purchases', { method: 'POST', headers: { apikey: LB_KEY, Authorization: 'Bearer ' + t, 'Content-Type': 'application/json' }, body: '{}' });
+  if (!r.ok) return; const rows = await r.json(); if (!rows || !rows.length) return;
+  const got = [];
+  for (const x of rows) { if (meta.paid.includes(x.session_id)) continue; meta.paid.push(x.session_id); got.push(...grantOffer(x.offer)); }
+  if (!got.length) return;
+  save(); cloudPush().catch(() => {}); initAudio(); uis(() => sfx.reveal(5));
+  if (el.store.hidden) { for (const k of ['menu', 'garage', 'chests', 'alm', 'lb', 'prof']) if (el[k]) el[k].hidden = true; el.store.hidden = false; renderStore(); }
+  else renderStore();
+  showDet('Achat reçu, merci !', got, 'SUPER', () => { $('#stDet').hidden = true; return null; });
+}
+document.addEventListener('visibilitychange', () => { if (!document.hidden && AUTH) setTimeout(() => claimPurchases().catch(() => {}), payPending ? 1500 : 300); });
 function renderStore() {
+  $('#stNote').innerHTML = Object.values(PAY).some(Boolean) ? 'Paiement sécurisé par Stripe. Les achats sont liés à ton compte et arrivent dans le jeu juste après le paiement. <a href="' + CGV_URL + '" target="_blank" rel="noopener">CGV et mentions légales</a>.' : 'Les achats en argent réel ne sont pas encore ouverts : tu peux voir le contenu des offres, mais pas les payer pour l’instant.';
   $('#stBal').innerHTML = `<span class="sh">${fmt(meta.shards)}</span> &nbsp; <span class="jt">${fmt(meta.jet)}</span>`;
   const c = selCls();
   const pk = $('#stPacks'); pk.innerHTML = '';
-  for (const P2 of PACKS) pk.appendChild(offer(preview(c, P2.set === 'celeste' ? skinById('supernova') : STUFFSK[P2.set === 'ocean' ? 'ocean' : 'magma'], 'none', 110), P2.n, 'Tout le stuff légendaire, des coffres et de la monnaie.', { html: P2.e + ' · À VENIR', soon: 1 }, P2.col, 'pack', 'PACK',
-    () => showDet(P2.n, P2.items, 'BIENTÔT · ' + P2.e, null)));
+  for (const P2 of PACKS) pk.appendChild(offer(preview(c, P2.set === 'celeste' ? skinById('supernova') : STUFFSK[P2.set === 'ocean' ? 'ocean' : 'magma'], 'none', 110), P2.n, 'Tout le stuff légendaire, des coffres et de la monnaie.', { html: P2.e + (payable('pack_' + P2.id) ? '' : ' · À VENIR'), soon: payable('pack_' + P2.id) ? 0 : 1 }, P2.col, 'pack', 'PACK',
+    () => { if (payable('pack_' + P2.id)) { buyReal('pack_' + P2.id, P2.n, P2.e); const ul = document.createElement('ul'); for (const l of P2.items) { const li = document.createElement('li'); li.textContent = l; ul.appendChild(li); } $('#stDetBody ul').replaceWith(ul); } else showDet(P2.n, P2.items, 'BIENTÔT · ' + P2.e, null); }));
   const ch = $('#stChests'); ch.innerHTML = '';
   for (const x of STCH) { const col = x.r === 'x' ? '#8a86b0' : RARS[RIDX[x.r]].col;
     ch.appendChild(offer(chestIcon(col), x.n, x.d, { html: costHTML('✦', x.c) }, col, '', null, () => showDet(x.n, [x.d, 'S’ouvre tout de suite, avec la roulette.'], 'ACHETER · ' + costHTML('✦', x.c), () => {
@@ -3978,12 +4192,12 @@ function renderStore() {
   NUGP.forEach((x, i) => ng.appendChild(offer(gemIcon('#ffd23f', i + 1), '◆ ' + fmt(x.v), 'nuggets', { html: costHTML('✦', x.c) }, '#ffd23f', '', x.b, () => showDet('◆ ' + fmt(x.v) + ' nuggets', ['Contre ✦ ' + x.c + ' diams.'], 'ACHETER · ' + costHTML('✦', x.c), () => {
     if (meta.jet < x.c) return 'IL MANQUE ' + costHTML('✦', x.c - meta.jet); meta.jet -= x.c; meta.shards += x.v; save(); initAudio(); uis(() => sfx.buy()); $('#stDet').hidden = true; renderStore(); return null; }))));
   const dg = $('#stDia'); dg.innerHTML = '';
-  DIAP.forEach((x, i) => dg.appendChild(offer(gemIcon(C.ion, Math.min(5, i + 1)), '✦ ' + fmt(x.v), 'diams', { html: x.e + ' · À VENIR', soon: 1 }, C.ion, '', x.b, () => showDet('✦ ' + fmt(x.v) + ' diams', ['Prix : ' + x.e + '.', 'Le paiement en argent réel arrive bientôt.'], 'BIENTÔT', null))));
+  DIAP.forEach((x, i) => dg.appendChild(offer(gemIcon(C.ion, Math.min(5, i + 1)), '✦ ' + fmt(x.v), 'diams', { html: x.e + (payable(x.id) ? '' : ' · À VENIR'), soon: payable(x.id) ? 0 : 1 }, C.ion, '', x.b, () => payable(x.id) ? buyReal(x.id, '✦ ' + fmt(x.v) + ' diams', x.e) : showDet('✦ ' + fmt(x.v) + ' diams', ['Prix : ' + x.e + '.', 'Le paiement en argent réel arrive bientôt.'], 'BIENTÔT', null))));
 }
 $('#bStBuy').addEventListener('click', () => { if (!stAct) return; const r = stAct(); if (r) { const b = $('#bStBuy'), old = b.innerHTML; b.innerHTML = r; setTimeout(() => { b.innerHTML = old; }, 1600); } });
 $('#bStClose').addEventListener('click', () => { $('#stDet').hidden = true; });
 $('#stDet').addEventListener('click', e => { if (e.target.id === 'stDet') $('#stDet').hidden = true; });
-function openStore() { el.menu.hidden = true; el.store.hidden = false; el.store.scrollTop = 0; $('#stDet').hidden = true; renderStore(); }
+function openStore() { el.menu.hidden = true; el.store.hidden = false; el.store.scrollTop = 0; $('#stDet').hidden = true; renderStore(); claimPurchases().catch(() => {}); }
 function closeStore() { el.store.hidden = true; el.menu.hidden = false; renderMenu(); }
 $('#bStore').addEventListener('click', openStore);
 $('#bStBack').addEventListener('click', closeStore);
