@@ -397,7 +397,23 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .pracc p{margin:0;font:600 13px/1.45 var(--body);color:var(--dim)} .pracc b{color:var(--ink)} .pracc .err{color:var(--hot)} .pracc .okm{color:var(--ok)}
 .pracc .row2 .btn{min-height:46px}
 .lblist li.tap{cursor:pointer} .lblist li.tap .nm{text-decoration:underline;text-decoration-color:rgba(var(--irgb),.25);text-underline-offset:3px}
-#frDet{z-index:40}
+#frDet{z-index:42} #gchat{z-index:39}
+.gico{font-size:30px;text-align:center}
+.gclist .g{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:start;padding:4px 2px;cursor:pointer}
+.gclist .g canvas{width:30px;height:30px}
+.gclist .g .w{min-width:0;padding:6px 10px;background:var(--panel);border-radius:4px 12px 12px 12px}
+.gclist .g.me .w{background:rgba(var(--irgb),.08);outline:1.5px solid var(--ion)}
+.gclist .g .who{display:flex;gap:6px;align-items:baseline;font:800 12px/1.2 var(--body);color:var(--ion)}
+.gclist .g .who time{font:600 10px/1 var(--body);color:var(--dim);margin-left:auto}
+.gclist .g .who .st{color:var(--volt)} .gclist .g .who .rp{color:var(--hot)}
+.gclist .g .tx{font:600 14px/1.35 var(--body);color:var(--ink);overflow-wrap:anywhere;white-space:pre-wrap}
+.sanbox{display:flex;flex-direction:column;gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px} .chips button{min-height:36px;padding:0 12px;background:var(--raise);color:var(--ink);border:1.5px solid transparent;font:700 12px/1 var(--body);border-radius:var(--rad,0)}
+.chips button.on{border-color:var(--volt);color:var(--volt)}
+.banbar{padding:10px 12px;background:rgba(255,61,85,.15);border-left:4px solid var(--hot);font:600 13px/1.4 var(--body);color:var(--ink);margin-bottom:8px}
+.modsec{margin-top:10px}
+.adlist li{grid-template-columns:26px 44px 1fr auto} .adlist .rk{font:400 15px/1 var(--display);color:var(--dim);text-align:center}
+#adSort{margin:4px 0 8px}
 .adstats{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px;margin-bottom:10px}
 .adstats div{padding:8px 10px;background:var(--raise);font:600 11px/1.3 var(--body);color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
 .adstats b{display:block;font:400 20px/1.1 var(--display);color:var(--ink);letter-spacing:0;text-transform:none}
@@ -551,6 +567,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
   <div class="mtop">
     <button id="bOpts" class="ibtn" type="button" aria-label="Réglages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.6 4.7l1.9 1.5-2 3.4-2.3-.9a7.6 7.6 0 0 1-1.9 1.1L16 21h-4l-.3-2.7a7.6 7.6 0 0 1-1.9-1.1l-2.3.9-2-3.4 1.9-1.5a7.7 7.7 0 0 1 0-2.4L5.5 9.3l2-3.4 2.3.9a7.6 7.6 0 0 1 1.9-1.1L12 3h4l.3 2.7c.7.3 1.3.6 1.9 1.1l2.3-.9 2 3.4-1.9 1.5a7.7 7.7 0 0 1 0 2.4z" transform="translate(-2 0)" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg></button>
     <button id="bUser" class="ibtn" type="button" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c.8-4.2 4-6.5 8-6.5s7.2 2.3 8 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span id="uTag"></span></button>
+    <button id="bGChat" class="ibtn" type="button" aria-label="Chat global"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 9.5h8M8 12.5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>CHAT</span></button>
   </div>
   <div class="sheet">
     <div class="mhead">
@@ -655,7 +672,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 <div id="chests" class="screen dim" data-scroll hidden>
   <div class="sheet panel">
     <div class="phead"><h2 class="h1">COFFRES</h2><span class="jt" id="cJet">0</span></div>
-    <p class="sub">Nuggets, diams et équipement. Les cosmétiques ne tombent jamais en partie : ils s’achètent au Garage, ou sortent des coffres UR (cosmétiques CO à SR), MT (jusqu’à UR) et LG ou plus (toutes raretés, premium compris). Tu gagnes un coffre à chaque monde terminé, et des diams sur les mini-boss et les boss.</p>
+    <p class="sub">Chaque coffre donne des nuggets et un équipement, et des diams à partir du coffre UR. Les cosmétiques ne tombent jamais en partie : ils s’achètent au Garage, ou sortent des coffres LG et UPL (toutes raretés, premium compris). Tu gagnes un coffre à chaque monde terminé, et des diams sur les mini-boss et les boss.</p>
     <div><h3 class="lab">Tes coffres</h3><div id="chMine" class="chgrid"></div></div>
     <button id="bBuyCh" class="btn" type="button"></button>
     <div><h3 class="lab">Chances par coffre</h3><div id="odds" class="odds"></div></div>
@@ -736,10 +753,19 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
     <div id="adStats" class="adstats"></div>
     <div class="frsrch"><input id="adQ" class="tin" placeholder="Email, pseudo ou ID (vide = tous)" autocapitalize="off" spellcheck="false"><button id="adGo" class="btn primary" type="button">CHERCHER</button></div>
     <p id="adMsg" class="frhint"></p>
-    <ul id="adList" class="frlist"></ul>
+    <h3 class="lab">👥 Tous les comptes</h3>
+    <div id="adSort" class="chips"></div>
+    <ul id="adList" class="frlist adlist"></ul>
+    <div id="adMod" class="modsec"></div>
     <button id="bAdBack" class="btn" type="button">RETOUR</button>
   </div>
 </div>
+<div id="gchat" class="stdet" hidden><div class="sheet panel chatbox">
+  <div class="chhead"><span class="gico">🌍</span><div><b>CHAT GLOBAL</b><small id="gcSub">Sois sympa : les insultes sont masquées et punies.</small></div><button id="gcClose" class="btn" type="button">✕</button></div>
+  <div id="gcList" class="chlist gclist" data-scroll></div>
+  <p id="gcErr" class="frhint" hidden></p>
+  <div class="chform"><input id="gcIn" class="tin" maxlength="200" autocomplete="off" placeholder="Écris à tout le monde…"><button id="gcSend" class="btn primary" type="button">ENVOYER</button></div>
+</div></div>
 <div id="frDet" class="stdet" hidden><div class="sheet panel" data-scroll><div id="frDetBody"></div></div></div>
 <div id="chat" class="stdet" hidden><div class="sheet panel chatbox">
   <div class="chhead"><span id="chAv"></span><div><b id="chName"></b><small id="chPid"></small></div><button id="chClose" class="btn" type="button">✕</button></div>
@@ -1294,7 +1320,7 @@ const meta = { shards: 0, best: 0, bestWave: 0, shop: {}, cls: { scout: 1 }, sel
   opt: { side: true, lock: true, flip: false }, v8: false,
   pseudo: '', dev: '', lbRun: {}, lbSent: {}, avatar: 'scout', ts: 0, rv: 0, paid: [] };
 const META0 = JSON.stringify(meta);   // valeurs de départ, pour repartir de zéro
-const RV = 2;   // version de remise à zéro : toute sauvegarde plus ancienne repart de zéro (on garde seulement les réglages)
+const RV = 3;   // version de remise à zéro : toute sauvegarde plus ancienne repart de zéro (on garde seulement les réglages)
 function resetMeta() { const d = JSON.parse(META0); for (const k of Object.keys(meta)) delete meta[k]; Object.assign(meta, d); }   // jouer de côté, sticks fixes
 function merge(s) {
   if (!s || typeof s !== 'object') return;
@@ -1354,7 +1380,7 @@ function devId() {
 function load() {
   let s0 = null; try { s0 = JSON.parse(localStorage.getItem(SAVE) || 'null'); } catch (e) {}
   if (s0 && s0.rv === RV) merge(s0);
-  else if (s0) merge({ opt: s0.opt, layout: s0.layout, theme: s0.theme, mute: s0.mute, v8: s0.v8, dev: s0.dev });   // remise à zéro : on ne garde que les réglages
+  else if (s0) merge({ opt: s0.opt, layout: s0.layout, theme: s0.theme, mute: s0.mute, v8: s0.v8, dev: s0.dev, pseudo: s0.pseudo, avatar: s0.avatar, lbRun: s0.lbRun, lbSent: s0.lbSent });   // remise à zéro : on garde les réglages, le name tag et les records du classement
   meta.rv = RV;
 }
 let pushT = null;
@@ -3555,7 +3581,8 @@ function rollRar(boost) {
   return RARS[one()].id;   // mêmes taux partout : coffres, objets, vêtements
 }
 function chestLoot(ri) {
-  const L = [{ k: 'sh', v: Math.round([20, 50, 100, 160, 260, 400, 800][ri] * rnd(0.85, 1.2)) }];
+  const L = [{ k: 'sh', v: Math.round([30, 60, 120, 250, 450, 800, 1500][ri] * rnd(0.85, 1.2)) }];   // nuggets dans tous les coffres
+  if (ri >= 3) L.push({ k: 'jet', v: Math.round([0, 0, 0, 10, 25, 60, 150][ri] * rnd(0.85, 1.2)) });   // diams à partir du coffre UR
   // un cosmétique au hasard, de rareté au plus `top` (tirage pondéré), jamais premium avant les coffres LG
   const addCos = top => {
     const okc = c => !c.own && !L.some(x => x.id === c.id) && (!c.prem || ri >= 5);
@@ -3564,12 +3591,10 @@ function chestLoot(ri) {
     L.push({ k: 'jet', v: [2, 4, 8, 15, 25, 40, 60][ri] });
   };
   const it = rid => { const x = randItem(rid); L.push({ k: 'item', t: x.t, id: x.id, r: x.r }); };
-  if (ri === 0) it('co');   // pas de cosmétique dans les coffres CO, R, SR : ils s'achètent, ou tombent des coffres UR et plus
-  else if (ri <= 2) it(RARS[ri].id);
-  else if (ri === 3) { it('ur'); addCos(2); }   // épique : cosmétiques CO à SR
-  else if (ri === 4) { it('mt'); addCos(3); L.push({ k: 'jet', v: 20 }); }   // mythique : jusqu'à UR
-  else if (ri === 5) { it('lg'); addCos(5); }   // légendaire et plus : toutes les raretés, premium compris
-  else { it('lg'); it('lg'); L.push({ k: 'item', t: 'wpn', id: pick(WPNS.slice(1)).id, r: 'mt' }); addCos(5); L.push({ k: 'jet', v: 50 }); }
+  // cosmétiques : seulement dans les coffres LG et UPL (toutes raretés, premium compris) ; sinon ils s'achètent
+  if (ri <= 4) it(RARS[ri].id);
+  else if (ri === 5) { it('lg'); addCos(5); }
+  else { it('lg'); it('lg'); L.push({ k: 'item', t: 'wpn', id: pick(WPNS.slice(1)).id, r: 'mt' }); addCos(5); addCos(5); }
   return L;
 }
 function applyLoot(L) {
@@ -4011,7 +4036,7 @@ function avatarCv(id, z, other) {
   g.save(); g.beginPath(); g.arc(z / 2, z / 2, z / 2 - 3, 0, TAU); g.clip(); drawTank(g, z / 2, z * 0.56, -Math.PI / 2, st, z * 0.2, 0, false, sk); g.restore();
   return cv;
 }
-function openProf() { for (const k of ['menu', 'lb', 'opts']) if (el[k]) el[k].hidden = true; el.prof.hidden = false; el.prof.scrollTop = 0; $('#prName').value = meta.pseudo; renderProf(); if (AUTH) { checkNotif(); checkAdmin(); } else { const b = $('#bPrAdm'); if (b) b.hidden = true; } }
+function openProf() { for (const k of ['menu', 'lb', 'opts']) if (el[k]) el[k].hidden = true; el.prof.hidden = false; el.prof.scrollTop = 0; $('#prName').value = meta.pseudo; renderProf(); if (AUTH) { checkNotif(); checkAdmin(); loadStatus().then(s => { if (s && (s.ban || s.mute) && !el.prof.hidden) renderProf(); }); } else { const b = $('#bPrAdm'); if (b) b.hidden = true; } }
 function closeProf() { $('#prName').blur(); el.prof.hidden = true; el.menu.hidden = false; renderMenu(); }
 function renderProf() {
   if (!AUTH) { isAdm = false; const ab = $('#bPrAdm'); if (ab) ab.hidden = true; }
@@ -4053,7 +4078,9 @@ function renderAcc() {
     const pid = playerId(AUTH.uid); card.querySelector('.aid b').textContent = pid || '—';
     card.querySelector('.aid button').addEventListener('click', ev => { const b = ev.currentTarget; try { navigator.clipboard.writeText(pid); b.textContent = 'COPIÉ ✓'; } catch (e) { b.textContent = pid; } setTimeout(() => { b.textContent = 'COPIER'; }, 1500); });
     const p = document.createElement('p'); p.textContent = 'Ta progression est sauvegardée en ligne. Connecte-toi avec le même email sur un autre appareil pour la retrouver. Donne ton ID joueur au support en cas de souci avec un achat.';
-    box.append(st, card, p); msg();
+    box.append(st, card, p);
+    if (myStat && (myStat.ban || myStat.mute)) { const bb = document.createElement('div'); bb.className = 'banbar'; bb.textContent = myStat.ban ? '⛔ Compte suspendu ' + sanTxt(myStat.ban) + '. Le chat, les amis et le classement sont bloqués.' : '🔇 Tu ne peux plus écrire ' + sanTxt(myStat.mute) + '.'; box.insertBefore(bb, p); }
+    msg();
     const r = document.createElement('div'); r.className = 'row2';
     r.append(btn('SYNCHRONISER', '', () => run(async () => { await cloudPush(); return 'Sauvegarde envoyée.'; })), btn('SE DÉCONNECTER', '', () => run(async () => { await signOut(); $('#prName').value = ''; return 'Déconnecté ✓ Ta progression est sur ton compte, cet appareil repart de zéro. Reconnecte-toi pour la retrouver.'; })));
     box.appendChild(r); return;
@@ -4244,16 +4271,60 @@ async function adLoad() {
     for (const [k, n, v] of [['users', 'Comptes', st.users], ['users7', 'Nouveaux 7 j', st.users7], ['active7', 'Actifs 7 j', st.active7], ['sales', 'Achats', st.sales], ['revenue', 'Encaissé', euro(st.revenue)], ['friendships', 'Amitiés', st.friendships], ['messages', 'Messages', st.messages]]) {
       const d = document.createElement('div'); d.textContent = n; const b = document.createElement('b'); b.textContent = v; d.prepend(b); $('#adStats').appendChild(d);
     }
-    const rows = await rpcA('admin_users', { p_q: q }) || [];
-    l.innerHTML = ''; m.textContent = rows.length + ' compte' + (rows.length > 1 ? 's' : '') + (q ? ' trouvé' + (rows.length > 1 ? 's' : '') : '') + '. Touche un compte pour sa fiche complète.';
-    for (const u of rows) {
-      const li = document.createElement('li'); li.appendChild(avatarCv(u.avatar || 'scout', 88, true));
+    adRows = await rpcA('admin_users', { p_q: q }) || [];
+    m.textContent = adRows.length + ' compte' + (adRows.length > 1 ? 's' : '') + (q ? ' trouvé' + (adRows.length > 1 ? 's' : '') : '') + '. Touche un compte pour sa fiche complète.';
+    adRender();
+  } catch (e) { m.textContent = netErr(e); m.style.color = 'var(--hot)'; }
+  adModLoad();
+}
+var adRows = [], adBy = 'new';
+const AD_SORT = [['new', 'Plus récents', (a, b) => (b.created || '').localeCompare(a.created || '')], ['old', 'Plus anciens', (a, b) => (a.created || '').localeCompare(b.created || '')],
+  ['last', 'Dernière connexion', (a, b) => (b.last || '').localeCompare(a.last || '')], ['spent', 'Dépenses', (a, b) => (b.spent || 0) - (a.spent || 0)],
+  ['score', 'Record Infini', (a, b) => ((b.stats && b.stats.inf && b.stats.inf.s) || 0) - ((a.stats && a.stats.inf && a.stats.inf.s) || 0)], ['name', 'A → Z', (a, b) => (a.pseudo || '~').localeCompare(b.pseudo || '~', 'fr')]];
+function adRender() {
+  const ch = $('#adSort'); ch.innerHTML = '';
+  for (const [k, t] of AD_SORT) { const b = document.createElement('button'); b.type = 'button'; b.textContent = t; if (k === adBy) b.className = 'on'; b.addEventListener('click', () => { adBy = k; adRender(); }); ch.appendChild(b); }
+  const l = $('#adList'); l.innerHTML = '';
+  const rows = adRows.slice().sort(AD_SORT.find(x => x[0] === adBy)[2]);
+  if (!rows.length) { const li = document.createElement('li'); li.className = 'msg'; li.textContent = 'Aucun compte.'; l.appendChild(li); }
+  rows.forEach((u, i) => {
+      const li = document.createElement('li'); const rk = document.createElement('span'); rk.className = 'rk'; rk.textContent = i + 1; li.appendChild(rk); li.appendChild(avatarCv(u.avatar || 'scout', 88, true));
       const mid = document.createElement('div'); const n = document.createElement('div'); n.className = 'nm'; n.textContent = (u.pseudo || 'Sans pseudo') + (u.admin ? ' 🛡️' : '');
       const id = document.createElement('div'); id.className = 'id'; id.textContent = u.email + (u.pid ? ' · ' + u.pid : ''); mid.append(n, id); li.appendChild(mid);
-      const tg = document.createElement('span'); tg.className = 'tg' + (u.spent ? ' fr' : ''); tg.textContent = u.spent ? euro(u.spent) : dfr(u.created).slice(0, 8); li.appendChild(tg);
-      li.addEventListener('click', () => adOpen(u.uid)); l.appendChild(li);
-    }
-  } catch (e) { m.textContent = netErr(e); m.style.color = 'var(--hot)'; }
+      const tg = document.createElement('span'); tg.className = 'tg' + (u.spent ? ' fr' : '');
+      tg.textContent = adBy === 'spent' ? euro(u.spent) : adBy === 'score' ? fmt((u.stats && u.stats.inf && u.stats.inf.s) || 0) : adBy === 'last' ? (u.last ? dfr(u.last).slice(0, 8) : 'jamais') : u.spent ? euro(u.spent) : dfr(u.created).slice(0, 8);
+      li.appendChild(tg); li.addEventListener('click', () => adOpen(u.uid)); l.appendChild(li);
+  });
+}
+async function adModLoad() {
+  const box = $('#adMod'); box.innerHTML = '';
+  let d; try { d = await rpcA('admin_mod'); } catch (e) { const p = document.createElement('p'); p.className = 'frhint'; p.textContent = 'Modération : lance chat-global.sql dans Supabase pour l’activer.'; box.appendChild(p); return; }
+  const h1 = document.createElement('h3'); h1.className = 'lab'; h1.textContent = '⚠ Signalements (' + d.reports.length + ')'; box.appendChild(h1);
+  const ul = document.createElement('ul'); ul.className = 'frlist'; box.appendChild(ul);
+  if (!d.reports.length) { const li = document.createElement('li'); li.className = 'msg'; li.textContent = 'Aucun message signalé.'; ul.appendChild(li); }
+  for (const r of d.reports) {
+    const li = document.createElement('li'); li.style.gridTemplateColumns = '1fr auto';
+    const t = document.createElement('div'); const n = document.createElement('div'); n.className = 'nm'; n.textContent = (r.pseudo || '?') + ' · ' + r.n + ' signalement' + (r.n > 1 ? 's' : ''); const b = document.createElement('div'); b.className = 'id'; b.textContent = '« ' + r.body + ' »'; t.append(n, b); li.appendChild(t);
+    const tg = document.createElement('span'); tg.className = 'tg in'; tg.textContent = 'GÉRER'; li.appendChild(tg);
+    li.addEventListener('click', () => {
+      const sb = sheet('Message de ' + (r.pseudo || '?')); const q = document.createElement('p'); q.className = 'frhint'; q.style.margin = '0'; q.textContent = '« ' + r.body + ' » · ' + dfr(r.at); sb.appendChild(q);
+      sBtn(sb, '🗑️ SUPPRIMER LE MESSAGE', 'danger', async () => { try { await rpcA('admin_gchat_delete', { p_id: r.id }); $('#frDet').hidden = true; adModLoad(); } catch (e) { sMsg(sb, netErr(e), true); } });
+      sBtn(sb, '✓ IGNORER (message correct)', '', async () => { try { await rpcA('admin_reports_clear', { p_id: r.id }); $('#frDet').hidden = true; adModLoad(); } catch (e) { sMsg(sb, netErr(e), true); } });
+      if (r.pid) { sBtn(sb, '🔇 MUTER…', '', () => sanForm(r.pid, r.pseudo, 'mute', adModLoad)); sBtn(sb, '⛔ BANNIR…', 'danger', () => sanForm(r.pid, r.pseudo, 'ban', adModLoad)); }
+      sBtn(sb, 'FERMER', '', () => $('#frDet').hidden = true);
+    });
+    ul.appendChild(li);
+  }
+  const h2 = document.createElement('h3'); h2.className = 'lab'; h2.textContent = '⛔ Sanctions en cours (' + d.sanctions.length + ')'; box.appendChild(h2);
+  const ul2 = document.createElement('ul'); ul2.className = 'frlist'; box.appendChild(ul2);
+  if (!d.sanctions.length) { const li = document.createElement('li'); li.className = 'msg'; li.textContent = 'Personne n’est sanctionné.'; ul2.appendChild(li); }
+  for (const x of d.sanctions) {
+    const li = document.createElement('li'); li.style.gridTemplateColumns = '1fr auto';
+    const t = document.createElement('div'); const n = document.createElement('div'); n.className = 'nm'; n.textContent = (x.kind === 'ban' ? '⛔ ' : '🔇 ') + (x.pseudo || '?') + ' · ' + (x.pid || ''); const b = document.createElement('div'); b.className = 'id'; b.textContent = (x.until ? 'jusqu’au ' + dfr(x.until) : 'définitif') + (x.reason ? ' · ' + x.reason : ''); t.append(n, b); li.appendChild(t);
+    const tg = document.createElement('span'); tg.className = 'tg fr'; tg.textContent = 'LEVER'; li.appendChild(tg);
+    li.addEventListener('click', async () => { if (!confirmTap(tg, 'SÛR ?')) return; try { await rpcA('admin_unsanction', { p_pid: x.pid, p_kind: x.kind }); adModLoad(); } catch (e) { tg.textContent = 'ERREUR'; } });
+    ul2.appendChild(li);
+  }
 }
 async function adOpen(uid) {
   const bd = $('#frDetBody'); bd.innerHTML = '<p class="frhint">Chargement…</p>'; $('#frDet').hidden = false;
@@ -4274,6 +4345,17 @@ async function adOpen(uid) {
     sec('Achats'); if (u.purchases && u.purchases.length) for (const a of u.purchases) row(dfr(a.at), a.offer + ' · ' + euro(a.amount) + (a.claimed ? ' · livré' : ' · en attente')); else row('Achats', 'aucun');
     sec('Social'); row('Amis', (u.friends || []).join(', ') || 'aucun'); row('A bloqué', u.blocked); row('Bloqué par', u.blockedBy); row('Messages envoyés', u.sent);
     box.appendChild(kv);
+    if (u.pid) {
+      let sx = {}; try { sx = await rpcA('admin_user_sanctions', { p_uid: uid }) || {}; } catch (e) {}
+      if (sx.ban || sx.mute) { const bb = document.createElement('div'); bb.className = 'banbar'; bb.textContent = (sx.ban ? '⛔ Banni ' + sanTxt(sx.ban) : '') + (sx.ban && sx.mute ? ' · ' : '') + (sx.mute ? '🔇 Muté ' + sanTxt(sx.mute) : ''); box.appendChild(bb); }
+      const g = document.createElement('div'); g.className = 'pcbtns';
+      const mk = (txt, cls, fn) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn ' + cls; b.textContent = txt; b.addEventListener('click', fn); g.appendChild(b); };
+      if (!u.admin) {
+        if (sx.mute) mk('LEVER LE MUTE', '', async () => { await rpcA('admin_unsanction', { p_pid: u.pid, p_kind: 'mute' }).catch(() => {}); adOpen(uid); }); else mk('🔇 MUTER…', '', () => sanForm(u.pid, u.pseudo, 'mute', () => adModLoad()));
+        if (sx.ban) mk('LEVER LE BAN', '', async () => { await rpcA('admin_unsanction', { p_pid: u.pid, p_kind: 'ban' }).catch(() => {}); adOpen(uid); }); else mk('⛔ BANNIR…', 'danger', () => sanForm(u.pid, u.pseudo, 'ban', () => adModLoad()));
+      }
+      box.appendChild(g);
+    }
     const cl = document.createElement('button'); cl.type = 'button'; cl.className = 'btn'; cl.textContent = 'FERMER'; cl.addEventListener('click', () => $('#frDet').hidden = true); box.appendChild(cl);
     bd.appendChild(box);
   } catch (e) { bd.innerHTML = ''; const p = document.createElement('p'); p.className = 'frhint'; p.style.color = 'var(--hot)'; p.textContent = netErr(e); bd.appendChild(p); }
@@ -4286,6 +4368,92 @@ $('#adGo').addEventListener('click', adLoad);
 $('#adQ').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') adLoad(); });
 $('#adQ').addEventListener('keyup', e => e.stopPropagation());
 $('#adQ').addEventListener('blur', () => { setTimeout(vpFix, 150); setTimeout(vpFix, 600); });
+/* ---------- Chat global + modération ---------- */
+var gcLast = 0, gcTimer = 0, gcBusy = false, gcTick = 0, myStat = null;
+async function loadStatus() { if (!AUTH) { myStat = null; return null; } try { myStat = await rpcA('my_status'); } catch (e) { myStat = null; } return myStat; }
+function sanTxt(x) { return x ? (x.until ? 'jusqu’au ' + dfr(x.until) : 'définitivement') + (x.reason ? ' · motif : ' + x.reason : '') : ''; }
+async function gcCall(name, body) { return AUTH ? rpcA(name, body) : lbFetch('rpc/' + name, { method: 'POST', body: JSON.stringify(body || {}) }); }
+function gcAdd(m) {
+  const l = $('#gcList'); const e = l.querySelector('.empty'); if (e) e.remove();
+  if (l.querySelector('[data-id="' + m.id + '"]')) return;
+  const d = document.createElement('div'); d.className = 'g' + (m.mine ? ' me' : ''); d.dataset.id = m.id;
+  d.appendChild(avatarCv(m.avatar || 'scout', 60, true));
+  const w = document.createElement('div'); w.className = 'w';
+  const who = document.createElement('div'); who.className = 'who';
+  const n = document.createElement('span'); n.textContent = m.pseudo || 'Joueur'; who.appendChild(n);
+  if (m.staff) { const st = document.createElement('span'); st.className = 'st'; st.textContent = '🛡️ ADMIN'; who.appendChild(st); }
+  if (m.reports) { const rp = document.createElement('span'); rp.className = 'rp'; rp.textContent = '⚠ ' + m.reports; who.appendChild(rp); }
+  const t = document.createElement('time'); t.textContent = chTime(m.at); who.appendChild(t);
+  const tx = document.createElement('div'); tx.className = 'tx'; tx.textContent = m.body;
+  w.append(who, tx); d.appendChild(w); d.addEventListener('click', () => gcMenu(m)); l.appendChild(d);
+  gcLast = Math.max(gcLast, m.id | 0);
+}
+async function gcPull(first) {
+  if (gcBusy || $('#gchat').hidden) return; gcBusy = true;
+  try {
+    const l = $('#gcList'), atEnd = l.scrollHeight - l.scrollTop - l.clientHeight < 50;
+    const rows = await gcCall('gchat_get', { p_after: first ? 0 : gcLast }) || [];
+    rows.forEach(gcAdd);
+    if (first && !rows.length) l.innerHTML = '<p class="empty">Le chat est calme… lance la conversation !</p>';
+    if (rows.length && (first || atEnd)) l.scrollTop = l.scrollHeight;
+    if (!first && ++gcTick % 3 === 0 && gcLast) { const del = await gcCall('gchat_deleted', { p_since: gcLast }) || []; for (const id of del) { const x = l.querySelector('[data-id="' + id + '"]'); if (x) x.remove(); } }
+    $('#gcErr').hidden = true;
+  } catch (e) { const er = $('#gcErr'); er.textContent = netErr(e); er.style.color = 'var(--hot)'; er.hidden = false; }
+  gcBusy = false;
+}
+async function gcRenderInput() {
+  const i = $('#gcIn'), b = $('#gcSend'), sub = $('#gcSub');
+  if (!AUTH) { i.disabled = b.disabled = true; i.placeholder = 'Connecte-toi (Profil) pour écrire'; return; }
+  await loadStatus(); const s = myStat || {};
+  if (s.ban || s.mute) { i.disabled = b.disabled = true; i.placeholder = s.ban ? 'Compte suspendu' : 'Tu es réduit au silence'; sub.textContent = (s.ban ? 'Compte suspendu ' : 'Silence ') + sanTxt(s.ban || s.mute); sub.style.color = 'var(--hot)'; }
+  else { i.disabled = b.disabled = false; i.placeholder = 'Écris à tout le monde…'; sub.textContent = 'Sois sympa : les insultes sont masquées et punies.'; sub.style.color = ''; }
+}
+function openGChat() { gcLast = 0; gcTick = 0; $('#gcList').innerHTML = ''; $('#gcErr').hidden = true; $('#gchat').hidden = false; gcRenderInput(); gcPull(true); clearInterval(gcTimer); gcTimer = setInterval(() => { if (document.visibilityState === 'visible') gcPull(false); }, 4000); }
+function closeGChat() { clearInterval(gcTimer); $('#gcIn').blur(); $('#gchat').hidden = true; }
+async function gcSendNow() {
+  const i = $('#gcIn'), txt = i.value.trim(); if (!txt) return; const b = $('#gcSend'); b.disabled = true;
+  try { await rpcA('gchat_send', { p_body: txt }); i.value = ''; await gcPull(false); const l = $('#gcList'); l.scrollTop = l.scrollHeight; }
+  catch (e) { const er = $('#gcErr'); er.textContent = netErr(e); er.style.color = 'var(--hot)'; er.hidden = false; }
+  b.disabled = false; if (myStat && (myStat.ban || myStat.mute)) gcRenderInput();
+}
+function sheet(title) { const bd = $('#frDetBody'); bd.innerHTML = ''; const box = document.createElement('div'); box.className = 'pcard sanbox'; const h = document.createElement('h3'); h.className = 'lab'; h.textContent = title; box.appendChild(h); bd.appendChild(box); $('#frDet').hidden = false; return box; }
+function sBtn(box, txt, cls, fn) { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn ' + (cls || ''); b.textContent = txt; b.addEventListener('click', fn); box.appendChild(b); return b; }
+function sMsg(box, txt, bad) { let p = box.querySelector('.smsg'); if (!p) { p = document.createElement('p'); p.className = 'frhint smsg'; p.style.margin = '0'; box.appendChild(p); } p.textContent = txt; p.style.color = bad ? 'var(--hot)' : 'var(--ok)'; }
+function gcMenu(m) {
+  const box = sheet((m.pseudo || 'Joueur') + (m.pid ? ' · ' + m.pid : ''));
+  const q = document.createElement('p'); q.className = 'frhint'; q.style.margin = '0'; q.textContent = '« ' + m.body + ' »'; box.appendChild(q);
+  if (!AUTH) { sMsg(box, 'Connecte-toi pour voir les profils et signaler.', true); sBtn(box, 'FERMER', '', () => $('#frDet').hidden = true); return; }
+  if (m.pid && !m.mine) sBtn(box, '👤 VOIR LE PROFIL', 'primary', async () => { try { openCard(await rpcA('player_card', { p_pid: m.pid })); } catch (e) { sMsg(box, netErr(e), true); } });
+  if (!m.mine) sBtn(box, '⚠ SIGNALER CE MESSAGE', '', async ev => { try { await rpcA('gchat_report', { p_id: m.id }); ev.currentTarget.disabled = true; sMsg(box, 'Merci, le message a été signalé.'); } catch (e) { sMsg(box, netErr(e), true); } });
+  if (isAdm) {
+    sBtn(box, '🗑️ SUPPRIMER LE MESSAGE', 'danger', async () => { try { await rpcA('admin_gchat_delete', { p_id: m.id }); const x = $('#gcList').querySelector('[data-id="' + m.id + '"]'); if (x) x.remove(); $('#frDet').hidden = true; } catch (e) { sMsg(box, netErr(e), true); } });
+    if (m.pid && !m.mine && !m.staff) { sBtn(box, '🔇 MUTER…', '', () => sanForm(m.pid, m.pseudo, 'mute')); sBtn(box, '⛔ BANNIR…', 'danger', () => sanForm(m.pid, m.pseudo, 'ban')); }
+  }
+  sBtn(box, 'FERMER', '', () => $('#frDet').hidden = true);
+}
+const SAN_DUR = [['10 min', 10], ['1 h', 60], ['24 h', 1440], ['7 jours', 10080], ['30 jours', 43200], ['Définitif', null]];
+function sanForm(pid, pseudo, kind, after) {
+  const box = sheet((kind === 'ban' ? '⛔ Bannir ' : '🔇 Muter ') + (pseudo || pid));
+  const info = document.createElement('p'); info.className = 'frhint'; info.style.margin = '0';
+  info.textContent = kind === 'ban' ? 'Banni : plus de chat, de messages, d’amis ni de classement. Ses messages du chat et ses scores sont retirés.' : 'Muté : il ne peut plus écrire (chat global et messages privés), mais joue normalement.';
+  box.appendChild(info);
+  let dur = kind === 'ban' ? 10080 : 60; const ch = document.createElement('div'); ch.className = 'chips';
+  for (const [t, v] of SAN_DUR) { const b = document.createElement('button'); b.type = 'button'; b.textContent = t; if (v === dur) b.className = 'on'; b.addEventListener('click', () => { dur = v; ch.querySelectorAll('button').forEach(x => x.className = x === b ? 'on' : ''); }); ch.appendChild(b); }
+  box.appendChild(ch);
+  const r = document.createElement('input'); r.className = 'tin'; r.placeholder = 'Motif (visible par le joueur)'; r.maxLength = 200; r.addEventListener('keydown', e => e.stopPropagation()); r.addEventListener('keyup', e => e.stopPropagation()); box.appendChild(r);
+  sBtn(box, kind === 'ban' ? 'CONFIRMER LE BANNISSEMENT' : 'CONFIRMER LE MUTE', 'primary', async () => {
+    try { await rpcA('admin_sanction', { p_pid: pid, p_kind: kind, p_minutes: dur, p_reason: r.value.trim() }); sMsg(box, (kind === 'ban' ? 'Banni ' : 'Muté ') + (dur ? 'pour ' + SAN_DUR.find(d => d[1] === dur)[0] : 'définitivement') + ' ✓'); if (!$('#gchat').hidden) { $('#gcList').innerHTML = ''; gcLast = 0; gcPull(true); } if (after) after(); }
+    catch (e) { sMsg(box, netErr(e), true); }
+  });
+  sBtn(box, 'ANNULER', '', () => $('#frDet').hidden = true);
+}
+$('#bGChat').addEventListener('click', openGChat);
+$('#gcClose').addEventListener('click', closeGChat);
+$('#gcSend').addEventListener('click', gcSendNow);
+$('#gcIn').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') gcSendNow(); });
+$('#gcIn').addEventListener('keyup', e => e.stopPropagation());
+$('#gcIn').addEventListener('blur', () => { setTimeout(vpFix, 150); setTimeout(vpFix, 600); });
+$('#gchat').addEventListener('click', e => { if (e.target.id === 'gchat') closeGChat(); });
 function confirmTap(x, txt) { if (x.dataset.ok) return true; x.dataset.ok = 1; x.textContent = txt; setTimeout(() => { delete x.dataset.ok; }, 3000); return false; }
 function openFriends() { el.prof.hidden = true; el.friends.hidden = false; el.friends.scrollTop = 0; $('#frDet').hidden = true; frMsg = ''; renderFriends(); loadFriends(); pushProfile().catch(() => {}); }
 function closeFriends() { $('#frQ') && $('#frQ').blur(); el.friends.hidden = true; $('#frDet').hidden = true; el.prof.hidden = false; renderProf(); }
