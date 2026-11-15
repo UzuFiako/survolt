@@ -4011,7 +4011,7 @@ function wipeLocal() {
 async function signOut() {
   const t = AUTH && AUTH.at;
   let ok = false; try { ok = await cloudPush(); } catch (e) {}
-  if (!ok) throw new Error('Impossible d’envoyer ta progression en ligne (connexion ?). Déconnexion annulée pour ne rien perdre. Réessaie avec du réseau.');
+  if (!ok) throw new Error('Impossible d’envoyer ta progression en ligne' + (cloudErr ? ' (' + cloudErr + ')' : ' (connexion ?)') + '. Déconnexion annulée pour ne rien perdre. Réessaie avec du réseau.');
   AUTH = null; authStore(); cloudState = ''; if (t) authCall('logout', {}, t).catch(() => {});
   wipeLocal();
 }
@@ -4019,8 +4019,9 @@ async function recoverPw(email) { await authCall('recover?redirect_to=' + backTo
 async function newPassword(pw) { const t = await authToken(); if (!t) throw new Error('Session expirée, reconnecte-toi.'); await authCall('user', { password: pw }, t, 'PUT'); }
 function savesReq(method, qs, body, t) {
   return fetch(API() + '/rest/v1/saves' + (qs || ''), { method, headers: { apikey: LB_KEY, Authorization: 'Bearer ' + t, 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal' }, body: body ? JSON.stringify(body) : undefined })
-    .then(async r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.status === 200 ? r.json() : null; });
+    .then(async r => { if (!r.ok) { let m = ''; try { const j = await r.json(); m = j.message || j.msg || j.hint || ''; } catch (e) {} cloudErr = 'HTTP ' + r.status + (m ? ' · ' + m : ''); throw new Error(cloudErr); } cloudErr = ''; return r.status === 200 ? r.json() : null; });
 }
+var cloudErr = '';
 async function cloudPush() {
   const t = await authToken(); if (!t || !AUTH.uid) return false;
   await savesReq('POST', '?on_conflict=user_id', { user_id: AUTH.uid, data: meta, name: meta.pseudo || null, updated_at: new Date().toISOString() }, t);
@@ -4045,7 +4046,7 @@ async function cloudSync(login) {
 }
 function renderSync() {
   const t = $('#prSync'); if (!t) return;
-  t.textContent = !AUTH ? 'Sauvegarde sur cet appareil' : cloudState === 'sync' ? 'Synchronisation…' : cloudState === 'err' ? 'Hors ligne, synchro plus tard' : 'Sauvegardé en ligne';
+  t.textContent = !AUTH ? 'Sauvegarde sur cet appareil' : cloudState === 'sync' ? 'Synchronisation…' : cloudState === 'err' ? (cloudErr ? 'Erreur de synchro (' + cloudErr + ')' : 'Hors ligne, synchro plus tard') : 'Sauvegardé en ligne';
 }
 // retour depuis le lien reçu par mail (confirmation ou mot de passe oublié)
 (function readAuthHash() {
