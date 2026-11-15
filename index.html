@@ -397,7 +397,13 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .pracc p{margin:0;font:600 13px/1.45 var(--body);color:var(--dim)} .pracc b{color:var(--ink)} .pracc .err{color:var(--hot)} .pracc .okm{color:var(--ok)}
 .pracc .row2 .btn{min-height:46px}
 .lblist li.tap{cursor:pointer} .lblist li.tap .nm{text-decoration:underline;text-decoration-color:rgba(var(--irgb),.25);text-underline-offset:3px}
-#frDet{z-index:42} #gchat{z-index:39}
+#frDet{z-index:42} #tuto{z-index:43}
+.tutobox{display:flex;flex-direction:column;gap:8px}
+.tutobox details{background:var(--raise);padding:0 12px}
+.tutobox summary{cursor:pointer;list-style:none;padding:12px 0;font:800 15px/1.2 var(--body);color:var(--ink);display:flex;justify-content:space-between}
+.tutobox summary::-webkit-details-marker{display:none} .tutobox summary::after{content:'▾';color:var(--dim)} .tutobox details[open] summary::after{content:'▴'}
+.tutobox ul{margin:0 0 12px;padding-left:18px;font:600 13.5px/1.5 var(--body);color:var(--dim)} .tutobox li b{color:var(--ink)}
+#bTutoOpen{margin-bottom:8px} #gchat{z-index:39}
 .gico{font-size:30px;text-align:center}
 .gclist .g{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:start;padding:4px 2px;cursor:pointer}
 .gclist .g canvas{width:30px;height:30px}
@@ -760,6 +766,43 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
     <button id="bAdBack" class="btn" type="button">RETOUR</button>
   </div>
 </div>
+<div id="tuto" class="stdet" hidden><div class="sheet panel tutobox" data-scroll>
+  <h2 class="h1">BIENVENUE SUR SURVOLT</h2>
+  <p class="frhint" style="margin:0">Pilote un tank, survis aux vagues d’ennemis et deviens plus fort à chaque partie. Touche une rubrique pour la lire.</p>
+  <details open><summary>🎮 Les commandes</summary><ul>
+    <li><b>Stick gauche</b> : déplacer le tank. <b>Stick droit</b> : viser et tirer.</li>
+    <li><b>DASH</b> : un sprint rapide qui te rend intouchable un court instant. Il se recharge en quelques secondes.</li>
+    <li><b>SURCHARGE</b> : se remplit en éliminant des ennemis. Quand le bouton s’allume, touche-le : grosse onde de choc, tirs boostés et quelques secondes d’invincibilité.</li>
+    <li><b>TIR AUTO</b> : un bonus rare à ramasser en partie, ton tank tire tout seul pendant 15 s.</li>
+    <li>⏸ en haut pour mettre en pause ou abandonner.</li></ul></details>
+  <details><summary>⚔️ Une partie</summary><ul>
+    <li>Les ennemis arrivent par <b>vagues</b>. Tue-les pour gagner de l’<b>XP</b> (barre du bas).</li>
+    <li>À chaque niveau, choisis <b>1 carte sur 3</b> (perk) : les 3 ont la même rareté, de Commun à Légendaire. Tu peux avoir 7 perks différents au maximum.</li>
+    <li>Des <b>mini-boss</b> et des <b>boss</b> apparaissent à certaines vagues. Ils donnent des diams.</li>
+    <li>Finis les <b>4 mondes</b> dans l’ordre (20 à 30 vagues chacun) pour gagner un coffre. Le mode <b>Infini</b> se débloque après le Monde 2.</li></ul></details>
+  <details><summary>🧰 Garage et Atelier</summary><ul>
+    <li><b>Garage</b> : équipe ton arme et tes 4 pièces d’équipement (les sets donnent des bonus), choisis ton châssis, ton skin, tes accessoires, tes couleurs et tes balles.</li>
+    <li><b>Atelier</b> : améliorations permanentes (vie, dégâts, vitesse…) achetées avec des nuggets.</li>
+    <li><b>Almanach</b> : tout ce que tu as découvert, monstres et objets, avec leurs raretés.</li></ul></details>
+  <details><summary>🎁 Coffres et raretés</summary><ul>
+    <li>Raretés : CO, R, SR, UR (épique), MT, LG, UPL (prismatique).</li>
+    <li>Chaque coffre donne des <b>nuggets</b> et un <b>équipement</b>. À partir du coffre <b>UR</b>, il donne aussi des <b>diams</b>.</li>
+    <li>Les <b>cosmétiques</b> ne tombent jamais en partie : ils s’achètent au Garage ou sortent des coffres <b>LG</b> et <b>UPL</b>.</li>
+    <li>Tu commences avec un <b>coffre mystère</b> : ouvre-le dans Coffres !</li></ul></details>
+  <details><summary>💎 Nuggets, diams et boutique</summary><ul>
+    <li><b>Nuggets</b> ◆ : gagnés en partie et dans les coffres, pour l’Atelier et le Garage.</li>
+    <li><b>Diams</b> ✦ : gagnés sur les boss et dans les coffres UR et plus. Ils servent à acheter des coffres et des cosmétiques.</li>
+    <li><b>Boutique</b> : diams et packs en argent réel (paiement sécurisé Stripe, compte obligatoire). Rien n’est obligatoire pour jouer.</li></ul></details>
+  <details><summary>👤 Compte, amis et chat</summary><ul>
+    <li><b>Profil</b> (en haut à gauche) : name tag, photo et compte. Avec un compte (email + mot de passe), ta progression est sauvegardée en ligne et tu la retrouves sur tous tes appareils.</li>
+    <li><b>Classement</b> : un top 50 par mode. Touche un joueur pour voir sa fiche.</li>
+    <li><b>Amis</b> : ajoute quelqu’un par son ID (SV-…), son pseudo ou son email, puis discute en privé avec 💬.</li>
+    <li><b>💬 CHAT</b> (en haut du menu) : le chat global. Reste respectueux : insultes masquées, signalements, et les sanctions vont du silence au bannissement.</li></ul></details>
+  <details><summary>⚙️ Réglages</summary><ul>
+    <li>Roue crantée en haut : orientation (AUTO, droit, gauche ou droite), position et taille des sticks, thème (néon, métal, pastel), son.</li>
+    <li>Tu peux relire ce tuto à tout moment dans les Réglages.</li></ul></details>
+  <button id="bTutoOk" class="btn primary" type="button">C’EST PARTI !</button>
+</div></div>
 <div id="gchat" class="stdet" hidden><div class="sheet panel chatbox">
   <div class="chhead"><span class="gico">🌍</span><div><b>CHAT GLOBAL</b><small id="gcSub">Sois sympa : les insultes sont masquées et punies.</small></div><button id="gcClose" class="btn" type="button">✕</button></div>
   <div id="gcList" class="chlist gclist" data-scroll></div>
@@ -792,6 +835,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
   <div class="sheet panel">
     <h2 class="h1">RÉGLAGES</h2>
     <div id="optList" class="optlist"></div>
+    <button id="bTutoOpen" class="btn" type="button">📖 COMMENT JOUER</button>
     <button id="bOptsBack" class="btn" type="button">RETOUR</button>
   </div>
 </div>
@@ -1315,7 +1359,7 @@ const PAY = {
 const CGV_URL = 'cgv.html';
 const meta = { shards: 0, best: 0, bestWave: 0, shop: {}, cls: { scout: 1 }, sel: 'scout', mute: false,
   world: 'w1', wdone: {}, wbest: {}, skins: { hexa: 1 }, skin: 'hexa', layout: {},
-  jet: 0, chests: [], accs: { none: 1 }, acc: 'none', stuffs: {}, stuff: null, gift: false, alm: {},
+  jet: 0, chests: [], accs: { none: 1 }, acc: 'none', stuffs: {}, stuff: null, gift: false, alm: {}, tuto: false, resetSeen: '',
   theme: 'neon', inv: [], eq: {}, uid: 1, v5: false, tcol: { hull: '', bar: '', core: '' }, cols: {}, hue: 200, bul: 'theme', buls: { theme: 1 }, found: {},
   opt: { side: true, lock: true, flip: false }, v8: false,
   pseudo: '', dev: '', lbRun: {}, lbSent: {}, avatar: 'scout', ts: 0, rv: 0, paid: [] };
@@ -1349,7 +1393,7 @@ function merge(s) {
   for (const k of ['accs', 'stuffs']) if (s[k] && typeof s[k] === 'object') Object.assign(meta[k], s[k]);
   if (typeof s.acc === 'string' && meta.accs[s.acc] && ACCS.some(a => a.id === s.acc)) meta.acc = s.acc;
   if (typeof s.stuff === 'string' && meta.stuffs[s.stuff] && stuffById(s.stuff)) meta.stuff = s.stuff;
-  meta.gift = !!s.gift;
+  meta.gift = !!s.gift; meta.tuto = !!s.tuto; if (typeof s.resetSeen === 'string') meta.resetSeen = s.resetSeen.slice(0, 40);
   if (s.alm && typeof s.alm === 'object') for (const k in s.alm) if (s.alm[k] === 1) meta.alm[k] = 1;
   if (typeof s.theme === 'string' && THEMES[s.theme]) meta.theme = s.theme;
   if (s.cols && typeof s.cols === 'object') for (const k in s.cols) if (COLITEMS().some(c => c.id === k)) meta.cols[k] = 1;
@@ -1377,10 +1421,11 @@ function devId() {
   if (!meta.dev) { const a = new Uint8Array(16); (window.crypto || {}).getRandomValues ? crypto.getRandomValues(a) : a.forEach((_, i) => { a[i] = Math.random() * 256; }); meta.dev = [...a].map(x => x.toString(36).padStart(2, '0')).join('').slice(0, 28); save(); }
   return meta.dev;
 }
+const FRESH = (() => { try { return !localStorage.getItem(SAVE); } catch (e) { return false; } })();
 function load() {
   let s0 = null; try { s0 = JSON.parse(localStorage.getItem(SAVE) || 'null'); } catch (e) {}
   if (s0 && s0.rv === RV) merge(s0);
-  else if (s0) merge({ opt: s0.opt, layout: s0.layout, theme: s0.theme, mute: s0.mute, v8: s0.v8, dev: s0.dev, pseudo: s0.pseudo, avatar: s0.avatar, lbRun: s0.lbRun, lbSent: s0.lbSent });   // remise à zéro : on garde les réglages, le name tag et les records du classement
+  else if (s0) merge({ opt: s0.opt, layout: s0.layout, theme: s0.theme, mute: s0.mute, v8: s0.v8, dev: s0.dev, pseudo: s0.pseudo, avatar: s0.avatar, lbRun: s0.lbRun, lbSent: s0.lbSent, resetSeen: s0.resetSeen });   // remise à zéro : on garde les réglages, le name tag et les records du classement
   meta.rv = RV;
 }
 let pushT = null;
@@ -3957,7 +4002,7 @@ async function signUp(email, pw) { const j = await authCall('signup?redirect_to=
 async function signIn(email, pw) { setSession(await authCall('token?grant_type=password', { email, password: pw })); await cloudSync(true); }
 /* Vide la progression de cet appareil (on garde les réglages). Ne touche jamais au compte en ligne. */
 function wipeLocal() {
-  const keep = { opt: Object.assign({}, meta.opt), layout: Object.assign({}, meta.layout), theme: meta.theme, mute: meta.mute, v8: meta.v8, dev: meta.dev };
+  const keep = { opt: Object.assign({}, meta.opt), layout: Object.assign({}, meta.layout), theme: meta.theme, mute: meta.mute, v8: meta.v8, dev: meta.dev, resetSeen: meta.resetSeen, tuto: meta.tuto };
   resetMeta(); merge(keep); meta.rv = RV; meta.ts = 0;
   try { localStorage.setItem(SAVE, JSON.stringify(meta)); } catch (e) {}
   applyTheme(meta.theme); curSk = skinById(meta.skin); focusCls = meta.sel; focusW = meta.world; frList = null; frRes = null; frQ = '';
@@ -3988,7 +4033,7 @@ async function cloudSync(login) {
   cloudState = 'sync'; renderSync();
   const rows = await savesReq('GET', '?select=data&user_id=eq.' + AUTH.uid, null, t);
   const c = rows && rows[0] && rows[0].data;
-  if (c && c.rv === RV && (login || (c.ts || 0) > (meta.ts || 0))) {
+  if (c && c.rv === RV && (!EPOCH || c.resetSeen === EPOCH) && (login || (c.ts || 0) > (meta.ts || 0))) {
     const keepOpt = { opt: Object.assign({}, meta.opt), layout: Object.assign({}, meta.layout), dev: meta.dev };
     resetMeta(); merge(c); merge(keepOpt); meta.ts = c.ts || Date.now(); meta.rv = RV;
     try { localStorage.setItem(SAVE, JSON.stringify(meta)); } catch (e) {}
@@ -4012,7 +4057,7 @@ function renderSync() {
   authCall('user', null, j.access_token, 'GET').then(u => { AUTH.email = u.email; AUTH.uid = u.id; authStore(); return cloudSync(true); }).then(() => { if (recoveryMode || true) openProf(); }).catch(() => {});
 })();
 if (/[?&]paid=/.test(location.search)) { payPending = true; try { history.replaceState(null, '', location.pathname); } catch (e) {} }
-window.addEventListener('load', () => { if (AUTH) { try { renderMenu(); } catch (e) {} setTimeout(() => checkNotif(), 2500); } if (AUTH && !recoveryMode) cloudSync(false).catch(() => { cloudState = 'err'; }); });
+window.addEventListener('load', () => { if (AUTH) { try { renderMenu(); } catch (e) {} setTimeout(() => checkNotif(), 2500); } checkEpoch().then(() => { if (AUTH && !recoveryMode) cloudSync(false).catch(() => { cloudState = 'err'; }); if (!meta.tuto) setTimeout(() => { if (!el.menu.hidden && !meta.tuto) openTuto(); }, 600); }); });
 document.addEventListener('visibilitychange', () => { if (document.hidden && AUTH) { clearTimeout(pushT); cloudPush().catch(() => {}); } });
 
 /* Photos de profil : les châssis et les tenues légendaires. */
@@ -4454,6 +4499,25 @@ $('#gcIn').addEventListener('keydown', e => { e.stopPropagation(); if (e.key ===
 $('#gcIn').addEventListener('keyup', e => e.stopPropagation());
 $('#gcIn').addEventListener('blur', () => { setTimeout(vpFix, 150); setTimeout(vpFix, 600); });
 $('#gchat').addEventListener('click', e => { if (e.target.id === 'gchat') closeGChat(); });
+/* ---------- Tuto de premier lancement ---------- */
+function openTuto() { const t = $('#tuto'); t.hidden = false; t.querySelector('.sheet').scrollTop = 0; }
+function closeTuto() { $('#tuto').hidden = true; if (!meta.tuto) { meta.tuto = true; save(); } }
+$('#bTutoOk').addEventListener('click', closeTuto);
+$('#bTutoOpen').addEventListener('click', openTuto);
+$('#tuto').addEventListener('click', e => { if (e.target.id === 'tuto') closeTuto(); });
+/* ---------- Remise à zéro décidée par le serveur (reset.sql) ---------- */
+var EPOCH = null;
+async function checkEpoch() {
+  if (!LB_ON()) return;
+  try { EPOCH = await lbFetch('rpc/reset_epoch', { method: 'POST', body: '{}' }); } catch (e) { EPOCH = null; return; }
+  if (typeof EPOCH !== 'string' || !EPOCH || meta.resetSeen === EPOCH) return;
+  if (FRESH) { meta.resetSeen = EPOCH; save(); return; }   // nouveau joueur : rien à effacer
+  const keep = { opt: Object.assign({}, meta.opt), layout: Object.assign({}, meta.layout), theme: meta.theme, mute: meta.mute, v8: meta.v8, dev: meta.dev, pseudo: meta.pseudo, avatar: meta.avatar, lbRun: clone(meta.lbRun), lbSent: clone(meta.lbSent) };
+  resetMeta(); merge(keep); meta.rv = RV; meta.resetSeen = EPOCH; meta.ts = Date.now();
+  try { localStorage.setItem(SAVE, JSON.stringify(meta)); } catch (e) {}
+  location.reload();   // on relance : set de départ, coffre de bienvenue et tuto
+  await new Promise(() => {});
+}
 function confirmTap(x, txt) { if (x.dataset.ok) return true; x.dataset.ok = 1; x.textContent = txt; setTimeout(() => { delete x.dataset.ok; }, 3000); return false; }
 function openFriends() { el.prof.hidden = true; el.friends.hidden = false; el.friends.scrollTop = 0; $('#frDet').hidden = true; frMsg = ''; renderFriends(); loadFriends(); pushProfile().catch(() => {}); }
 function closeFriends() { $('#frQ') && $('#frQ').blur(); el.friends.hidden = true; $('#frDet').hidden = true; el.prof.hidden = false; renderProf(); }
