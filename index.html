@@ -2051,13 +2051,13 @@ function volley(ang, n, lay) {
     bullets.push({ x: P.x + ca * (P.r + 17) - sa * ox, y: P.y + sa * (P.r + 17) + ca * ox, vx: Math.cos(a) * v, vy: Math.sin(a) * v,
       r: size * bk, dmg: s.dmg * dm, life, pierce: s.pierce + (P.over > 0 ? 1 : 0), bounce: s.bounce, hit: null, lastC: 0, dead: false, c: shotKey(), kind: k });
     const b = bullets[bullets.length - 1];
-    if (k === 'disc') { b.pierce = 999; b.out = true; b.ot = life * 0.5; b.life = life * 2.4; }
+    if (k === 'disc') { b.pierce = 999; b.out = true; b.ot = life * 0.5; b.life = life * 2.4; b.sp0 = v; b.tt = 5; }
     else if (k === 'flame') b.pierce = Math.max(1, b.pierce);
   }
 }
 /* Bobine Tesla : éclairs instantanés. */
 function tesla(ang, n) {
-  const s = P.s, reach = 270, x0 = P.x + Math.cos(ang) * (P.r + 14), y0 = P.y + Math.sin(ang) * (P.r + 14);
+  const s = P.s, reach = 270 * (1 + 0.25 * s.homing), x0 = P.x + Math.cos(ang) * (P.r + 14), y0 = P.y + Math.sin(ang) * (P.r + 14);
   const cand = enemies.filter(e => !e.dead && dist2(e.x, e.y, P.x, P.y) < reach * reach && Math.abs(angDiff(ang, Math.atan2(e.y - P.y, e.x - P.x))) < 0.9)
     .sort((a, b) => dist2(a.x, a.y, P.x, P.y) - dist2(b.x, b.y, P.x, P.y));
   if (!cand.length) {
@@ -2066,11 +2066,11 @@ function tesla(ang, n) {
     else bolt(x0, y0, x0 + Math.cos(ang) * 110 + rnd(-20, 20), y0 + Math.sin(ang) * 110 + rnd(-20, 20), 'ion');
     return;
   }
-  for (let i = 0; i < Math.min(n, cand.length); i++) {
+  for (let i = 0; i < Math.min(n + s.pierce, cand.length); i++) {
     const e = cand[i]; if (e.dead) continue; bolt(x0, y0, e.x, e.y, 'ion');
     onHit({ x: e.x, y: e.y, vx: Math.cos(ang) * 300, vy: Math.sin(ang) * 300, dmg: s.dmg, pierce: 0, bounce: 0, hit: null, kind: 'tesla', dead: false }, e);
     let from = e; const used = [e.id];
-    for (let k = 0; k < 2; k++) { const t = nearestEnemy(from.x, from.y, 150, used); if (!t) break; used.push(t.id); bolt(from.x, from.y, t.x, t.y, 'ion'); dmgEnemy(t, s.dmg * 0.6, false); from = t; }
+    for (let k = 0; k < 2 + s.bounce; k++) { const t = nearestEnemy(from.x, from.y, 150, used); if (!t) break; used.push(t.id); bolt(from.x, from.y, t.x, t.y, 'ion'); dmgEnemy(t, s.dmg * 0.6, false); from = t; }
   }
   sfx.zap();
 }
@@ -2082,7 +2082,7 @@ function dash() {
   sfx.dash(); vib(15);
 }
 function ulti() {
-  if (state !== 'play' || P.charge < 100 || P.over > 0) return;
+  if (state !== 'play' || P.charge < 99.9 || P.over > 0) return;
   P.charge = 0; P.over = P.s.ultDur; P.inv = Math.max(P.inv, 1);
   shock(P.x, P.y, 300, P.s.dmg * 5, 520, 'volt'); ring(P.x, P.y, 420, 'ink', 0.5, 4);
   for (const b of ebul) if (dist2(b.x, b.y, P.x, P.y) < 360 * 360) b.dead = true;
@@ -2218,9 +2218,9 @@ function onHit(b, e) {
     if (used.length > 1) sfx.zap();
   }
   (b.hit || (b.hit = [])).push(e.id);
-  if (b.bounce > 0) {
+  if (b.bounce > 0 && !(b.kind === 'disc' && !b.out)) {
     const t = nearestEnemy(b.x, b.y, 340, b.hit);
-    if (t) { const sp = Math.hypot(b.vx, b.vy), a = Math.atan2(t.y - b.y, t.x - b.x); b.vx = Math.cos(a) * sp; b.vy = Math.sin(a) * sp; b.bounce--; b.life = Math.max(b.life, 0.5); return; }
+    if (t) { const sp = b.sp0 || Math.hypot(b.vx, b.vy), a = Math.atan2(t.y - b.y, t.x - b.x); b.vx = Math.cos(a) * sp; b.vy = Math.sin(a) * sp; b.bounce--; b.life = Math.max(b.life, 0.5); if (b.kind === 'disc') b.ot = Math.max(b.ot, 0.3); else return; }
   }
   if (b.pierce > 0) { b.pierce--; if (b.kind !== 'disc') b.dmg *= 0.85; return; }
   b.dead = true;
@@ -2239,7 +2239,7 @@ function updBullets(dt) {
       parts.push({ x: P.x + Math.cos(a) * P.r, y: P.y + Math.sin(a) * P.r, vx: Math.cos(a) * 30, vy: Math.sin(a) * 30 - (an === 'braise' ? 40 : 0), life: 0.6, max: 0.6, col: cs[(Math.random() * cs.length) | 0], s: rnd(1.5, 2.8) }); } }
   for (const b of bullets) {
     b.life -= dt; if (b.life <= 0) { b.dead = true; continue; }
-    if (s.homing) {
+    if (s.homing && !(b.kind === 'disc' && !b.out)) {
       const t = nearestEnemy(b.x, b.y, 230, b.hit);
       if (t) { const sp = Math.hypot(b.vx, b.vy), cur = Math.atan2(b.vy, b.vx), a = cur + clamp(angDiff(cur, Math.atan2(t.y - b.y, t.x - b.x)), -dt * 3.2 * s.homing, dt * 3.2 * s.homing); b.vx = Math.cos(a) * sp; b.vy = Math.sin(a) * sp; }
     }
@@ -2250,10 +2250,11 @@ function updBullets(dt) {
     } else if (b.kind === 'disc') {
       b.spin = (b.spin || 0) + dt * 18; b.ot -= dt;
       if (b.out && b.ot <= 0) { b.out = false; b.hit = []; }
-      if (!b.out) { const dx = P.x - b.x, dy = P.y - b.y, d = Math.hypot(dx, dy) || 1, sp = Math.hypot(b.vx, b.vy); b.vx += (dx / d * sp - b.vx) * Math.min(1, dt * 7); b.vy += (dy / d * sp - b.vy) * Math.min(1, dt * 7); if (d < P.r + 10) { b.dead = true; continue; } }
+      b.tt -= dt; if (b.tt <= 0) { b.dead = true; continue; }
+      if (!b.out) { const dx = P.x - b.x, dy = P.y - b.y, d = Math.hypot(dx, dy) || 1, sp = b.sp0 * 1.25; b.vx += (dx / d * sp - b.vx) * Math.min(1, dt * 8); b.vy += (dy / d * sp - b.vy) * Math.min(1, dt * 8); b.life = Math.max(b.life, 0.3); if (d < P.r + 12) { b.dead = true; continue; } }
     } else if (b.kind === 'flame') b.r += dt * 26;
     b.x += b.vx * dt; b.y += b.vy * dt;
-    if (!inArena(b.x, b.y, 0)) { b.dead = true; continue; }
+    if (!inArena(b.x, b.y, 0)) { if (b.kind === 'disc') { if (b.out) { b.out = false; b.hit = []; } clampArena(b, 4); } else { b.dead = true; continue; } }
     for (let i = 0; i < enemies.length; i++) {
       const e = enemies[i]; if (e.dead) continue; const rs = e.r + b.r, dx = e.x - b.x, dy = e.y - b.y;
       if (dx * dx + dy * dy < rs * rs) { if (b.hit && b.hit.includes(e.id)) continue; onHit(b, e); if (b.dead) break; }
@@ -3075,7 +3076,7 @@ const hc = {};
 const setT = (e, k, v) => { if (hc[k] !== v) { hc[k] = v; e.textContent = v; } };
 const setW = (e, k, p) => { const v = Math.round(p * 200) / 200; if (hc[k] !== v) { hc[k] = v; e.style.transform = `scaleX(${v})`; } };
 function setP(b, k, p, on) {
-  const v = Math.round(clamp(p, 0, 1) * 50) / 50;
+  const v = Math.floor(clamp(p, 0, 1) * 50 + 1e-6) / 50;   // arrondi vers le bas : « prêt » seulement quand c'est vraiment plein
   if (hc[k] !== v) { hc[k] = v; b.style.setProperty('--p', v); b.classList.toggle('ready', v >= 1 && !on); }
   if (hc[k + 'o'] !== on) { hc[k + 'o'] = on; b.classList.toggle('on', on); b.classList.toggle('ready', v >= 1 && !on); }
 }
@@ -3873,7 +3874,21 @@ async function authToken() {
 const backTo = () => encodeURIComponent(location.origin + location.pathname);
 async function signUp(email, pw) { const j = await authCall('signup?redirect_to=' + backTo(), { email, password: pw }); if (j.access_token) { setSession(j); await cloudSync(true); return 'ok'; } return 'confirm'; }
 async function signIn(email, pw) { setSession(await authCall('token?grant_type=password', { email, password: pw })); await cloudSync(true); }
-async function signOut() { const t = AUTH && AUTH.at; await cloudPush().catch(() => {}); AUTH = null; authStore(); cloudState = ''; if (t) authCall('logout', {}, t).catch(() => {}); }
+/* Vide la progression de cet appareil (on garde les réglages). Ne touche jamais au compte en ligne. */
+function wipeLocal() {
+  const keep = { opt: Object.assign({}, meta.opt), layout: Object.assign({}, meta.layout), theme: meta.theme, mute: meta.mute, v8: meta.v8, dev: meta.dev };
+  resetMeta(); merge(keep); meta.rv = RV; meta.ts = 0;
+  try { localStorage.setItem(SAVE, JSON.stringify(meta)); } catch (e) {}
+  applyTheme(meta.theme); curSk = skinById(meta.skin); focusCls = meta.sel; focusW = meta.world; frList = null; frRes = null; frQ = '';
+  try { resize(); startDemo(); } catch (e) {}
+}
+async function signOut() {
+  const t = AUTH && AUTH.at;
+  let ok = false; try { ok = await cloudPush(); } catch (e) {}
+  if (!ok) throw new Error('Impossible d’envoyer ta progression en ligne (connexion ?). Déconnexion annulée pour ne rien perdre. Réessaie avec du réseau.');
+  AUTH = null; authStore(); cloudState = ''; if (t) authCall('logout', {}, t).catch(() => {});
+  wipeLocal();
+}
 async function recoverPw(email) { await authCall('recover?redirect_to=' + backTo(), { email }); }
 async function newPassword(pw) { const t = await authToken(); if (!t) throw new Error('Session expirée, reconnecte-toi.'); await authCall('user', { password: pw }, t, 'PUT'); }
 function savesReq(method, qs, body, t) {
@@ -3983,7 +3998,7 @@ function renderAcc() {
     const p = document.createElement('p'); p.textContent = 'Ta progression est sauvegardée en ligne. Connecte-toi avec le même email sur un autre appareil pour la retrouver. Donne ton ID joueur au support en cas de souci avec un achat.';
     box.append(st, card, p); msg();
     const r = document.createElement('div'); r.className = 'row2';
-    r.append(btn('SYNCHRONISER', '', () => run(async () => { await cloudPush(); return 'Sauvegarde envoyée.'; })), btn('SE DÉCONNECTER', '', () => run(async () => { await signOut(); return 'Déconnecté. Le jeu continue sur cet appareil.'; })));
+    r.append(btn('SYNCHRONISER', '', () => run(async () => { await cloudPush(); return 'Sauvegarde envoyée.'; })), btn('SE DÉCONNECTER', '', () => run(async () => { await signOut(); $('#prName').value = ''; return 'Déconnecté ✓ Ta progression est sur ton compte, cet appareil repart de zéro. Reconnecte-toi pour la retrouver.'; })));
     box.appendChild(r); return;
   }
   const st = document.createElement('div'); st.className = 'astat'; st.innerHTML = '<i></i>Non connecté';
@@ -4001,7 +4016,12 @@ function renderAcc() {
   const v = () => { const e = em.value.trim(); if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)) throw new Error('Adresse email invalide.'); if (pw.value.length < 6) throw new Error('Mot de passe : 6 caractères minimum.'); return e; };
   if (accMode === 'up') box.appendChild(btn('CRÉER MON COMPTE', 'primary', () => run(async () => { const e = v(); if (pw2.value !== pw.value) throw new Error('Les deux mots de passe ne sont pas identiques.'); const res = await signUp(e, pw.value); return res === 'confirm' ? 'Compte créé. Ouvre le mail de confirmation, touche le lien, et tu seras connecté.' : 'Compte créé et connecté ✓ Ta progression est sauvegardée en ligne.'; })));
   else box.appendChild(btn('SE CONNECTER', 'primary', () => run(async () => { await signIn(v(), pw.value); return 'Connecté ✓ Progression du compte chargée.'; })));
+  const wipe = btn('VIDER CET APPAREIL', '', () => {
+    if (!wipe.dataset.ok) { wipe.dataset.ok = 1; wipe.textContent = 'SÛR ? TOUT EFFACER ICI'; setTimeout(() => { if (wipe.isConnected) { delete wipe.dataset.ok; wipe.textContent = 'VIDER CET APPAREIL'; } }, 3500); return; }
+    wipeLocal(); $('#prName').value = ''; authMsgTxt = 'Appareil vidé ✓ Les comptes en ligne ne sont pas touchés.'; authMsgOk = true; renderProf();
+  }); wipe.classList.add('danger');
   if (accMode === 'in') box.appendChild(btn('MOT DE PASSE OUBLIÉ', 'ghostb', () => run(async () => { const e = em.value.trim(); if (!/@/.test(e)) throw new Error('Écris ton email au-dessus, puis touche ce bouton.'); await recoverPw(e); return 'Mail envoyé : touche le lien pour choisir un nouveau mot de passe.'; })));
+  box.appendChild(wipe);
 }
 function setNameTag() {
   const n = cleanName($('#prName').value); $('#prName').value = n;
