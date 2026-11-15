@@ -396,6 +396,25 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .pracc{display:flex;flex-direction:column;gap:8px;padding:12px;background:var(--panel);margin-bottom:12px}
 .pracc p{margin:0;font:600 13px/1.45 var(--body);color:var(--dim)} .pracc b{color:var(--ink)} .pracc .err{color:var(--hot)} .pracc .okm{color:var(--ok)}
 .pracc .row2 .btn{min-height:46px}
+.lblist li.tap{cursor:pointer} .lblist li.tap .nm{text-decoration:underline;text-decoration-color:rgba(var(--irgb),.25);text-underline-offset:3px}
+#frDet{z-index:40}
+.adstats{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px;margin-bottom:10px}
+.adstats div{padding:8px 10px;background:var(--raise);font:600 11px/1.3 var(--body);color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+.adstats b{display:block;font:400 20px/1.1 var(--display);color:var(--ink);letter-spacing:0;text-transform:none}
+.adkv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:10px 12px;background:var(--raise);font:600 13px/1.35 var(--body);color:var(--dim)}
+.adkv b{color:var(--ink);overflow-wrap:anywhere} .adkv h4{grid-column:1/-1;margin:6px 0 0;font:800 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--volt)} #chat{z-index:41}
+.chatbox{display:flex;flex-direction:column;gap:8px;height:85%;max-height:620px}
+.chhead{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center}
+.chhead canvas{width:44px;height:44px;display:block} .chhead b{display:block;font:700 16px/1.2 var(--body);color:var(--ink)} .chhead small{font:600 11px/1.3 ui-monospace,Menlo,monospace;color:var(--dim)}
+.chhead .btn{width:auto;min-height:38px;padding:0 14px}
+.chlist{flex:1;min-height:120px;overflow:auto;display:flex;flex-direction:column;gap:6px;padding:8px;background:var(--raise)}
+.chlist .m{max-width:78%;padding:7px 10px;font:600 14px/1.35 var(--body);color:var(--ink);background:var(--panel);overflow-wrap:anywhere;white-space:pre-wrap;align-self:flex-start;border-radius:12px 12px 12px 4px}
+.chlist .m.me{align-self:flex-end;background:var(--ion);color:#fff;border-radius:12px 12px 4px 12px}
+.chlist .m time{display:block;margin-top:2px;font:600 10px/1 var(--body);opacity:.6;text-align:right}
+.chlist .empty{margin:auto;color:var(--dim);font:600 13px/1.4 var(--body);text-align:center}
+.chform{display:flex;gap:8px} .chform .tin{flex:1;min-width:0} .chform .btn{width:auto;padding:0 14px}
+.frlist .tg.msg{background:var(--ion);color:#fff}
+#bUser .ndot{position:absolute;right:2px;top:2px;width:11px;height:11px;border-radius:50%;background:var(--hot);box-shadow:0 0 0 2px var(--bg,#111)}
 .frbtn{margin-bottom:8px;position:relative} .frbtn .nb{display:inline-grid;place-items:center;min-width:22px;height:22px;margin-left:8px;padding:0 6px;border-radius:11px;background:var(--hot);color:#fff;font:800 12px/1 var(--body)}
 .frsrch{display:flex;gap:8px;margin-bottom:6px} .frsrch .btn{flex:none;width:auto;padding:0 14px}
 .frhint{margin:0 0 12px;font:600 12px/1.4 var(--body);color:var(--dim)}
@@ -456,8 +475,8 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 /* ---------- Thèmes : toute la DA change ---------- */
 :root[data-th="metal"]{--night:#121418;--panel:#1f2228;--raise:#2c3039;--ink:#eef0f4;--dim:#9aa2b0;--volt:#e8b84a;--hot:#e0663f;--ion:#9fc3e0;--plasma:#c7955f;--ok:#9ed38c;--ember:#f09a52;
   --display:"Russo One","Arial Black",sans-serif;--body:"Rajdhani","Trebuchet MS",sans-serif;--nrgb:18,20,24;--srgb:8,9,12;--irgb:238,240,244;--onacc:#2a1d06;--chbg:rgba(8,9,12,.95)}
-:root[data-th="pastel"]{--night:#f7f1fb;--panel:#ffffff;--raise:#efe6fb;--ink:#3b3355;--dim:#7d7499;--volt:#f0a35e;--hot:#ee6f98;--ion:#2f9cc4;--plasma:#9a7be0;--ok:#2fae7f;--ember:#f08a5d;
-  --display:"Fredoka","Arial Rounded MT Bold",sans-serif;--body:"Nunito","Trebuchet MS",sans-serif;--nrgb:247,241,251;--srgb:236,228,246;--irgb:59,51,85;--onacc:#4a2d12;--cut:none;--chbg:rgba(60,48,92,.93);color-scheme:light}
+:root[data-th="pastel"]{--night:#e9d5df;--panel:#f3e1ea;--raise:#e8d0dd;--ink:#3b2f4a;--dim:#7a6582;--volt:#f0a35e;--hot:#ee6f98;--ion:#2f9cc4;--plasma:#9a7be0;--ok:#2fae7f;--ember:#f08a5d;
+  --display:"Fredoka","Arial Rounded MT Bold",sans-serif;--body:"Nunito","Trebuchet MS",sans-serif;--nrgb:233,213,223;--srgb:222,198,211;--irgb:59,47,74;--onacc:#4a2d12;--cut:none;--chbg:rgba(60,48,92,.93);color-scheme:light}
 [data-th="metal"] .btn{background:linear-gradient(180deg,#363b45,#1f2228);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 -2px 0 rgba(0,0,0,.4)}
 [data-th="metal"] .btn.primary{background:linear-gradient(180deg,#f7e2a0 0%,#e8b84a 45%,#b8862a 100%);color:#2a1d06}
 [data-th="metal"] .panel{background:linear-gradient(165deg,#1d2026,#111316);outline:2px solid #3d424d}
@@ -699,6 +718,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
     <h3 class="lab">Compte</h3>
     <div id="prAcc" class="pracc"></div>
     <button id="bPrFr" class="btn frbtn" type="button">AMIS</button>
+    <button id="bPrAdm" class="btn frbtn" type="button" hidden>🛡️ ADMIN</button>
     <button id="bPrBack" class="btn" type="button">RETOUR</button>
   </div>
 </div>
@@ -709,8 +729,24 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
     <div id="frBody"></div>
     <button id="bFrBack" class="btn" type="button">RETOUR</button>
   </div>
-  <div id="frDet" class="stdet" hidden><div class="sheet panel"><div id="frDetBody"></div></div></div>
 </div>
+<div id="admin" class="screen dim" data-scroll hidden>
+  <div class="sheet panel">
+    <div class="phead"><h2 class="h1">ADMIN</h2><span class="sub">Visible par toi seul</span></div>
+    <div id="adStats" class="adstats"></div>
+    <div class="frsrch"><input id="adQ" class="tin" placeholder="Email, pseudo ou ID (vide = tous)" autocapitalize="off" spellcheck="false"><button id="adGo" class="btn primary" type="button">CHERCHER</button></div>
+    <p id="adMsg" class="frhint"></p>
+    <ul id="adList" class="frlist"></ul>
+    <button id="bAdBack" class="btn" type="button">RETOUR</button>
+  </div>
+</div>
+<div id="frDet" class="stdet" hidden><div class="sheet panel" data-scroll><div id="frDetBody"></div></div></div>
+<div id="chat" class="stdet" hidden><div class="sheet panel chatbox">
+  <div class="chhead"><span id="chAv"></span><div><b id="chName"></b><small id="chPid"></small></div><button id="chClose" class="btn" type="button">✕</button></div>
+  <div id="chList" class="chlist" data-scroll></div>
+  <p id="chErr" class="frhint" hidden></p>
+  <div class="chform"><input id="chIn" class="tin" maxlength="300" autocomplete="off" placeholder="Ton message…"><button id="chSend" class="btn primary" type="button">ENVOYER</button></div>
+</div></div>
 
 <div id="lb" class="screen dim" data-scroll hidden>
   <div class="sheet panel">
@@ -820,8 +856,8 @@ const THEMES = {
     out: 'rgba(8,9,12,0.88)', core: '#fff4d6', orb: '#e8f2ff', fd: '"Russo One","Arial Black",sans-serif', fb: '"Rajdhani","Trebuchet MS",sans-serif',
     tank: { line: '#f5d77a', metal: ['#8a6a22', '#f7e2a0', '#5a4310'], core: '#fff6cf', barrel: '#3a3f4a', shot: 'volt' } },
   pastel: { n: 'Pastel', light: true, grid: 'dots', C: { volt: '#f0a35e', hot: '#ee6f98', ion: '#2f9cc4', plasma: '#9a7be0', ok: '#2fae7f', ember: '#f08a5d', ink: '#3b3355' },
-    bgs: ['#f7f1fb', '#f2eefc', '#fcf1ea', '#fcedf2', '#ecf8f3'], floors: ['rgba(154,123,224,0.32)', 'rgba(154,123,224,0.34)', 'rgba(240,138,93,0.32)', 'rgba(238,111,152,0.3)', 'rgba(47,174,127,0.3)'],
-    out: 'rgba(236,228,246,0.92)', core: '#ffffff', orb: '#2f9cc4', fd: '"Fredoka","Arial Rounded MT Bold",sans-serif', fb: '"Nunito","Trebuchet MS",sans-serif',
+    bgs: ['#e9d5df', '#e3d6ea', '#ecd9d2', '#ecd2dc', '#d9e4de'], floors: ['rgba(154,123,224,0.32)', 'rgba(154,123,224,0.34)', 'rgba(240,138,93,0.32)', 'rgba(238,111,152,0.3)', 'rgba(47,174,127,0.3)'],
+    out: 'rgba(218,192,206,0.92)', core: '#f6e8ef', orb: '#2f9cc4', fd: '"Fredoka","Arial Rounded MT Bold",sans-serif', fb: '"Nunito","Trebuchet MS",sans-serif',
     tank: { line: '#ee6f98', fill: '#ffe1ec', core: '#9a7be0', barrel: '#e4d9f7', shot: 'hot' } }
 };
 let TH = THEMES.neon, LIT = 'lighter';
@@ -2944,16 +2980,22 @@ let lbMode = 'inf', lbBusy = false;
 // garde-fou : un score impossible pour le nombre de vagues ou la durée n'est pas envoyé (le serveur refait la même vérif)
 const lbMax = w => 20000 + 3000 * w + 600 * w * w + 12 * w * w * w;
 const lbOk = r => r && r.w >= 1 && r.w <= 400 && r.s > 0 && r.t >= r.w * 6 && r.s <= lbMax(r.w) && r.s <= r.t * 4000;
-function lbFetch(path, opt) {
+function lbFetch(path, opt, tok) {
   const o = Object.assign({ headers: { apikey: LB_KEY, 'Content-Type': 'application/json' } }, opt || {});
+  if (tok) o.headers.Authorization = 'Bearer ' + tok;
   return fetch(LB_URL.replace(/\/+$/, '') + '/rest/v1/' + path, o).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.status === 204 ? null : r.json(); });
 }
-function lbSend(mode) {
-  const r = meta.lbRun[mode]; if (!LB_ON() || !meta.pseudo || !lbOk(r) || (meta.lbSent[mode] || 0) >= r.s) return Promise.resolve();
-  return lbFetch('rpc/submit_score', { method: 'POST', body: JSON.stringify({ p_dev: devId(), p_mode: mode, p_name: meta.pseudo, p_score: Math.round(r.s), p_wave: r.w, p_secs: Math.round(r.t) }) })
+async function lbSend(mode) {
+  const r = meta.lbRun[mode]; if (!LB_ON() || !meta.pseudo || !lbOk(r) || (meta.lbSent[mode] || 0) >= r.s) return;
+  let tok = null; if (AUTH) { try { tok = await authToken(); } catch (e) {} }   // connecté : le score est rattaché au compte
+  return lbFetch('rpc/submit_score', { method: 'POST', body: JSON.stringify({ p_dev: devId(), p_mode: mode, p_name: meta.pseudo, p_score: Math.round(r.s), p_wave: r.w, p_secs: Math.round(r.t) }) }, tok)
     .then(() => { meta.lbSent[mode] = r.s; save(); }).catch(() => {});
 }
-const lbFlush = () => Promise.all(LB_MODES.map(m => lbSend(m[0])));
+function lbFlush() {
+  // nouveau compte sur cet appareil : on renvoie les records pour qu'ils soient rattachés au compte
+  if (AUTH && AUTH.uid) { let k = ''; try { k = localStorage.getItem('survolt.lbacc') || ''; } catch (e) {} if (k !== AUTH.uid) { meta.lbSent = {}; try { localStorage.setItem('survolt.lbacc', AUTH.uid); } catch (e) {} } }
+  return (AUTH ? pushProfile().catch(() => {}) : Promise.resolve()).then(() => Promise.all(LB_MODES.map(m => lbSend(m[0]))));
+}
 function lbRecord(mode, score, wave, secs) {   // garde la meilleure partie de chaque mode, puis l'envoie
   const r = { s: Math.round(score), w: wave, t: Math.round(secs) };
   if (!lbOk(r)) return; const old = meta.lbRun[mode];
@@ -2979,18 +3021,32 @@ function loadLb() {
   if (!LB_ON()) { $('#lbSt').textContent = 'Hors ligne'; lbMsg('Le classement en ligne n’est pas encore branché. Tes meilleurs scores sont gardés et seront envoyés dès qu’il le sera.'); return; }
   $('#lbSt').textContent = 'Top 50'; lbMsg('Chargement…');
   const mode = lbMode;
-  lbFlush().then(() => lbFetch(`scores?select=name,score,wave&mode=eq.${mode}&order=score.desc&limit=50`)).then(rows => {
+  lbFlush().then(() => lbFetch(`scores?select=name,score,wave,pid&mode=eq.${mode}&order=score.desc&limit=60`).catch(() => lbFetch(`scores?select=name,score,wave&mode=eq.${mode}&order=score.desc&limit=50`))).then(rows => {
     if (mode !== lbMode || el.lb.hidden) return;
     const l = $('#lbList'); l.innerHTML = '';
     if (!rows || !rows.length) { lbMsg('Personne encore. Sois le premier !'); return; }
-    const mine = meta.lbRun[mode];
+    const mine = meta.lbRun[mode], myPid = AUTH ? playerId(AUTH.uid) : '', seen = new Set();
+    rows = rows.filter(x => !x.pid || (!seen.has(x.pid) && seen.add(x.pid))).slice(0, 50);   // un compte = une seule ligne
+    let meShown = false;
     rows.forEach((x, i) => {
-      const li = document.createElement('li'); if (meta.pseudo && x.name === meta.pseudo && mine && x.score === mine.s) li.className = 'me';
+      const li = document.createElement('li');
+      const me = x.pid ? x.pid === myPid : (!meShown && meta.pseudo && x.name === meta.pseudo && mine && x.score === mine.s);
+      if (me) { li.className = 'me'; meShown = true; }
       li.innerHTML = '<span class="rk"></span><span class="nm"></span><span class="sc"></span><span class="wv"></span>';
       li.querySelector('.rk').textContent = i + 1; li.querySelector('.nm').textContent = x.name; li.querySelector('.sc').textContent = fmt(x.score); li.querySelector('.wv').textContent = 'V' + x.wave;
+      li.querySelector('.wv').title = 'Vague atteinte';
+      if (x.pid) li.classList.add('tap');
+      li.addEventListener('click', () => lbTap(x, me));
       l.appendChild(li);
     });
   }).catch(() => { if (mode === lbMode) lbMsg('Pas de connexion au classement. Réessaie plus tard.'); });
+}
+function lbToast(t) { const h = $('#lbMeHint'); h.textContent = t; h.style.color = 'var(--hot)'; setTimeout(() => { h.style.color = ''; renderLbMe(); }, 3200); }
+async function lbTap(x, me) {
+  if (me && x.pid) { closeLb(); openProf(); return; }
+  if (!x.pid) { lbToast(x.name + ' joue sans compte : pas de profil à voir.'); return; }
+  if (!AUTH) { lbToast('Connecte-toi dans ton Profil pour voir les joueurs et les ajouter en ami.'); return; }
+  try { const c = await rpcA('player_card', { p_pid: x.pid }); openCard(c); } catch (e) { lbToast(netErr(e)); }
 }
 function openLb() { el.menu.hidden = true; el.lb.hidden = false; el.lb.scrollTop = 0; $('#lbName').value = meta.pseudo; renderLbTabs(); loadLb(); }
 function closeLb() { $('#lbName').blur(); el.lb.hidden = true; el.menu.hidden = false; renderMenu(); }
@@ -3069,7 +3125,7 @@ function almLoop(now) {
 /* ================= Interface ================= */
 const COARSE = window.matchMedia && matchMedia('(pointer: coarse)').matches;
 const el = { hud: $('#hud'), menu: $('#menu'), shop: $('#shop'), cards: $('#cards'), pause: $('#pause'), over: $('#over'), opts: $('#opts'),
-  garage: $('#garage'), layout: $('#layout'), alm: $('#alm'), lb: $('#lb'), store: $('#store'), prof: $('#prof'), friends: $('#friends'), chests: $('#chests'), chOpen: $('#chestOpen'), gear: $('#bGear'), autoC: $('#autoChip'), autoF: $('#autoF'), wmax: $('#wmax'),
+  garage: $('#garage'), layout: $('#layout'), alm: $('#alm'), lb: $('#lb'), store: $('#store'), prof: $('#prof'), friends: $('#friends'), admin: $('#admin'), chests: $('#chests'), chOpen: $('#chestOpen'), gear: $('#bGear'), autoC: $('#autoChip'), autoF: $('#autoF'), wmax: $('#wmax'),
   hpf: $('#hpf'), hpb: $('#hpb'), hpt: $('#hpt'), xpf: $('#xpf'), lv: $('#lv'), wv: $('#wv'), sc: $('#sc'), combo: $('#combo'),
   boss: $('#boss'), bossN: $('#bossN'), bossF: $('#bossF'), dash: $('#bDash'), ult: $('#bUlt') };
 const hc = {};
@@ -3197,7 +3253,7 @@ function renderMenu() {
     ? (meta.opt.lock ? 'Stick gauche pour bouger, stick droit pour viser et tirer. ' : 'Premier doigt pour bouger, deuxième doigt pour viser et tirer. ') + 'Le bonus TIR AUTO fait tirer le tank tout seul pendant 15 s.'
     : 'ZQSD ou flèches pour bouger, clic maintenu pour tirer, Espace pour le dash, E pour la surcharge, Q pour l’ULT de la tenue.';
   $('#bChests span').textContent = meta.chests.length ? `COFFRES (${meta.chests.length})` : 'COFFRES';
-  { const u = $('#bUser'); u.innerHTML = ''; u.appendChild(avatarCv(meta.avatar, 56)); const t = document.createElement('span'); t.id = 'uTag'; t.textContent = meta.pseudo || 'PROFIL'; u.appendChild(t); if (AUTH) { const d = document.createElement('i'); d.className = 'udot'; u.appendChild(d); } }
+  { const u = $('#bUser'); u.innerHTML = ''; u.appendChild(avatarCv(meta.avatar, 56)); const t = document.createElement('span'); t.id = 'uTag'; t.textContent = meta.pseudo || 'PROFIL'; u.appendChild(t); if (AUTH) { const d = document.createElement('i'); d.className = 'udot'; u.appendChild(d); if (notifN) { const n = document.createElement('i'); n.className = 'ndot'; u.appendChild(n); } } }
   clsTiles($('#clsRow'), $('#clsInfo'), renderMenu);
   // volet des mondes
   const w = worldById(meta.world), wi = WORLDS.indexOf(w), dd = $('#wDrop'); dd.innerHTML = '';
@@ -3931,7 +3987,7 @@ function renderSync() {
   authCall('user', null, j.access_token, 'GET').then(u => { AUTH.email = u.email; AUTH.uid = u.id; authStore(); return cloudSync(true); }).then(() => { if (recoveryMode || true) openProf(); }).catch(() => {});
 })();
 if (/[?&]paid=/.test(location.search)) { payPending = true; try { history.replaceState(null, '', location.pathname); } catch (e) {} }
-window.addEventListener('load', () => { if (AUTH) { try { renderMenu(); } catch (e) {} } if (AUTH && !recoveryMode) cloudSync(false).catch(() => { cloudState = 'err'; }); });
+window.addEventListener('load', () => { if (AUTH) { try { renderMenu(); } catch (e) {} setTimeout(() => checkNotif(), 2500); } if (AUTH && !recoveryMode) cloudSync(false).catch(() => { cloudState = 'err'; }); });
 document.addEventListener('visibilitychange', () => { if (document.hidden && AUTH) { clearTimeout(pushT); cloudPush().catch(() => {}); } });
 
 /* Photos de profil : les châssis et les tenues légendaires. */
@@ -3955,9 +4011,10 @@ function avatarCv(id, z, other) {
   g.save(); g.beginPath(); g.arc(z / 2, z / 2, z / 2 - 3, 0, TAU); g.clip(); drawTank(g, z / 2, z * 0.56, -Math.PI / 2, st, z * 0.2, 0, false, sk); g.restore();
   return cv;
 }
-function openProf() { for (const k of ['menu', 'lb', 'opts']) if (el[k]) el[k].hidden = true; el.prof.hidden = false; el.prof.scrollTop = 0; $('#prName').value = meta.pseudo; renderProf(); if (AUTH) rpcA('my_friends').then(l => { frList = l || []; updFrBadge(); }).catch(() => {}); }
+function openProf() { for (const k of ['menu', 'lb', 'opts']) if (el[k]) el[k].hidden = true; el.prof.hidden = false; el.prof.scrollTop = 0; $('#prName').value = meta.pseudo; renderProf(); if (AUTH) { checkNotif(); checkAdmin(); } else { const b = $('#bPrAdm'); if (b) b.hidden = true; } }
 function closeProf() { $('#prName').blur(); el.prof.hidden = true; el.menu.hidden = false; renderMenu(); }
 function renderProf() {
+  if (!AUTH) { isAdm = false; const ab = $('#bPrAdm'); if (ab) ab.hidden = true; }
   renderSync();
   const av = $('#prAv'); av.innerHTML = ''; av.appendChild(avatarCv(meta.avatar, 192));
   $('#prStats').textContent = `Record ${fmt(meta.best)} · meilleure vague ${meta.bestWave} · ${WORLDS.filter(w => w.waves && meta.wdone[w.id]).length}/4 mondes · almanach ${ALM.filter(a => meta.alm[a.k]).length}/${ALM.length}`;
@@ -4043,13 +4100,15 @@ async function rpcA(name, body) {
 }
 function myStats() { const o = {}; for (const m in meta.lbRun) { const r = meta.lbRun[m]; if (r && r.s > 0) o[m] = { s: Math.round(r.s), w: r.w | 0 }; } return o; }
 async function pushProfile() { if (!AUTH) return; await rpcA('save_profile', { p_pseudo: meta.pseudo || '', p_avatar: meta.avatar || 'scout', p_stats: myStats() }); }
-let frList = null, frRes = null, frQ = '', frMsg = '', frBusy = false;
+let frList = null, frRes = null, frQ = '', frMsg = '', frBusy = false, frUnread = {};
 const REL = { friend: ['AMI', 'fr'], incoming: ['DEMANDE', 'in'], outgoing: ['ENVOYÉE', ''], blocked: ['BLOQUÉ', ''], none: ['', ''] };
 function frRow(c) {
   const li = document.createElement('li'); li.appendChild(avatarCv(c.avatar, 88, true));
   const mid = document.createElement('div'); const n = document.createElement('div'); n.className = 'nm'; n.textContent = c.pseudo || 'Sans nom';
   const id = document.createElement('div'); id.className = 'id'; const best = c.stats && c.stats.inf ? ' · record ' + fmt(c.stats.inf.s) : ''; id.textContent = c.pid + best; mid.append(n, id); li.appendChild(mid);
-  const tg = document.createElement('span'); const r = REL[c.rel] || REL.none; tg.className = 'tg ' + r[1]; tg.textContent = r[0]; if (!r[0]) tg.style.visibility = 'hidden'; li.appendChild(tg);
+  const tg = document.createElement('span'); const r = REL[c.rel] || REL.none; tg.className = 'tg ' + r[1]; tg.textContent = r[0]; if (!r[0]) tg.style.visibility = 'hidden';
+  const un = frUnread[c.pid] || 0; if (un && c.rel === 'friend') { tg.className = 'tg msg'; tg.textContent = '💬 ' + un; tg.style.visibility = ''; }
+  li.appendChild(tg);
   li.addEventListener('click', () => openCard(c)); return li;
 }
 function frSection(title, arr, empty) {
@@ -4081,11 +4140,13 @@ function renderFriends() {
 async function loadFriends() {
   if (!AUTH) { frList = []; renderFriends(); return; }
   try { frList = await rpcA('my_friends') || []; } catch (e) { frList = []; frMsg = netErr(e); }
+  try { frUnread = await rpcA('unread_counts') || {}; } catch (e) { frUnread = {}; }
   renderFriends(); updFrBadge();
 }
 function updFrBadge() {
-  const b = $('#bPrFr'); if (!b) return; const n = (frList || []).filter(c => c.rel === 'incoming').length;
+  const b = $('#bPrFr'); if (!b) return; const n = (frList || []).filter(c => c.rel === 'incoming').length + Object.values(frUnread || {}).reduce((a, v) => a + v, 0);
   b.innerHTML = 'AMIS' + (n ? '<span class="nb">' + n + '</span>' : '');
+  notifN = n; try { renderMenu(); } catch (e) {}
 }
 const MODE_N = { inf: 'Infini', w1: 'Monde 1', w2: 'Monde 2', w3: 'Monde 3', w4: 'Monde 4' };
 function openCard(c) {
@@ -4114,12 +4175,117 @@ function openCard(c) {
   if (c.rel === 'none') bt.append(B('AJOUTER', 'add', 'primary'));
   if (c.rel === 'incoming') bt.append(B('ACCEPTER', 'accept', 'primary'), B('REFUSER', 'refuse'));
   if (c.rel === 'outgoing') bt.append(B('ANNULER LA DEMANDE', 'remove'));
-  if (c.rel === 'friend') bt.append(B('RETIRER', 'remove'));
+  if (c.rel === 'friend') { const mb = document.createElement('button'); mb.type = 'button'; mb.className = 'btn primary full'; const un = frUnread[c.pid] || 0; mb.textContent = '💬 MESSAGE' + (un ? ' (' + un + ')' : ''); mb.addEventListener('click', () => { $('#frDet').hidden = true; openChat(c); }); bt.append(mb, B('RETIRER', 'remove')); }
   if (c.rel === 'blocked') bt.append(B('DÉBLOQUER', 'unblock'));
   else bt.append(B('BLOQUER', 'block', 'danger'));
   const cl = document.createElement('button'); cl.type = 'button'; cl.className = 'btn' + (c.rel === 'incoming' ? '' : ' full'); cl.textContent = 'FERMER'; cl.addEventListener('click', () => $('#frDet').hidden = true); bt.appendChild(cl);
   box.appendChild(bt); bd.appendChild(box); $('#frDet').hidden = false;
 }
+/* ---------- Messages privés entre amis ---------- */
+var notifN = 0, chWith = null, chLast = 0, chTimer = 0, chBusy = false;
+async function checkNotif() {
+  if (!AUTH) { notifN = 0; return; }
+  try { frList = await rpcA('my_friends') || frList || []; } catch (e) {}
+  try { frUnread = await rpcA('unread_counts') || {}; } catch (e) {}
+  updFrBadge();
+}
+setInterval(() => { if (AUTH && document.visibilityState === 'visible' && el.menu && !el.menu.hidden) checkNotif(); }, 45000);
+function chTime(t) { const d = new Date(t); return isNaN(d) ? '' : d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }); }
+function chAdd(m) {
+  const l = $('#chList'); const e = l.querySelector('.empty'); if (e) e.remove();
+  if (l.querySelector('[data-id="' + m.id + '"]')) return;
+  const d = document.createElement('div'); d.className = 'm' + (m.mine ? ' me' : ''); d.dataset.id = m.id;
+  d.textContent = m.body; const t = document.createElement('time'); t.textContent = chTime(m.at); d.appendChild(t); l.appendChild(d);
+  chLast = Math.max(chLast, m.id | 0);
+}
+async function chPull(first) {
+  if (!chWith || chBusy) return; chBusy = true;
+  try {
+    const l = $('#chList'), atEnd = l.scrollHeight - l.scrollTop - l.clientHeight < 40;
+    const rows = await rpcA('get_messages', { p_pid: chWith.pid, p_after: first ? 0 : chLast }) || [];
+    rows.forEach(chAdd); $('#chErr').hidden = true;
+    if (first && !rows.length) l.innerHTML = '<p class="empty">Pas encore de message. Dis bonjour 👋</p>';
+    if (rows.length && (first || atEnd)) l.scrollTop = l.scrollHeight;
+    if (rows.some(r => !r.mine) && frUnread[chWith.pid]) { delete frUnread[chWith.pid]; updFrBadge(); }
+  } catch (e) { const er = $('#chErr'); er.textContent = netErr(e); er.style.color = 'var(--hot)'; er.hidden = false; }
+  chBusy = false;
+}
+function openChat(c) {
+  chWith = c; chLast = 0; $('#chList').innerHTML = ''; $('#chErr').hidden = true;
+  const av = $('#chAv'); av.innerHTML = ''; av.appendChild(avatarCv(c.avatar, 88, true));
+  $('#chName').textContent = c.pseudo || 'Sans nom'; $('#chPid').textContent = c.pid; $('#chIn').value = '';
+  $('#chat').hidden = false; chPull(true);
+  clearInterval(chTimer); chTimer = setInterval(() => { if (document.visibilityState === 'visible') chPull(false); }, 3500);
+}
+function closeChat() { clearInterval(chTimer); chWith = null; $('#chIn').blur(); $('#chat').hidden = true; checkNotif().then(() => { if (!el.friends.hidden) renderFriends(); }); }
+async function chSendNow() {
+  const i = $('#chIn'), txt = i.value.trim(); if (!txt || !chWith) return;
+  const b = $('#chSend'); b.disabled = true;
+  try { const m = await rpcA('send_message', { p_pid: chWith.pid, p_body: txt }); i.value = ''; chAdd(m); const l = $('#chList'); l.scrollTop = l.scrollHeight; $('#chErr').hidden = true; }
+  catch (e) { const er = $('#chErr'); er.textContent = netErr(e); er.style.color = 'var(--hot)'; er.hidden = false; }
+  b.disabled = false;
+}
+$('#chSend').addEventListener('click', chSendNow);
+$('#chClose').addEventListener('click', closeChat);
+$('#chIn').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') chSendNow(); });
+$('#chIn').addEventListener('keyup', e => e.stopPropagation());
+$('#chIn').addEventListener('blur', () => { setTimeout(vpFix, 150); setTimeout(vpFix, 600); });
+$('#chat').addEventListener('click', e => { if (e.target.id === 'chat') closeChat(); });
+/* ---------- Espace admin (droit vérifié par le serveur) ---------- */
+var isAdm = false;
+async function checkAdmin() { if (!AUTH) { isAdm = false; } else { try { isAdm = (await rpcA('is_admin')) === true; } catch (e) { isAdm = false; } } const b = $('#bPrAdm'); if (b) b.hidden = !isAdm; }
+const euro = c => ((c || 0) / 100).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+const dfr = t => t ? new Date(t).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' }) : '—';
+async function adLoad() {
+  const q = $('#adQ').value.trim(), m = $('#adMsg'), l = $('#adList'); m.textContent = 'Chargement…'; m.style.color = '';
+  try {
+    const st = await rpcA('admin_stats');
+    $('#adStats').innerHTML = '';
+    for (const [k, n, v] of [['users', 'Comptes', st.users], ['users7', 'Nouveaux 7 j', st.users7], ['active7', 'Actifs 7 j', st.active7], ['sales', 'Achats', st.sales], ['revenue', 'Encaissé', euro(st.revenue)], ['friendships', 'Amitiés', st.friendships], ['messages', 'Messages', st.messages]]) {
+      const d = document.createElement('div'); d.textContent = n; const b = document.createElement('b'); b.textContent = v; d.prepend(b); $('#adStats').appendChild(d);
+    }
+    const rows = await rpcA('admin_users', { p_q: q }) || [];
+    l.innerHTML = ''; m.textContent = rows.length + ' compte' + (rows.length > 1 ? 's' : '') + (q ? ' trouvé' + (rows.length > 1 ? 's' : '') : '') + '. Touche un compte pour sa fiche complète.';
+    for (const u of rows) {
+      const li = document.createElement('li'); li.appendChild(avatarCv(u.avatar || 'scout', 88, true));
+      const mid = document.createElement('div'); const n = document.createElement('div'); n.className = 'nm'; n.textContent = (u.pseudo || 'Sans pseudo') + (u.admin ? ' 🛡️' : '');
+      const id = document.createElement('div'); id.className = 'id'; id.textContent = u.email + (u.pid ? ' · ' + u.pid : ''); mid.append(n, id); li.appendChild(mid);
+      const tg = document.createElement('span'); tg.className = 'tg' + (u.spent ? ' fr' : ''); tg.textContent = u.spent ? euro(u.spent) : dfr(u.created).slice(0, 8); li.appendChild(tg);
+      li.addEventListener('click', () => adOpen(u.uid)); l.appendChild(li);
+    }
+  } catch (e) { m.textContent = netErr(e); m.style.color = 'var(--hot)'; }
+}
+async function adOpen(uid) {
+  const bd = $('#frDetBody'); bd.innerHTML = '<p class="frhint">Chargement…</p>'; $('#frDet').hidden = false;
+  try {
+    const u = await rpcA('admin_user', { p_uid: uid }); bd.innerHTML = '';
+    const box = document.createElement('div'); box.className = 'pcard';
+    const hd = document.createElement('div'); hd.className = 'pchead'; hd.appendChild(avatarCv(u.avatar || 'scout', 192, true));
+    const t = document.createElement('div'); const n = document.createElement('div'); n.className = 'nm'; n.textContent = u.pseudo || 'Sans pseudo';
+    const id = document.createElement('div'); id.className = 'aid'; id.innerHTML = '<b></b>'; id.querySelector('b').textContent = u.pid || 'pas encore de profil'; t.append(n, id); hd.appendChild(t); box.appendChild(hd);
+    const kv = document.createElement('div'); kv.className = 'adkv';
+    const row = (k, v) => { const a = document.createElement('span'); a.textContent = k; const b = document.createElement('b'); b.textContent = v == null || v === '' ? '—' : v; kv.append(a, b); };
+    const sec = x => { const h = document.createElement('h4'); h.textContent = x; kv.appendChild(h); };
+    sec('Compte'); row('Email', u.email); row('Email confirmé', u.confirmed ? 'oui' : 'non'); row('Créé le', dfr(u.created)); row('Dernière connexion', dfr(u.last)); row('ID interne', u.uid);
+    sec('Progression');
+    if (u.save) { row('Diams', fmt(+u.save.diams || 0)); row('Nuggets', fmt(+u.save.nuggets || 0)); row('Meilleur score', fmt(+u.save.best || 0) + ' (vague ' + (u.save.bestWave || 0) + ')'); row('Mondes finis', u.save.worlds + ' / 4'); row('Objets', u.save.items); row('Coffres en stock', u.save.chests); row('Thème', u.save.theme); row('Sauvegardé le', dfr(u.save.updated)); }
+    else row('Sauvegarde', 'aucune en ligne');
+    sec('Classement'); if (u.scores && u.scores.length) for (const r of u.scores) row(MODE_N[r.mode] || r.mode, fmt(r.score) + ' · V' + r.wave); else row('Scores', 'aucun relié au compte');
+    sec('Achats'); if (u.purchases && u.purchases.length) for (const a of u.purchases) row(dfr(a.at), a.offer + ' · ' + euro(a.amount) + (a.claimed ? ' · livré' : ' · en attente')); else row('Achats', 'aucun');
+    sec('Social'); row('Amis', (u.friends || []).join(', ') || 'aucun'); row('A bloqué', u.blocked); row('Bloqué par', u.blockedBy); row('Messages envoyés', u.sent);
+    box.appendChild(kv);
+    const cl = document.createElement('button'); cl.type = 'button'; cl.className = 'btn'; cl.textContent = 'FERMER'; cl.addEventListener('click', () => $('#frDet').hidden = true); box.appendChild(cl);
+    bd.appendChild(box);
+  } catch (e) { bd.innerHTML = ''; const p = document.createElement('p'); p.className = 'frhint'; p.style.color = 'var(--hot)'; p.textContent = netErr(e); bd.appendChild(p); }
+}
+function openAdmin() { el.prof.hidden = true; el.admin.hidden = false; el.admin.scrollTop = 0; adLoad(); }
+function closeAdmin() { $('#adQ').blur(); el.admin.hidden = true; $('#frDet').hidden = true; el.prof.hidden = false; renderProf(); }
+$('#bPrAdm').addEventListener('click', openAdmin);
+$('#bAdBack').addEventListener('click', closeAdmin);
+$('#adGo').addEventListener('click', adLoad);
+$('#adQ').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') adLoad(); });
+$('#adQ').addEventListener('keyup', e => e.stopPropagation());
+$('#adQ').addEventListener('blur', () => { setTimeout(vpFix, 150); setTimeout(vpFix, 600); });
 function confirmTap(x, txt) { if (x.dataset.ok) return true; x.dataset.ok = 1; x.textContent = txt; setTimeout(() => { delete x.dataset.ok; }, 3000); return false; }
 function openFriends() { el.prof.hidden = true; el.friends.hidden = false; el.friends.scrollTop = 0; $('#frDet').hidden = true; frMsg = ''; renderFriends(); loadFriends(); pushProfile().catch(() => {}); }
 function closeFriends() { $('#frQ') && $('#frQ').blur(); el.friends.hidden = true; $('#frDet').hidden = true; el.prof.hidden = false; renderProf(); }
