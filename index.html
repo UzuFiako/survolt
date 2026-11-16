@@ -141,6 +141,11 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .opt .seg.wide{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr)} .opt .seg.wide button{padding-left:4px;padding-right:4px}
 .seg button{min-width:58px;min-height:40px;padding:0 10px;background:var(--raise);font:700 12px/1 var(--body);letter-spacing:.1em;color:var(--dim)}
 .seg button.on{background:var(--volt);color:var(--onacc)}
+.vol{display:flex;align-items:center;gap:6px}
+.vol button{min-width:40px;min-height:40px;background:var(--raise);font:800 18px/1 var(--body);color:var(--ink)} .vol button:disabled{opacity:.35}
+.vbar{width:84px;height:8px;background:var(--raise);position:relative;overflow:hidden;border-radius:4px}
+.vbar::after{content:'';position:absolute;inset:0 auto 0 0;width:calc(var(--v) * 100%);background:var(--volt)}
+.vol i{font:700 12px/1 var(--body);color:var(--dim);min-width:40px;text-align:right;font-style:normal}
 
 .clist{display:grid;gap:10px}
 .card{--rc:var(--dim);display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;text-align:left;
@@ -187,6 +192,15 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .land #shop .sub{display:none}
 .land .item{padding:8px 10px}
 .land .chips{max-height:92px;overflow-y:auto}
+/* paysage peu haut (Android 20:9, ex. Redmi Note 14 Pro : 914×411) : tout le menu tient sans défiler */
+.lshort .mbody{padding:6px 14px;gap:6px}
+.lshort .mbody .lab{margin-bottom:4px}
+.lshort .cls{padding:2px 2px 4px;gap:0} .lshort .cls canvas{width:40px;height:40px}
+.lshort .clsinfo{min-height:0;margin-top:2px;font-size:13px}
+.lshort .wdrop{min-height:46px;padding:4px 10px}
+.lshort .btn{min-height:36px;font-size:12px} .lshort .btn.primary{min-height:44px;font-size:20px}
+.lshort .mhead{padding:10px 16px 10px} .lshort .logo{font-size:min(calc(var(--sw)*.065),60px)}
+.lshort .stats div{padding-top:6px;padding-bottom:6px}
 
 /* ---------- Mondes, garage, éditeur de boutons ---------- */
 .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px} .row3 .btn{padding:0 6px;letter-spacing:.08em}
@@ -1361,7 +1375,7 @@ const meta = { shards: 0, best: 0, bestWave: 0, shop: {}, cls: { scout: 1 }, sel
   world: 'w1', wdone: {}, wbest: {}, skins: { hexa: 1 }, skin: 'hexa', layout: {},
   jet: 0, chests: [], accs: { none: 1 }, acc: 'none', stuffs: {}, stuff: null, gift: false, alm: {}, tuto: false, resetSeen: '',
   theme: 'neon', inv: [], eq: {}, uid: 1, v5: false, tcol: { hull: '', bar: '', core: '' }, cols: {}, hue: 200, bul: 'theme', buls: { theme: 1 }, found: {},
-  opt: { side: true, lock: true, flip: false }, v8: false,
+  opt: { side: true, lock: true, flip: false, auto: true }, v8: false, music: true, musVol: 40, sfxVol: 70, sens: 1,
   pseudo: '', dev: '', lbRun: {}, lbSent: {}, avatar: 'scout', ts: 0, rv: 0, paid: [] };
 const META0 = JSON.stringify(meta);   // valeurs de départ, pour repartir de zéro
 const RV = 3;   // version de remise à zéro : toute sauvegarde plus ancienne repart de zéro (on garde seulement les réglages)
@@ -1373,6 +1387,9 @@ function merge(s) {
   if (s.cls && typeof s.cls === 'object') Object.assign(meta.cls, s.cls);
   if (typeof s.sel === 'string' && CLS.some(c => c.id === s.sel) && meta.cls[s.sel]) meta.sel = s.sel;
   meta.mute = !!s.mute;
+  if (typeof s.music === 'boolean') meta.music = s.music;
+  if ([1, 1.4, 1.8, 2.5].includes(s.sens)) meta.sens = s.sens;
+  for (const k of ['musVol', 'sfxVol']) if (Number.isFinite(s[k])) meta[k] = clamp(Math.round(s[k] / 10) * 10, 0, 100);
   if (s.opt && typeof s.opt === 'object') for (const k of ['side', 'lock', 'flip', 'auto']) if (typeof s.opt[k] === 'boolean') meta.opt[k] = s.opt[k];
   if (typeof s.pseudo === 'string') meta.pseudo = cleanName(s.pseudo);
   if (typeof s.avatar === 'string') meta.avatar = s.avatar;
@@ -1425,7 +1442,7 @@ const FRESH = (() => { try { return !localStorage.getItem(SAVE); } catch (e) { r
 function load() {
   let s0 = null; try { s0 = JSON.parse(localStorage.getItem(SAVE) || 'null'); } catch (e) {}
   if (s0 && s0.rv === RV) merge(s0);
-  else if (s0) merge({ opt: s0.opt, layout: s0.layout, theme: s0.theme, mute: s0.mute, v8: s0.v8, dev: s0.dev, pseudo: s0.pseudo, avatar: s0.avatar, lbRun: s0.lbRun, lbSent: s0.lbSent, resetSeen: s0.resetSeen });   // remise à zéro : on garde les réglages, le name tag et les records du classement
+  else if (s0) merge({ opt: s0.opt, layout: s0.layout, theme: s0.theme, mute: s0.mute, sens: s0.sens, music: s0.music, musVol: s0.musVol, sfxVol: s0.sfxVol, v8: s0.v8, dev: s0.dev, pseudo: s0.pseudo, avatar: s0.avatar, lbRun: s0.lbRun, lbSent: s0.lbSent, resetSeen: s0.resetSeen });   // remise à zéro : on garde les réglages, le name tag et les records du classement
   meta.rv = RV;
 }
 let pushT = null;
@@ -1443,7 +1460,7 @@ function initAudio() {
   if (AC) { try { AC.resume(); } catch (e) {} return; }
   try {
     AC = new (window.AudioContext || window.webkitAudioContext)();
-    master = AC.createGain(); master.gain.value = 0.55; master.connect(AC.destination);
+    master = AC.createGain(); master.gain.value = 0.8 * (meta.sfxVol ?? 70) / 100; master.connect(AC.destination);
     NB = AC.createBuffer(1, AC.sampleRate * 0.5, AC.sampleRate);
     const d = NB.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
     AC.resume();
@@ -1493,6 +1510,46 @@ const sfx = {
   chest() { [0, 0.25, 0.5, 0.75, 1].forEach(d => tone(160 + d * 120, 0.08, 'square', 0.05, 0, d)); },
   reveal(ri) { const b = [523, 587, 659, 740, 784, 880, 988][ri]; [0, 0.09, 0.18, 0.3].forEach((d, i) => tone(b * [1, 1.25, 1.5, 2][i], 0.22 + ri * 0.04, ri >= 5 ? 'sawtooth' : 'triangle', 0.08, 0, d)); if (ri >= 4) noise(0.6, 0.14, 3000); }
 };
+/* ---- Musique d'ambiance (générée en direct, aucun fichier) : calme au menu, plus rythmée en partie et pendant les boss ---- */
+let musG = null, musNext = 0, musStep = 0, musTimer = 0;
+const MUS_SPB = 60 / 92 / 2;   // croches à 92 BPM
+const MUS_CH = [[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]];   // la m · fa · do · sol
+const mf = n => 440 * Math.pow(2, (n - 69) / 12);
+const musVol = () => meta.music === false ? 0 : (meta.musVol ?? 40) / 100 * 0.32;
+function musApply() { if (!musG) return; const v = (document.hidden || state === 'pause') ? 0 : musVol(); musG.gain.setTargetAtTime(v, AC.currentTime, 0.35); }
+function audioVols() { if (master) master.gain.setTargetAtTime(0.8 * meta.sfxVol / 100, AC.currentTime, 0.05); musApply(); }
+function mNote(f, t, dur, type, vol, cut, att) {
+  const o = AC.createOscillator(), g = AC.createGain(), fl = AC.createBiquadFilter();
+  o.type = type; o.frequency.value = f; fl.type = 'lowpass'; fl.frequency.value = cut;
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vol, t + att); g.gain.setTargetAtTime(0.0001, t + dur * 0.6, dur * 0.22);
+  o.connect(fl); fl.connect(g); g.connect(musG); o.start(t); o.stop(t + dur + 0.6);
+}
+function mHat(t) { const src = AC.createBufferSource(), fl = AC.createBiquadFilter(), g = AC.createGain(); src.buffer = NB; fl.type = 'highpass'; fl.frequency.value = 7000; g.gain.setValueAtTime(0.03, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.05); src.connect(fl); fl.connect(g); g.connect(musG); src.start(t); src.stop(t + 0.07); }
+function mKick(t) { const o = AC.createOscillator(), g = AC.createGain(); o.frequency.setValueAtTime(130, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.14); g.gain.setValueAtTime(0.22, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.22); o.connect(g); g.connect(musG); o.start(t); o.stop(t + 0.25); }
+function musTick() {
+  if (!AC || !musG) return; musApply();
+  if (musVol() <= 0 || document.hidden) { musNext = AC.currentTime + 0.1; return; }
+  if (musNext < AC.currentTime - 0.1) musNext = AC.currentTime + 0.05;   // retour après une pause : on repart proprement
+  const play = state === 'play' || state === 'cards' || state === 'dying', boss = play && G && G.boss;
+  try {
+    while (musNext < AC.currentTime + 0.3) {
+      const s = musStep % 64, ch = MUS_CH[(s / 16) | 0], t = musNext;
+      if (s % 16 === 0) for (const n of ch) { mNote(mf(n), t, MUS_SPB * 16, 'sawtooth', 0.03, 800, 1.3); mNote(mf(n) * 1.005, t, MUS_SPB * 16, 'triangle', 0.035, 1300, 1.6); }
+      if (s % 4 === 0) mNote(mf(ch[0] - 24), t, MUS_SPB * 3.6, 'triangle', play ? 0.15 : 0.09, 480, 0.02);
+      if (play || s % 2 === 0) mNote(mf(ch[[0, 1, 2, 1, 2, 0, 1, 2][s % 8]] + 12), t, MUS_SPB * 1.7, 'square', play ? 0.022 : 0.016, boss ? 2600 : 1700, 0.01);
+      if (play && s % 2 === 1) mHat(t);
+      if (play && s % (boss ? 4 : 8) === 0) mKick(t);
+      musNext += MUS_SPB; musStep++;
+    }
+  } catch (e) {}
+}
+function startMusic() {
+  initAudio(); if (!AC) return;
+  if (!musG) { musG = AC.createGain(); musG.gain.value = 0; musG.connect(AC.destination); musNext = AC.currentTime + 0.1; musTimer = setInterval(musTick, 100); }
+  audioVols();
+}
+for (const ev of ['pointerdown', 'touchend', 'keydown']) window.addEventListener(ev, () => startMusic(), { once: true, capture: true });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && AC) { try { AC.resume(); } catch (e) {} } musApply(); });
 const vib = ms => { if (state === 'menu') return; try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) {} };
 
 /* ================= État ================= */
@@ -1581,7 +1638,7 @@ function resize() {
   stage.style.width = W + 'px'; stage.style.height = H + 'px';
   stage.style.transform = !ROT ? 'none' : FLIP ? `translateY(${vh}px) rotate(-90deg)` : `translateX(${vw}px) rotate(90deg)`;
   stage.style.setProperty('--sw', W + 'px');
-  stage.classList.toggle('rot', ROT); stage.classList.toggle('land', LAND); stage.classList.toggle('short', !LAND && H <= 640);
+  stage.classList.toggle('rot', ROT); stage.classList.toggle('land', LAND); stage.classList.toggle('short', !LAND && H <= 640); stage.classList.toggle('lshort', LAND && H <= 470);
   stage.classList.toggle('pads', meta.opt.lock);
   DPR = Math.min(window.devicePixelRatio || 1, 2);
   cv.width = Math.max(1, Math.round(W * DPR)); cv.height = Math.max(1, Math.round(H * DPR));
@@ -3233,13 +3290,16 @@ const OPTS = [
          ['DROIT', () => !meta.opt.auto && !meta.opt.side, () => { meta.opt.auto = false; meta.opt.side = true; setOpt('side', false); }],
          ['⟲ GAUCHE', () => !meta.opt.auto && meta.opt.side && !meta.opt.flip, () => { meta.opt.flip = false; meta.opt.auto = false; meta.opt.side = false; setOpt('side', true); }],
          ['DROITE ⟳', () => !meta.opt.auto && meta.opt.side && meta.opt.flip, () => { meta.opt.flip = true; meta.opt.auto = false; meta.opt.side = false; setOpt('side', true); }]] },
+  { k: 'sens', n: 'Sensibilité du déplacement', h: 'Plus c’est haut, moins tu dois pousser le stick pour atteindre la vitesse max. La vitesse max ne change pas.',
+    ch: [['NORMALE', 1], ['RAPIDE', 1.4], ['TRÈS RAPIDE', 1.8], ['MAX', 2.5]].map(([t, v]) => [t, () => (meta.sens || 1) === v, () => { meta.sens = v; save(); renderOpts(); }]) },
   { k: 'lock', n: 'Sticks fixes', h: 'Sur OUI, les sticks restent à leur place. Sur NON, ils apparaissent là où tu poses le doigt.' },
-  { k: 'snd', n: 'Son', h: '' }
+  { k: 'mus', n: 'Musique', h: 'Musique d’ambiance : calme au menu, plus rythmée en partie et pendant les boss.' },
+  { k: 'snd', n: 'Bruitages', h: '' }
 ];
-const getOpt = k => k === 'snd' ? !meta.mute : meta.opt[k];
+const getOpt = k => k === 'snd' ? !meta.mute : k === 'mus' ? meta.music !== false : meta.opt[k];
 function setOpt(k, v) {
   if (getOpt(k) === v) return;
-  if (k === 'snd') { meta.mute = !v; if (v) { initAudio(); uis(() => sfx.card()); } } else meta.opt[k] = v;
+  if (k === 'snd') { meta.mute = !v; if (v) { initAudio(); uis(() => sfx.card()); } } else if (k === 'mus') { meta.music = v; startMusic(); } else meta.opt[k] = v;
   save();
   if (k === 'side' || k === 'lock' || k === 'flip' || k === 'auto') { resize(); if (state === 'menu') { renderMenu(); measureMenu(); } }
   if (!el.layout.hidden) renderLayout();
@@ -3261,6 +3321,15 @@ function renderOpts() {
     row.append(nm, seg);
     if (o.h) { const h = document.createElement('p'); h.textContent = o.h; row.appendChild(h); }
     box.appendChild(row);
+  }
+  for (const [k, n] of [['musVol', 'Volume musique'], ['sfxVol', 'Volume bruitages']]) {
+    const row = document.createElement('div'); row.className = 'opt'; const nm = document.createElement('b'); nm.textContent = n;
+    const ctl = document.createElement('div'); ctl.className = 'vol';
+    const mk = (t, d, lab) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = t; b.setAttribute('aria-label', lab); b.disabled = (d < 0 && meta[k] <= 0) || (d > 0 && meta[k] >= 100);
+      b.addEventListener('click', () => { meta[k] = clamp(meta[k] + d, 0, 100); save(); startMusic(); if (k === 'sfxVol' && !meta.mute) uis(() => sfx.card()); renderOpts(); }); return b; };
+    const bar = document.createElement('span'); bar.className = 'vbar'; bar.style.setProperty('--v', meta[k] / 100);
+    const pc = document.createElement('i'); pc.textContent = meta[k] + ' %';
+    ctl.append(mk('−', -10, 'Baisser'), bar, mk('+', 10, 'Monter'), pc); row.append(nm, ctl); box.appendChild(row);
   }
   {
     const row = document.createElement('div'); row.className = 'opt'; const nm = document.createElement('b'); nm.textContent = 'Thème';
@@ -3876,6 +3945,7 @@ function stickMove(j, x, y) {
   const R = j.r;
   if (l > R) { if (!meta.opt.lock) { j.ox += dx / l * (l - R); j.oy += dy / l * (l - R); } dx = dx / l * R; dy = dy / l * R; }
   j.x = dx / R; j.y = dy / R;
+  if (j === joy) { const k = meta.sens || 1, m = Math.hypot(j.x, j.y); if (k > 1 && m > 0) { const n = Math.min(1, m * k); j.x *= n / m; j.y *= n / m; } }   // sensibilité : la vitesse max arrive plus tôt
 }
 cv.addEventListener('pointerdown', e => {
   const x = px(e), y = py(e);
@@ -4002,7 +4072,7 @@ async function signUp(email, pw) { const j = await authCall('signup?redirect_to=
 async function signIn(email, pw) { setSession(await authCall('token?grant_type=password', { email, password: pw })); await cloudSync(true); }
 /* Vide la progression de cet appareil (on garde les réglages). Ne touche jamais au compte en ligne. */
 function wipeLocal() {
-  const keep = { opt: Object.assign({}, meta.opt), layout: Object.assign({}, meta.layout), theme: meta.theme, mute: meta.mute, v8: meta.v8, dev: meta.dev, resetSeen: meta.resetSeen, tuto: meta.tuto };
+  const keep = { opt: Object.assign({}, meta.opt), layout: Object.assign({}, meta.layout), theme: meta.theme, mute: meta.mute, sens: meta.sens, music: meta.music, musVol: meta.musVol, sfxVol: meta.sfxVol, v8: meta.v8, dev: meta.dev, resetSeen: meta.resetSeen, tuto: meta.tuto };
   resetMeta(); merge(keep); meta.rv = RV; meta.ts = 0;
   try { localStorage.setItem(SAVE, JSON.stringify(meta)); } catch (e) {}
   applyTheme(meta.theme); curSk = skinById(meta.skin); focusCls = meta.sel; focusW = meta.world; frList = null; frRes = null; frQ = '';
@@ -4513,7 +4583,7 @@ async function checkEpoch() {
   try { EPOCH = await lbFetch('rpc/reset_epoch', { method: 'POST', body: '{}' }); } catch (e) { EPOCH = null; return; }
   if (typeof EPOCH !== 'string' || !EPOCH || meta.resetSeen === EPOCH) return;
   if (FRESH) { meta.resetSeen = EPOCH; save(); return; }   // nouveau joueur : rien à effacer
-  const keep = { opt: Object.assign({}, meta.opt), layout: Object.assign({}, meta.layout), theme: meta.theme, mute: meta.mute, v8: meta.v8, dev: meta.dev, pseudo: meta.pseudo, avatar: meta.avatar, lbRun: clone(meta.lbRun), lbSent: clone(meta.lbSent) };
+  const keep = { opt: Object.assign({}, meta.opt), layout: Object.assign({}, meta.layout), theme: meta.theme, mute: meta.mute, sens: meta.sens, music: meta.music, musVol: meta.musVol, sfxVol: meta.sfxVol, v8: meta.v8, dev: meta.dev, pseudo: meta.pseudo, avatar: meta.avatar, lbRun: clone(meta.lbRun), lbSent: clone(meta.lbSent) };
   resetMeta(); merge(keep); meta.rv = RV; meta.resetSeen = EPOCH; meta.ts = Date.now();
   try { localStorage.setItem(SAVE, JSON.stringify(meta)); } catch (e) {}
   location.reload();   // on relance : set de départ, coffre de bienvenue et tuto
@@ -4671,6 +4741,7 @@ function start(data) {
     meta.skins.hexa = 1; if (!meta.skins[meta.skin]) meta.skin = 'hexa'; meta.jet += refund;
     save();
   }
+  if (meta.opt.auto) window.addEventListener('pointerdown', startAuto, { once: true });
   applyTheme(meta.theme);
   resize(); focusCls = meta.sel; focusW = meta.world; curSk = skinById(meta.skin); renderMenu(); startDemo();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (state === 'menu') measureMenu(); });
