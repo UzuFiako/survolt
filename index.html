@@ -727,12 +727,13 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
           <div class="eqcol" id="eqR"></div>
         </div>
         <div id="eqDetail" class="eqdetail none"></div>
-        <h3 class="lab">Niveaux des emplacements</h3>
-        <div id="eqSlots" class="eqslots"></div>
+
         <div id="eqSets" class="eqsets"></div>
       </div>
       <div class="invwrap"><h3 class="lab">Inventaire <span id="invN"></span></h3><div id="inv" class="inv"></div>
         <p class="sub">Touche un objet pour le voir · <b>double-touche</b> pour l’équiper ou le retirer · <b>reste appuyé</b> puis glisse-le sur son emplacement. 3 objets identiques = 1 objet plus rare (jusqu’à Légendaire, puis LG 2, 3, 4 et UPL).</p>
+        <h3 class="lab">Niveaux des emplacements</h3>
+        <div id="eqSlots" class="eqslots"></div>
         <h3 class="lab">Tous les équipements <span id="catN"></span></h3><div id="eqCat" class="inv"></div>
         <p class="sub">En gris : ce que tu n’as pas encore. Touche-les pour savoir comment les obtenir.</p></div>
     </div>
@@ -1175,7 +1176,7 @@ const SLVFX = {
   anneau: E => ({ t: `+${pc1(0.008 * E)} % de critique, +${pc1(0.04 * E)} % de dégâts`, f: s => { s.crit += 0.00008 * E; s.dmg *= 1 + 0.0004 * E; } })
 };
 const slvL = (lv, rk) => (rk - 1) * 100 + lv;
-const slvCost = (lv, rk) => { if (lv >= 100) return rk >= SLV_RANKS ? null : { sh: 3000 * rk, sc: 40 * rk, wake: true }; const L = slvL(lv, rk); return { sh: Math.round((10 + 1.5 * L + 0.06 * L * L) / 5) * 5, sc: 1 + Math.floor(L / 15) }; };
+const slvCost = (lv, rk) => { if (lv >= 100) return rk >= SLV_RANKS ? null : { sh: 3000 * rk, sc: 40 * rk, wake: true }; const L = slvL(lv, rk); return { sh: Math.round((20 + 3 * L + 0.12 * L * L) / 5) * 5, sc: 1 + Math.floor(L / 15) }; };
 const shopCost = (it, lv) => lv >= it.max ? null : Math.round(it.base * Math.pow(it.mul || 1.55, lv) / 5) * 5;
 
 /* Ennemis : min = première vague où ils apparaissent, cost = poids dans le budget d'une vague */
@@ -3309,7 +3310,9 @@ function loadLb() {
     const l = $('#lbList'); l.innerHTML = '';
     if (!rows || !rows.length) { lbMsg('Personne encore. Sois le premier !'); return; }
     const mine = meta.lbRun[mode], myPid = AUTH ? playerId(AUTH.uid) : '', seen = new Set();
-    rows = rows.filter(x => !x.pid || (!seen.has(x.pid) && seen.add(x.pid))).slice(0, 50);   // un compte = une seule ligne
+    rows = rows.filter(x => !x.pid || (!seen.has(x.pid) && seen.add(x.pid)));   // un compte = une seule ligne
+    const accNames = new Set(rows.filter(x => x.pid).map(x => x.name.toLowerCase()));
+    rows = rows.filter(x => x.pid || !accNames.has(x.name.toLowerCase())).slice(0, 50);   // vieille ligne « sans compte » d'un joueur qui a un compte : on la cache
     let meShown = false;
     rows.forEach((x, i) => {
       const li = document.createElement('li');
@@ -4995,7 +4998,7 @@ $('#bPrFr').addEventListener('click', openFriends);
 $('#bFrBack').addEventListener('click', closeFriends);
 $('#frDet').addEventListener('click', e => { if (e.target.id === 'frDet') $('#frDet').hidden = true; });
 /* ================= Boutique ================= */
-const NUGP = [{ v: 500, c: 10 }, { v: 1200, c: 20, b: '+20 %' }, { v: 3500, c: 50, b: '+40 %' }, { v: 8000, c: 100, b: '+60 %' }];
+const NUGP = [{ v: 500, c: 50 }, { v: 1200, c: 100, b: '+20 %' }, { v: 3500, c: 250, b: '+40 %' }, { v: 8000, c: 500, b: '+60 %' }];
 const DIAP = [{ id: 'd80', v: 80, e: '0,99 €' }, { id: 'd500', v: 500, e: '4,99 €', b: '+25 %' }, { id: 'd1200', v: 1200, e: '9,99 €', b: '+50 %' }, { id: 'd2600', v: 2600, e: '19,99 €', b: '+60 %' }, { id: 'd6500', v: 6500, e: '49,99 €', b: '+60 %' }];
 const STCH = [{ r: 'x', n: 'Coffre mystère', c: 10, d: 'Rareté tirée à l’ouverture, avec les chances habituelles.' }, { r: 'ur', n: 'Coffre épique', c: 60, d: 'Rareté UR garantie.' }, { r: 'mt', n: 'Coffre mythique', c: 150, d: 'Rareté MT garantie.' }, { r: 'lg', n: 'Coffre légendaire', c: 320, d: 'Rareté LG garantie, cosmétiques premium possibles.' }];
 const PACKS = [
