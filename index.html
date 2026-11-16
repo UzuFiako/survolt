@@ -647,7 +647,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
       </header>
       <dl class="stats">
         <div><dt>Record</dt><dd id="mBest">0</dd></div>
-        <div><dt>Mondes</dt><dd id="mWorlds">0/4</dd></div>
+        <div><dt>Mondes</dt><dd id="mWorlds">0/6</dd></div>
         <div><dt>Nuggets</dt><dd id="mShards" class="sh">0</dd></div>
         <div><dt>Diams</dt><dd id="mJet" class="jt">0</dd></div>
       </dl>
@@ -859,7 +859,8 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
     <li>À chaque niveau, choisis <b>1 carte sur 3</b> (perk) : les 3 ont la même rareté, de Commun à Légendaire. Tu peux avoir 7 perks différents au maximum.</li>
     <li>Des <b>mini-boss</b> et des <b>boss</b> apparaissent à certaines vagues. Ils donnent des diams. Un mini-boss a aussi des chances de lâcher un <b>coffre</b> (50 % CO, 10 % R, 3 % SR, 1 % UR…).</li>
     <li>Tes effets de tir (ricochet, explosion, éclair, perforation, critique) marchent aussi sur les <b>débris</b> de la map.</li>
-    <li>Finis les <b>4 mondes</b> dans l’ordre (20 à 30 vagues chacun) pour gagner un coffre. Le mode <b>Infini</b> se débloque après le Monde 2.</li></ul></details>
+    <li>Finis les <b>6 mondes</b> dans l’ordre (20 à 40 vagues chacun, de plus en plus durs) pour gagner un coffre. Le mode <b>Infini</b> se débloque après le Monde 2.</li>
+    <li>Mondes 5 et 6 : nouveaux ennemis (Phaseur, Sniper), nouveaux boss (Le Condensateur, La Singularité), et des variantes qui éclatent en balles à leur mort.</li></ul></details>
   <details><summary>🗡️ Comment gagner armes et équipements</summary><ul>
     <li><b>Boss</b> : chaque boss tué donne <b>1 arme ou 1 pièce</b> au hasard (de CO à LG).</li>
     <li><b>Monde terminé</b> : 1 objet bonus + 15 diams + 1 coffre.</li>
@@ -1020,15 +1021,15 @@ function makeGlows() {
 /* Thèmes : couleurs du jeu, polices, sol de l'arène et forme du décor changent ensemble. */
 const THEMES = {
   neon: { n: 'Néon', light: false, grid: 'hex', C: { volt: '#ffd23f', hot: '#ff3d81', ion: '#3de8ff', plasma: '#b56bff', ok: '#6dffb0', ember: '#ff8a3d', ink: '#f2efff' },
-    bgs: ['#120f2e', '#170d30', '#1b0f22', '#1d0b1f', '#0d1426'], floors: ['rgba(96,86,205,0.3)', 'rgba(181,107,255,0.24)', 'rgba(255,138,61,0.2)', 'rgba(255,61,129,0.2)', 'rgba(109,255,176,0.17)'],
+    bgs: ['#120f2e', '#170d30', '#1b0f22', '#1d0b1f', '#0d1426', '#0a1630', '#1a1608'], floors: ['rgba(96,86,205,0.3)', 'rgba(181,107,255,0.24)', 'rgba(255,138,61,0.2)', 'rgba(255,61,129,0.2)', 'rgba(109,255,176,0.17)', 'rgba(61,232,255,0.2)', 'rgba(255,210,63,0.18)'],
     out: 'rgba(6,4,18,0.84)', core: '#fff8d8', orb: '#d9fbff', fd: 'Bungee,"Arial Black",Impact,sans-serif', fb: '"Chakra Petch","Trebuchet MS",sans-serif',
     tank: { line: '#ffd23f', fill: '#3a3212', core: '#ffd23f', barrel: '#2c2670', shot: 'volt' } },
   metal: { n: 'Métal', light: false, grid: 'plate', C: { volt: '#e8b84a', hot: '#e0663f', ion: '#9fc3e0', plasma: '#c7955f', ok: '#9ed38c', ember: '#f09a52', ink: '#eef0f4' },
-    bgs: ['#15171c', '#18161a', '#1b1613', '#1c1416', '#131819'], floors: ['rgba(170,180,195,0.17)', 'rgba(199,149,95,0.17)', 'rgba(240,154,82,0.15)', 'rgba(224,102,63,0.15)', 'rgba(158,211,140,0.13)'],
+    bgs: ['#15171c', '#18161a', '#1b1613', '#1c1416', '#131819', '#12181d', '#1b1912'], floors: ['rgba(170,180,195,0.17)', 'rgba(199,149,95,0.17)', 'rgba(240,154,82,0.15)', 'rgba(224,102,63,0.15)', 'rgba(158,211,140,0.13)', 'rgba(159,195,224,0.16)', 'rgba(232,184,74,0.15)'],
     out: 'rgba(8,9,12,0.88)', core: '#fff4d6', orb: '#e8f2ff', fd: '"Russo One","Arial Black",sans-serif', fb: '"Rajdhani","Trebuchet MS",sans-serif',
     tank: { line: '#f5d77a', metal: ['#8a6a22', '#f7e2a0', '#5a4310'], core: '#fff6cf', barrel: '#3a3f4a', shot: 'volt' } },
   pastel: { n: 'Pastel', light: true, grid: 'dots', C: { volt: '#f0a35e', hot: '#ee6f98', ion: '#2f9cc4', plasma: '#9a7be0', ok: '#2fae7f', ember: '#f08a5d', ink: '#3b3355' },
-    bgs: ['#e9d5df', '#e3d6ea', '#ecd9d2', '#ecd2dc', '#d9e4de'], floors: ['rgba(154,123,224,0.32)', 'rgba(154,123,224,0.34)', 'rgba(240,138,93,0.32)', 'rgba(238,111,152,0.3)', 'rgba(47,174,127,0.3)'],
+    bgs: ['#e9d5df', '#e3d6ea', '#ecd9d2', '#ecd2dc', '#d9e4de', '#d6e3ec', '#ece6d2'], floors: ['rgba(154,123,224,0.32)', 'rgba(154,123,224,0.34)', 'rgba(240,138,93,0.32)', 'rgba(238,111,152,0.3)', 'rgba(47,174,127,0.3)', 'rgba(47,156,196,0.3)', 'rgba(240,163,94,0.3)'],
     out: 'rgba(218,192,206,0.92)', core: '#f6e8ef', orb: '#2f9cc4', fd: '"Fredoka","Arial Rounded MT Bold",sans-serif', fb: '"Nunito","Trebuchet MS",sans-serif',
     tank: { line: '#ee6f98', fill: '#ffe1ec', core: '#9a7be0', barrel: '#e4d9f7', shot: 'hot' } }
 };
@@ -1052,10 +1053,10 @@ const baseStats = () => ({
 
 const CLS = [
   { id: 'scout', n: 'Éclaireur', d: 'Équilibré, bon partout.', cost: 0, f: s => {} },
-  { id: 'twin', n: 'Jumeau', d: 'Deux canons côte à côte, dégâts réduits de 20 %.', cost: 120, f: s => { s.multi = 2; s.dmg *= 0.8; } },
-  { id: 'sniper', n: 'Perceur', d: 'Tirs lourds qui traversent, cadence lente.', cost: 180, f: s => { s.dmg *= 2.1; s.rate *= 0.55; s.bspd *= 1.5; s.pierce += 1; s.bsize *= 1.2; } },
-  { id: 'shot', n: 'Fracas', d: 'Rafale de 5 plombs à courte portée.', cost: 250, f: s => { s.multi = 5; s.dmg *= 0.52; s.rate *= 0.62; s.range *= 0.55; s.scatter = 1; } },
-  { id: 'hive', n: 'Ruche', d: '3 satellites dès le départ, canon affaibli.', cost: 350, f: s => { s.drones = 3; s.dmg *= 0.7; } }
+  { id: 'twin', n: 'Jumeau', d: 'Deux canons côte à côte, dégâts réduits de 20 %.', cost: 1000, f: s => { s.multi = 2; s.dmg *= 0.8; } },
+  { id: 'sniper', n: 'Perceur', d: 'Tirs lourds qui traversent, cadence lente.', cost: 1500, f: s => { s.dmg *= 2.1; s.rate *= 0.55; s.bspd *= 1.5; s.pierce += 1; s.bsize *= 1.2; } },
+  { id: 'shot', n: 'Fracas', d: 'Rafale de 5 plombs à courte portée.', cost: 2200, f: s => { s.multi = 5; s.dmg *= 0.52; s.rate *= 0.62; s.range *= 0.55; s.scatter = 1; } },
+  { id: 'hive', n: 'Ruche', d: '3 satellites dès le départ, canon affaibli.', cost: 3000, f: s => { s.drones = 3; s.dmg *= 0.7; } }
 ];
 
 /* Mêmes taux que les coffres : Commun 43,9 · Rare 30 · Épique 22 (SR 15 + UR 7) · Mythique 3 · Légendaire 1 */
@@ -1189,13 +1190,17 @@ const ET = {
   split: { hp: 70, sp: 70, r: 20, dmg: 12, xp: 9, cost: 3, min: 7, col: 'plasma', shape: 'pent' },
   mortar: { hp: 55, sp: 56, r: 18, dmg: 16, xp: 11, cost: 3.5, min: 9, col: 'hot', shape: 'oct', ai: 'mortar' },
   spin: { hp: 90, sp: 46, r: 20, dmg: 12, xp: 12, cost: 4, min: 11, col: 'ember', shape: 'cross', ai: 'spin' },
-  mini: { hp: 14, sp: 128, r: 9, dmg: 6, xp: 2, cost: 0.5, col: 'plasma', shape: 'pent' }
+  mini: { hp: 14, sp: 128, r: 9, dmg: 6, xp: 2, cost: 0.5, col: 'plasma', shape: 'pent' },
+  blink: { hp: 60, sp: 112, r: 15, dmg: 14, xp: 10, cost: 2.6, min: 2, lv: 4, col: 'ion', shape: 'tri', ai: 'blink' },
+  sniper: { hp: 48, sp: 64, r: 16, dmg: 22, xp: 12, cost: 3.2, min: 3, lv: 5, col: 'volt', shape: 'eye', ai: 'sniper' }
 };
 const BOSS = [
   { n: 'LE TRANSFO', col: 'ember', sides: 8, pats: ['ring', 'charge', 'fan'] },
   { n: 'LA DYNAMO', col: 'plasma', sides: 6, pats: ['spiral', 'summon', 'ring'] },
   { n: 'ARC-ROI', col: 'hot', sides: 5, pats: ['fan', 'charge', 'spiral', 'summon'] },
-  { n: 'L’ALTERNATEUR', col: 'ion', sides: 7, pats: ['spiral', 'charge', 'ring', 'summon', 'fan'] }
+  { n: 'L’ALTERNATEUR', col: 'ion', sides: 7, pats: ['spiral', 'charge', 'ring', 'summon', 'fan'] },
+  { n: 'LE CONDENSATEUR', col: 'volt', sides: 9, pats: ['gravity', 'nova', 'charge', 'rain', 'ring'] },
+  { n: 'LA SINGULARITÉ', col: 'ink', sides: 12, pats: ['gravity', 'nova', 'phantom', 'spiral', 'rain', 'laser'] }
 ];
 const MINIB = [
   { n: 'SENTINELLE', col: 'plasma', sides: 4, pats: ['fan', 'ring'] },
@@ -1207,12 +1212,15 @@ const MINIB = [
 ];
 /* Mondes : un mini-boss toutes les 5 vagues, un boss toutes les 10, et un boss final à la dernière vague. */
 const WORLDS = [
-  { id: 'w1', n: 'Circuit primaire', waves: 20, hp: 1, dmg: 1, cnt: 1, off: 0, bosses: [0, 1], reward: 40, req: null, col: 'ion', bg: '#120f2e', floor: 'rgba(96,86,205,0.3)' },
-  { id: 'w2', n: 'Haute tension', waves: 25, hp: 1.25, dmg: 1.15, cnt: 1.1, off: 3, bosses: [1, 0, 2], reward: 70, req: 'w1', col: 'plasma', bg: '#170d30', floor: 'rgba(181,107,255,0.24)' },
-  { id: 'w3', n: 'Cœur du réacteur', waves: 30, hp: 1.5, dmg: 1.3, cnt: 1.2, off: 6, bosses: [2, 1, 3], reward: 110, req: 'w2', col: 'ember', bg: '#1b0f22', floor: 'rgba(255,138,61,0.2)' },
-  { id: 'w4', n: 'Surtension', waves: 30, hp: 1.8, dmg: 1.5, cnt: 1.3, off: 9, bosses: [0, 2, 3], reward: 160, req: 'w3', col: 'hot', bg: '#1d0b1f', floor: 'rgba(255,61,129,0.2)' },
-  { id: 'inf', n: 'Infini', waves: 0, hp: 1.15, dmg: 1.1, cnt: 1.05, off: 2, bosses: [0, 1, 2, 3], reward: 0, req: 'w2', col: 'ok', bg: '#0d1426', floor: 'rgba(109,255,176,0.17)' }
+  { id: 'w1', no: 1, lv: 0, n: 'Circuit primaire', waves: 20, hp: 1, dmg: 1, cnt: 1, off: 0, bosses: [0, 1], reward: 40, req: null, col: 'ion', bg: '#120f2e', floor: 'rgba(96,86,205,0.3)' },
+  { id: 'w2', no: 2, lv: 1, n: 'Haute tension', waves: 25, hp: 1.25, dmg: 1.15, cnt: 1.1, off: 3, bosses: [1, 0, 2], reward: 70, req: 'w1', col: 'plasma', bg: '#170d30', floor: 'rgba(181,107,255,0.24)' },
+  { id: 'w3', no: 3, lv: 2, n: 'Cœur du réacteur', waves: 30, hp: 1.5, dmg: 1.3, cnt: 1.2, off: 6, bosses: [2, 1, 3], reward: 110, req: 'w2', col: 'ember', bg: '#1b0f22', floor: 'rgba(255,138,61,0.2)' },
+  { id: 'w4', no: 4, lv: 3, n: 'Surtension', waves: 30, hp: 1.8, dmg: 1.5, cnt: 1.3, off: 9, bosses: [0, 2, 3], reward: 160, req: 'w3', col: 'hot', bg: '#1d0b1f', floor: 'rgba(255,61,129,0.2)' },
+  { id: 'inf', no: 0, lv: 0, n: 'Infini', waves: 0, hp: 1.15, dmg: 1.1, cnt: 1.05, off: 2, bosses: [0, 1, 2, 3, 4, 5], reward: 0, req: 'w2', col: 'ok', bg: '#0d1426', floor: 'rgba(109,255,176,0.17)' },
+  { id: 'w5', no: 5, lv: 4, n: 'Tempête ionique', waves: 35, hp: 2.25, dmg: 1.75, cnt: 1.4, off: 12, bosses: [3, 4, 2, 4], reward: 230, req: 'w4', col: 'ion', bg: '#0a1630', floor: 'rgba(61,232,255,0.2)' },
+  { id: 'w6', no: 6, lv: 5, n: 'Singularité', waves: 40, hp: 2.8, dmg: 2.05, cnt: 1.5, off: 15, bosses: [4, 5, 3, 5], reward: 320, req: 'w5', col: 'volt', bg: '#1a1608', floor: 'rgba(255,210,63,0.18)' }
 ];
+const NW = WORLDS.filter(w => w.waves).length;   // nombre de mondes (hors Infini)
 const wOpen = w => !w.req || !!meta.wdone[w.req];
 const worldById = id => WORLDS.find(w => w.id === id) || WORLDS[0];
 const isBossWave = (w, n) => (w.waves && n === w.waves) || n % 10 === 0;
@@ -1230,7 +1238,7 @@ const RARS = [
   { id: 'upl', n: 'Ultra Premium Légendaire', s: 'UPL', col: '#ffd23f', w: 0.1 }
 ];
 const RIDX = {}; RARS.forEach((r, i) => { RIDX[r.id] = i; });
-const JPRICE = { co: 60, r: 140, sr: 300, ur: 550, mt: 900, lg: 1500 };   // prix des skins et accessoires, en nuggets
+const JPRICE = { co: 400, r: 1000, sr: 2500, ur: 5000, mt: 9000, lg: 15000 };   // prix des skins et accessoires, en nuggets
 
 /* Skins : la forme du tank. Les couleurs viennent du thème. */
 const SETS = [['forme', 'Formes'], ['leg', 'Légendaire']];
@@ -1372,7 +1380,7 @@ const PCOLS = [
   { id: 'braise', n: 'Braise', rar: 'mt', d: 'Rouge et orange qui pulsent, braises qui s’envolent.' },
   { id: 'arcenciel', n: 'Arc-en-ciel', rar: 'lg', d: 'La teinte défile en continu, avec des étincelles.' }
 ];
-const DPRICE = { co: 10, r: 20, sr: 35, ur: 50, mt: 80, lg: 140, upl: 250 };   // prix en diams des objets premium
+const DPRICE = { co: 30, r: 60, sr: 100, ur: 150, mt: 250, lg: 450, upl: 800 };   // prix en diams des objets premium
 const COLITEMS = () => HUES.map(h => ({ id: h[0], n: h[1], rar: HUE_RAR[h[0]] || 'co' })).concat(PCOLS.map(c => Object.assign({ prem: 1 }, c)));
 const colOwn = id => !id || !!meta.cols[id];
 function tint(id) {
@@ -1682,7 +1690,7 @@ function arenaR(a) { if (!ASH) return AR; const k = TAU / ASH, u = (((a - AROT) 
 function inArena(x, y, m) { return Math.hypot(x, y) <= arenaR(Math.atan2(y, x)) - (m || 0); }
 function clampArena(o, m) { const r = Math.hypot(o.x, o.y), lim = arenaR(Math.atan2(o.y, o.x)) - m; if (r > lim && r > 0) { o.x *= lim / r; o.y *= lim / r; return true; } return false; }
 function arenaPath(g) { g.beginPath(); if (!ASH) { g.arc(0, 0, AR, 0, TAU); return; } for (let i = 0; i <= ASH; i++) { const a = AROT + i * TAU / ASH; if (i) g.lineTo(Math.cos(a) * AR, Math.sin(a) * AR); else g.moveTo(Math.cos(a) * AR, Math.sin(a) * AR); } g.closePath(); }
-const ARENAS = { w1: [1550, 0, 0], w2: [1750, 6, 0], w3: [1650, 8, Math.PI / 8], w4: [1750, 4, Math.PI / 4], inf: [1350, 0, 0] };            // rayon de l'arène, nombre de cristaux
+const ARENAS = { w1: [1550, 0, 0], w2: [1750, 6, 0], w3: [1650, 8, Math.PI / 8], w4: [1750, 4, Math.PI / 4], w5: [1850, 5, -Math.PI / 2], w6: [1950, 10, 0], inf: [1350, 0, 0] };            // rayon de l'arène, nombre de cristaux
 const cam = { x: 0, y: 0, shake: 0 };
 let state = 'menu', G = null, P = null, T = 0, last = 0, UID = 1, touchMode = false, focusCls = null;
 let enemies = [], bullets = [], ebul = [], orbs = [], crystals = [], parts = [], texts = [], bolts = [],
@@ -1879,9 +1887,9 @@ function gainXp(v) {
 
 /* ================= Ennemis ================= */
 /* Variantes par monde : plus fortes, autre couleur, attaques renforcées. 0 = monde 1. */
-const VCOL = [null, 'plasma', 'ember', 'hot'], VSUF = ['', ' survolté', ' en fusion', ' en surtension'];
-const VATK = ['', ' Monde 2 : plus rapide, tirs doublés.', ' Monde 3 : encore plus résistant, tirs triplés, accélérations brusques.', ' Monde 4 : la version la plus dangereuse, tirs quadruplés.'];
-function worldVariant() { const Wd = G.world; if (!Wd) return 0; if (Wd.id === 'inf') return Math.min(3, Math.floor(Math.max(0, G.wave - 1) / 10)); return Math.max(0, Math.min(3, WORLDS.indexOf(Wd))); }
+const VCOL = [null, 'plasma', 'ember', 'hot', 'ion', 'ok'], VSUF = ['', ' survolté', ' en fusion', ' en surtension', ' ionisé', ' singulier'];
+const VATK = ['', ' Monde 2 : plus rapide, tirs doublés.', ' Monde 3 : encore plus résistant, tirs triplés, accélérations brusques.', ' Monde 4 : tirs quadruplés.', ' Monde 5 : encore plus résistant, et éclate en 4 balles à sa mort.', ' Monde 6 : la version la plus dangereuse, éclate en 6 balles rapides à sa mort.'];
+function worldVariant() { const Wd = G.world; if (!Wd) return 0; if (Wd.id === 'inf') return Math.min(5, Math.floor(Math.max(0, G.wave - 1) / 10)); return Wd.lv || 0; }
 function mkEnemy(type, x, y, elite) {
   const d = ET[type], w = Math.max(1, G.wave), Wd = G.world;
   const e = { id: UID++, type, x, y, kx: 0, ky: 0, r: d.r, hp: d.hp * waveHp(w) * Wd.hp, max: 0, sp: d.sp * (1 + Math.min(0.35, 0.014 * w)) * rnd(0.92, 1.08),
@@ -1913,9 +1921,9 @@ function spawnAt(type, x, y, elite, delay) {
   spawns.push({ type, x, y, elite: !!elite, t: delay, max: delay, dead: false });
 }
 function buildWave(n) {
-  const Wd = G.world, wi = WORLDS.indexOf(Wd) % 4, boss = isBossWave(Wd, n), mini = isMiniWave(Wd, n);
+  const Wd = G.world, wi = Wd.lv || 0, boss = isBossWave(Wd, n), mini = isMiniWave(Wd, n);
   let B = (10 + n * 4.4 + n * n * 0.15) * Wd.cnt * (boss ? 0.45 : mini ? 0.75 : 1);
-  const types = Object.keys(ET).filter(k => ET[k].min && ET[k].min <= n + Wd.off);
+  const types = Object.keys(ET).filter(k => ET[k].min && ET[k].min <= n + Wd.off && (!ET[k].lv || wi >= ET[k].lv || (Wd.id === 'inf' && n > ET[k].lv * 10)));   // nouveaux ennemis : seulement dans leurs mondes
   const q = []; let guard = 0;
   while (B > 0.4 && guard++ < 220) {
     const k = types[Math.min(types.length - 1, (Math.pow(Math.random(), 0.75) * types.length) | 0)], d = ET[k];
@@ -1929,17 +1937,17 @@ function buildWave(n) {
 }
 function startWave(n) {
   if (G.demo && n > 4) { startDemo(); return; }
-  const Wd = G.world, wi = WORLDS.indexOf(Wd) % 4;
+  const Wd = G.world, wi = Wd.lv || 0;
   G.wave = n; G.waveT = 0; G.kind = isBossWave(Wd, n) ? 'boss' : isMiniWave(Wd, n) ? 'mini' : 'normal'; G.queue = buildWave(n);
   const [x, y] = spawnPoint(), of = Wd.waves ? ' / ' + Wd.waves : '';
   if (G.kind === 'boss') {
     const fin = !!Wd.waves && n === Wd.waves, b = BOSS[Wd.bosses[G.bossK % Wd.bosses.length]];
-    G.bossDef = { b, final: fin, tier: Math.min(4, wi + (fin ? 1 : 0) + Math.floor(G.bossK / Wd.bosses.length)) }; G.bossK++;
+    G.bossDef = { b, final: fin, tier: Math.min(5, wi + (fin ? 1 : 0) + Math.floor(G.bossK / Wd.bosses.length)) }; G.bossK++;
     spawnAt('boss', x, y, false, 2.2);
     banner(fin ? 'BOSS FINAL' : 'ALERTE BOSS', b.n + ' · vague ' + n + of, C.hot, 2.6); sfx.boss();
   } else if (G.kind === 'mini') {
     let mi = (Math.random() * MINIB.length) | 0; if (mi === G.lastMini) mi = (mi + 1 + ((Math.random() * (MINIB.length - 1)) | 0)) % MINIB.length;   // mini-boss au hasard, jamais deux fois le même d'affilée
-    G.lastMini = mi; G.miniK++; const b = MINIB[mi]; G.miniDef = { b, tier: Math.min(3, Math.floor(n / 10) + (wi > 1 ? 1 : 0)) };
+    G.lastMini = mi; G.miniK++; const b = MINIB[mi]; G.miniDef = { b, tier: Math.min(4, Math.floor(n / 10) + (wi > 1 ? 1 : 0) + (wi > 3 ? 1 : 0)) };
     spawnAt('mboss', x, y, false, 1.8);
     banner('MINI-BOSS', b.n + ' · vague ' + n + of, C.ember, 2.2); sfx.boss();
   } else { banner('VAGUE ' + n + of, '', C.volt, 1.7); sfx.wave(); }
@@ -1978,7 +1986,7 @@ function bossAI(e, dt, nx, ny, d) {
     if (d > 190) { mx = nx * e.sp; my = ny * e.sp; }
     if (e.stT <= 0) {
       e.st = e.boss.pats[e.pi++ % e.boss.pats.length]; e.sub = 0; e.acc = 0; e.ang = base;
-      e.stT = { ring: 1.5, spiral: 2.6, fan: 1.5, summon: 1, charge: 0.95, mines: 1.6, laser: 1.7, orbit: 2.4 }[e.st];
+      e.stT = { ring: 1.5, spiral: 2.6, fan: 1.5, summon: 1, charge: 0.95, mines: 1.6, laser: 1.7, orbit: 2.4, gravity: 2.4, nova: 1.5, rain: 1.8, phantom: 1 }[e.st];
     }
   } else if (e.st === 'ring') {
     const n = 14 + tier * 3;
@@ -2018,6 +2026,22 @@ function bossAI(e, dt, nx, ny, d) {
     if (e.sub === 0) { e.sub = 1; e.orb = []; const n = 10 + tier * 2; for (let i = 0; i < n; i++) e.orb.push(i * TAU / n); }
     if (e.orb) { for (let i = 0; i < e.orb.length; i++) e.orb[i] += dt * 2.6; }
     if (e.stT < 0.35 && e.orb) { for (const a of e.orb) ebullet(e.x + Math.cos(a) * (e.r + 26), e.y + Math.sin(a) * (e.r + 26), a, 210, bd, 7); e.orb = null; sfx.zap(); }
+  } else if (e.st === 'gravity') {   // aspire le tank vers lui en lâchant des anneaux lents
+    if (!G.demo && P.dashT <= 0 && d > e.r + P.r + 12) { const pull = (130 + tier * 22) * dt; P.x -= nx * pull; P.y -= ny * pull; clampArena(P, P.r); }
+    e.acc += dt; while (e.acc > 0.6) { e.acc -= 0.6; const n = 10 + tier * 2; for (let i = 0; i < n; i++) ebullet(e.x, e.y, e.ang + i * TAU / n, 105, bd, 7); e.ang += 0.31; sfx.zap(); }
+  } else if (e.st === 'nova') {   // anneaux complets avec une seule brèche : il faut se glisser dans le trou
+    if (e.sub < 3 && 1.5 - e.stT >= e.sub * 0.45) {
+      if (e.sub === 0) e.gap = base + rnd(-0.9, 0.9); else e.gap += rnd(-0.55, 0.55);
+      const n = 28 + tier * 3; for (let i = 0; i < n; i++) { const a = e.gap + i * TAU / n; if (Math.abs(angDiff(a, e.gap)) < 0.4) continue; ebullet(e.x, e.y, a, 170, bd, 7); }
+      e.sub++; sfx.zap();
+    }
+  } else if (e.st === 'rain') {   // pluie de météores : des zones explosent autour de toi
+    const nr = 5 + tier;
+    if (e.sub < nr && 1.8 - e.stT >= e.sub * (1.5 / nr)) { e.sub++; const a = rnd(0, TAU), dd = e.sub === 1 ? 0 : rnd(40, 210);
+      hazards.push({ x: P.x + P.vx * 0.3 + Math.cos(a) * dd, y: P.y + P.vy * 0.3 + Math.sin(a) * dd, r: 56 + tier * 5, t: 1.0, max: 1.0, dmg: e.dmg * 0.8, dead: false }); }
+  } else if (e.st === 'phantom') {   // appelle des Phaseurs (et un Sniper dans les gros niveaux)
+    if (e.sub === 0) { e.sub = 1; for (let i = 0; i < 2 + Math.floor(tier / 2); i++) { const a = rnd(0, TAU); spawnAt('blink', e.x + Math.cos(a) * 120, e.y + Math.sin(a) * 120, false, 0.5); }
+      if (tier >= 3) { const a = rnd(0, TAU); spawnAt('sniper', e.x + Math.cos(a) * 170, e.y + Math.sin(a) * 170, false, 0.7); } sfx.boss(); }
   } else if (e.st === 'charge') {
     if (e.stT > 0.25) e.ang = base;                 // le boss vise, puis se fige
     if (e.stT <= 0) { e.st = 'dash'; e.stT = 0.55; sfx.dash(); }
@@ -2094,6 +2118,22 @@ function updEnemies(dt) {
         if (e.fireT <= 0 && d < 520 && !blind) { e.fireT = 0.6 - 0.05 * (e.v || 0); const na = 4 + 2 * Math.min(2, e.v || 0); for (let k = 0; k < na; k++) ebullet(e.x, e.y, e.rot + k * TAU / na, 150, e.dmg * 0.8, 6); }
         break;
       }
+      case 'blink': {   // Phaseur : disparaît, réapparaît près de toi, puis fonce
+        e.rot = Math.atan2(ny, nx);
+        if (e.tp > 0) { e.tp -= dt; if (e.tp <= 0) { ring(e.x, e.y, 30, e.col, 0.2, 3); e.x = e.bx; e.y = e.by; ring(e.x, e.y, 42, e.col, 0.25, 4); e.dashT = 0.42; sfx.zap(); } break; }
+        if (e.dashT > 0) { e.dashT -= dt; mx = nx * sp * 3.1; my = ny * sp * 3.1; break; }
+        mx = nx * sp * 0.7; my = ny * sp * 0.7; e.fireT -= dt;
+        if (e.fireT <= 0 && d < 750 && !blind) { e.fireT = rnd(2.6, 3.6) - 0.35 * Math.max(0, (e.v || 0) - 4); const a = rnd(0, TAU), o = { x: tx + Math.cos(a) * 150, y: ty + Math.sin(a) * 150 }; clampArena(o, e.r + 10); e.bx = o.x; e.by = o.y; e.tp = 0.55; }
+        break;
+      }
+      case 'sniper': {   // Sniper : reste loin, vise (ligne rouge) puis tire une balle très rapide
+        e.rot = e.aimT > 0 ? e.rot + angDiff(e.rot, Math.atan2(ny, nx)) * Math.min(1, dt * 2.2) : Math.atan2(ny, nx);
+        if (e.aimT > 0) { e.aimT -= dt; if (e.aimT <= 0) { const nb = 1 + Math.floor((e.v || 0) / 2.5); for (let k = 0; k < nb; k++) ebullet(e.x + Math.cos(e.rot) * e.r, e.y + Math.sin(e.rot) * e.r, e.rot + (k - (nb - 1) / 2) * 0.08, 560, e.dmg, 6); sfx.zap(); e.fireT = rnd(2.4, 3.2); } break; }
+        const keep = 430;
+        if (d > keep + 60) { mx = nx * sp; my = ny * sp; } else if (d < keep - 120) { mx = -nx * sp * 0.9; my = -ny * sp * 0.9; } else { mx = -ny * sp * 0.5 * e.dir; my = nx * sp * 0.5 * e.dir; }
+        e.fireT -= dt; if (e.fireT <= 0 && d < 820 && !blind) e.aimT = 1.0;
+        break;
+      }
       case 'boss': { const m = bossAI(e, dt, nx, ny, d); mx = m[0]; my = m[1]; break; }
     }
     if ((e.v || 0) >= 2 && !boss) { e.vb = (e.vb === undefined ? rnd(1, 3) : e.vb) - dt; if (e.vb < 0) { if (e.vb < -0.35) e.vb = rnd(2.2, 3.4); else { mx *= 1.9; my *= 1.9; } } }   // accélérations brusques
@@ -2135,6 +2175,7 @@ function kill(e) {
   if (e.dead) return;
   discover(e.type === 'boss' ? (e.mini ? 'm:' : 'b:') + e.boss.n : e.type + (e.v ? '@' + e.v : ''), e);
   e.dead = true; G.kills++; G.combo++; G.comboT = 2.6;
+  if ((e.v || 0) >= 4 && e.type !== 'boss' && !G.demo) { const nb = e.v >= 5 ? 6 : 4, a0 = rnd(0, TAU); for (let k = 0; k < nb; k++) ebullet(e.x, e.y, a0 + k * TAU / nb, e.v >= 5 ? 190 : 150, e.dmg * 0.45, 5); }   // variantes des mondes 5 et 6 : éclatent à leur mort
   G.score += Math.round(e.score * comboMult() * (e.elite ? 3 : 1));
   dropXp(e.x, e.y, e.xp);
   burst(e.x, e.y, e.col, e.type === 'boss' ? 70 : e.elite ? 22 : 10, e.type === 'boss' ? 420 : 190);
@@ -2859,6 +2900,7 @@ function drawEnemy(e, g) {
   if (e.shape === 'boss') {
     if (e.st === 'charge' || e.st === 'dash') { g.save(); g.translate(x, y); g.rotate(e.ang); g.fillStyle = 'rgba(255,61,129,0.17)'; g.fillRect(0, -r, 760, r * 2); g.restore(); }
     if (e.st === 'laser' && e.stT > 0.75) { g.save(); g.translate(x, y); g.rotate(e.ang); g.strokeStyle = `rgba(255,61,129,${0.35 + 0.35 * Math.sin(T * 30)})`; g.lineWidth = 3; g.setLineDash([12, 8]); g.beginPath(); g.moveTo(r, 0); g.lineTo(900, 0); g.stroke(); g.restore(); }
+    if (e.st === 'gravity') { g.save(); g.strokeStyle = C[e.col]; g.lineWidth = 2; for (let k = 0; k < 3; k++) { const f = ((T * 0.9 + k / 3) % 1); g.globalAlpha = f * 0.6; g.beginPath(); g.arc(x, y, r + 40 + (1 - f) * 260, 0, TAU); g.stroke(); } g.restore(); }
     if (e.orb) { g.fillStyle = C.hot; for (const a of e.orb) { g.beginPath(); g.arc(x + Math.cos(a) * (r + 26), y + Math.sin(a) * (r + 26), 7, 0, TAU); g.fill(); } }
     g.globalCompositeOperation = LIT; g.drawImage(GS[e.col], x - r * 2.4, y - r * 2.4, r * 4.8, r * 4.8); g.globalCompositeOperation = 'source-over';
     g.lineWidth = 4; g.strokeStyle = col; g.fillStyle = hit ? `rgba(${RGB[e.col]},0.42)` : FILL[e.col];
@@ -2881,8 +2923,12 @@ function drawEnemy(e, g) {
     case 'pent': poly(g, x, y, r, 5, e.rot); break;
     case 'oct': poly(g, x, y, r, 8, e.rot); break;
     case 'cross': star(g, x, y, r * 1.2, 4, e.rot, 0.34); break;
+    case 'tri': poly(g, x, y, r * 1.2, 3, e.rot); break;
+    case 'eye': { const c = Math.cos(e.rot), s = Math.sin(e.rot); g.beginPath(); g.moveTo(x + c * r * 1.4, y + s * r * 1.4); g.quadraticCurveTo(x - s * r * 1.1, y + c * r * 1.1, x - c * r * 1.1, y - s * r * 1.1); g.quadraticCurveTo(x + s * r * 1.1, y - c * r * 1.1, x + c * r * 1.4, y + s * r * 1.4); g.closePath(); break; }
   }
   g.fill(); g.stroke();
+  if (e.shape === 'eye') { g.save(); g.fillStyle = C[e.col]; g.beginPath(); g.arc(x, y, r * 0.38, 0, TAU); g.fill(); g.restore(); if (e.aimT > 0) { g.save(); g.strokeStyle = `rgba(255,61,129,${0.3 + 0.5 * (1 - e.aimT)})`; g.lineWidth = 2; g.setLineDash([10, 7]); g.beginPath(); g.moveTo(x + Math.cos(e.rot) * r, y + Math.sin(e.rot) * r); g.lineTo(x + Math.cos(e.rot) * 900, y + Math.sin(e.rot) * 900); g.stroke(); g.restore(); } }
+  if (e.shape === 'tri' && e.tp > 0) { g.save(); g.strokeStyle = C[e.col]; g.globalAlpha = 0.7; g.setLineDash([5, 5]); g.lineWidth = 2; g.beginPath(); g.arc(e.bx, e.by, r * (1.6 - e.tp), 0, TAU); g.stroke(); g.restore(); }
   if (e.shape === 'square') { g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(e.rot) * r * 1.6, y + Math.sin(e.rot) * r * 1.6); g.lineWidth = 4; g.stroke(); }
   else if (e.shape === 'hex') { poly(g, x, y, r * 0.55, 6, e.rot); g.stroke(); }
   else if (e.shape === 'oct') { g.beginPath(); g.arc(x, y, r * 0.45, 0, TAU); g.stroke(); }
@@ -3108,9 +3154,11 @@ const ALMB = [
   { k: 'split', n: 'Scindeur', d: 'Se divise en trois Éclats quand il meurt.', a: 'Contact, puis renforts à sa mort.', anim: 'split' },
   { k: 'mini', n: 'Éclat', d: 'Fragment de Scindeur, petit et vif.', a: 'Te percute au contact.', anim: 'rush' },
   { k: 'mortar', n: 'Mortier', d: 'Reste loin et bombarde.', a: 'Vise là où tu vas : la zone rose explose au bout d’une seconde.', anim: 'mortar' },
-  { k: 'spin', n: 'Toupie', d: 'Tourne sur elle-même en avançant.', a: 'Tire en croix en continu.', anim: 'spin' }
+  { k: 'spin', n: 'Toupie', d: 'Tourne sur elle-même en avançant.', a: 'Tire en croix en continu.', anim: 'spin' },
+  { k: 'blink', n: 'Phaseur', from: 4, d: 'Apparaît dans la Tempête ionique (Monde 5). Disparaît et réapparaît près de toi.', a: 'Un cercle pointillé montre où il va surgir, puis il fonce sur toi.', anim: 'rush' },
+  { k: 'sniper', n: 'Sniper', from: 5, d: 'Apparaît dans la Singularité (Monde 6). Reste très loin de toi.', a: 'Trace une ligne rouge pendant 1 s, puis tire une balle ultra rapide le long de la ligne.', anim: 'shoot' }
 ];
-const ALM = [].concat(...[0, 1, 2, 3].map(v => ALMB.map(a => Object.assign({}, a, { k: v ? a.k + '@' + v : a.k, base: a.k, v, n: a.n + VSUF[v], a: a.a + VATK[v] }))), [
+const ALM = [].concat(...[0, 1, 2, 3, 4, 5].map(v => ALMB.filter(a => v >= (a.from || 0)).map(a => Object.assign({}, a, { k: v ? a.k + '@' + v : a.k, base: a.k, v, n: a.n + VSUF[v], a: a.a + VATK[v] }))), [
   { k: 'm:SENTINELLE', n: 'Sentinelle', mini: 0, d: 'Mini-boss. Peut tomber sur n’importe quelle vague de mini-boss.', a: 'Éventails de balles et anneaux.', anim: 'boss' },
   { k: 'm:BROYEUR', n: 'Broyeur', mini: 1, d: 'Mini-boss qui ne tient pas en place.', a: 'Charges en ligne droite et éventails.', anim: 'boss' },
   { k: 'm:ESSAIM-MÈRE', n: 'Essaim-mère', mini: 2, d: 'Mini-boss qui vit entourée de sa nuée.', a: 'Appelle des essaims et tire en spirale.', anim: 'boss' },
@@ -3120,7 +3168,9 @@ const ALM = [].concat(...[0, 1, 2, 3].map(v => ALMB.map(a => Object.assign({}, a
   { k: 'b:LE TRANSFO', n: 'Le Transfo', boss: 0, d: 'Boss. Le premier gros morceau.', a: 'Anneaux de balles, charges et éventails.', anim: 'boss' },
   { k: 'b:LA DYNAMO', n: 'La Dynamo', boss: 1, d: 'Boss qui tourne à plein régime.', a: 'Spirales, renforts et anneaux.', anim: 'boss' },
   { k: 'b:ARC-ROI', n: 'Arc-Roi', boss: 2, d: 'Boss au trône électrique.', a: 'Éventails, charges, spirales et renforts.', anim: 'boss' },
-  { k: 'b:L’ALTERNATEUR', n: 'L’Alternateur', boss: 3, d: 'Boss des mondes les plus durs.', a: 'Tous les patterns, plus vite.', anim: 'boss' }
+  { k: 'b:L’ALTERNATEUR', n: 'L’Alternateur', boss: 3, d: 'Boss des mondes les plus durs.', a: 'Tous les patterns, plus vite.', anim: 'boss' },
+  { k: 'b:LE CONDENSATEUR', n: 'Le Condensateur', boss: 4, d: 'Boss de la Tempête ionique (Monde 5).', a: 'T’aspire vers lui, anneaux avec une seule brèche, charges et pluie de météores.', anim: 'boss' },
+  { k: 'b:LA SINGULARITÉ', n: 'La Singularité', boss: 5, d: 'Boss final du Monde 6, le plus dangereux du jeu.', a: 'Gravité, anneaux à brèche, Phaseurs et Snipers en renfort, spirales, météores et rayon.', anim: 'boss' }
 ]);
 function discover(k, e) {
   if (!G || G.demo || !meta.alm || meta.alm[k] || !ALM.some(a => a.k === k)) return;
@@ -3183,7 +3233,7 @@ function renderAlm0() {
     b.addEventListener('click', () => { almTab = k; almX = null; almPop = false; almF = { rar: '', typ: '', set: '', grp: '', sort: almF.sort }; renderAlm(); }); tabs.appendChild(b); }
   $('#almCv').closest('.almtop').classList.toggle('nocv', almTab !== 'mon');
   const fil = $('#almFil'); fil.innerHTML = '';
-  if (almTab === 'mon') { fil.appendChild(chipRow('Section', [['', 'TOUT'], ['w0', 'MONDE 1'], ['w1', 'MONDE 2'], ['w2', 'MONDE 3'], ['w3', 'MONDE 4'], ['m', 'MINI-BOSS'], ['b', 'BOSS']], almF.grp, v => { almF.grp = v; })); renderAlmMon(); return; }
+  if (almTab === 'mon') { fil.appendChild(chipRow('Section', [['', 'TOUT'], ['w0', 'MONDE 1'], ['w1', 'MONDE 2'], ['w2', 'MONDE 3'], ['w3', 'MONDE 4'], ['w4', 'MONDE 5'], ['w5', 'MONDE 6'], ['m', 'MINI-BOSS'], ['b', 'BOSS']], almF.grp, v => { almF.grp = v; })); renderAlmMon(); return; }
   if (almTab === 'eq') { renderAlmEq(fil); return; }
   renderAlmCos(fil);
 }
@@ -3237,7 +3287,7 @@ function renderAlmMon() {
   let grp = '';
   for (const a of ALM) {
     const ty = a.boss !== undefined ? 'b' : a.mini !== undefined ? 'm' : 'w' + (a.v || 0); if (almF.grp && ty !== almF.grp) continue;
-    const g2 = a.boss !== undefined ? 'Boss' : a.mini !== undefined ? 'Mini-boss' : 'Monde ' + ((a.v || 0) + 1) + ' · ' + WORLDS[a.v || 0].n;
+    const wv = WORLDS.find(w => w.waves && w.lv === (a.v || 0)) || WORLDS[0], g2 = a.boss !== undefined ? 'Boss' : a.mini !== undefined ? 'Mini-boss' : 'Monde ' + wv.no + ' · ' + wv.n;
     if (g2 !== grp) { grp = g2; const h = document.createElement('p'); h.className = 'lab2'; h.textContent = g2; grid.appendChild(h); }
     const own = !!meta.alm[a.k], b = document.createElement('button'); b.type = 'button'; b.className = (own ? '' : 'lock') + (almSel === a.k ? ' sel' : '');
     b.setAttribute('aria-label', own ? a.n : 'Ennemi inconnu');
@@ -3259,7 +3309,7 @@ function renderAlmMon() {
 }
 /* ---- Classement ---- */
 const LB_ON = () => !!(LB_URL && LB_KEY);
-const LB_MODES = [['inf', 'INFINI'], ['w1', 'MONDE 1'], ['w2', 'MONDE 2'], ['w3', 'MONDE 3'], ['w4', 'MONDE 4']];
+const LB_MODES = [['inf', '∞'], ['w1', 'M1'], ['w2', 'M2'], ['w3', 'M3'], ['w4', 'M4'], ['w5', 'M5'], ['w6', 'M6']];
 let lbMode = 'inf', lbBusy = false;
 // garde-fou : un score impossible pour le nombre de vagues ou la durée n'est pas envoyé (le serveur refait la même vérif)
 const lbMax = w => 20000 + 3000 * w + 600 * w * w + 12 * w * w * w;
@@ -3343,7 +3393,7 @@ function setPseudo() {
 }
 function openAlm() { el.menu.hidden = true; el.alm.hidden = false; el.alm.scrollTop = 0; almPop = false; renderAlm(); almLast = performance.now(); requestAnimationFrame(almLoop); }
 function closeAlm() { el.alm.hidden = true; el.menu.hidden = false; renderMenu(); }
-const PATN = { ring: 'ANNEAU', spiral: 'SPIRALE', fan: 'ÉVENTAIL', summon: 'RENFORTS', charge: 'CHARGE', mines: 'MINES', laser: 'RAYON', orbit: 'ORBITE' };
+const PATN = { ring: 'ANNEAU', spiral: 'SPIRALE', fan: 'ÉVENTAIL', summon: 'RENFORTS', charge: 'CHARGE', mines: 'MINES', laser: 'RAYON', orbit: 'ORBITE', gravity: 'GRAVITÉ', nova: 'NOVA', rain: 'MÉTÉORES', phantom: 'FANTÔMES' };
 /* Petite scène animée : l'ennemi choisi attaque un tank d'entraînement. */
 function almLoop(now) {
   if (el.alm.hidden) return; requestAnimationFrame(almLoop);
@@ -3397,6 +3447,10 @@ function almLoop(now) {
         g.strokeStyle = C.hot; g.globalAlpha = fz ? Math.max(0, 1 - (age - 1.5) * 2) : 0.6; g.lineWidth = 2; g.beginPath(); g.arc(mx2, my2, fz ? 30 + (age - 1.5) * 60 : 26, 0, TAU); g.stroke(); g.globalAlpha = 1; if (fz && age < 1.7) hit = 1; }
       if (pt === 'laser') { if (c < 0.9) { g.strokeStyle = 'rgba(255,61,129,.6)'; g.setLineDash([10, 7]); g.lineWidth = 2; g.beginPath(); g.moveTo(bx - 30, ty); g.lineTo(tx, ty); g.stroke(); g.setLineDash([]); }
         else for (let k = 0; k < 14; k++) { const sx = bx - 30 - ((c - 0.9) * 420 - k * 16); if (sx > tx && sx < bx - 30) shot(sx, ty + Math.sin(k) * 2); else if (sx <= tx) hit = 1; } }
+      if (pt === 'gravity') { g.strokeStyle = C[b.col]; g.lineWidth = 2; for (let k = 0; k < 3; k++) { const f = (c * 0.9 + k / 3) % 1; g.globalAlpha = f * 0.6; g.beginPath(); g.arc(bx, ty, 30 + (1 - f) * 120, 0, TAU); g.stroke(); } g.globalAlpha = 1; }
+      if (pt === 'nova') for (const w of [0.2, 0.65, 1.1]) { if (c < w) continue; const rr = 30 + (c - w) * 110; for (let i = 0; i < 20; i++) { const an = i * TAU / 20; if (Math.abs(angDiff(an, Math.PI)) < 0.45) continue; shot(bx + Math.cos(an) * rr, ty + Math.sin(an) * rr); } }
+      if (pt === 'rain') for (let k = 0; k < 5; k++) { const age = c - k * 0.3; if (age < 0 || age > 1.3) continue; const mx2 = tx + ((k * 37) % 70) - 20, my2 = ty + ((k * 23) % 50) - 25; g.strokeStyle = C.hot; g.globalAlpha = age < 1 ? 0.6 : 1 - (age - 1) * 3; g.lineWidth = 2; g.beginPath(); g.arc(mx2, my2, age < 1 ? 22 : 22 + (age - 1) * 60, 0, TAU); g.stroke(); g.globalAlpha = 1; if (age > 1 && age < 1.1 && k === 0) hit = 1; }
+      if (pt === 'phantom' && c > 0.3) { const m = ALM.find(q => q.k === 'blink@4'), q2 = Math.min(1, (c - 0.3) / 1.4); if (m) for (let i = 0; i < 3; i++) { const an = i * TAU / 3; drawEnemy(almEnemy(m, bx + Math.cos(an) * 50 - (bx - tx - 30) * q2, ty + Math.sin(an) * 40, Math.PI, 11), g); } }
       if (pt === 'orbit') { const n = 10, ex = c > 1.8; for (let i = 0; i < n; i++) { const an = i * TAU / n + c * 2.6, rr = ex ? 50 + (c - 1.8) * 160 : 50; shot(bx + Math.cos(an) * rr, ty + Math.sin(an) * rr); } }
       const e = almEnemy(a, x, ty, t * 0.8); if (pt === 'charge') e.st = c < 0.9 ? 'charge' : 'idle', e.ang = Math.PI; drawEnemy(e, g);
       if (own) { g.filter = 'none'; g.fillStyle = C.ink; g.font = '700 10px ' + TH.fb; g.textAlign = 'right'; g.fillText(PATN[pt] || '', 272, 152); }
@@ -3547,7 +3601,7 @@ let wListOpen = false;
 function renderMenu() {
   { const d = document.querySelector('#bQuests .qdot'); if (d) d.hidden = !questsReady(); }
   $('#mBest').textContent = fmt(meta.best); $('#mShards').textContent = fmt(meta.shards); $('#mJet').textContent = fmt(meta.jet);
-  $('#mWorlds').textContent = WORLDS.filter(w => w.waves && meta.wdone[w.id]).length + '/4';
+  $('#mWorlds').textContent = WORLDS.filter(w => w.waves && meta.wdone[w.id]).length + '/' + NW;
   $('#mHint').textContent = COARSE
     ? (meta.opt.lock ? 'Stick gauche pour bouger, stick droit pour viser et tirer. ' : 'Premier doigt pour bouger, deuxième doigt pour viser et tirer. ') + 'Le bonus TIR AUTO fait tirer le tank tout seul pendant 15 s.'
     : 'ZQSD ou flèches pour bouger, clic maintenu pour tirer, Espace pour le dash, E pour la surcharge, Q pour l’ULT de la tenue.';
@@ -3556,9 +3610,9 @@ function renderMenu() {
   clsTiles($('#clsRow'), $('#clsInfo'), renderMenu);
   // volet des mondes
   const w = worldById(meta.world), wi = WORLDS.indexOf(w), dd = $('#wDrop'); dd.innerHTML = '';
-  const n = document.createElement('b'); n.className = 'wn'; n.style.color = C[w.col]; n.textContent = w.waves ? String(wi + 1) : '∞';
+  const n = document.createElement('b'); n.className = 'wn'; n.style.color = C[w.col]; n.textContent = w.waves ? String(w.no) : '∞';
   const sp = document.createElement('span'), st = document.createElement('strong'), sm = document.createElement('small');
-  st.textContent = w.waves ? 'Monde ' + (wi + 1) + ' · ' + w.n : 'Mode Infini'; sm.textContent = worldDesc(w); sp.append(st, sm);
+  st.textContent = w.waves ? 'Monde ' + w.no + ' · ' + w.n : 'Mode Infini'; sm.textContent = worldDesc(w); sp.append(st, sm);
   const car = document.createElement('i'); car.className = 'car'; car.textContent = '▾'; dd.append(n, sp, car);
   dd.classList.toggle('open', wListOpen); dd.setAttribute('aria-expanded', wListOpen ? 'true' : 'false');
   const inf = worldById('inf'), wb = $('#wInf'); wb.classList.toggle('on', meta.world === 'inf'); wb.classList.toggle('lock', !wOpen(inf));
@@ -3567,7 +3621,7 @@ function renderMenu() {
     if (!x.waves) return;
     const open = wOpen(x), b = document.createElement('button'); b.type = 'button'; b.className = (meta.world === x.id ? 'sel' : '') + (open ? '' : ' lock');
     b.style.setProperty('--wc', C[x.col]);
-    const nn = document.createElement('b'); nn.className = 'wn'; nn.textContent = i + 1;
+    const nn = document.createElement('b'); nn.className = 'wn'; nn.textContent = x.no;
     const s2 = document.createElement('span'); s2.textContent = x.n; const sm2 = document.createElement('small');
     sm2.textContent = open ? x.waves + ' vagues' + (meta.wbest[x.id] && !meta.wdone[x.id] ? ' · record vague ' + meta.wbest[x.id] : '') : 'Termine « ' + worldById(x.req).n + ' » pour le débloquer';
     s2.appendChild(sm2); b.append(nn, s2);
@@ -4112,7 +4166,7 @@ function renderChests() {
     b.addEventListener('click', () => { meta.chests.splice(i, 1); openChest(rid); });
     mine.appendChild(b);
   });
-  const bb = $('#bBuyCh'); bb.disabled = meta.jet < 10; bb.innerHTML = meta.jet < 10 ? 'COFFRE : IL MANQUE ' + costHTML('✦', 10 - meta.jet) : 'ACHETER UN COFFRE · ' + costHTML('✦', 10);
+  const bb = $('#bBuyCh'); bb.disabled = meta.jet < 40; bb.innerHTML = meta.jet < 40 ? 'COFFRE : IL MANQUE ' + costHTML('✦', 40 - meta.jet) : 'ACHETER UN COFFRE · ' + costHTML('✦', 40);
   const od = $('#odds'); od.innerHTML = '';
   for (const R of RARS) { const d = document.createElement('div'); d.style.setProperty('--rc', R.col); const s2 = document.createElement('b'); s2.textContent = R.s; const nm = document.createElement('small'); nm.textContent = '(' + R.n.toLowerCase() + ')'; if (R.id === 'upl') d.classList.add('uplfx'); d.append(s2, nm, R.w.toLocaleString('fr-FR') + ' %'); d.title = R.n; od.appendChild(d); }
 }
@@ -4308,7 +4362,7 @@ function showOver(win, quit) {
   if (win) meta.wdone[Wd.id] = 1;
   if (!G.demo) lbRecord(Wd.id, G.score, Math.max(1, G.wave), G.t);
   const fresh = WORLDS.filter(w => wOpen(w) && !before.includes(w.id));
-  nextW = win && WORLDS[wi + 1] && wOpen(WORLDS[wi + 1]) && WORLDS[wi + 1].waves ? WORLDS[wi + 1] : null;
+  { const nx = WORLDS.find(w => w.req === Wd.id && w.waves); nextW = win && nx && wOpen(nx) ? nx : null; }
   save();
   $('#oRec').textContent = fresh.length ? 'Débloqué : ' + fresh.map(w => w.n).join(', ') : rec ? 'Nouveau record' : Wd.n;
   const t = $('#oTitle'); t.textContent = win ? 'MONDE TERMINÉ' : quit ? 'ABANDON' : 'COURT-CIRCUIT'; t.classList.toggle('hotc', !win);
@@ -4554,7 +4608,7 @@ function renderProf() {
   if (!AUTH) { isAdm = false; const ab = $('#bPrAdm'); if (ab) ab.hidden = true; }
   renderSync();
   const av = $('#prAv'); av.innerHTML = ''; av.appendChild(avatarCv(meta.avatar, 192));
-  $('#prStats').textContent = `Record ${fmt(meta.best)} · meilleure vague ${meta.bestWave} · ${WORLDS.filter(w => w.waves && meta.wdone[w.id]).length}/4 mondes · almanach ${almTotal()[0]}/${almTotal()[1]} · ⚡ puissance ${fmt(myPower())}`;
+  $('#prStats').textContent = `Record ${fmt(meta.best)} · meilleure vague ${meta.bestWave} · ${WORLDS.filter(w => w.waves && meta.wdone[w.id]).length}/${NW} mondes · almanach ${almTotal()[0]}/${almTotal()[1]} · ⚡ puissance ${fmt(myPower())}`;
   const g = $('#prAvs'); g.innerHTML = '';
   for (const a of AVATARS) {
     const ok = a.ok(), b = document.createElement('button'); b.type = 'button'; b.className = (meta.avatar === a.id ? 'on' : '') + (ok ? '' : ' lock');
@@ -4689,7 +4743,7 @@ function updFrBadge() {
   b.innerHTML = 'AMIS' + (n ? '<span class="nb">' + n + '</span>' : '');
   notifN = n; try { renderMenu(); } catch (e) {}
 }
-const MODE_N = { inf: 'Infini', w1: 'Monde 1', w2: 'Monde 2', w3: 'Monde 3', w4: 'Monde 4' };
+const MODE_N = { inf: 'Infini', w1: 'Monde 1', w2: 'Monde 2', w3: 'Monde 3', w4: 'Monde 4', w5: 'Monde 5', w6: 'Monde 6' };
 function openCard(c) {
   const bd = $('#frDetBody'); bd.innerHTML = ''; const box = document.createElement('div'); box.className = 'pcard';
   const hd = document.createElement('div'); hd.className = 'pchead'; hd.appendChild(avatarCv(c.avatar, 192, true));
@@ -4700,7 +4754,7 @@ function openCard(c) {
   t.append(n, id, rel); hd.appendChild(t); box.appendChild(hd);
   const st = document.createElement('div'); st.className = 'pcst'; st.innerHTML = '<span>Mode</span><span>Record</span><span>Rang</span>';
   let any = false;
-  for (const m of ['inf', 'w1', 'w2', 'w3', 'w4']) { const r = c.stats && c.stats[m]; if (!r) continue; any = true; const a = document.createElement('span'); a.textContent = MODE_N[m] + ' · vague ' + r.w; const b2 = document.createElement('b'); b2.textContent = fmt(r.s); const k = document.createElement('span'); k.className = 'rk'; k.textContent = c.ranks && c.ranks[m] ? '#' + c.ranks[m] : '—'; st.append(a, b2, k); }
+  for (const m of ['inf', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6']) { const r = c.stats && c.stats[m]; if (!r) continue; any = true; const a = document.createElement('span'); a.textContent = MODE_N[m] + ' · vague ' + r.w; const b2 = document.createElement('b'); b2.textContent = fmt(r.s); const k = document.createElement('span'); k.className = 'rk'; k.textContent = c.ranks && c.ranks[m] ? '#' + c.ranks[m] : '—'; st.append(a, b2, k); }
   if (!any) { const a = document.createElement('span'); a.style.gridColumn = '1/-1'; a.textContent = 'Pas encore de record en ligne.'; st.appendChild(a); }
   box.appendChild(st);
   const msg = document.createElement('p'); msg.className = 'frhint'; msg.style.margin = '0'; box.appendChild(msg);
@@ -5000,7 +5054,7 @@ $('#frDet').addEventListener('click', e => { if (e.target.id === 'frDet') $('#fr
 /* ================= Boutique ================= */
 const NUGP = [{ v: 500, c: 50 }, { v: 1200, c: 100, b: '+20 %' }, { v: 3500, c: 250, b: '+40 %' }, { v: 8000, c: 500, b: '+60 %' }];
 const DIAP = [{ id: 'd80', v: 80, e: '0,99 €' }, { id: 'd500', v: 500, e: '4,99 €', b: '+25 %' }, { id: 'd1200', v: 1200, e: '9,99 €', b: '+50 %' }, { id: 'd2600', v: 2600, e: '19,99 €', b: '+60 %' }, { id: 'd6500', v: 6500, e: '49,99 €', b: '+60 %' }];
-const STCH = [{ r: 'x', n: 'Coffre mystère', c: 10, d: 'Rareté tirée à l’ouverture, avec les chances habituelles.' }, { r: 'ur', n: 'Coffre épique', c: 60, d: 'Rareté UR garantie.' }, { r: 'mt', n: 'Coffre mythique', c: 150, d: 'Rareté MT garantie.' }, { r: 'lg', n: 'Coffre légendaire', c: 320, d: 'Rareté LG garantie, cosmétiques premium possibles.' }];
+const STCH = [{ r: 'x', n: 'Coffre mystère', c: 40, d: 'Rareté tirée à l’ouverture, avec les chances habituelles.' }, { r: 'ur', n: 'Coffre épique', c: 250, d: 'Rareté UR garantie.' }, { r: 'mt', n: 'Coffre mythique', c: 600, d: 'Rareté MT garantie.' }, { r: 'lg', n: 'Coffre légendaire', c: 1400, d: 'Rareté LG garantie, cosmétiques premium possibles.' }];
 const PACKS = [
   { id: 'ocean', n: 'Pack Océanique', col: '#4fc8ff', set: 'ocean', e: '44,99 €', items: ['Set complet Léviathan océanique (4 pièces LG) : skin Abysses et ULT Typhon', 'Balle premium Glace et couleur Givre', '3 coffres légendaires', '✦ 600 diams', '◆ 8 000 nuggets'] },
   { id: 'volcan', n: 'Pack Volcanique', col: '#ff8a3d', set: 'volcan', e: '44,99 €', items: ['Set complet Titan volcanique (4 pièces LG) : skin Magma et ULT Coulée de lave', 'Balle premium Lave et couleur Braise', '3 coffres légendaires', '✦ 600 diams', '◆ 8 000 nuggets'] },
@@ -5165,7 +5219,7 @@ window.addEventListener('load', () => { setTimeout(vpFix, 300); setTimeout(vpFix
 $('#bAlmBack').addEventListener('click', closeAlm);
 $('#almX').addEventListener('click', () => { almPop = false; renderAlm(); });
 $('#bChBack').addEventListener('click', closeChests);
-$('#bBuyCh').addEventListener('click', () => { if (meta.jet < 10) return; meta.jet -= 10; save(); openChest('x'); });
+$('#bBuyCh').addEventListener('click', () => { if (meta.jet < 40) return; meta.jet -= 40; save(); openChest('x'); });
 $('#bChOk').addEventListener('click', closeChest);
 $('#wDrop').addEventListener('click', () => { wListOpen = !wListOpen; renderMenu(); });
 $('#wInf').addEventListener('click', () => { focusW = 'inf'; if (wOpen(worldById('inf'))) { meta.world = 'inf'; save(); startDemo(); } wListOpen = false; renderMenu(); });
