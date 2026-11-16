@@ -87,6 +87,7 @@ button:focus-visible{outline:3px solid var(--ion);outline-offset:2px}
 .screen.dim{background:rgba(var(--srgb),.78)}
 .screen.dim>.sheet{margin:auto}
 #menu>.sheet{margin-top:auto}
+#menu{padding-top:calc(var(--it,0px) + 190px)} .land #menu{padding-top:var(--it,0px)}
 #menu{background:linear-gradient(180deg,rgba(var(--nrgb),0) 0,rgba(var(--nrgb),.1) calc(var(--st,30%) - 30px),rgba(var(--nrgb),.9) calc(var(--st,30%) + 70px),var(--night) calc(var(--st,30%) + 180px))}
 .sheet{width:100%;max-width:560px;margin:0 auto;padding:16px 18px 18px;display:flex;flex-direction:column;gap:14px}
 .mhead,.mbody{display:flex;flex-direction:column;gap:14px;min-width:0}
@@ -254,7 +255,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .row4 .mb{display:flex;align-items:center;justify-content:center;gap:8px}
 .row4 .mb svg{width:19px;height:19px;flex:none;color:var(--volt)}
 .mtop{position:absolute;z-index:5;top:calc(var(--it,0px) + 10px);left:calc(var(--il,0px) + 12px);display:flex;gap:8px}
-.ibtn{height:44px;min-width:44px;display:flex;align-items:center;gap:8px;padding:0 11px;background:rgba(var(--nrgb),.72);border:1.5px solid rgba(var(--irgb),.22);color:var(--ink);border-radius:var(--rad,0);clip-path:var(--cut);font:600 12px/1 var(--body);letter-spacing:.06em;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ibtn{height:44px;min-width:44px;display:flex;align-items:center;gap:8px;padding:0 11px;background:rgba(var(--nrgb),.94);border:1.5px solid rgba(var(--irgb),.22);color:var(--ink);border-radius:var(--rad,0);clip-path:var(--cut);font:600 12px/1 var(--body);letter-spacing:.06em;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .ibtn svg{width:22px;height:22px;flex:none}
 #uTag{max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-transform:uppercase}
 .wsel{display:grid;grid-template-columns:1fr auto;gap:8px}
@@ -643,7 +644,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 
 <div id="menu" class="screen" data-scroll>
   <div class="mtop">
-    <button id="bOpts" class="ibtn" type="button" aria-label="Réglages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.6 4.7l1.9 1.5-2 3.4-2.3-.9a7.6 7.6 0 0 1-1.9 1.1L16 21h-4l-.3-2.7a7.6 7.6 0 0 1-1.9-1.1l-2.3.9-2-3.4 1.9-1.5a7.7 7.7 0 0 1 0-2.4L5.5 9.3l2-3.4 2.3.9a7.6 7.6 0 0 1 1.9-1.1L12 3h4l.3 2.7c.7.3 1.3.6 1.9 1.1l2.3-.9 2 3.4-1.9 1.5a7.7 7.7 0 0 1 0 2.4z" transform="translate(-2 0)" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg></button>
+    <button id="bOpts" class="ibtn" type="button" aria-label="Réglages"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 1.6v2.6M12 19.8v2.6M3 6.8l2.25 1.3M18.75 15.9L21 17.2M3 17.2l2.25-1.3M18.75 8.1L21 6.8"/></g><path d="M12 4.6l6.4 3.7v7.4L12 19.4l-6.4-3.7V8.3z" fill="rgba(255,210,63,.18)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.9" fill="var(--volt)"/></svg></button>
     <button id="bUser" class="ibtn" type="button" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c.8-4.2 4-6.5 8-6.5s7.2 2.3 8 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span id="uTag"></span></button>
     <button id="bQuests" class="ibtn qbtn" type="button" aria-label="Quêtes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8h6M9 11.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>QUÊTES</span><i class="qdot" hidden>!</i></button>
     <button id="bGChat" class="ibtn" type="button" aria-label="Chat global"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 9.5h8M8 12.5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>CHAT</span></button>
@@ -1091,10 +1092,10 @@ const baseStats = () => ({
 
 const CLS = [
   { id: 'scout', n: _t('Éclaireur'), d: _t('Équilibré, bon partout.'), cost: 0, f: s => {} },
-  { id: 'twin', n: _t('Jumeau'), d: _t('Deux canons côte à côte, dégâts réduits de 20 %.'), cost: 400, f: s => { s.multi = 2; s.dmg *= 0.8; } },
-  { id: 'sniper', n: _t('Perceur'), d: _t('Tirs lourds qui traversent, cadence lente.'), cost: 600, f: s => { s.dmg *= 2.1; s.rate *= 0.55; s.bspd *= 1.5; s.pierce += 1; s.bsize *= 1.2; } },
-  { id: 'shot', n: _t('Fracas'), d: _t('Rafale de 5 plombs à courte portée.'), cost: 850, f: s => { s.multi = 5; s.dmg *= 0.52; s.rate *= 0.62; s.range *= 0.55; s.scatter = 1; } },
-  { id: 'hive', n: _t('Ruche'), d: _t('3 satellites dès le départ, canon affaibli.'), cost: 1200, f: s => { s.drones = 3; s.dmg *= 0.7; } }
+  { id: 'twin', n: _t('Jumeau'), d: _t('Deux canons côte à côte, dégâts réduits de 20 %.'), cost: 500, f: s => { s.multi = 2; s.dmg *= 0.8; } },
+  { id: 'sniper', n: _t('Perceur'), d: _t('Tirs lourds qui traversent, cadence lente.'), cost: 750, f: s => { s.dmg *= 2.1; s.rate *= 0.55; s.bspd *= 1.5; s.pierce += 1; s.bsize *= 1.2; } },
+  { id: 'shot', n: _t('Fracas'), d: _t('Rafale de 5 plombs à courte portée.'), cost: 1050, f: s => { s.multi = 5; s.dmg *= 0.52; s.rate *= 0.62; s.range *= 0.55; s.scatter = 1; } },
+  { id: 'hive', n: _t('Ruche'), d: _t('3 satellites dès le départ, canon affaibli.'), cost: 1500, f: s => { s.drones = 3; s.dmg *= 0.7; } }
 ];
 
 /* Mêmes taux que les coffres : Commun 43,9 · Rare 30 · Épique 22 (SR 15 + UR 7) · Mythique 3 · Légendaire 1 */
@@ -3639,10 +3640,11 @@ function measureMenu() {
   let cx = W / 2, cy = H * 0.3;
   if (!el.menu.hidden) {
     if (LAND) { cx = $('#menu .mbody').offsetLeft / 2; cy = clamp(($('#menu .mhead').offsetTop - el.menu.scrollTop) / 2, 56, H * 0.42); }
-    else { const top = clamp($('#menu .sheet').offsetTop - el.menu.scrollTop, 90, H * 0.6); cy = Math.max(top - 46, top * 0.5); el.menu.style.setProperty('--st', Math.round(top) + 'px'); }
+    else { const top = Math.min($('#menu .sheet').offsetTop - el.menu.scrollTop, H * 0.6); cy = top > 160 ? Math.max(top - 70, top * 0.5) : top - 70; el.menu.style.setProperty('--st', Math.round(top) + 'px'); }
   }
   demoLiftX = (W / 2 - cx) / SC; demoLift = (H / 2 - cy) / SC;
 }
+el.menu.addEventListener('scroll', () => { if (!el.menu.hidden) measureMenu(); }, { passive: true });
 let focusW = null;
 function worldDesc(w) {
   if (!w.waves) return _t('Vagues sans fin, de plus en plus dures. Un mini-boss toutes les 5 vagues, un boss toutes les 10.');
