@@ -236,7 +236,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .vol i{font:700 12px/1 var(--body);color:var(--dim);min-width:40px;text-align:right;font-style:normal}
 
 .clist{display:grid;gap:10px}
-.clist{grid-template-columns:repeat(3,1fr);align-items:stretch}
+.clist{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
 .card{--rc:var(--dim);position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;
   padding:26px 8px 12px;min-height:0;background:linear-gradient(180deg,color-mix(in srgb,var(--rc) 16%,var(--panel)),var(--panel) 55%);border-top:5px solid var(--rc);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--rc) 30%,transparent)}
 .card .ico{width:66px;height:66px;flex:none;display:grid;place-items:center;color:var(--rc);border-radius:18px;
@@ -329,7 +329,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .lh.sel{border:3px solid var(--volt);background:rgba(255,210,63,.18)}
 
 /* ---------- v4 : menu, garage, tenues, coffres ---------- */
-.stats{grid-template-columns:repeat(4,1fr)} .stats dd{font-size:17px}
+.stats{grid-template-columns:repeat(4,minmax(0,1fr))} .stats dd{font-size:17px}
 .jt{color:var(--dia);white-space:nowrap} .jt::before{content:"";display:inline-block;width:1.2em;height:1.2em;margin-right:.16em;vertical-align:-.2em;background:center/contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.5 4h11l4.5 5.5L12 21 2 9.5z' fill='%232f9bff'/%3E%3Cpath d='M6.5 4h11l4.5 5.5H2z' fill='%238fd3ff'/%3E%3Cpath d='M2 9.5h20M9 9.5 12 21l3-11.5' fill='none' stroke='%231f6fd6' stroke-width='1.1' stroke-linejoin='round'/%3E%3Cpath d='M8 5.6h3' stroke='%23fff' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")}
 .row4{display:grid;grid-template-columns:repeat(6,1fr);gap:6px} .row4 .btn{padding:0 4px;font-size:11.5px;letter-spacing:.06em;grid-column:span 2}
 #bStore svg{color:var(--hot)}
@@ -872,6 +872,27 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .qk::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,color-mix(in srgb,var(--qc) 22%,transparent),transparent 60%);pointer-events:none}
 .qk .qki{font-size:20px;font-style:normal} .qk b{font:900 15px/1.1 var(--display);color:var(--qc)} .qk .qkm{font:800 11px/1.3 var(--body);white-space:pre-line} .qk small{font:600 10px/1.3 var(--body);color:var(--dim);white-space:pre-line}
 .qk em{position:absolute;top:8px;right:9px;font:900 12px/1 var(--body);font-style:normal;color:var(--qc)} .qk:active{transform:scale(.97)}
+
+/* ---- Écrans pliables et très étroits ---- */
+@media (max-width:390px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sheet{padding-left:12px;padding-right:12px}
+  .screen.dim .phead{margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px}
+  .phead .h1{font-size:30px}
+  #stage .phead{flex-wrap:wrap} #stage .phead>.xback{order:2}
+  #stage .phead>.h1+.sub,#stage .phead>.h1+span{order:3;flex-basis:100%;max-width:none;margin-top:-6px;white-space:normal;overflow:visible;text-overflow:clip}
+  #stage:not(.land) .clist{grid-template-columns:minmax(0,1fr)}
+  #stage:not(.land) .card{flex-direction:row;flex-wrap:wrap;text-align:left;align-items:center;padding:28px 12px 12px;gap:4px 12px}
+  #stage:not(.land) .card .ico{flex:none;width:56px;height:56px} #stage:not(.land) .card b{flex:1 1 0;min-width:0}
+  #stage:not(.land) .card .d{flex-basis:100%}
+  #stage .qcal{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tabs button{font-size:10px;letter-spacing:.04em;padding-left:2px;padding-right:2px}
+  .qkrow{grid-template-columns:minmax(0,1fr)}
+}
+@media (min-width:700px) and (min-aspect-ratio:3/4) and (max-aspect-ratio:4/3){
+  .sheet{max-width:680px}
+  #stage:not(.land) .clist{max-width:760px;margin:0 auto}
+}
 .iblist{display:flex;flex-direction:column;gap:6px}
 .ibit{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border-radius:10px;background:var(--raise);border:1.5px solid transparent}
 .ibit.new{border-color:var(--volt);background:linear-gradient(90deg,color-mix(in srgb,var(--volt) 16%,transparent),var(--raise))}
@@ -892,7 +913,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .ttlgrid button.on{border-color:var(--volt)} .ttlgrid button.lock{opacity:.5} .ttlgrid button small{color:var(--dim)}
 .prstreak{font:800 12px/1.3 var(--body);color:#ffb15a}
 .qcal .qday.last{grid-column:1/-1} .qday .qv{font-size:18px!important}
-.qcal{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.qcal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 .qday{position:relative;display:flex;flex-direction:column;gap:6px;align-items:flex-start;min-height:84px;padding:8px 9px;background:var(--raise);border:2px solid transparent;border-radius:10px;color:var(--ink);text-align:left}
 .rw{--rc:var(--ink);display:inline-flex;align-items:center;gap:4px;margin:0 6px 3px 0;font:800 15px/1.1 var(--body);color:var(--ink);white-space:nowrap}
 .rw i{font-style:normal;font-size:17px;color:var(--rc);filter:drop-shadow(0 0 4px color-mix(in srgb,var(--rc) 60%,transparent))}
@@ -2743,8 +2764,11 @@ function heal(v) {
   if (P.hp - b >= 2) addText(P.x, P.y - 28, '+' + Math.round(P.hp - b), C.ok, 14);
 }
 function gainXp(v) {
-  if (G.mp && G.mp.host && G.mp.mode === 'coop') G.mp.xp += v;
-  P.xp += v * P.s.xpMul;
+  const coop = G.mp && G.mp.mode === 'coop' && !G.demo;
+  if (coop && G.mp.guest) return;   // co-op : l'XP et les niveaux viennent de l'hôte (équipe)
+  if (coop && G.mp.host) G.mp.xp += v;
+  const mul = coop && MPP && MPP.f && MPP.f.xm > 0 ? Math.max(P.s.xpMul, MPP.f.xm) : P.s.xpMul;   // bonus d'XP : le meilleur des deux
+  P.xp += v * mul;
   while (P.xp >= P.need) { P.xp -= P.need; P.level++; P.need = xpNeed(P.level); G.pending++; }
 }
 
@@ -4265,7 +4289,10 @@ function render() {
     const l = touchMode || COARSE
       ? [meta.opt.lock ? _t('Stick gauche : bouger. Stick droit : viser et tirer.') : _t('Premier doigt : bouger. Deuxième doigt : viser et tirer.'), _t('Ramasse le bonus TIR AUTO pour tirer tout seul.')]
       : [_t('ZQSD ou flèches pour bouger, clic maintenu pour tirer.'), _t('Espace : dash. E : surcharge.')];
-    ctx.fillText(l[0], W / 2, H * 0.66); ctx.fillText(l[1], W / 2, H * 0.66 + 20); ctx.globalAlpha = 1;
+    const maxW = Math.min(W - 48, 520), L = []; for (const t of l) { let cur = ''; for (const w of t.split(' ')) { const tr = cur ? cur + ' ' + w : w; if (ctx.measureText(tr).width > maxW && cur) { L.push(cur); cur = w; } else cur = tr; } if (cur) L.push(cur); }
+    const y0 = LAND ? H * 0.66 : Math.max(H * 0.36, (INS.t || 0) + 200), bw = Math.min(W - 24, Math.max(...L.map(t => ctx.measureText(t).width)) + 28), bh = L.length * 19 + 16;
+    const a = ctx.globalAlpha; ctx.globalAlpha = a * 0.75; ctx.fillStyle = 'rgba(8,8,24,.85)'; ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(W / 2 - bw / 2, y0 - 20, bw, bh, 12); else ctx.rect(W / 2 - bw / 2, y0 - 20, bw, bh); ctx.fill(); ctx.globalAlpha = a; ctx.fillStyle = C.ink;
+    L.forEach((t, i) => ctx.fillText(t, W / 2, y0 + i * 19)); ctx.globalAlpha = 1;
   }
 }
 
@@ -7497,7 +7524,7 @@ function mpSendSnap() {
   const PK = []; for (const p of pickups) if (!p.dead) PK.push([p.id, p.k, q1(p.x), q1(p.y)]);
   const WH = (G.wheels || []).map(w => [q1(w.x), q1(w.y), Math.round(w.ang * 100) / 100, w.st]);
   mpSend('s', { w: G.wave, k: G.kind, sc: Math.round(G.score), p: [q1(P.x), q1(P.y), Math.round(P.aim * 100) / 100, Math.round(100 * P.hp / P.s.maxHp), P.dn ? 1 : 0], f: mpFlags(),
-    e: E, b: B, hb: HB, z: Z, hz: HZ, pk: PK, wh: WH, pa: state !== 'play' || mpHeld() ? 1 : 0, ch: mpCh(), cl: mpCl(), lv: P.level, xp: Math.round(m.xp * 10) / 10, bm: m.booms.splice(0), ms: mpLook() });
+    e: E, b: B, hb: HB, z: Z, hz: HZ, pk: PK, wh: WH, pa: state !== 'play' || mpHeld() ? 1 : 0, ch: mpCh(), cl: mpCl(), lv: P.level, lx: [P.level, Math.round(P.xp * 10) / 10, P.need], xp: Math.round(m.xp * 10) / 10, bm: m.booms.splice(0), ms: mpLook() });
   m.xp = 0;
 }
 function mpSendGuest() {
@@ -7511,7 +7538,7 @@ function mpPeerCh(d) { if (!MPP) return; const ch = typeof d.ch === 'string' ? d
 /* Co-op : quand le partenaire choisit une carte (ou met pause), tout le monde attend. */
 function mpHeld() { return !!(G && G.mp && !G.demo && G.mp.mode === 'coop' && MPP && MPP.ch && performance.now() - (MPP.chAt || 0) < 2500 && !G.mp.ended && !(MPP.ch === 'p' && performance.now() - (MPP.pSince || 0) > 45000)); }   // une pause bloque 45 s max
 const mpStale = () => !!(MPP && MPP.rxAt && performance.now() - MPP.rxAt > 1500);
-const mpFlags = () => ({ rz: P.s.rez ? 1 : 0, sh: P.s.shareH ? 1 : 0, te: P.s.tether | 0 });
+const mpFlags = () => ({ rz: P.s.rez ? 1 : 0, sh: P.s.shareH ? 1 : 0, te: P.s.tether | 0, xm: Math.round(P.s.xpMul * 100) / 100 });
 const mpLook = () => ({ multi: P.s.multi, side: P.s.side ? 1 : 0, rear: P.s.rear | 0, bsize: Math.round(P.s.bsize * 10) / 10 });
 function mpPeerPos(p) { MPP.rxAt = performance.now(); MPP.tx = p[0]; MPP.ty = p[1]; MPP.aim = p[2]; MPP.hp = p[3] / 100; MPP.dn = p[4]; MPP.dead = p[5] || 0; }
 /* Hôte : reçoit l'invité. */
@@ -7526,7 +7553,7 @@ function mpSnap(d) {
   if (d.w !== G.wave) { const wasBoss = G.kind; G.wave = d.w; G.kind = d.k; const of = G.world.waves ? ' / ' + G.world.waves : '';
     if (d.k === 'boss') { banner(_t('ALERTE BOSS'), _t('vague ') + d.w + of, C.hot, 2.4); sfx.boss(); } else if (d.k === 'mini') { banner(_t('MINI-BOSS'), _t('vague ') + d.w + of, C.ember, 2); sfx.boss(); } else { banner(_t('VAGUE ') + d.w + of, '', C.volt, 1.5); sfx.wave(); } }
   G.score = d.sc | 0; m.pa = !!d.pa;
-  if (d.xp > 0) gainXp(d.xp);
+  if (Array.isArray(d.lx)) mpTeamXp(d.lx); else if (d.xp > 0) { m.guest = false; gainXp(d.xp); m.guest = true; }   // ancien hôte : XP envoyée à l'ancienne
   // ennemis : création, mise à jour, disparition
   const now = new Set();
   for (const row of d.e || []) {
@@ -7558,6 +7585,12 @@ function mpSnap(d) {
   if (m.pa) { ebul.length = 0; P.inv = Math.max(P.inv, 0.3); }
 }
 /* Invité : avance le monde reçu entre deux paquets (lissage) et gère les contacts. */
+/* Co-op : l'invité recopie le niveau et l'XP de l'équipe (calculés par l'hôte). Chaque niveau gagné = un choix de carte. */
+function mpTeamXp(lx) {
+  const lv = lx[0] | 0, xp = +lx[1] || 0, need = +lx[2] || P.need; if (lv < 1) return;
+  if (lv > P.level) { G.pending += lv - P.level; P.level = lv; }
+  P.xp = xp; P.need = need;
+}
 function mpGuestSim(dt) {
   const k = Math.min(1, dt * 10);
   for (const e of enemies) {
@@ -8368,7 +8401,7 @@ function frame(now) {
   let rdt = (now - last) / 1000; last = now; if (!(rdt > 0)) rdt = 0; if (rdt > 0.05) rdt = 0.05;
   T += rdt; mpTick(rdt); padPoll();
   const held = state === 'play' && mpHeld(); mpWaitUi(held);
-  if (held) { if (G) G.mpWasHeld = true; }
+  if (held) { if (G) G.mpWasHeld = true; if (G.pending > 0 && !(G.relicT > 0) && !G.winT) { mpWaitUi(false); openCards('level'); } }   // niveau d'équipe : on choisit en même temps
   else if (state === 'play') { if (G.mpWasHeld) { G.mpWasHeld = false; G.readyT = 0.9; P.inv = Math.max(P.inv, 1); } if (G.readyT > 0) { G.readyT -= rdt; if (G.readyT <= 0) last = now; } else update(rdt); }
   if (state === 'cards') mpCardClock();
   else if (state === 'dying') { G.deadT -= rdt; updFx(rdt * 0.6); compactAll(); if (G.deadT <= 0) showOver(false); }
