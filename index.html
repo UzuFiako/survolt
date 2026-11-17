@@ -98,11 +98,12 @@ button:focus-visible{outline:3px solid var(--ion);outline-offset:2px}
 .act:active{transform:scale(.94)}
 
 /* ---------- Écrans ---------- */
-.screen{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;overflow-y:auto;padding:var(--it,0px) var(--ir,0px) var(--ib,0px) var(--il,0px)}
+.screen{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;overflow-y:auto;overflow-anchor:none;padding:var(--it,0px) var(--ir,0px) var(--ib,0px) var(--il,0px)}
 [data-scroll]{touch-action:pan-y}
 .rot [data-scroll]{touch-action:none}   /* scène pivotée : le défilement est géré à la main */
 .screen.dim{background:rgba(var(--srgb),.78)}
 .screen.dim>.sheet{margin:auto}
+#mp>.sheet{margin:0 auto auto}   /* écran long : collé en haut, jamais centré (sinon iOS peut cacher le haut) */
 #menu>.sheet{margin-top:auto}
 #menu{padding-top:calc(var(--it,0px) + 190px)} .land #menu{padding-top:var(--it,0px)}
 #menu{background:linear-gradient(180deg,rgba(var(--nrgb),0) 0,rgba(var(--nrgb),.1) calc(var(--st,30%) - 30px),rgba(var(--nrgb),.9) calc(var(--st,30%) + 70px),var(--night) calc(var(--st,30%) + 180px))}
@@ -2052,6 +2053,15 @@ let enemies = [], bullets = [], ebul = [], orbs = [], crystals = [], parts = [],
    et laisser une bande vide en bas. On garde la plus grande hauteur vue et on force iOS à remesurer l'écran. */
 if (navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches)) document.documentElement.classList.add('standalone');
 const INST = () => !!(navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches));
+/* Appli installée : la page est un peu plus haute que l'écran (correctif iOS ci-dessus), donc iOS peut la faire glisser
+   (clavier, champ texte, ouverture d'un menu) et le haut des menus se retrouve caché sous l'en-tête sans pouvoir remonter.
+   On la remet toujours tout en haut. */
+function topFix() { if (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop) { window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } }
+const typing = () => { const a = document.activeElement; return !!(a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)); };
+window.addEventListener('scroll', () => { if (!typing()) topFix(); }, { passive: true });
+document.addEventListener('focusout', () => setTimeout(() => { if (!typing()) topFix(); }, 120));
+new MutationObserver(ms => { for (const m of ms) if (m.target.classList && m.target.classList.contains('screen') && !m.target.hidden) { topFix(); requestAnimationFrame(topFix); setTimeout(topFix, 300); break; } })
+  .observe(document.body, { subtree: true, attributes: true, attributeFilter: ['hidden'] });
 let peakW = 0, peakH = 0, peakPort = null;
 function vpFix() {
   const port = innerHeight >= innerWidth;
@@ -6610,12 +6620,19 @@ function mpOver(win) {
 
 /* ---- Écran Multijoueur ---- */
 let mpFr = null, mpGh = null, mpGhW = 'w1';
-function openMp() { el.menu.hidden = true; el.mp.hidden = false; el.mp.scrollTop = 0; requestAnimationFrame(() => el.mp.scrollTop = 0); MP.view = MP.room ? 'lobby' : MP.view === 'lobby' ? 'hub' : MP.view; renderMp(); if (AUTH) rpcA('my_friends').then(l => { mpFr = (l || []).filter(c => c.rel === 'friend'); renderMp(); }).catch(() => {}); }
+function openMp() { el.menu.hidden = true; el.mp.hidden = false; el.mp.scrollTop = 0; mpTop = true; setTimeout(() => { mpTop = false; }, 1500); requestAnimationFrame(() => el.mp.scrollTop = 0); for (const ms of [60, 250, 600]) setTimeout(() => { if (mpTop) el.mp.scrollTop = 0; }, ms); MP.view = MP.room ? 'lobby' : MP.view === 'lobby' ? 'hub' : MP.view; renderMp(); if (AUTH) rpcA('my_friends').then(l => { mpFr = (l || []).filter(c => c.rel === 'friend'); if (MP.view === 'lobby') renderMp(); }).catch(() => {}); }
 function closeMp() { if (MP.view !== 'hub') { if (MP.view === 'lobby') mpLeave(); MP.view = 'hub'; renderMp(); return; } el.mp.hidden = true; el.menu.hidden = false; renderMenu(); }
 function mpCard(ic, title, txt, cls) { const c = document.createElement('div'); c.className = 'mpcard ' + (cls || ''); c.innerHTML = '<div class="mpic"></div><div class="mpt"><b></b><p></p></div><div class="mpbtns"></div>'; c.querySelector('.mpic').textContent = ic; c.querySelector('b').textContent = title; c.querySelector('p').textContent = txt; return c; }
 function mpBtn(t, cls, fn) { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn ' + (cls || ''); b.textContent = t; b.addEventListener('click', fn); return b; }
 function renderMp() {
-  if (!el.mp || el.mp.hidden) return; const B = $('#mpBody'); B.innerHTML = ''; $('#mpSt').textContent = '';
+  if (!el.mp || el.mp.hidden) return; const B = $('#mpBody'), keep = el.mp.scrollTop;
+  B.style.minHeight = B.offsetHeight + 'px';   // garde la hauteur pendant qu'on reconstruit : l'écran ne saute pas
+  renderMpIn(B); B.style.minHeight = ''; el.mp.scrollTop = Math.min(keep, el.mp.scrollHeight); if (mpTop) el.mp.scrollTop = 0;
+}
+let mpTop = false;
+el.mp.addEventListener('touchstart', () => { mpTop = false; }, { passive: true });
+function renderMpIn(B) {
+  B.innerHTML = ''; $('#mpSt').textContent = '';
   if (MP.view === 'lobby' && MP.room) return renderMpLobby(B);
   if (MP.view === 'ghost') return renderMpGhost(B);
   // défi
