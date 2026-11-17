@@ -154,6 +154,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .screen.dim:not(#pause):has(>.sheet>.phead)::before{display:none}
 .screen.dim:not(#pause)>.sheet:has(>.phead){margin:0 auto auto}
 .screen.dim:not(#pause)>.sheet>.phead{padding-top:calc(var(--it,0px) + 14px)}
+#stage:not(.rot) .screen.dim:not(#pause)>.sheet>.phead{padding-top:calc(max(var(--it,0px), env(safe-area-inset-top,0px)) + 14px)}
 #pause>.sheet{margin:auto} #pause .phead{position:static}
 .land .screen.dim:not(#pause)>.sheet>.phead{padding-top:calc(var(--it,0px) + 10px)}
 .phead .h1{margin-right:auto}
@@ -2302,6 +2303,8 @@ function resize() {
     if (ang === 90) e2.r = 0; else if (ang === 270 || ang === -90) e2.l = 0;
     e2.b = Math.min(e2.b, 4); e2.t = 0;
   } else e2.b = Math.min(e2.b, 6);   // téléphone droit : la barre d'accueil ne cache rien
+  // iPhone droit, appli installée : iOS renvoie parfois 0 pour l'encoche. On garde une marge sûre pour l'heure et la batterie.
+  if (INST() && vh > vw && e2.t < 20 && /iPhone/.test(navigator.userAgent) && Math.max(screen.width, screen.height) >= 812) e2.t = Math.max(e2.t, 50);
   INS = !ROT ? e2 : FLIP ? { l: e2.b, t: e2.l, r: e2.t, b: e2.r } : { l: e2.t, t: e2.r, r: e2.b, b: e2.l };
   for (const k of ['l', 't', 'r', 'b']) stage.style.setProperty('--i' + k, INS[k] + 'px');
   stage.style.width = W + 'px'; stage.style.height = H + 'px';
