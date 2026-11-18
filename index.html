@@ -1919,7 +1919,7 @@ const UP = [
 ];
 const UPID = Object.fromEntries(UP.map(u => [u.id, u]));
 const slotMax = () => 8 + Math.min(6, WORLDS.filter(w => w.waves && meta.wdone[w.id]).length);   // 8 perks au départ, +1 par monde terminé (les reliques et les suprêmes n'en prennent pas)
-const worldPerkOk = u => !u.w || (G && G.world && (G.world.no >= u.w || (G.world.id === 'inf' && meta.wdone['w' + (u.w - 1)])));
+const worldPerkOk = u => !u.w || (G && G.world && (G.world.dg ? G.world.no >= u.w && (u.w <= 1 || !!meta.wdone['w' + (u.w - 1)]) : (G.world.no >= u.w || (G.world.id === 'inf' && meta.wdone['w' + (u.w - 1)]))));
 const SHARDCARD = { id: '_shard', n: _t('Prime'), d: _t('+4 nuggets à la fin de la partie'), r: 'c', max: 1e9, c: 'spe', f: () => { G.shards += 4; } };
 const HEALCARD = { id: '_heal', n: _t('Réparation express'), d: _t('Répare 40 % des PV'), r: 'c', max: 1e9, c: 'def', f: (s, p) => { p.hp = Math.min(s.maxHp, p.hp + s.maxHp * 0.4); } };
 const ICON2 = {
@@ -2163,7 +2163,7 @@ const WPNS = [
   { id: 'canon', n: _t('Canon'), kind: 'ball', d: _t('Boulets d’énergie. Équilibré.'), f: s => {} },
   { id: 'rail', n: _t('Fusil à rail'), kind: 'needle', d: _t('Aiguilles très rapides qui traversent tout. Cadence lente.'), f: s => { s.rate *= 0.6; s.dmg *= 1.8; s.bspd *= 1.7; s.pierce += 3; s.bsize *= 0.7; s.range *= 1.2; } },
   { id: 'roquette', n: _t('Lance-roquettes'), kind: 'rocket', d: _t('Roquettes à tête chercheuse qui explosent en zone.'), f: s => { s.rate *= 0.55; s.dmg *= 1.5; s.bspd *= 0.62; s.range *= 1.4; } },
-  { id: 'tesla', n: _t('Bobine Tesla'), kind: 'tesla', d: _t('Éclairs instantanés qui sautent d’ennemi en ennemi. Portée courte.'), f: s => { s.rate *= 1.05; s.dmg *= 0.85; } },
+  { id: 'tesla', n: _t('Bobine Tesla'), kind: 'tesla', d: _t('Éclairs instantanés qui sautent d’ennemi en ennemi. Portée courte.'), f: s => { s.rate *= 0.95; s.dmg *= 0.6; } },
   { id: 'disque', n: _t('Disque'), kind: 'disc', d: _t('Un disque tranchant qui part, revient et traverse tout.'), f: s => { s.rate *= 0.6; s.dmg *= 1.1; s.bspd *= 0.9; s.bsize *= 1.7; } },
   { id: 'flamme', n: _t('Lance-flammes'), kind: 'flame', d: _t('Un jet de flammes continu à courte portée.'), f: s => { s.rate *= 3.2; s.dmg *= 0.32; s.range *= 0.27; s.bspd *= 0.75; } }
 ];
@@ -2675,7 +2675,8 @@ function musTick() {
   const play = state === 'play' || state === 'cards' || state === 'dying', boss = play && G && G.boss;
   try {
     while (musNext < AC.currentTime + 0.3) {
-      const selW = !play && DGM_ON ? 'dg' : !play && SONGS[meta.world] ? meta.world : 'menu';
+      const inRun = (state === 'pause' || state === 'over') && G && G.world && !G.demo && SONGS[G.world.id] ? G.world.id : '';
+      const selW = inRun ? inRun : !play && DGM_ON ? 'dg' : !play && SONGS[meta.world] ? meta.world : 'menu';
       const key = musPreview && !play ? musPreview : meta.mus && meta.mus !== 'auto' && SONGS[meta.mus] ? meta.mus : play && G && G.world && SONGS[G.world.id] ? G.world.id : selW;
       if (key !== musKey && musStep % 16 === 0) { musKey = key; musStep = 0; }   // on change de morceau sur un temps fort
       const S = SONGS[musKey]; MUS_SPB = 60 / S.bpm / 2;
@@ -2853,7 +2854,7 @@ const equipped = () => EQK.map(k => itemById(meta.eq[k])).filter(Boolean);
 function applyGear(s) {
   const cnt = {}; let wk = 'ball';
   for (const it of equipped()) {
-    if (it.t === 'wpn') { const w = WPNS.find(x => x.id === it.id) || WPNS[0]; w.f(s); s.dmg *= 1 + 0.08 * pidx(it); wk = w.kind; if (wk === 'tesla') s.teslaJ = 1 + Math.min(6, Math.floor(pidx(it))); }
+    if (it.t === 'wpn') { const w = WPNS.find(x => x.id === it.id) || WPNS[0]; w.f(s); s.dmg *= 1 + 0.08 * pidx(it); wk = w.kind; if (wk === 'tesla') s.teslaJ = 1 + Math.min(4, Math.floor(pidx(it) * 0.7)); }
     else { pieceFx(slotOf(it), imult(it)).f(s); const st = setOf(it).id; cnt[st] = (cnt[st] || 0) + 1; }
   }
   let full = null, aura = null;
@@ -3666,7 +3667,7 @@ function tesla(ang, n) {
     const e = cand[i]; if (e.dead) continue; bolt(x0, y0, e.x, e.y, 'ion');
     onHit({ x: e.x, y: e.y, vx: Math.cos(ang) * 300, vy: Math.sin(ang) * 300, dmg: s.dmg, pierce: 0, bounce: 0, hit: null, kind: 'tesla', dead: false }, e);
     let from = e; const used = [e.id];
-    for (let k = 0; k < (s.teslaJ || 1) + Math.floor(s.bounce / 2); k++) { const t = nearestEnemy(from.x, from.y, 150, used); if (!t) break; used.push(t.id); bolt(from.x, from.y, t.x, t.y, 'ion'); dmgEnemy(t, s.dmg * 0.55, false); from = t; }
+    for (let k = 0; k < (s.teslaJ || 1) + Math.floor(s.bounce / 2); k++) { const t = nearestEnemy(from.x, from.y, 150, used); if (!t) break; used.push(t.id); bolt(from.x, from.y, t.x, t.y, 'ion'); dmgEnemy(t, s.dmg * 0.4, false); from = t; }
   }
   sfx.zap();
 }
@@ -4515,7 +4516,7 @@ function render() {
     for (let k = 0; k < 8; k++) { const rr = k % 2 ? q : R, aa = a + k * Math.PI / 4; if (k) ctx.lineTo(o.x + Math.cos(aa) * rr, o.y + Math.sin(aa) * rr); else ctx.moveTo(o.x + Math.cos(aa) * rr, o.y + Math.sin(aa) * rr); }
     ctx.closePath(); ctx.fill(); ctx.stroke(); }
 
-  for (const e of enemies) if (vis(e.x, e.y, e.r + 14) || e.shape === 'boss') drawEnemy(e);
+  for (const e of enemies) if (vis(e.x, e.y, e.r + 14) || e.shape === 'boss') { drawEnemy(e); if (G && G.dg) dgCreep(e); }
   // marques des effets sur les ennemis : bulles, ralentissement, étourdissement
   for (const e of enemies) {
     if (!vis(e.x, e.y, e.r + 20)) continue;
@@ -4588,7 +4589,7 @@ function render() {
   }
   if (G.dg) {   // Backrooms : pénombre sur les bords + plan de l'étage
     const vg = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.3, W / 2, H / 2, Math.max(W, H) * 0.72);
-    vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, `rgba(0,0,0,${G.dg.th === 2 ? 0.28 : 0.5})`); ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+    dgDark(); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, `rgba(0,0,0,${G.dg.th === 2 ? 0.28 : 0.5})`); ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
     if (state === 'play') drawDgMap();
   }
   const toS = (x, y) => [(x - cam.x) * SC + W / 2, (y - cam.y) * SC + H / 2];
@@ -5259,10 +5260,22 @@ function renderNm() {
   document.documentElement.classList.toggle('nm', on);
 }
 let DGM_ON = false;
+const DGPAL = [
+  { night: '#120f05', panel: '#221c0b', raise: '#33290f', ink: '#f3e7b0', dim: '#b9a96a', wc: '#e9d46a', irgb: '233,212,106', nrgb: '18,15,5', srgb: '10,8,3' },
+  { night: '#0b0e14', panel: '#161b24', raise: '#222a37', ink: '#e6ecf5', dim: '#93a0b5', wc: '#9fb4d4', irgb: '159,180,212', nrgb: '11,14,20', srgb: '6,8,12' },
+  { night: '#041a20', panel: '#0b2a33', raise: '#123b47', ink: '#e8fbff', dim: '#8fc3cc', wc: '#7fe3ff', irgb: '127,227,255', nrgb: '4,26,32', srgb: '2,14,18' }
+];
+function dgTheme(k) {   // les menus (pause, cartes, fin de partie…) prennent l'ambiance de l'étage
+  const rs = document.documentElement.style;
+  if (k === null || k === undefined) { delete document.documentElement.dataset.dg; for (const v of ['--nrgb', '--srgb', '--irgb', '--ink', '--dim', '--night', '--chbg']) rs.removeProperty(v); try { applyWorldTint(); } catch (e) {} return; }
+  const p = DGPAL[k] || DGPAL[0]; document.documentElement.dataset.dg = k;
+  rs.setProperty('--night', p.night); rs.setProperty('--panel', p.panel); rs.setProperty('--raise', p.raise); rs.setProperty('--ink', p.ink); rs.setProperty('--dim', p.dim);
+  rs.setProperty('--wc', p.wc); rs.setProperty('--irgb', p.irgb); rs.setProperty('--nrgb', p.nrgb); rs.setProperty('--srgb', p.srgb); rs.setProperty('--chbg', 'rgba(' + p.srgb + ',.94)');
+}
 function dgmGoTxt() { const b = $('#dgmGo'); if (b) b.textContent = _t('ENTRER') + ' · ' + _t('ÉTAGE') + ' ' + (dgSel + 1); }
 function openDgMenu(instant) {   // on « glitche » à travers le sol vers les Backrooms
   if (!dgOpen(dgSel)) dgSel = 0;
-  const show = () => { el.menu.hidden = true; el.menu.classList.remove('sink'); const m = $('#dgm'); m.hidden = false; m.scrollTop = 0; DGM_ON = true; renderDgCard(); dgmGoTxt(); };
+  const show = () => { el.menu.hidden = true; el.menu.classList.remove('sink'); const m = $('#dgm'); m.hidden = false; m.scrollTop = 0; DGM_ON = true; dgTheme(0); renderDgCard(); dgmGoTxt(); };
   if (instant) { show(); return; }
   try { initAudio(); uis(() => { sfx.boom(); }); } catch (e) {}
   const f = $('#dgFall'); f.classList.remove('up'); f.hidden = false; el.menu.classList.add('sink'); vib && 0;
@@ -5270,11 +5283,11 @@ function openDgMenu(instant) {   // on « glitche » à travers le sol vers les 
 }
 function closeDgMenu() {
   const f = $('#dgFall'); f.classList.add('up'); f.hidden = false; DGM_ON = false;
-  setTimeout(() => { $('#dgm').hidden = true; el.menu.hidden = false; renderMenu(); }, 350); setTimeout(() => { f.hidden = true; f.classList.remove('up'); }, 900);
+  setTimeout(() => { $('#dgm').hidden = true; dgTheme(null); el.menu.hidden = false; renderMenu(); }, 350); setTimeout(() => { f.hidden = true; f.classList.remove('up'); }, 900);
 }
 $('#dgmGo').addEventListener('click', () => { $('#dgm').hidden = true; startDg(); });
 $('#dgmBack').addEventListener('click', closeDgMenu);
-$('#dgmCoop').addEventListener('click', () => { if (!dgOpen(dgSel)) dgSel = 0; $('#dgm').hidden = true; DGM_ON = false; openMp(); mpCreate('coop'); if (MP.room) { MP.room.world = 'dg' + (dgSel + 1); mpCfg(); renderMp(); } });
+$('#dgmCoop').addEventListener('click', () => { if (!dgOpen(dgSel)) dgSel = 0; $('#dgm').hidden = true; DGM_ON = false; dgTheme(null); openMp(); mpCreate('coop'); if (MP.room) { MP.room.world = 'dg' + (dgSel + 1); mpCfg(); renderMp(); } });
 function renderDgCard() {
   const fl = $('#dgFl'); if (fl) { fl.innerHTML = ''; if (!dgOpen(dgSel)) dgSel = 0;
     DGF.forEach((F, k) => { const op = dgOpen(k), b = document.createElement('button'); b.type = 'button'; b.className = (k === dgSel ? 'on' : '') + (op ? '' : ' lock');
@@ -6529,9 +6542,9 @@ let RUNW = null;   // monde forcé (partie rapide)
 const DGF = [
   // 3× plus dur que le monde de référence (PV ×3, dégâts ×1,5) — et 3× plus de butin
   // étage 1 : niveau du Monde 1 · étage 2 : niveau du Monde 6 · étage 3 : niveau du Monde 6 en Nightmare
-  { n: _t('LES BACKROOMS'), sub: _t('Niveau 0 · moquette humide et néons qui grésillent'), rooms: [7, 9], d0: 2, no: 2, lv: 0, hp: 3, dmg: 1.5, cnt: 1.1, off: 1, waves: [1, 2], elite: 0.15, obs: [2, 4], big: 0.2, boss: 10, col: '#e9d46a' },
-  { n: _t('LES BUREAUX VIDES'), sub: _t('Niveau 1 · un open space abandonné, à perte de vue'), rooms: [10, 12], d0: 26, no: 6, lv: 5, hp: 8.4, dmg: 3.1, cnt: 1.3, off: 15, waves: [2, 2], elite: 0.25, obs: [4, 7], big: 0.35, boss: 11, col: '#9fb4d4' },
-  { n: _t('LES POOLROOMS'), sub: _t('Niveau 37 · carrelage blanc et eau tiède'), rooms: [13, 15], d0: 34, no: 6, lv: 5, hp: 18.5, dmg: 5.4, cnt: 1.4, off: 18, waves: [2, 3], elite: 0.35, obs: [5, 9], big: 0.5, boss: 12, col: '#7fe3ff' }
+  { n: _t('LES BACKROOMS'), sub: _t('Niveau 0 · moquette humide et néons qui grésillent'), rooms: [7, 9], d0: 5, no: 2, lv: 0, hp: 5, dmg: 2.4, cnt: 1.7, off: 3, waves: [2, 3], elite: 0.3, obs: [2, 4], big: 0.2, boss: 10, col: '#e9d46a' },
+  { n: _t('LES BUREAUX VIDES'), sub: _t('Niveau 1 · un open space abandonné, à perte de vue'), rooms: [10, 12], d0: 28, no: 6, lv: 5, hp: 12, dmg: 4.2, cnt: 1.8, off: 15, waves: [2, 3], elite: 0.4, obs: [4, 7], big: 0.35, boss: 11, col: '#9fb4d4' },
+  { n: _t('LES POOLROOMS'), sub: _t('Niveau 37 · carrelage blanc et eau tiède'), rooms: [13, 15], d0: 36, no: 6, lv: 5, hp: 26, dmg: 7, cnt: 1.9, off: 18, waves: [3, 3], elite: 0.5, obs: [5, 9], big: 0.5, boss: 12, col: '#7fe3ff' }
 ];
 const NMW = ['w1', 'w2', 'w3', 'w4', 'w5', 'w6'];
 const dgOpen = k => k === 0 || (k === 1 && !!meta.wdone.w6) || (k === 2 && NMW.every(w => meta.wdone['n' + w]));
@@ -6597,6 +6610,7 @@ function dgLoad(d) {   // invité : reçoit le plan de l'étage
   G.dg = Object.assign(G.dg || { t: 0, rc: 0 }, L, { k: d.k, th: d.k, lid: d.id, lock: null, stairs: null, cur: L.st, diff: F.d0 });
   Object.assign(G.world, { no: F.no, lv: F.lv, hp: F.hp, dmg: F.dmg, cnt: F.cnt, off: F.off, n: F.n });
   L.st.vis = 1; for (const o of Object.values(L.st.nb)) o.seen = 1;
+  dgTheme(d.k);
   if (newF) { P.x = L.st.cx + 55; P.y = L.st.cy + 120; P.vx = P.vy = 0; cam.x = P.x; cam.y = P.y; meta.wbest.dg = Math.max(meta.wbest.dg || 0, d.k + 1); G.flash = 0.5; banner(F.n, F.sub, F.col, 3); sfx.wave(); }
 }
 function dgSync(a) {   // invité : état des salles envoyé avec chaque paquet de l'hôte
@@ -6713,7 +6727,7 @@ function dgFloor(k) {
   P.x = L.st.cx - (G.mp ? 55 : 0); P.y = L.st.cy + 120; P.vx = P.vy = 0; cam.x = P.x; cam.y = P.y; G.wave = Math.round(F.d0);
   if (G.mp && G.mp.host) { if (MPP) { MPP.x = MPP.tx = L.st.cx + 55; MPP.y = MPP.ty = L.st.cy + 120; } mpSend('ev', dgPack()); }
   L.st.vis = L.st.seen = 1; L.st.clear = 1; for (const o of Object.values(L.st.nb)) o.seen = 1; D.cur = L.st;
-  meta.wbest.dg = Math.max(meta.wbest.dg || 0, k + 1);
+  meta.wbest.dg = Math.max(meta.wbest.dg || 0, k + 1); dgTheme(k);
   G.flash = 0.5; banner(F.n, F.sub, F.col, 3); sfx.wave();
 }
 function dgEnter(r) {
@@ -6740,12 +6754,12 @@ function dgEnter(r) {
 }
 function dgSpawnWave(r, w) {
   const Wd = G.world, D = G.dg, n = Math.round(D.diff); G.wave = n;
-  let B = (5 + n * 1.7 + n * n * 0.05) * Wd.cnt * (w.elite ? 1.2 : 1), g = 0, i = 0;
+  let B = (8 + n * 2.2 + n * n * 0.06) * Wd.cnt * (w.elite ? 1.3 : 1), g = 0, i = 0;
   const types = Object.keys(ET).filter(k => ET[k].min && ET[k].min <= n + Wd.off && (!ET[k].lv || Wd.lv >= ET[k].lv));
   while (B > 0.4 && g++ < 60) {
     const k = types[Math.min(types.length - 1, (Math.pow(Math.random(), 0.75) * types.length) | 0)], d = ET[k];
     const cnt = k === 'swarm' ? 4 + ((Math.random() * 3) | 0) : d.cost <= 1.6 ? 2 + ((Math.random() * 2) | 0) : 1;
-    const el = Math.random() < (w.elite ? 0.5 : Math.min(0.2, 0.04 + 0.008 * n)), [x, y] = dgPt(r, 300);
+    const el = Math.random() < (w.elite ? 0.6 : Math.min(0.3, 0.1 + 0.01 * n)), [x, y] = dgPt(r, 300);
     for (let j = 0; j < cnt; j++) spawnAt(k, x + rnd(-40, 40), y + rnd(-40, 40), el && j === 0, 0.6 + i * 0.12 + j * 0.07);
     B -= d.cost * cnt; i++;
   }
@@ -6766,7 +6780,7 @@ function dgTrap(w) {
   banner(_t('PIÈGE !'), _t('La salle se verrouille : ') + _t(MINIB[mi].n), C.hot, 2.4); sfx.boss(); shake(10); vib(80);
 }
 function dgClear(r) {
-  const D = G.dg; r.clear = 1; D.lock = null; D.rc++; D.diff += r.type === 'elite' ? 1.5 : 1; G.kind = 'normal';
+  const D = G.dg; r.clear = 1; D.lock = null; D.rc++; D.diff += r.type === 'elite' ? 2.5 : 1.6; G.kind = 'normal';
   G.vacuum = 2.4; G.shards += 2 + D.k; G.score += 120 * (D.k + 1); heal(P.s.maxHp * 0.04);
   if (r.type === 'elite') { const q = Math.random(); if (q < 0.45) { const cr = q < 0.08 ? 'ur' : q < 0.2 ? 'sr' : 'r'; G.chDrops.push(cr); addText(P.x, P.y - 50, _t('COFFRE ') + RARS[RIDX[cr]].s + ' !', rcol(cr), 20); } addPickup(pick(PKFX), r.cx, r.cy); }
   else if (Math.random() < 0.2) addPickup('heal', r.cx, r.cy);
@@ -6861,6 +6875,33 @@ function dgMapY() {   // sous la colonne du haut à gauche (arme, bonus, partena
   const now = performance.now(); if (now - dgMapYt < 500 && dgMapYc) return dgMapYc; dgMapYt = now; let y = INS.t + 62;
   try { const hl = document.querySelector('.hudl'); if (hl) for (const c of hl.children) if (!c.hidden && c.offsetParent !== null) { const b = c.getBoundingClientRect(); if (b.height > 0) y = Math.max(y, (ROT ? b.right : b.bottom) + 8); } } catch (e) {}
   return (dgMapYc = y);
+}
+function dgCreep(e) {   // Backrooms : les monstres deviennent des silhouettes sombres aux yeux brillants
+  const g = ctx, r = e.r * (e.shape === 'boss' ? 1.05 : 1.25), jit = Math.random() < 0.04 ? rnd(-4, 4) : 0, x = e.x + jit, y = e.y;
+  g.save(); g.globalAlpha = e.flash > 0 ? 0.35 : 0.82; g.fillStyle = '#050403'; g.beginPath();
+  for (let i = 0; i <= 14; i++) { const a = i * TAU / 14, w = r * (1 + 0.16 * Math.sin(T * 7 + i * 2.3 + e.id)); if (i) g.lineTo(x + Math.cos(a) * w, y + Math.sin(a) * w); else g.moveTo(x + Math.cos(a) * w, y + Math.sin(a) * w); }
+  g.closePath(); g.fill(); g.restore();
+  const a = Math.atan2(P.y - y, P.x - x), ex = Math.cos(a) * r * 0.35, ey = Math.sin(a) * r * 0.35, sp = r * 0.32, px = -Math.sin(a) * sp, py = Math.cos(a) * sp, er = Math.max(2.2, r * 0.15), blink = (T * 0.7 + e.id * 0.37) % 4 < 0.12;
+  if (blink) return;
+  const col = e.elite || e.shape === 'boss' ? '#ff2a2a' : G.dg.th === 2 ? '#bff3ff' : '#fff6c8';
+  g.save(); g.globalCompositeOperation = 'lighter'; g.fillStyle = col; g.shadowColor = col; g.shadowBlur = 10;
+  for (const s of [-1, 1]) { g.beginPath(); g.ellipse(x + ex + px * s, y + ey + py * s, er, er * 0.65, a, 0, TAU); g.fill(); }
+  g.restore();
+}
+function dgDark() {   // obscurité : seulement un halo de lumière autour de toi, et les néons qui coupent par moments
+  const D = G.dg; if (!D) return; const [sx, sy] = [(P.x - cam.x) * SC + W / 2, (P.y - cam.y) * SC + H / 2];
+  D.flk = (D.flk || 0) - 1 / 60; if (D.flk < -rnd(4, 11)) D.flk = rnd(0.08, 0.35);
+  const off = D.flk > 0, base = [0.9, 0.86, 0.7][D.th] + (off ? 0.08 : 0), R = (off ? 170 : 280) * SC;
+  const gr = ctx.createRadialGradient(sx, sy, R * 0.25, sx, sy, R * 1.15); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(1, `rgba(0,0,0,${base})`);
+  ctx.fillStyle = gr; ctx.fillRect(0, 0, W, H);
+  // les yeux restent visibles dans le noir
+  ctx.save(); ctx.globalCompositeOperation = 'lighter';
+  for (const e of enemies) { if (e.dead || (T * 0.7 + e.id * 0.37) % 4 < 0.12) continue; const ex = (e.x - cam.x) * SC + W / 2, ey = (e.y - cam.y) * SC + H / 2; if (ex < -20 || ey < -20 || ex > W + 20 || ey > H + 20) continue;
+    const a = Math.atan2(P.y - e.y, P.x - e.x), r = e.r * SC, col = e.elite || e.shape === 'boss' ? '255,42,42' : D.th === 2 ? '191,243,255' : '255,246,200';
+    for (const s of [-1, 1]) { const x = ex + Math.cos(a) * r * 0.4 - Math.sin(a) * r * 0.36 * s, y = ey + Math.sin(a) * r * 0.4 + Math.cos(a) * r * 0.36 * s; const g2 = ctx.createRadialGradient(x, y, 0, x, y, Math.max(4, r * 0.4)); g2.addColorStop(0, `rgba(${col},.95)`); g2.addColorStop(1, `rgba(${col},0)`); ctx.fillStyle = g2; ctx.beginPath(); ctx.arc(x, y, Math.max(4, r * 0.4), 0, TAU); ctx.fill(); } }
+  ctx.restore();
+  // bruits lointains
+  if (state === 'play' && Math.random() < 1 / 900) { try { noise(0.5, 0.05, 260); tone(rnd(48, 70), 0.9, 'sine', 0.06, -10); } catch (e) {} }
 }
 function drawDgMap() {
   const D = G.dg; if (!D || !D.cur) return;
@@ -6987,6 +7028,7 @@ function startRun() {
 }
 function toMenu() {
   const wasDg = !!(G && G.world && G.world.dg && !G.mp && !G.demo);
+  if (document.documentElement.dataset.dg !== undefined) dgTheme(null);
   state = 'menu'; focusCls = meta.sel;
   el.hud.hidden = el.over.hidden = el.shop.hidden = el.pause.hidden = el.cards.hidden = el.opts.hidden = el.garage.hidden = el.layout.hidden = el.alm.hidden = el.lb.hidden = el.store.hidden = el.prof.hidden = true; el.menu.hidden = false; el.menu.scrollTop = 0;
   focusW = meta.world; el.chests.hidden = el.chOpen.hidden = true;
