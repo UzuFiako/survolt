@@ -2668,6 +2668,10 @@ function musStyled(S, s, cyc, ch, t, play, boss) {
   if (sec === 'B') { const d = S.mel[(((s / 16) | 0) + cyc) % 4][s % 16]; if (d >= 0) mNote(mf(ch[d % ch.length] + 24), t, MUS_SPB * 1.4, 'triangle', 0.026, 3400, 0.01); }
 }
 function mSnare(t) { const src = AC.createBufferSource(), fl = AC.createBiquadFilter(), g = AC.createGain(); src.buffer = NB; fl.type = 'bandpass'; fl.frequency.value = 1800; g.gain.setValueAtTime(0.06, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.13); src.connect(fl); fl.connect(g); g.connect(musG); src.start(t); src.stop(t + 0.15); }
+function musSwap() {   // fondu rapide : l'ancien morceau s'éteint en ~0,5 s pendant que le nouveau démarre
+  try { const old = musG, t = AC.currentTime; old.gain.cancelScheduledValues(t); old.gain.setValueAtTime(old.gain.value, t); old.gain.linearRampToValueAtTime(0, t + 0.5); setTimeout(() => { try { old.disconnect(); } catch (e) {} }, 1200);
+    musG = AC.createGain(); musG.gain.value = 0; musG.connect(COMP || AC.destination); musApply(); } catch (e) {}
+}
 function musTick() {
   if (!AC || !musG) return; musApply();
   if (musVol() <= 0 || document.hidden) { musNext = AC.currentTime + 0.1; return; }
@@ -2678,7 +2682,7 @@ function musTick() {
       const inRun = (state === 'pause' || state === 'over') && G && G.world && !G.demo && SONGS[G.world.id] ? G.world.id : '';
       const selW = inRun ? inRun : !play && DGM_ON ? 'dg' : !play && SONGS[meta.world] ? meta.world : 'menu';
       const key = musPreview && !play ? musPreview : meta.mus && meta.mus !== 'auto' && SONGS[meta.mus] ? meta.mus : play && G && G.world && SONGS[G.world.id] ? G.world.id : selW;
-      if (key !== musKey && musStep % 16 === 0) { musKey = key; musStep = 0; }   // on change de morceau sur un temps fort
+      if (key !== musKey) { musSwap(); musKey = key; musStep = 0; musNext = Math.max(musNext, AC.currentTime + 0.08); }   // changement de morceau tout de suite, en fondu
       const S = SONGS[musKey]; MUS_SPB = 60 / S.bpm / 2;
       const s = musStep % 64, cyc = (musStep / 64) | 0, ci = (s / 16) | 0, ch = S.ch[ci], t = musNext;
       const sec = boss ? 'B' : play ? 'AABACB'[cyc % 6] : 'AAB'[cyc % 3];   // A : arpège · B : arpège + mélodie · C : pause (nappes + mélodie)
