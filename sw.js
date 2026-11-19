@@ -1,6 +1,6 @@
 // Survolt : mise en cache pour jouer hors ligne. Le jeu se met à jour tout seul quand il y a du réseau.
-// v72 (MAJ 3 + 4) : Backrooms, nouveaux ennemis, murs, châssis à étoiles, clés et offres du jour, nouveaux familiers.
-const CACHE = 'survolt-v72';
+// v73 (MAJ 5) : perks Bulle et Visée, élément Incantation, transformations, écran Nouveautés, son de clic.
+const CACHE = 'survolt-v73';
 const FILES = ['./', './index.html', './comptes.html', './manifest.webmanifest', './sv-icon-192.png', './sv-icon-512.png', './sv-icon-maskable.png', './sv-apple-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => Promise.all(FILES.map(f => c.add(f).catch(() => {})))).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(k => Promise.all(k.filter(n => n !== CACHE).map(n => caches.delete(n)))).then(() => self.clients.claim())); });

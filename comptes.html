@@ -1177,6 +1177,16 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .x10c.hi.on .x10b{box-shadow:0 0 24px 4px var(--rc);animation:x10hi 1.4s ease-in-out infinite}
 @keyframes x10hi{50%{box-shadow:0 0 34px 8px var(--rc)}}
 .x10sum p{margin:0;font:800 14px/1.3 var(--body)} .x10ls>div{display:flex;align-items:center;gap:10px;text-align:left;padding:4px 8px;border-radius:10px;background:var(--panel);border-left:3px solid var(--rc)} .x10ls>div>:first-child:not(span){width:46px!important;height:46px!important;min-width:46px;flex:none;overflow:hidden} .x10ls>div>:first-child:not(span) canvas{width:100%!important;height:100%!important} .x10ls span{font:700 12px/1.25 var(--body)} .x10ls small{display:block;color:var(--rc);font:800 10px/1 var(--body)} .x10ls{display:flex;flex-direction:column;gap:6px;margin-top:8px;max-height:34vh;overflow-y:auto}
+#bUlt.trult{color:#fff;text-shadow:0 0 6px var(--trc),0 1px 0 #000;border-color:var(--trc);box-shadow:0 0 18px var(--trc),inset 0 0 14px color-mix(in srgb,var(--trc) 40%,transparent);font-size:12px;animation:trpulse 1.4s ease-in-out infinite}
+@keyframes trpulse{50%{box-shadow:0 0 30px var(--trc),inset 0 0 20px color-mix(in srgb,var(--trc) 55%,transparent)}}
+.news{position:absolute;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;padding:calc(14px + var(--it,0px)) 12px calc(14px + var(--ib,0px));background:rgba(6,4,18,.86);backdrop-filter:blur(3px);animation:newsin .3s ease-out}
+.news.out{opacity:0;transition:opacity .25s} @keyframes newsin{from{opacity:0;transform:scale(.97)}}
+.newsin{width:100%;max-width:560px;max-height:100%;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:18px 16px}
+.newsu{border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)} .newsu.nu{border-color:var(--volt);box-shadow:0 0 18px rgba(255,210,63,.18)}
+.newsu summary{display:flex;align-items:center;gap:10px;padding:12px;cursor:pointer;list-style:none;font:800 14px/1.2 var(--body)} .newsu summary::-webkit-details-marker{display:none}
+.newsu summary i{font-style:normal;font-size:20px;width:28px;text-align:center} .newsu summary b{flex:1} .newsu summary em{font:900 10px/1 var(--body);font-style:normal;padding:4px 7px;border-radius:6px;background:var(--hot);color:#fff;animation:offglow 1.4s ease-in-out infinite}
+.newsu ul{list-style:none;margin:0;padding:0 12px 12px;display:flex;flex-direction:column;gap:8px} .newsu li{display:flex;gap:10px;align-items:flex-start} .newsu li>i{font-style:normal;font-size:17px;width:26px;text-align:center;flex:none}
+.newsu li b{display:block;font:800 13px/1.25 var(--body)} .newsu li span{display:block;font:500 12px/1.35 var(--body);color:var(--dim)}
 /* la chute dans le sol */
 .dgfall{position:fixed;inset:0;z-index:90;pointer-events:all;background:#000;animation:dgfall 1.5s ease-in-out forwards}
 .dgfall i{position:absolute;left:0;right:0;height:8%;background:rgba(214,196,110,.55);mix-blend-mode:screen;opacity:0;animation:dgbar 1.5s steps(1) forwards}
@@ -1747,6 +1757,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
       <ul><li><b>Stick gauche</b> ou croix : bouger</li><li><b>Stick droit</b> : viser et tirer · <b>R2 / RT</b> ou <b>R1 / RB</b> : tirer</li><li><b>L2 / LT</b> ou <b>Croix / A</b> : dash</li><li><b>Rond / B</b> ou <b>L1 / LB</b> : surcharge · <b>Triangle / Y</b> : ULT de tenue</li><li><b>Options / Start</b> : pause · cartes : gauche/droite puis <b>Croix / A</b></li></ul>
     </details>
     <button id="bTutoOpen" class="btn" type="button">📖 COMMENT JOUER</button>
+    <button id="bNews" class="btn" type="button" onclick="this.dispatchEvent(new CustomEvent('news',{bubbles:true}))">🆕 NOUVEAUTÉS</button>
     <button id="bOptsBack" class="btn" type="button">RETOUR</button>
   </div>
 </div>
@@ -2085,6 +2096,23 @@ const UP = [
   { id: 'satB', w: 3, n: _t('Satellite de feu'), d: _t('+1 satellite de feu (anneau inversé) : enflamme ce qu’il touche'), r: 'r', max: 3, c: 'spe', f: s => { s.esat = (s.esat || []).concat('fire'); } },
   { id: 'satT', w: 4, n: _t('Satellite toxique'), d: _t('+1 satellite toxique (anneau inversé) : empoisonne ce qu’il touche'), r: 'r', max: 3, c: 'spe', f: s => { s.esat = (s.esat || []).concat('tox'); } },
   { id: 'satV', w: 4, n: _t('Satellite de foudre'), d: _t('+1 satellite de foudre (anneau inversé) : électrocute la cible et ses voisins'), r: 'e', max: 2, c: 'spe', f: s => { s.esat = (s.esat || []).concat('volt'); } },
+  // MAJ 5 : bulles, visée, poison et glace en plus, et le nouvel élément Incantation (après le déblocage du Monde 6)
+  { id: 'bubble', w: 5, n: _t('Balle sous bulle'), d: _t('Chance qu’une bulle entoure ta balle : elle arrête le premier tir ennemi qu’elle touche, éclate, et ta balle continue jusqu’à l’ennemi'), r: 'm', max: 4,
+    dl: [_t('Niv. 1 : 20 % de chances d’avoir une bulle'), _t('Niv. 2 : 26 % de chances, bulle un peu plus grande'), _t('Niv. 3 : 32 % de chances'), _t('Niv. 4 : 40 % de chances, bulle encore plus grande')],
+    c: 'def', f: s => { s.bub = (s.bub || 0) + 1; } },
+  { id: 'aimL', n: _t('Visée'), d: _t('Un trait en pointillés devant le canon montre où part le tir, avec une croix à sa portée maximum. +4 % de critique'), r: 'e', max: 3,
+    dl: [_t('Niv. 1 : le trait couvre 60 % de la portée'), _t('Niv. 2 : le trait couvre 80 % de la portée'), _t('Niv. 3 : le trait va jusqu’à la croix (100 %)')], c: 'atk', f: s => { s.aimL = (s.aimL || 0) + 1; s.crit += 0.04; } },
+  { id: 'elemP', w: 2, n: _t('Fléau toxique'), d: _t('À chaque tir qui touche, une petite chance qu’un nuage de poison éclate sur l’ennemi pendant 2,5 s. Plus de chances à chaque niveau.'), r: 'e', max: 5, c: 'spe', f: s => { s.elemP = (s.elemP || 0) + 1; } },
+  { id: 'miasma', w: 3, n: _t('Miasme'), d: _t('Une aura de poison empoisonne les ennemis autour de toi chaque seconde. Plus large à chaque niveau.'), r: 'r', max: 3, c: 'spe', f: s => { s.miasma = (s.miasma || 0) + 1; } },
+  { id: 'blizzard', w: 3, n: _t('Blizzard'), d: _t('Toutes les 6 s, une tempête de neige tourne autour de toi pendant 2,5 s : elle gèle et blesse les ennemis proches.'), r: 'l', max: 1, c: 'spe', f: s => { s.blizzard = 1; } },
+  { id: 'sum', wu: 6, n: _t('Sbires des ténèbres'), d: _t('Invoque régulièrement un sbire des ténèbres qui attaque les ennemis (10 % de tes PV max et de tes dégâts). Plus souvent et plus de sbires à chaque niveau.'), r: 'r', max: 5, c: 'spe', f: s => { s.sum = (s.sum || 0) + 1; } },
+  { id: 'dSumT', wu: 6, n: _t('Dash des ombres'), d: _t('Ton dash laisse des sbires le long de son trajet (1 de plus par niveau).'), r: 'e', max: 3, c: 'mob', f: s => { s.dSumT = (s.dSumT || 0) + 1; } },
+  { id: 'dSumA', wu: 6, n: _t('Portail d’ombre'), d: _t('Là où ton dash s’arrête, un portail fait sortir des sbires du sol et blesse les ennemis autour.'), r: 'e', max: 3, c: 'mob', f: s => { s.dSumA = (s.dSumA || 0) + 1; } },
+  { id: 'sumRain', wu: 6, n: _t('Éclair de sbires'), d: _t('Des sbires sortent du sol au hasard, près des ennemis, comme la foudre qui tombe. Plus souvent à chaque niveau.'), r: 'e', max: 5, c: 'spe', f: s => { s.sumRain = (s.sumRain || 0) + 1; } },
+  { id: 'infest', wu: 6, n: _t('Infestation'), d: _t('Tes tirs ont 20 % de chances d’infester l’ennemi : petits dégâts pendant 4 s. S’il meurt infesté, un sbire sort de son corps. Plus de dégâts à chaque niveau.'), r: 'r', max: 5, c: 'spe', f: s => { s.infest = (s.infest || 0) + 1; } },
+  { id: 'sumBoom', wu: 6, n: _t('Pacte explosif'), d: _t('Quand un sbire disparaît, il explose et blesse les ennemis autour. Plus fort à chaque niveau.'), r: 'e', max: 3, c: 'spe', f: s => { s.sumBoom = (s.sumBoom || 0) + 1; } },
+  { id: 'soul', wu: 6, n: _t('Moisson d’âmes'), d: _t('8 % de chances par niveau qu’un ennemi éliminé revienne comme sbire à tes côtés.'), r: 'r', max: 3, c: 'spe', f: s => { s.soul = (s.soul || 0) + 1; } },
+  { id: 'sumLord', wu: 6, n: _t('Nécromancien'), d: _t('Tes sbires ont 2× plus de PV et de dégâts, et tu peux en avoir 4 de plus.'), r: 'l', max: 1, c: 'spe', f: s => { s.sumLord = 1; s.minMul = (s.minMul || 1) * 2; } },
   // perks suprêmes : apparaissent quand le perk de base est au niveau max
   { id: '_sdmg', sup: 1, req: 'dmg', n: _t('Fureur suprême'), d: _t('+25 % de dégâts, et 15 % de chances que chaque tir frappe ×3'), r: 's', max: 1, c: 'atk', f: s => { s.dmg *= 1.25; s.supCrush = 1; } },
   { id: '_srate', sup: 1, req: 'rate', n: _t('Gatling suprême'), d: _t('+20 % de cadence, et 20 % de chances de tirer chaque salve deux fois'), r: 's', max: 1, c: 'atk', f: s => { s.rate *= 1.2; s.echo = (s.echo || 0) + 0.2; } },
@@ -2095,11 +2123,13 @@ const UP = [
   { id: '_scrit', sup: 1, req: 'crit', n: _t('Œil du faucon'), d: _t('+15 % de critique, et les critiques frappent ×1 de plus'), r: 's', max: 1, c: 'atk', f: s => { s.crit += 0.15; s.critMul += 1; } },
   { id: '_spois', sup: 1, req: 'poison', n: _t('Pandémie'), d: _t('Le poison se propage aux ennemis proches quand sa cible meurt, et fait deux fois plus mal'), r: 's', max: 1, c: 'spe', f: s => { s.plague = 1; } },
   { id: '_sfire', sup: 1, req: 'ignite', n: _t('Enfer'), d: _t('Chaque cible en feu explose à coup sûr et laisse une zone de feu'), r: 's', max: 1, c: 'spe', f: s => { s.inferno = 1; } },
+  { id: '_sbub', sup: 1, req: 'bubble', n: _t('Méga-bulle'), d: _t('50 % de chances d’avoir une bulle, elle arrête 3 tirs ennemis, et éclate en vague d’eau sur l’ennemi touché'), r: 's', max: 1, c: 'def', f: s => { s.supBub = 1; } },
+  { id: '_ssum', sup: 1, req: 'sum', n: _t('Armée des morts'), d: _t('Toutes les 6 s, 4 sbires sortent du sol d’un coup, tu peux en avoir 3 de plus, et chaque coup de sbire te rend 0,5 PV'), r: 's', max: 1, c: 'spe', f: s => { s.ssum = 1; } },
   { id: '_selem', sup: 1, req: 'elem', n: _t('Cataclysme'), d: _t('La foudre, le feu et la glace se déclenchent deux fois plus souvent et frappent deux fois plus fort'), r: 's', max: 1, c: 'spe', f: s => { s.cata = 1; } }
 ];
 const UPID = Object.fromEntries(UP.map(u => [u.id, u]));
 const slotMax = () => 6 + Math.min(6, WORLDS.filter(w => w.waves && meta.wdone[w.id]).length) + (meta.wdone.nw3 ? 1 : 0) + (meta.wdone.nw6 ? 1 : 0);   // 6 perks au départ, +1 par monde terminé, +1 au Monde 3 et +1 au Monde 6 en Nightmare (les reliques et les suprêmes n'en prennent pas)
-const worldPerkOk = u => !u.w || (G && G.world && (G.world.dg ? G.world.no >= u.w && (u.w <= 1 || !!meta.wdone['w' + (u.w - 1)]) : (G.world.no >= u.w || (G.world.id === 'inf' && meta.wdone['w' + (u.w - 1)]))));
+const worldPerkOk = u => (!u.wu || !!meta.wdone['w' + (u.wu - 1)]) && (!u.w || (G && G.world && (G.world.dg ? G.world.no >= u.w && (u.w <= 1 || !!meta.wdone['w' + (u.w - 1)]) : (G.world.no >= u.w || (G.world.id === 'inf' && meta.wdone['w' + (u.w - 1)])))));
 const SHARDCARD = { id: '_shard', n: _t('Prime'), d: _t('+15 nuggets à la fin de la partie'), r: 'c', max: 1e9, c: 'spe', f: () => { G.shards += 15; } };
 const SUPERPRIME = { id: '_shard2', n: _t('Super prime'), d: _t('+2 diams à la fin de la partie'), r: 'r', max: 1e9, c: 'spe', f: () => { G.jet += 2; } };
 const HEALCARD = { id: '_heal', n: _t('Réparation express'), d: _t('Répare 40 % des PV'), r: 'c', max: 1e9, c: 'def', f: (s, p) => { p.hp = Math.min(s.maxHp, p.hp + s.maxHp * 0.4); } };
@@ -2107,6 +2137,9 @@ const ICON2 = {
   wind: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h16a3 3 0 1 1-3 3M3 16h8"/></svg>',
   skyfire: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".55"/><path d="M17 3 9 11M21 7l-7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".35"/><circle cx="8.5" cy="15.5" r="4.5" fill="currentColor"/><path d="M3 21h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
   skybolt: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9a4 4 0 0 1 1-7.8A5 5 0 0 1 16.5 2 3.5 3.5 0 0 1 18 9z" fill="currentColor" opacity=".55"/><path d="M12 9 8 15h4l-2 6 6-8h-4l2-4z" fill="currentColor"/><path d="M4 22h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  skull: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a8 8 0 0 0-8 8c0 3 1.5 5 3 6v3h2v-2h2v2h2v-2h2v2h2v-3c1.5-1 3-3 3-6a8 8 0 0 0-8-8z" fill="currentColor"/><circle cx="8.8" cy="10.5" r="2.1" fill="#0b0614"/><circle cx="15.2" cy="10.5" r="2.1" fill="#0b0614"/></svg>',
+  bubble: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7.5 9a5 5 0 0 1 4-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".7"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>',
+  aim: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21 15 9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="2.5 3"/><path d="M15 5l4 4M19 5l-4 4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
   chainz: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="9" width="8" height="6" rx="3"/><rect x="14" y="9" width="8" height="6" rx="3"/><path d="M8 12h8"/><path d="M12 3 10 7h3l-2 3" stroke-width="1.6"/></svg>',
 
   bullet: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h10.5c3 0 5.5 1.1 5.5 2.5s-2.5 2.5-5.5 2.5H4z" fill="currentColor"/><path d="M2 9.5v5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
@@ -2130,6 +2163,8 @@ const ICON2 = {
 };
 /* Icône et type d'effet de chaque perk (affichés sur la carte). */
 const PERKV = {
+  bubble: ['bubble', _t('Défense')], aimL: ['aim', _t('Visée')], elemP: ['drop', _t('Poison')], miasma: ['drop', _t('Poison')], blizzard: ['snow', _t('Glace')],
+  sum: ['skull', _t('Incantation')], dSumT: ['skull', _t('Dash')], dSumA: ['skull', _t('Dash')], sumRain: ['skull', _t('Incantation')], infest: ['skull', _t('Incantation')], sumBoom: ['skull', _t('Incantation')], soul: ['skull', _t('Incantation')], sumLord: ['skull', _t('Incantation')],
   range: ['target', _t('Portée')], plate: ['def', _t('Défense')], dashl: ['mob', _t('Dash')], exec: ['target', _t('Dégâts')], adren: ['rapid', _t('Vitesse d’attaque')], mine: ['boom', _t('Explosion')],
   cryodash: ['snow', _t('Ralentissement')], thunder: ['elem', _t('Foudre')], mt_berserk: ['bullet', _t('Dégâts')], mt_singu: ['aura', _t('Gravité')], meteor: ['fire', _t('Explosion')],
   drEsc: ['drone', _t('Drone')], drVolt: ['elem', _t('Drone')], drFire: ['fire', _t('Drone')], drIce: ['snow', _t('Drone')], drTox: ['drop', _t('Drone')], drBomb: ['boom', _t('Drone')],
@@ -2428,7 +2463,7 @@ const stuffById = id => GSETS.find(t => t.id === id && !t.soon) || null;
 const PRISM = ['volt', 'hot', 'plasma', 'ion', 'ok', 'ember'], PASTEL = ['ink', 'plasma', 'ion'];
 const skinById = id => SKINS.find(k => k.id === id) || SKINS[0];
 let curSk = SKINS[0], prismI = 0;
-const tankSkin = () => (P && (P.look || (P.stuff && P.stuff.skin)) && meta.gearLook !== false) ? STUFFSK[P.look || P.stuff.skin] : curSk;
+const tankSkin = () => P && P.trans && TRANS[P.trans] ? TRANS[P.trans].sk : (P && (P.look || (P.stuff && P.stuff.skin)) && meta.gearLook !== false) ? STUFFSK[P.look || P.stuff.skin] : curSk;
 /* Set légendaire complet porté (4/4) : son apparence (Magma, Abysses…), ou null. */
 function gearFull() { try { const s0 = baseStats(), g = applyGear(s0); return g && g.look ? g.look : null; } catch (e) { return null; } }   // skin de set : dès 2 pièces
 function shotKey() {
@@ -2620,6 +2655,7 @@ function merge(s) {
   if (Number.isFinite(s.ptime)) meta.ptime = Math.max(meta.ptime || 0, s.ptime);
   if (s.tot && typeof s.tot === 'object') for (const k of ['k', 'r', 'b']) if (Number.isFinite(s.tot[k])) meta.tot[k] = Math.max(meta.tot[k] || 0, s.tot[k] | 0);
   if (s.bp && typeof s.bp === 'object' && Number.isFinite(s.bp.s)) meta.bp = { s: s.bp.s | 0, xp: Math.max(0, s.bp.xp | 0), prem: !!s.bp.prem, f: Object.assign({}, s.bp.f), p: Object.assign({}, s.bp.p) };
+  if (Number.isFinite(s.updSeen)) meta.updSeen = Math.max(meta.updSeen || 0, s.updSeen);
   if (s.welc && typeof s.welc === 'object') meta.welc = { t: Number(s.welc.t) || 0, done: !!s.welc.done };
   if (Array.isArray(s.notes)) meta.notes = s.notes.filter(x => x && typeof x === 'object').slice(-30).map(x => ({ at: String(x.at || ''), t: String(x.t || '').slice(0, 80), l: Array.isArray(x.l) ? x.l.slice(0, 12).map(String) : [] }));
   if (s.cls && typeof s.cls === 'object') Object.assign(meta.cls, s.cls);
@@ -2759,7 +2795,7 @@ const sfx = {
   _l: {},
   ok(k, ms) { const n = performance.now(); if (n - (this._l[k] || 0) < ms) return false; this._l[k] = n; return true; },
   shoot() { if (this.ok('s', 80)) tone(640, 0.05, 'square', 0.03, -330); },
-  ui() { if (this.ok('u', 40)) tone(1250, 0.025, 'sine', 0.035, 380); },
+  ui() { if (this.ok('u', 40)) { tone(1250, 0.04, 'sine', 0.09, 420); tone(2600, 0.018, 'square', 0.025, 0); } },
   hit() { if (this.ok('h', 50)) tone(210, 0.04, 'triangle', 0.06, -60); },
   kill() { if (this.ok('k', 55)) { noise(0.1, 0.11, 1400); tone(150, 0.1, 'sawtooth', 0.05, -90); } },
   pick() { if (this.ok('p', 45)) tone(880 + Math.random() * 320, 0.05, 'sine', 0.05, 200); },
@@ -2924,7 +2960,8 @@ function startMusic() {
   audioVols();
 }
 for (const ev of ['pointerdown', 'touchend', 'keydown']) window.addEventListener(ev, () => startMusic(), { once: true, capture: true });
-document.addEventListener('click', e => { if (meta.opt && meta.opt.clk === false) return; const b = e.target.closest && e.target.closest('button,.btn,summary,[role=button]'); if (b && !b.disabled) try { sfx.ui(); } catch (er) {} }, true);
+// petit son de clic sur tous les boutons (le menu est muet par défaut : on passe par uis() et on réveille l'audio au premier appui)
+document.addEventListener('click', e => { if (meta.opt && meta.opt.clk === false) return; const b = e.target.closest && e.target.closest('button,.btn,summary,[role=button],.tile,.card,.offer,label'); if (b && !b.disabled) try { initAudio(); uis(() => sfx.ui()); } catch (er) {} }, true);
 /* Quitter l'appli : on baisse tout en 60 ms puis on met le son en veille (sinon iOS coupe net au milieu des notes : « bruit bizarre »). */
 let audSleepT = 0;
 /* Baisse la musique pendant un vocal (enregistrement ou écoute). */
@@ -3173,6 +3210,7 @@ function newRun(clsId, wid) {
         world: worldById(wid || meta.world), nm: !!(meta.nm && nmOpen()) && !worldById(wid || meta.world).quick, kind: 'normal', runes: [], bossK: 0, miniK: 0, bossDef: null, miniDef: null, winT: 0, won: false, autoSpawnT: rnd(35, 60), jet: 0, laser: null, wball: null, typh: null, drops: [], chDrops: [], scr: 0, bossN: 0, petK: 0, fx2: [] };
   G.pending = m.m_start || 0;
   curSk = skinById(meta.skin);
+  { const b = document.getElementById('bUlt'); if (b && b.classList.contains('trult')) { b.innerHTML = 'SUR<br>CHARGE'; b.classList.remove('trult'); } }
   enemies = []; bullets = []; ebul = []; orbs = []; parts = []; texts = []; bolts = []; hazards = []; pickups = []; spawns = []; rings = []; ghosts = []; zones = [];
   crystals = []; for (let i = 0; i < CRY; i++) addCrystal(true);
   cam.x = 0; cam.y = 0; cam.shake = 0;
@@ -3680,6 +3718,7 @@ function kill(e) {
   if (e.dead) return;
   if (e.type === 'zombie' && !e.rez && !G.demo && !(G.mp && G.mp.guest)) { zombieDown(e); return; }
   if (G.dg && !G.demo && e.type !== 'boss') discover('dg:' + e.type);
+  if (!G.demo && P && P.s && e.type !== 'boss' && ((e.infT > 0 && P.s.infest) || (P.s.soul && Math.random() < 0.08 * P.s.soul))) summon(e.x, e.y);   // infestation / moisson d'âmes
   discover(e.type === 'boss' ? (e.mini ? 'm:' : 'b:') + e.boss.n : e.type + (e.v ? '@' + e.v : ''), e);
   e.dead = true; G.kills++; G.combo++; G.comboT = 2.6; mpRaceKill(e);
   if ((e.v || 0) >= 4 && e.type !== 'boss' && !G.demo) { const nb = e.v >= 5 ? 6 : 4, a0 = rnd(0, TAU); for (let k = 0; k < nb; k++) ebullet(e.x, e.y, a0 + k * TAU / nb, e.v >= 5 ? 190 : 150, e.dmg * 0.45, 5); }   // variantes des mondes 5 et 6 : éclatent à leur mort
@@ -3748,6 +3787,11 @@ function debuffs(e, dt) {
     if (e.bubT <= 0 && !e.dead) bubPop(e);
   }
   if (e.wslowT > 0) { e.wslowT -= dt; if (e.wslowT <= 0) e.wslowLv = 0; }
+  if (e.infT > 0 && !e.dead) {   // infestation : petits dégâts sur la durée
+    e.infT -= dt; e.iAcc = (e.iAcc || 0) + dt;
+    if (e.iAcc >= 0.5) { e.iAcc -= 0.5; dmgEnemy(e, s.dmg * (0.06 + 0.04 * e.infLv), false, '#b98cff'); }
+    if (parts.length < 330 && Math.random() < dt * 7) parts.push({ x: e.x + rnd(-0.6, 0.6) * e.r, y: e.y + rnd(-0.6, 0.6) * e.r, vx: rnd(-20, 20), vy: rnd(-20, 20), life: 0.45, max: 0.45, col: '#7a3fd0', s: rnd(2, 3) });
+  }
   if (e.psT > 0 && !e.dead) {   // poison
     e.psT -= dt; e.pAcc = (e.pAcc || 0) + dt;
     if (e.pAcc >= 0.5) { e.pAcc -= 0.5; dmgEnemy(e, s.dmg * (0.12 + 0.08 * e.psLv) * (s.plague ? 2 : 1), false, '#6dff7a'); }
@@ -3985,6 +4029,7 @@ function volley(ang, n, lay) {
     const b = bullets[bullets.length - 1];
     if (k === 'disc') { b.pierce = 999; b.out = true; b.ot = life * 0.5; b.life = life * 2.4; b.sp0 = v; b.tt = 5; }
     else if (k === 'rocket') b.hm = Math.random() < 0.2;
+    if (s.bub && Math.random() < (s.supBub ? 0.5 : [0, 0.2, 0.26, 0.32, 0.4][Math.min(4, s.bub)])) { b.bub = s.supBub ? 3 : 1; b.bubR = 2.4 + 0.25 * s.bub + (s.supBub ? 0.6 : 0); }   // balle sous bulle
     else if (k === 'flame') { b.pierce = Math.max(1, b.pierce); b.l0 = b.life; P.flameT = 0.12; }
   }
 }
@@ -4015,7 +4060,7 @@ function tesla(ang, n) {
 }
 function dash() {
   if (state !== 'play' || P.dashCd > 0 || P.dashT > 0) return;
-  P.dashX = P.mvx; P.dashY = P.mvy; P.dashT = 0.17 * (P.s.dashLen || 1); P.dashCd = P.s.dashCd * (P.hasteT > 0 ? 0.5 : 1);
+  P.dashX = P.mvx; P.dashY = P.mvy; P.dsx = P.x; P.dsy = P.y; P.dashT = 0.17 * (P.s.dashLen || 1); P.dashCd = P.s.dashCd * (P.hasteT > 0 ? 0.5 : 1);
   if (P.s.dashBolt) { shock(P.x, P.y, 150, P.s.dmg * 3, 320, 'ion'); for (let i = 0; i < 3; i++) bolt(P.x, P.y, P.x + rnd(-150, 150), P.y + rnd(-150, 150), 'ion'); } P.inv = Math.max(P.inv, 0.32);
   if (P.s.mine) { G.fx2.push({ k: 'mine', x: P.x, y: P.y, t: 0, T: 0.7, r: 80 + 15 * P.s.mine, dmg: P.s.dmg * (2 + 0.5 * P.s.mine) }); }
   if (P.s.cryoDash) { ring(P.x, P.y, 170, 'ion', 0.35, 6); burst(P.x, P.y, 'ion', 14, 220); for (const e of enemies) if (!e.dead && dist2(e.x, e.y, P.x, P.y) < 170 * 170) { e.slow = Math.max(e.slow || 0, 2); if (e.type !== 'boss') e.frz = Math.max(e.frz || 0, 2); } }
@@ -4029,6 +4074,7 @@ function ulti() {
   shock(P.x, P.y, 300, P.s.dmg * 5, 520, 'volt'); ring(P.x, P.y, 420, 'ink', 0.5, 4);
   for (const b of ebul) if (dist2(b.x, b.y, P.x, P.y) < 360 * 360) b.dead = true;
   G.flash = 0.45; shake(14); vib(80); sfx.ulti(); banner(_t('SURCHARGE'), '', C.volt, 1.2);
+  if (P.trans) transSpecial();   // transformé : la surcharge lance aussi l'attaque spéciale
 }
 function hurt(d) {
   if (G.nm && d > 0 && !P.radTick) radAdd(1);
@@ -4078,6 +4124,10 @@ function updPlayer(dt) {
     if (s.dCut || s.dBump) for (const e of enemies) if (!e.dead && !(e.dcT > G.t) && dist2(e.x, e.y, P.x, P.y) < (e.r + P.r + 6) * (e.r + P.r + 6)) { e.dcT = G.t + 0.4; if (s.dCut) { dmgEnemy(e, s.dmg * (1.5 + 1.2 * s.dCut), false, C.ion); burst(e.x, e.y, 'ion', 5, 160); } if (s.dBump && e.type !== 'boss') { const d = Math.hypot(e.x - P.x, e.y - P.y) || 1; e.kx += (e.x - P.x) / d * 260 * s.dBump; e.ky += (e.y - P.y) / d * 260 * s.dBump; } }
     if (s.dMirror) for (const b of ebul) if (!b.dead && dist2(b.x, b.y, P.x, P.y) < (P.r + 26) * (P.r + 26)) { b.dead = true; const a = Math.atan2(-b.vy, -b.vx) + rnd(-0.15, 0.15), v = Math.max(420, Math.hypot(b.vx, b.vy) * 1.6);
       bullets.push({ x: b.x, y: b.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, r: 7, dmg: s.dmg * 1.8, life: 1.2, pierce: 1, bounce: 0, hit: [], dead: false, kind: 'mirror', mirror: true }); burst(b.x, b.y, 'volt', 4, 120); }
+    if (P.dashT <= 0 && !G.demo && (s.dSumT || s.dSumA)) {   // dash des ombres / portail d'ombre
+      if (s.dSumT) { const n = 1 + s.dSumT; for (let i = 0; i < n; i++) { const k = (i + 0.5) / n; summon(P.dsx + (P.x - P.dsx) * k, P.dsy + (P.y - P.dsy) * k); } }
+      if (s.dSumA) { ring(P.x, P.y, 90, 'plasma', 0.3, 5); for (const e of enemies) if (!e.dead && dist2(e.x, e.y, P.x, P.y) < 100 * 100) dmgEnemy(e, s.dmg * (1 + 0.5 * s.dSumA), false, '#c58bff'); for (let i = 0; i < 1 + s.dSumA; i++) { const a = rnd(0, TAU); summon(P.x + Math.cos(a) * 45, P.y + Math.sin(a) * 45); } }
+    }
     if (P.dashT <= 0 && s.dTox) zones.push({ x: P.x, y: P.y, r: 95, t: 5, max: 5, lava: false, poison: true, slowZ: true, dps: s.dmg * 1.2, tick: 0, dead: false });
   } else { const k = Math.min(1, dt * 13); P.vx += (ix * sp - P.vx) * k; P.vy += (iy * sp - P.vy) * k; }
   P.x += P.vx * dt; P.y += P.vy * dt;
@@ -4157,6 +4207,148 @@ function updPlayer(dt) {
   } else if (P.cool < 0) P.cool = 0;
 }
 
+/* ================= MAJ 5 : Incantation (sbires) et transformations ================= */
+/* Sbires des ténèbres : petits alliés qui sortent du sol et attaquent au corps à corps (≈10 % de tes PV max et de tes dégâts). */
+function minCap() { const s = P.s; return 3 + (s.sum || 0) + (s.sumLord ? 4 : 0) + (s.ssum ? 3 : 0) + (P.trans === 'shini' ? 3 : 0) + (P.trans === 'rat' ? 8 : 0); }
+function summon(x, y, kind) {
+  if (!G || G.demo || !P) return; G.mins = G.mins || []; const s = P.s, live = G.mins.filter(m => !m.dead);
+  if (live.length >= minCap()) { let o = live[0]; for (const m of live) if (m.life < o.life) o = m; o.dead = true; o.quiet = true; }
+  const mul = (s.minMul || 1) * (P.trans === 'shini' ? 1.5 : 1), rat = kind === 'rat', o = { x, y }; clampArena(o, 12);
+  const hp = Math.max(8, s.maxHp * 0.1 * mul * (rat ? 0.6 : 1));
+  G.mins.push({ x: o.x, y: o.y, vx: 0, vy: 0, hp, max: hp, dmg: s.dmg * 0.1 * mul * (1 + 0.15 * Math.max(0, (s.sum || 1) - 1)) * (rat ? 0.8 : 1), life: rat ? 7 : 12, t: 0, cd: 0.3, rat, dead: false, a: rnd(0, TAU) });
+  for (let i = 0; i < 6 && parts.length < 340; i++) parts.push({ x: o.x + rnd(-10, 10), y: o.y + rnd(-4, 6), vx: rnd(-40, 40), vy: rnd(-90, -30), life: 0.5, max: 0.5, col: rat ? '#8dff6a' : '#b98cff', s: rnd(2, 4) });
+}
+function minDie(m) {
+  m.dead = true; if (m.quiet) return; const s = P.s; burst(m.x, m.y, m.rat ? 'ok' : 'plasma', 8, 140);
+  if (s.sumBoom) { const r = 60 + 10 * s.sumBoom; ring(m.x, m.y, r, 'plasma', 0.25, 4); for (const e of enemies) if (!e.dead && dist2(e.x, e.y, m.x, m.y) < (r + e.r) * (r + e.r)) dmgEnemy(e, s.dmg * (0.8 + 0.5 * s.sumBoom), false, '#c58bff'); }
+}
+function updMins(dt) {
+  const L = G.mins; if (!L || !L.length) return; const s = P.s;
+  for (const m of L) { if (m.dead) continue;
+    m.t += dt; m.life -= dt; m.cd -= dt; if (m.life <= 0 || m.hp <= 0) { minDie(m); continue; }
+    if (m.t < 0.35) continue;   // il sort encore du sol
+    let tg = null, bd = 520 * 520; for (const e of enemies) { if (e.dead || e.downT > 0) continue; const d = dist2(e.x, e.y, m.x, m.y); if (d < bd) { bd = d; tg = e; } }
+    let tx, ty, sp = m.rat ? 300 : 230;
+    if (tg) { tx = tg.x; ty = tg.y; } else { m.a += dt * 1.4; tx = P.x + Math.cos(m.a) * 70; ty = P.y + Math.sin(m.a) * 70; sp *= 0.8; }
+    const dx = tx - m.x, dy = ty - m.y, d = Math.hypot(dx, dy) || 1;
+    if (tg && d < tg.r + 10) { if (m.cd <= 0) { m.cd = 0.4; dmgEnemy(tg, m.dmg, false, m.rat ? '#8dff6a' : '#c58bff'); if (m.rat) { tg.psT = 3; tg.psLv = Math.max(tg.psLv || 0, 3); } if (s.ssum) heal(0.5); m.hp -= (tg.dmg || 8) * 0.3; } }
+    else { const k = Math.min(1, dt * 8); m.vx += (dx / d * sp - m.vx) * k; m.vy += (dy / d * sp - m.vy) * k; m.x += m.vx * dt; m.y += m.vy * dt; clampArena(m, 10); }
+  }
+  if (L.length > 40 || L.some(m => m.dead)) G.mins = L.filter(m => !m.dead);
+}
+function drawMins(vis) {
+  const L = G && G.mins; if (!L || !L.length) return; const g = ctx;
+  for (const m of L) { if (m.dead || !vis(m.x, m.y, 30)) continue; const up = clamp(m.t / 0.35, 0, 1), r = (m.rat ? 8 : 11) * (0.4 + 0.6 * up), fade = m.life < 1 ? m.life : 1;
+    g.save(); g.globalAlpha = fade; g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); g.ellipse(m.x, m.y + r * 0.8, r * 1.2, r * 0.45, 0, 0, TAU); g.fill();
+    const y = m.y - (1 - up) * -8 + Math.sin(m.t * 9) * 1.5, a = Math.atan2(m.vy, m.vx);
+    if (m.rat) {   // rat vert
+      g.translate(m.x, y); g.rotate(a); g.strokeStyle = '#6a8a5a'; g.lineWidth = 2; g.beginPath(); g.moveTo(-r, 0); g.quadraticCurveTo(-r * 2, Math.sin(m.t * 12) * r, -r * 2.6, 0); g.stroke();
+      g.fillStyle = '#3c5232'; g.beginPath(); g.ellipse(0, 0, r * 1.25, r * 0.8, 0, 0, TAU); g.fill(); g.fillStyle = '#5a7a4a'; g.beginPath(); g.arc(r * 0.2, -r * 0.7, r * 0.35, 0, TAU); g.arc(r * 0.2, r * 0.7, r * 0.35, 0, TAU); g.fill();
+      g.fillStyle = '#c4ff8a'; g.beginPath(); g.arc(r * 0.9, -r * 0.25, 1.6, 0, TAU); g.arc(r * 0.9, r * 0.25, 1.6, 0, TAU); g.fill();
+    } else {   // sbire : petite ombre à capuche
+      g.globalCompositeOperation = LIT; g.globalAlpha = 0.5 * fade; g.drawImage(GS.plasma || GS.volt, m.x - r * 2.2, y - r * 2.2, r * 4.4, r * 4.4); g.globalCompositeOperation = 'source-over'; g.globalAlpha = fade;
+      g.fillStyle = '#140a24'; g.strokeStyle = '#8a5ad6'; g.lineWidth = 1.6; g.beginPath(); g.moveTo(m.x, y - r * 1.2); g.quadraticCurveTo(m.x + r, y - r * 0.4, m.x + r * 0.9, y + r * 0.8);
+      for (let i = 0; i <= 3; i++) g.lineTo(m.x + r * 0.9 - i * r * 0.6, y + r * 0.8 + (i % 2 ? -r * 0.3 : 0)); g.quadraticCurveTo(m.x - r, y - r * 0.4, m.x, y - r * 1.2); g.closePath(); g.fill(); g.stroke();
+      g.fillStyle = '#e0b3ff'; const ex = Math.cos(a) * r * 0.2; g.beginPath(); g.arc(m.x - r * 0.28 + ex, y - r * 0.35, 1.8, 0, TAU); g.arc(m.x + r * 0.28 + ex, y - r * 0.35, 1.8, 0, TAU); g.fill();
+    }
+    g.restore();
+    if (m.hp < m.max) { g.fillStyle = 'rgba(0,0,0,.5)'; g.fillRect(m.x - 10, m.y - r - 8, 20, 3); g.fillStyle = m.rat ? '#8dff6a' : '#c58bff'; g.fillRect(m.x - 10, m.y - r - 8, 20 * clamp(m.hp / m.max, 0, 1), 3); }
+  }
+}
+/* Timers des perks MAJ 5 (sbires, éclair de sbires, miasme, blizzard, armée des morts) et des transformations. */
+function updInc(dt) {
+  const s = P.s;
+  if (s.sum) { P.sumT = (P.sumT ?? 1.5) - dt; if (P.sumT <= 0) { P.sumT = Math.max(1.6, 4.6 - 0.6 * s.sum); const a = rnd(0, TAU); summon(P.x + Math.cos(a) * 40, P.y + Math.sin(a) * 40); } }
+  if (s.ssum) { P.ssT = (P.ssT ?? 3) - dt; if (P.ssT <= 0) { P.ssT = 6; ring(P.x, P.y, 90, 'plasma', 0.35, 5); for (let i = 0; i < 4; i++) { const a = i * TAU / 4; summon(P.x + Math.cos(a) * 60, P.y + Math.sin(a) * 60); } } }
+  if (s.sumRain) { P.srT = (P.srT ?? 2) - dt; if (P.srT <= 0) { P.srT = Math.max(1, 3.6 - 0.45 * s.sumRain);
+    const near = enemies.filter(e => !e.dead && dist2(e.x, e.y, P.x, P.y) < 620 * 620), e = near.length ? pick(near) : null, x = e ? e.x + rnd(-50, 50) : P.x + rnd(-260, 260), y = e ? e.y + rnd(-50, 50) : P.y + rnd(-260, 260);
+    ring(x, y, 46, 'plasma', 0.25, 4); for (const o of enemies) if (!o.dead && dist2(o.x, o.y, x, y) < 60 * 60) dmgEnemy(o, s.dmg * 0.8, false, '#c58bff'); summon(x, y); } }
+  if (s.miasma) { P.miT = (P.miT ?? 1) - dt; const R = 100 + 25 * s.miasma; if (Math.random() < dt * 14 && parts.length < 330) { const a = rnd(0, TAU), d = rnd(20, R); parts.push({ x: P.x + Math.cos(a) * d, y: P.y + Math.sin(a) * d, vx: 0, vy: -20, life: 0.8, max: 0.8, col: '#6dff7a', s: rnd(3, 6), bub: true }); }
+    if (P.miT <= 0) { P.miT = 1; for (const e of enemies) if (!e.dead && dist2(e.x, e.y, P.x, P.y) < (R + e.r) * (R + e.r)) { e.psT = 3; e.psLv = Math.max(e.psLv || 0, s.miasma + (s.poison || 0)); } } }
+  if (s.blizzard) { P.bzT = (P.bzT ?? 3) - dt; if (P.bzT <= 0) { P.bzT = 6; P.bzOn = 2.5; ring(P.x, P.y, 260, 'ion', 0.4, 5); tone(300, 1.2, 'triangle', 0.05, -200); }
+    if (P.bzOn > 0) { P.bzOn -= dt; P.bzA = (P.bzA || 0) + dt * 5; P.bzK = (P.bzK || 0) + dt;
+      if (parts.length < 340) for (let i = 0; i < 3; i++) { const a = P.bzA + rnd(0, TAU), d = rnd(40, 260); parts.push({ x: P.x + Math.cos(a) * d, y: P.y + Math.sin(a) * d, vx: -Math.sin(a) * 260, vy: Math.cos(a) * 260, life: 0.35, max: 0.35, col: '#e8fbff', s: rnd(2, 4) }); }
+      if (P.bzK >= 0.25) { P.bzK = 0; for (const e of enemies) if (!e.dead && dist2(e.x, e.y, P.x, P.y) < 260 * 260) { dmgEnemy(e, s.dmg * 0.35, false, '#bff3ff'); e.slow = Math.max(e.slow || 0, 1.5); if (e.type !== 'boss' && Math.random() < 0.12) e.frz = Math.max(e.frz || 0, 1.2); } } } }
+  if (G.mins && G.mins.length) updMins(dt);
+  if (G.trFx) updTrFx(dt);
+}
+/* Transformations : 6 perks différents du même élément = le tank se transforme jusqu'à la fin de la partie. */
+const TRANS = {
+  zeus: { n: 'Zeus', el: _t('Foudre'), col: '#ffe14a', fx: 'volt', sp: _t('COLÈRE DE ZEUS'), spd: _t('Pendant 4 s, la foudre tombe de partout sur la map.'),
+    ids: ['chain', 'storm', 'thunder', 'elem', 'static', 'satV', 'drVolt', 'mt_volt', '_selem', '_sspd'], buff: _t('+30 % de dégâts, +20 % de cadence, +10 % de vitesse, +1 rebond électrique'),
+    sk: { id: 'tr_zeus', n: 'Zeus', line: '#ffe14a', fill: '#3a2f08', core: '#ffffff', barrel: '#5a4710', shot: 'volt' }, f: s => { s.dmg *= 1.3; s.rate *= 1.2; s.speed *= 1.1; s.chain += 1; } },
+  lucifer: { n: 'Lucifer', el: _t('Feu'), col: '#ff3d2a', fx: 'ember', sp: _t('JUGEMENT INFERNAL'), spd: _t('Pendant 4 s, une pluie de feu s’abat sur toute la map et laisse des flaques de lave.'),
+    ids: ['ignite', 'elemF', 'meteor', 'satB', 'drFire', 'dFire', 'explode', '_sfire'], buff: _t('+45 % de dégâts, +15 % de PV max, tous tes tirs enflamment'),
+    sk: { id: 'tr_lucifer', n: 'Lucifer', line: '#ff3d2a', fill: '#1a0505', core: '#ffb347', barrel: '#3a0a0a', shot: 'ember' }, f: (s, p) => { s.dmg *= 1.45; s.maxHp = Math.round(s.maxHp * 1.15); s.burn = 1; s.burnLvl = (s.burnLvl || 0) + 1; } },
+  rat: { n: _t('Roi des rats'), el: _t('Poison'), col: '#8dff6a', fx: 'ok', sp: _t('GRANDE PESTE'), spd: _t('Une horde de 10 rats sort du sol, et tous les ennemis proches sont empoisonnés au maximum.'),
+    ids: ['poison', 'satT', 'drTox', 'dTox', '_spois', 'elemP', 'miasma'], buff: _t('+30 % de PV max, +2 PV/s, poison +2 niveaux, +10 % de vitesse'),
+    sk: { id: 'tr_rat', n: _t('Roi des rats'), line: '#8dff6a', fill: '#14260f', core: '#d6ff9a', barrel: '#26401a', shot: 'ok' }, f: s => { s.maxHp = Math.round(s.maxHp * 1.3); s.regen += 2; s.poison += 2; s.speed *= 1.1; } },
+  thrym: { n: 'Thrym', el: _t('Glace'), col: '#9fe8ff', fx: 'ion', sp: _t('HIVER ÉTERNEL'), spd: _t('Tous les ennemis à l’écran gèlent 3 s et des pics de glace les transpercent.'),
+    ids: ['frost', 'elemI', 'cryodash', 'satF', 'drIce', 'blizzard'], buff: _t('+50 % de PV max, −15 % de dégâts reçus, tirs qui ralentissent beaucoup plus'),
+    sk: { id: 'tr_thrym', n: 'Thrym', line: '#9fe8ff', fill: '#0d2433', core: '#ffffff', barrel: '#1d4560', shot: 'ion' }, f: s => { s.maxHp = Math.round(s.maxHp * 1.5); s.armor = Math.min(0.6, (s.armor || 0) + 0.15); s.frost += 2; } },
+  shini: { n: 'Shinigami', el: _t('Incantation'), col: '#c58bff', fx: 'plasma', sp: _t('MOISSON'), spd: _t('Une faux géante tourne deux fois autour de toi : gros dégâts, les ennemis sous 20 % de PV sont fauchés, et 4 sbires sortent du sol.'),
+    ids: ['sum', 'dSumT', 'dSumA', 'sumRain', 'infest', 'sumBoom', 'soul', 'sumLord', '_ssum'], buff: _t('+30 % de dégâts, +10 % de critique, sbires 50 % plus forts et 3 de plus'),
+    sk: { id: 'tr_shini', n: 'Shinigami', line: '#c58bff', fill: '#0b0614', core: '#f2e6ff', barrel: '#2a1645', shot: 'plasma' }, f: s => { s.dmg *= 1.3; s.crit += 0.1; } }
+};
+const TRN = 6;   // perks du même élément pour se transformer
+function transCount(k) { return TRANS[k].ids.filter(id => P.up[id]).length; }
+function transCheck() {
+  if (!P || P.trans || !G || G.demo || G.chal) return;
+  for (const k in TRANS) if (transCount(k) >= TRN) { transform(k); return; }
+}
+function transform(k) {
+  const T0 = TRANS[k]; P.trans = k; T0.f(P.s, P); P.hp = P.s.maxHp; P.inv = Math.max(P.inv, 2); P.charge = 100;
+  meta.alm['tr:' + k] = 1; save();
+  G.flash = 0.7; shake(18); vib([60, 40, 120]); ring(P.x, P.y, 320, T0.fx, 0.6, 8); ring(P.x, P.y, 180, 'ink', 0.4, 5); burst(P.x, P.y, T0.fx, 50, 420);
+  banner(_t('TRANSFORMATION'), T0.n.toUpperCase() + ' · ' + _t('surcharge = ') + T0.sp, T0.col, 3.2); try { sfx.level(); sfx.ulti(); } catch (e) {}
+  const b = document.getElementById('bUlt'); if (b) { b.innerHTML = T0.n.toUpperCase().replace(' ', '<br>'); b.classList.add('trult'); b.style.setProperty('--trc', T0.col); }
+}
+function transSpecial() {
+  const k = P.trans, T0 = TRANS[k], s = P.s; banner(T0.sp, T0.n, T0.col, 1.6);
+  if (k === 'zeus') G.trFx = { k, t: 0, T: 4, acc: 0 };
+  else if (k === 'lucifer') G.trFx = { k, t: 0, T: 4, acc: 0 };
+  else if (k === 'shini') { G.trFx = { k, t: 0, T: 1.4, acc: 0, hit: {} }; for (let i = 0; i < 4; i++) { const a = i * TAU / 4; summon(P.x + Math.cos(a) * 80, P.y + Math.sin(a) * 80); } }
+  else if (k === 'rat') { for (let i = 0; i < 10; i++) { const a = i * TAU / 10; summon(P.x + Math.cos(a) * 70, P.y + Math.sin(a) * 70, 'rat'); }
+    for (const e of enemies) if (!e.dead && dist2(e.x, e.y, P.x, P.y) < 700 * 700) { e.psT = 6; e.psLv = Math.max(e.psLv || 0, 8); } ring(P.x, P.y, 600, 'ok', 0.6, 6); noise(1, 0.15, 900); }
+  else if (k === 'thrym') { for (const e of enemies) if (!e.dead && dist2(e.x, e.y, P.x, P.y) < 800 * 800) { if (e.type !== 'boss') e.frz = Math.max(e.frz || 0, 3); e.slow = Math.max(e.slow || 0, 4); dmgEnemy(e, s.dmg * 4, false, '#e8fbff'); burst(e.x, e.y, 'ion', 6, 160); }
+    ring(P.x, P.y, 760, 'ion', 0.7, 8); G.flash = 0.5; tone(1800, 1.2, 'sine', 0.06, -1500); }
+}
+function updTrFx(dt) {
+  const F = G.trFx, s = P.s; F.t += dt; F.acc += dt;
+  if (F.k === 'zeus') while (F.acc >= 0.07) { F.acc -= 0.07; const near = enemies.filter(e => !e.dead && dist2(e.x, e.y, P.x, P.y) < 900 * 900), e = near.length && Math.random() < 0.75 ? pick(near) : null;
+    const x = e ? e.x : P.x + rnd(-700, 700), y = e ? e.y : P.y + rnd(-700, 700); bolt(x + rnd(-30, 30), y - 420, x, y, 'volt'); ring(x, y, 60, 'volt', 0.2, 3);
+    for (const o of enemies) if (!o.dead && dist2(o.x, o.y, x, y) < 70 * 70) dmgEnemy(o, s.dmg * 3, false, C.volt); if (sfx.ok('zz', 90)) { tone(1800, 0.08, 'square', 0.04, -1500); noise(0.15, 0.06, 3000); } }
+  else if (F.k === 'lucifer') while (F.acc >= 0.12) { F.acc -= 0.12; const near = enemies.filter(e => !e.dead && dist2(e.x, e.y, P.x, P.y) < 900 * 900), e = near.length && Math.random() < 0.7 ? pick(near) : null;
+    const x = e ? e.x : P.x + rnd(-700, 700), y = e ? e.y : P.y + rnd(-700, 700); shock(x, y, 80, s.dmg * 3.2, 120, 'ember'); for (let i = 0; i < 4; i++) flame(x + rnd(-25, 25), y + rnd(-25, 25), true);
+    if (zones.length < 40) zones.push({ x, y, r: 50, t: 1.6, max: 1.6, lava: true, water: false, poison: false, dps: s.dmg * 1.5, tick: 0, pt: 0, dead: false }); sfx.shell(3); }
+  else if (F.k === 'shini') { const a0 = F.t / F.T * TAU * 2, R = 230;
+    for (const e of enemies) { if (e.dead) continue; const d = Math.hypot(e.x - P.x, e.y - P.y); if (d > R + e.r) continue; const da = Math.abs(angDiff(a0, Math.atan2(e.y - P.y, e.x - P.x)));
+      if (da < 0.5 && !(F.hit[e.id] > F.t)) { F.hit[e.id] = F.t + 0.3; if (e.type !== 'boss' && e.max > 0 && e.hp < e.max * 0.2) { dmgEnemy(e, e.hp + 1, true, '#c58bff'); addText(e.x, e.y - 20, _t('FAUCHÉ'), '#c58bff', 16); } else dmgEnemy(e, s.dmg * 5, false, '#c58bff'); burst(e.x, e.y, 'plasma', 5, 160); } }
+    if (sfx.ok('sc', 180)) noise(0.2, 0.08, 1800); }
+  if (F.t >= F.T) G.trFx = null;
+}
+function drawTrans(g) {   // décor de la transformation par-dessus le tank
+  const k = P.trans, T0 = TRANS[k], x = P.x, y = P.y, r = P.r, t = T;
+  g.save(); g.globalCompositeOperation = LIT; g.globalAlpha = 0.55 + 0.2 * Math.sin(t * 4); g.drawImage(GS[T0.fx] || GS.volt, x - r * 3.2, y - r * 3.2, r * 6.4, r * 6.4); g.globalCompositeOperation = 'source-over'; g.globalAlpha = 1;
+  const crown = (n, h, col) => { g.fillStyle = col; g.strokeStyle = '#000'; g.lineWidth = 1.2; g.beginPath(); for (let i = 0; i <= n * 2; i++) { const a = -Math.PI * 0.85 + i * Math.PI * 0.7 / (n * 2), rr = i % 2 ? r * 1.05 : r * 1.05 + h; const px = x + Math.cos(a) * rr, py = y + Math.sin(a) * rr - r * 0.6; if (i) g.lineTo(px, py); else g.moveTo(px, py); } g.closePath(); g.fill(); g.stroke(); };
+  if (k === 'zeus') { crown(3, r * 0.7, '#ffe14a'); if (Math.random() < 0.5) { const a = rnd(0, TAU), a2 = a + rnd(-0.8, 0.8); bolt(x + Math.cos(a) * r * 1.2, y + Math.sin(a) * r * 1.2, x + Math.cos(a2) * r * 2.4, y + Math.sin(a2) * r * 2.4, 'volt'); } }
+  else if (k === 'lucifer') { g.fillStyle = '#2a0505'; g.strokeStyle = '#ff3d2a'; g.lineWidth = 2;
+    for (const sd of [-1, 1]) { g.beginPath(); g.moveTo(x + sd * r * 0.45, y - r * 0.85); g.quadraticCurveTo(x + sd * r * 1.2, y - r * 1.3, x + sd * r * 1.05, y - r * 2.1); g.quadraticCurveTo(x + sd * r * 0.75, y - r * 1.3, x + sd * r * 0.15, y - r * 0.95); g.closePath(); g.fill(); g.stroke(); }
+    for (const sd of [-1, 1]) { g.save(); g.globalAlpha = 0.75; g.fillStyle = '#ff5a1f'; g.beginPath(); g.moveTo(x + sd * r, y); for (let i = 0; i < 4; i++) { const yy = y - r * 0.9 + i * r * 0.5, w = r * (2.6 - i * 0.35) * (0.9 + 0.1 * Math.sin(t * 12 + i)); g.lineTo(x + sd * w, yy); g.lineTo(x + sd * r * 1.2, yy + r * 0.25); } g.closePath(); g.fill(); g.restore(); }
+    if (Math.random() < 0.6) flame(x + rnd(-r, r), y + rnd(-r, r), true); }
+  else if (k === 'rat') { g.strokeStyle = '#7a9a6a'; g.lineWidth = 3; g.lineCap = 'round'; const ba = P.aim + Math.PI; g.beginPath(); g.moveTo(x + Math.cos(ba) * r, y + Math.sin(ba) * r);
+    for (let i = 1; i <= 6; i++) { const d = r + i * 7, w = Math.sin(t * 8 + i) * 6; g.lineTo(x + Math.cos(ba) * d - Math.sin(ba) * w, y + Math.sin(ba) * d + Math.cos(ba) * w); } g.stroke();
+    g.fillStyle = '#4a6a3a'; g.strokeStyle = '#8dff6a'; g.lineWidth = 1.5; for (const sd of [-1, 1]) { g.beginPath(); g.arc(x + sd * r * 0.85, y - r * 0.85, r * 0.42, 0, TAU); g.fill(); g.stroke(); } crown(3, r * 0.5, '#d6ff9a'); }
+  else if (k === 'thrym') { crown(4, r * 0.9, '#e8fbff'); if (parts.length < 330 && Math.random() < 0.5) { const a = rnd(0, TAU); parts.push({ x: x + Math.cos(a) * r * 1.6, y: y + Math.sin(a) * r * 1.6, vx: 0, vy: 30, life: 0.6, max: 0.6, col: '#e8fbff', s: rnd(2, 3.5) }); }
+    g.strokeStyle = 'rgba(191,243,255,.6)'; g.lineWidth = 2; g.setLineDash([4, 6]); g.beginPath(); g.arc(x, y, r * 2, t, t + TAU); g.stroke(); g.setLineDash([]); }
+  else if (k === 'shini') { const a = t * 0.8; g.save(); g.translate(x, y); g.rotate(a); g.strokeStyle = '#5a3a2a'; g.lineWidth = 3; g.beginPath(); g.moveTo(-r * 1.6, r * 1.2); g.lineTo(r * 1.4, -r * 1.4); g.stroke();
+    g.fillStyle = '#d8d0ff'; g.strokeStyle = '#c58bff'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(r * 1.4, -r * 1.4); g.quadraticCurveTo(r * 0.2, -r * 2.6, -r * 1.1, -r * 1.9); g.quadraticCurveTo(r * 0.3, -r * 1.9, r * 1.1, -r * 1.1); g.closePath(); g.fill(); g.stroke(); g.restore();
+    if (parts.length < 330 && Math.random() < 0.6) parts.push({ x: x + rnd(-r, r), y: y + rnd(-r, r), vx: 0, vy: -50, life: 0.6, max: 0.6, col: '#c58bff', s: rnd(2, 4) }); }
+  const F = G.trFx; if (F && F.k === 'shini') { const a0 = F.t / F.T * TAU * 2, R = 230; g.save(); g.translate(x, y); g.rotate(a0); g.globalCompositeOperation = LIT; g.strokeStyle = 'rgba(197,139,255,.5)'; g.lineWidth = 26; g.beginPath(); g.arc(0, 0, R * 0.8, -0.6, 0); g.stroke();
+    g.globalCompositeOperation = 'source-over'; g.fillStyle = '#e8e0ff'; g.strokeStyle = '#c58bff'; g.lineWidth = 3; g.beginPath(); g.moveTo(R, 0); g.quadraticCurveTo(R * 0.85, -R * 0.45, R * 0.4, -R * 0.55); g.quadraticCurveTo(R * 0.75, -R * 0.3, R * 0.8, 0); g.closePath(); g.fill(); g.stroke();
+    g.strokeStyle = '#5a3a2a'; g.lineWidth = 6; g.beginPath(); g.moveTo(0, 0); g.lineTo(R * 0.92, 0); g.stroke(); g.restore(); }
+  g.restore();
+}
 /* ================= Projectiles ================= */
 function onHit(b, e) {
   const s = P.s; let dmg = b.dmg; const crit = Math.random() < s.crit; if (crit) dmg *= s.critMul;
@@ -4167,6 +4359,9 @@ function onHit(b, e) {
   if (crit && s.critHeal) heal(1);
   if (s.poison) { e.psT = 3; e.psLv = Math.max(e.psLv || 0, s.poison); }
   { const cm = s.cata ? 2 : 1; if (s.elem && Math.random() < (0.05 + 0.04 * s.elem) * cm) elemProc(e, 0); if (s.elemF && Math.random() < (0.05 + 0.04 * s.elemF) * cm) elemProc(e, 1); if (s.elemI && Math.random() < (0.05 + 0.04 * s.elemI) * cm) elemProc(e, 2); }
+  if (s.infest && Math.random() < 0.2) { e.infT = 4; e.infLv = Math.max(e.infLv || 0, s.infest); }
+  if (s.elemP && Math.random() < (0.05 + 0.04 * s.elemP) * (s.cata ? 2 : 1) && zones.length < 40) { zones.push({ x: e.x, y: e.y, r: 70, t: 2.5, max: 2.5, lava: false, water: false, poison: true, dps: s.dmg * (0.6 + 0.2 * s.elemP), tick: 0, pt: 0, dead: false }); bubbleFx(e.x, e.y, 6, 120); }
+  if (b.bub > 0 && s.supBub) { shock(e.x, e.y, 70, dmg * 0.8, 160, 'ion'); bubbleFx(e.x, e.y, 10, 180); b.bub = 0; }
   if (s.frost) e.slow = Math.max(e.slow, 1.2 + s.frost * 0.8);
   if (s.burn && !(e.burnT > 0)) { e.burnT = 3; e.burnLv = 1; }
   if (s.bubble && !(e.bubT > 0)) { e.bubT = 3; e.bubLv = 1; }
@@ -4263,11 +4458,13 @@ function updBullets(dt) {
       if (dx * dx + dy * dy < rs * rs) { if (onHitCrystal(b, c)) break; }
     }
   }
+  const BUBS = P.s.bub ? bullets.filter(q => q.bub > 0 && !q.dead) : [];
   for (const b of ebul) {
     b.life -= dt;
     if (b.hom) { const cur = Math.atan2(b.vy, b.vx), v = Math.hypot(b.vx, b.vy), na = cur + clamp(angDiff(cur, Math.atan2(P.y - b.y, P.x - b.x)), -b.hom * dt, b.hom * dt); b.vx = Math.cos(na) * v; b.vy = Math.sin(na) * v; }   // tirs spectraux : légèrement guidés
     b.x += b.vx * dt; b.y += b.vy * dt;
     if (b.life <= 0 || !inArena(b.x, b.y, 0, b.sp)) { b.dead = true; continue; }
+    if (BUBS.length) { let popd = false; for (const q of BUBS) { if (!(q.bub > 0) || q.dead) continue; const R = q.r * q.bubR + b.r; if (dist2(q.x, q.y, b.x, b.y) < R * R) { b.dead = true; q.bub--; bubbleFx(b.x, b.y, 8, 140); if (sfx.ok('bp', 60)) tone(1600, 0.06, 'sine', 0.05, -900); popd = true; break; } } if (popd) continue; }   // une bulle arrête le tir ennemi
     if (P.s.gshield) { const dx = b.x - P.x, dy = b.y - P.y, d2 = dx * dx + dy * dy, R0 = P.r + 14, R1 = P.r + 40;
       if (d2 > R0 * R0 && d2 < R1 * R1 && Math.abs(angDiff(P.aim, Math.atan2(dy, dx))) < 0.85) { b.dead = true; burst(b.x, b.y, 'ion', 4, 120); continue; } }
     const rs = P.r * 0.8 + b.r; if (dist2(b.x, b.y, P.x, P.y) < rs * rs && hurt(b.dmg)) b.dead = true;
@@ -4355,14 +4552,14 @@ function update(rdt) {
   let dt = rdt; if (G.slow > 0) { G.slow -= rdt; dt *= 0.3; }
   G.t += dt; if (G.hintT > 0) G.hintT -= rdt;
   if (G.mp && G.mp.guest) { updPlayer(dt); if (!G.demo) updGear(dt); mpGuestSim(dt); updZones(dt); updBullets(dt); updComps(dt); mpCoopUpd(dt); if (G.duel) duelTick(dt); updFx(dt); }
-  else { updPlayer(dt); if (!G.demo) updGear(dt); updZones(dt); if (G.dg) dgUpd(dt); else updWave(dt); updSpawns(dt); updEnemies(dt); updBullets(dt); updComps(dt); updWorld(dt); updFx(dt); if (G.mp) { mpCoopUpd(dt); if (G.duel) duelTick(dt); } else ghRec(dt); }
+  else { updPlayer(dt); if (!G.demo) updGear(dt); updZones(dt); if (G.dg) dgUpd(dt); else updWave(dt); updSpawns(dt); updEnemies(dt); updBullets(dt); updComps(dt); if (!G.demo) updInc(dt); updWorld(dt); updFx(dt); if (G.mp) { mpCoopUpd(dt); if (G.duel) duelTick(dt); } else ghRec(dt); }
   compactAll();
   if (G.comboT > 0) { G.comboT -= dt; if (G.comboT <= 0) G.combo = 0; }
   if (G.vacuum > 0) G.vacuum -= dt;
   const k = Math.min(1, dt * 8), lx = G.demo ? demoLiftX : 0, lift = G.demo ? demoLift : 0;
   cam.x += (P.x + P.vx * 0.12 + lx - cam.x) * k; cam.y += (P.y + P.vy * 0.12 + lift - cam.y) * k;
   if (G.demo) {   // la démo choisit ses cartes toute seule
-    while (G.pending > 0) { G.pending--; const u = rollCards(1, false)[0]; u.f(P.s, P); P.up[u.id] = (P.up[u.id] || 0) + 1; }
+    while (G.pending > 0) { G.pending--; const u = rollCards(1, false)[0]; u.f(P.s, P); P.up[u.id] = (P.up[u.id] || 0) + 1; transCheck(); }
     return;
   }
   hud();
@@ -4933,6 +5130,9 @@ function render() {
   for (const o of orbs) if (vis(o.x, o.y, 16)) { if (o.big) { const q = ORBT[o.big - 1], z = 17 + o.big * 3; ctx.drawImage(GS[q.gl] || GS.plasma, o.x - z, o.y - z, z * 2, z * 2); } else ctx.drawImage(GS.ion, o.x - 10, o.y - 10, 20, 20); }
   if (P && P.flameT > 0 && state !== 'menu') muzzleFlame();
   for (const b of bullets) { if (b.kind === 'flame') { fireBall(b); continue; } if (b.mirror) { ctx.fillStyle = C.volt; ctx.shadowColor = C.volt; ctx.shadowBlur = 12; ctx.beginPath(); ctx.arc(b.x, b.y, b.r * 1.3, 0, TAU); ctx.fill(); ctx.shadowBlur = 0; continue; } const r = b.r * (b.kind === 'needle' ? 2.4 : 3.2); ctx.drawImage(GS[b.c] || (b.c && b.c[0] === 'b' && b.c[1] === 's' ? bulGlow(b.c.slice(3)) : GS.volt), b.x - r, b.y - r, r * 2, r * 2); }
+  drawMins(vis);
+  if (P && P.s && P.s.bub) { ctx.save(); for (const b of bullets) if (b.bub > 0 && vis(b.x, b.y, 30)) { const R = b.r * b.bubR; ctx.fillStyle = 'rgba(160,230,255,.16)'; ctx.strokeStyle = 'rgba(200,245,255,.85)'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(b.x, b.y, R, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = 'rgba(255,255,255,.8)'; ctx.beginPath(); ctx.arc(b.x, b.y, R * 0.7, -2.4, -1.6); ctx.stroke(); if (b.bub > 1) { ctx.fillStyle = '#fff'; ctx.font = '700 9px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(b.bub, b.x, b.y - R - 3); } } ctx.restore(); }   // bulles
   { const eg = G.nm ? GS.tox || GS.ok : GS.hot, sg = GS.ion || eg; for (const b of ebul) if (vis(b.x, b.y, 20)) { const r = b.r * (b.sp ? 4.2 : 3.4); ctx.drawImage(b.sp ? sg : eg, b.x - r, b.y - r, r * 2, r * 2); } }
   ctx.globalCompositeOperation = 'source-over';
   ctx.fillStyle = TH.orb; ctx.beginPath(); for (const o of orbs) if (!o.big && vis(o.x, o.y, 10)) { ctx.moveTo(o.x, o.y - 3.5); ctx.lineTo(o.x + 3.5, o.y); ctx.lineTo(o.x, o.y + 3.5); ctx.lineTo(o.x - 3.5, o.y); ctx.closePath(); } ctx.fill();
@@ -4974,10 +5174,15 @@ function render() {
     if (P.aegisT > 0) { ctx.lineWidth = 3; ctx.strokeStyle = C.ion; ctx.globalAlpha = 0.6 + 0.3 * Math.sin(T * 10); ctx.beginPath(); ctx.arc(P.x, P.y, P.r + 16, 0, TAU); ctx.stroke(); ctx.globalAlpha = 0.12; ctx.fillStyle = C.ion; ctx.fill(); ctx.globalAlpha = 1; }
     if (P.over > 0) { ctx.globalCompositeOperation = LIT; const r = 58 + Math.sin(T * 18) * 6; ctx.drawImage(GS[tankSkin().shot || 'volt'], P.x - r, P.y - r, r * 2, r * 2); ctx.globalCompositeOperation = 'source-over'; }
     ctx.globalAlpha = P.invisT > 0 ? 0.24 + 0.08 * Math.sin(T * 22) : (state === 'play' && P.inv > 0 && P.dashT <= 0 && ((T * 16) | 0) & 1) ? 0.4 : 1;
+    if (P.s.aimL && !G.demo && (state === 'play' || state === 'pause')) {   // perk Visée : pointillés + croix à la portée max
+      const R = P.s.bspd * P.s.range, len = R * [0, 0.6, 0.8, 1][Math.min(3, P.s.aimL)], ca = Math.cos(P.aim), sa = Math.sin(P.aim), x0 = P.x + ca * (P.r + 20), y0 = P.y + sa * (P.r + 20);
+      ctx.save(); ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 2; ctx.setLineDash([7, 8]); ctx.lineDashOffset = -T * 40; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(P.x + ca * len, P.y + sa * len); ctx.stroke(); ctx.setLineDash([]);
+      const cx = P.x + ca * R, cy = P.y + sa * R, k = 9; ctx.strokeStyle = P.s.aimL >= 3 ? C.hot : 'rgba(255,90,90,.55)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(cx - k, cy - k); ctx.lineTo(cx + k, cy + k); ctx.moveTo(cx + k, cy - k); ctx.lineTo(cx - k, cy + k); ctx.stroke(); ctx.restore(); }
     const fall = G.dgFall ? dgFallPose() : null;
     if (fall) { if (fall.hole > 0) dgHole(P.x, P.y, fall.hole); ctx.save(); ctx.translate(P.x, P.y - fall.dy); ctx.rotate(fall.rot); ctx.scale(fall.sc, fall.sc); ctx.translate(-P.x, -P.y); ctx.globalAlpha *= fall.a; }
     drawTank(ctx, P.x, P.y, P.aim, P.s, P.r, Math.max(0, P.recoil), P.over > 0); drawAcc(ctx, meta.acc, P.x, P.y, P.r); ctx.globalAlpha = 1;
     if (fall) ctx.restore();
+    if (P.trans && !G.demo) drawTrans(ctx);
     if (P.barrier > 0) { ctx.lineWidth = 3; ctx.strokeStyle = `rgba(61,232,255,${0.4 + 0.4 * clamp(P.barrierT / 4, 0, 1)})`; poly(ctx, P.x, P.y, P.r + 14, 6, T); ctx.stroke(); }
     if (P.shieldUp) { ctx.lineWidth = 2.5; ctx.strokeStyle = C.ion; ctx.globalAlpha = 0.7 + 0.3 * Math.sin(T * 5); ctx.beginPath(); ctx.arc(P.x, P.y, P.r + 11, 0, TAU); ctx.stroke(); ctx.globalAlpha = 1; }
     drawSats(ctx);
@@ -5224,7 +5429,11 @@ function renderAlmX(fil) {
     const col = { c: 'var(--rk-c)', r: 'var(--rk-r)', e: 'var(--rk-e)', m: 'var(--rk-m)', l: 'var(--rk-l)', s: 'var(--rk-s)' };
     L = UP.filter(u => !almF.rar || u.r === almF.rar).map(u => ({ id: u.id, n: u.n, own: !!meta.alm['p:' + u.id], col: col[u.r], ic: perkIcon(u), kind: RAR[u.r].n.toUpperCase() + (u.w ? _tf(" · MONDE {0}+", [u.w]) : ''),
       d: u.d + (u.max > 1 ? _tf(" Jusqu’au niveau {0}.", [u.max]) : '') + (u.sup ? _tf(" Apparaît quand « {0} » est au niveau max.", [UPID[u.req].n]) : ''), how: u.w ? _tf("Se tire en partie à partir du Monde {0}.", [u.w]) : _t('Se tire en partie en montant de niveau.') }));
-    $('#almN').textContent = _tf("{0} / {1} découverts", [UP.filter(u => meta.alm['p:' + u.id]).length, UP.length]);
+    if (!almF.rar) L = L.concat(Object.keys(TRANS).map(k => { const t = TRANS[k]; return { id: 'tr:' + k, n: _t('Transformation ') + t.n, own: !!meta.alm['tr:' + k], col: t.col,
+      ic: cvIco(g => { const st = baseStats(); g.save(); drawTank(g, 44, 50, -Math.PI / 2, st, 22, 0, false, t.sk); g.restore(); }), kind: _t('TRANSFORMATION · ') + t.el.toUpperCase(),
+      d: _tf('Prends 6 perks différents de l’élément {0} dans une même partie : ton tank devient {1} jusqu’à la fin de la partie ({2}). Ta Surcharge lance alors son attaque spéciale, {3} : {4}', [t.el, t.n, t.buff, t.sp, t.spd]),
+      how: _t('Perks qui comptent : ') + t.ids.filter(id => UPID[id]).map(id => UPID[id].n).join(', ') + '. ' + _t('Rien n’est gardé après la partie : seule la fiche se débloque ici.') }; }));
+    $('#almN').textContent = _tf("{0} / {1} découverts", [UP.filter(u => meta.alm['p:' + u.id]).length + Object.keys(TRANS).filter(k => meta.alm['tr:' + k]).length, UP.length + Object.keys(TRANS).length]);
   } else if (almTab === 'rune') {
     L = RUNES.map(r => { const best = meta.found['r:' + r.k], own = best !== undefined && best >= 0, rr = own ? RARS[best].id : 'co';
       return { id: 'r:' + r.k, n: r.n, own, col: r.col, ic: cvIco(g => drawRune(g, { k: r.k, r: rr }, 88)), kind: _t('RUNE') + (own ? ' · ' + RARS[best].n.toUpperCase() : ''),
@@ -6893,7 +7102,7 @@ function pickCard(i) {
   if (state !== 'cards' || el.cards.classList.contains('lock')) return; const u = cardSet[i]; if (!u) return;
   if (cardKind === 'relic' && !P.up[u.id]) P.relic[u.id] = 1;
   if (u.evo) { u.f(P.s, P); G.duel.evoQ.shift(); sfx.reveal(3); banner(_t('ÉVOLUTION'), u.n, C.volt, 1.6); }
-  else { u.f(P.s, P); P.up[u.id] = (P.up[u.id] || 0) + 1; sfx.card(); if (u.id[0] !== '_' || u.sup) meta.alm['p:' + u.id] = 1; }
+  else { u.f(P.s, P); P.up[u.id] = (P.up[u.id] || 0) + 1; sfx.card(); if (u.id[0] !== '_' || u.sup) meta.alm['p:' + u.id] = 1; transCheck(); }
   if (cardKind === 'level') G.pending--;
   if (G.duel && G.duel.evoQ.length) { openCards('evo'); return; }
   if (G.pending > 0) { openCards('level'); return; }
@@ -10314,6 +10523,57 @@ function frame(now) {
   if (G) { if (G.banner) { G.banner.t -= rdt; if (G.banner.t <= 0) G.banner = null; } if (G.hurtFlash > 0) G.hurtFlash -= rdt; if (G.flash > 0) G.flash -= rdt; }
   render();
 }
+/* ================= Nouveautés : s'affiche au lancement après chaque grosse mise à jour, avec tout l'historique ================= */
+const UPD_VER = 5;
+document.addEventListener('news', () => showNews(true));
+const UPDATES = [
+  { v: 5, n: _t('MAJ 5 · Perks et transformations'), ic: '⚡', items: [
+    ['🫧', _t('Balle sous bulle (mythique, Monde 5+)'), _t('Une bulle peut entourer ta balle et arrêter un tir ennemi. 4 niveaux, puis la Méga-bulle suprême.')],
+    ['🎯', _t('Visée (épique)'), _t('Pointillés devant le canon et une croix à la portée max. 3 niveaux.')],
+    ['💀', _t('Nouvel élément : Incantation'), _t('Sbires des ténèbres, Dash des ombres, Portail d’ombre, Éclair de sbires, Infestation, Pacte explosif, Moisson d’âmes, Nécromancien et Armée des morts. Dès que le Monde 6 est débloqué.')],
+    ['🌀', _t('Transformations'), _t('6 perks du même élément dans une partie : Zeus (foudre), Lucifer (feu), Roi des rats (poison), Thrym (glace) ou Shinigami (incantation). Nouveau look, stats boostées et une attaque spéciale sur la Surcharge, le temps de la partie.')],
+    ['☣️', _t('Nouveaux perks poison et glace'), _t('Fléau toxique, Miasme et Blizzard.')],
+    ['🔊', _t('Son de clic'), _t('Chaque bouton fait de nouveau un petit clic.')] ] },
+  { v: 4, n: _t('MAJ 4 · Progression'), ic: '★', items: [
+    ['★', _t('Châssis à niveaux et étoiles'), _t('Ils gagnent de l’XP en partie, puis évoluent avec des ampoules 💡 : rareté, stats et look qui changent.')],
+    ['🔑', _t('Boutique'), _t('Cadeau et offres du jour, clés pour ouvrir les coffres, tirage ×10 avec 1 coffre offert.')],
+    ['🐾', _t('Familiers'), _t('Plus chers, débloqués par niveau joueur, et 3 nouveaux : Néréide, Magmaton et Supernova.')],
+    ['🛸', _t('Drones'), _t('Un nouveau drone à chaque monde, dont le drone électro.')] ] },
+  { v: 3, n: _t('MAJ 3 · Backrooms et contenu'), ic: '💡', items: [
+    ['🏢', _t('Ambiances des étages'), _t('Écho aux Bureaux, gouttes et résonance aux Poolrooms, menus décorés.')],
+    ['⬇️', _t('Chute à travers le sol'), _t('On voit le tank glitcher dans le sol puis tomber du plafond.')],
+    ['🧟', _t('Nouveaux ennemis'), _t('Mort-vivant, fantôme et incantateur.')],
+    ['🧱', _t('Murs dans les mondes'), _t('Les ennemis glissent dessus, les boss les cassent.')],
+    ['📖', _t('Almanach'), _t('Créatures des Backrooms, ennemis inconnus cachés.')],
+    ['🔦', _t('Captain Clark'), _t('100 parties dans les Backrooms : titre légendaire et thème Backrooms.')] ] },
+  { v: 2, n: _t('MAJ 2 · Profil et interface'), ic: '🎨', items: [
+    ['🏷️', _t('Titres'), _t('Raretés, condition de déblocage et progression affichées.')],
+    ['✨', _t('Auras animées et aperçus'), _t('Les auras rares bougent, et on peut tout prévisualiser, même verrouillé.')],
+    ['📊', _t('Profil et statistiques redessinés'), _t('Niveau joueur en haut, stats plus claires.')],
+    ['🏁', _t('Écran de fin en étapes'), _t('Roue, puis butin, puis total.')],
+    ['🛠️', _t('Atelier et équipement'), _t('Icônes, vente d’équipement contre des nuggets, niveaux plus lisibles.')],
+    ['📱', _t('Affichage'), _t('Taille de l’affichage réglable, mode paysage amélioré, petits sons de clic.')] ] },
+  { v: 1, n: _t('MAJ 1 · Équilibrage et gameplay'), ic: '⚖️', items: [
+    ['📈', _t('XP et difficulté'), _t('Moins d’XP, ennemis 2× plus résistants, boss et mini-boss beaucoup plus solides.')],
+    ['🃏', _t('Perks'), _t('Raretés revues (55 % de communes), perks suprêmes au Monde 4, nouvelles perks de dash.')],
+    ['💨', _t('Dash'), _t('Plus long à recharger, bump devenu une perk, dash de feu, toxique, tranchant et miroir.')],
+    ['🔫', _t('Armes'), _t('Tesla et roquettes revues, tête chercheuse en option, armes moins fortes.')],
+    ['🛰️', _t('Satellites'), _t('Ils ne bloquent plus les tirs, sauf les nouveaux satellites de défense.')],
+    ['🐗', _t('Boss'), _t('Charge mieux annoncée avec des flèches, et ennemis qui glissent le long des murs.')] ] }
+];
+function showNews(force) {
+  if (!force && (meta.updSeen || 0) >= UPD_VER) return;
+  const seen = force ? UPD_VER : (meta.updSeen || 0); let m = $('#news'); if (m) m.remove();
+  m = document.createElement('div'); m.id = 'news'; m.className = 'news'; const box = document.createElement('div'); box.className = 'newsin panel';
+  const h = document.createElement('h2'); h.className = 'h1'; h.textContent = _t('QUOI DE NEUF ?'); const sub = document.createElement('p'); sub.className = 'sub'; sub.textContent = _t('Toutes les mises à jour de Survolt, de la plus récente à la première.');
+  box.append(h, sub);
+  UPDATES.forEach((u, i) => { const d = document.createElement('details'); d.className = 'newsu' + (u.v > seen || (force && i === 0) ? ' nu' : ''); if (i === 0) d.open = true;
+    const sm = document.createElement('summary'); sm.innerHTML = '<i></i><b></b>' + (u.v > seen ? '<em>' + _t('NOUVEAU') + '</em>' : ''); sm.querySelector('i').textContent = u.ic; sm.querySelector('b').textContent = u.n; d.appendChild(sm);
+    const ul = document.createElement('ul'); for (const [ic, t, x] of u.items) { const li = document.createElement('li'); li.innerHTML = '<i></i><div><b></b><span></span></div>'; li.querySelector('i').textContent = ic; li.querySelector('b').textContent = t; li.querySelector('span').textContent = x; ul.appendChild(li); }
+    d.appendChild(ul); box.appendChild(d); });
+  const ok = document.createElement('button'); ok.type = 'button'; ok.className = 'btn primary'; ok.textContent = _t('C’EST PARTI !'); ok.onclick = () => { meta.updSeen = UPD_VER; save(); m.classList.add('out'); setTimeout(() => m.remove(), 250); };
+  box.appendChild(ok); m.appendChild(box); m.addEventListener('click', e => { if (e.target === m) ok.click(); }); (document.getElementById('stage') || document.body).appendChild(m);
+}
 function start(data) {
   load(); if (data && data.meta) merge(data.meta);
   setTimeout(() => { if (AUTH && INBOX === null) inboxCheck().catch(() => {}); }, 2500);   // la boîte de réception, même si la synchro cloud échoue
@@ -10330,6 +10590,7 @@ function start(data) {
   if (meta.opt.auto) window.addEventListener('pointerdown', startAuto, { once: true });
   applyTheme(meta.theme);
   resize(); focusCls = meta.sel; focusW = meta.world; curSk = skinById(meta.skin); renderMenu(); startDemo();
+  if (!meta.tuto && !(meta.tot && meta.tot.r)) { meta.updSeen = UPD_VER; save(); } else setTimeout(() => { if (state === 'menu') showNews(); }, 900);   // nouveaux joueurs : pas d'historique
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (state === 'menu') measureMenu(); });
   last = performance.now(); requestAnimationFrame(frame);
 }
