@@ -22,7 +22,15 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - **50 ⚡** au niveau 1, puis **+1 ⚡ max tous les 5 niveaux** joueur.
 - **1 ⚡ revient toutes les 3 minutes**, même jeu fermé.
 - Les **Backrooms**, les parties rapides, le multi et les défis restent **gratuits**.
+- **Terminer les Backrooms** rapporte **+5 ⚡** (même au-delà du max).
 - Plus d’énergie ? Recharge à fond pour **30 diams**.
+- **Jauge d’énergie** en haut du menu, avec le temps avant la prochaine ⚡ : collée en haut à droite en portrait, sous les réglages et le pseudo en paysage. Touche-la pour voir le détail et recharger.
+
+**Interface**
+
+- **Nouvelles icônes** partout (menu, Backrooms, Base, quêtes, cadeaux, boutique…) dans le même style que les statistiques du profil, à la place des emojis.
+- **Équipement** : quand tu touches un objet, ses stats s’affichent dessous (ATQ, PV, VIT, CRIT) avec ce que tu gagnes ou perds en l’équipant.
+- **Animation Pulsation** bien visible : la photo de profil bat comme un cœur et envoie des ondes. Chaque animation de profil a maintenant sa description.
 
 ### MAJ 6 · Ma base et morts-vivants
 
