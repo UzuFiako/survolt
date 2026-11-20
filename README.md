@@ -24,7 +24,9 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - **Couleurs** : 2 nouvelles par rareté (Corail, Sable, Turquoise, Ardoise, Émeraude, Lilas, Bronze, Nacre), animées en Mythique (Aurore boréale, Toxine) et psychédéliques en Légendaire (Psyché, Kaléidoscope).
 - **Balles** : 2 nouvelles par rareté (Orange, Menthe, Citron, Corail, Indigo, Framboise, Bulle de savon, Shuriken), animées en Mythique (Comète, Pulsar) et psychédéliques en Légendaire (Psyché, Kaléidoscope).
 - **Accessoires** : Casquette, Nœud, Monocle, Bonnet à pompon, Haut-de-forme, Lunettes d’aviateur, Chapeau de sorcier, Tricorne, Nuage d’orage, Couronne astrale, et l’**Esprit de la tempête** en Ultra Premium Légendaire (coffres UPL, ou 350 000 nuggets). Le chapeau de paille passe Mythique.
+- **Coiffures à paliers** : 7 crinières d’énergie, Mèches cuivre / chargées / surchargées (épiques), Crête néon et Crête plasma (mythiques, aura animée), Crinière de braise (légendaire, flammes d’énergie), Crinière prismatique (UPL, particules blanches et éclairs, coffres UPL ou 400 000 nuggets).
 - Les **accessoires suivent la direction du canon**.
+- **Ma base : ouvriers** expliqués dans un panneau dédié, et jusqu’à 4 ouvriers (2e : 300 diams, 3e : 900, 4e : 2 500). Chaque ouvrier fait un chantier à la fois.
 - Les cosmétiques de basse rareté coûtent un peu plus cher.
 - **Atelier premium** : nouveau look par catégories, rangs Fer → Diamant, et plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50).
 - **Atelier rééquilibré** : bonus par niveau revus à la baisse (dégâts +2 %, Bonne étoile beaucoup moins forte, portée, Surcharge, nuggets…).

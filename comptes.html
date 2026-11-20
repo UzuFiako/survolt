@@ -77,6 +77,13 @@ button:focus-visible{outline:3px solid var(--ion);outline-offset:2px}
 .unlrow b{display:block;font:800 14px/1.2 var(--body);color:var(--ink)} .unlrow small{display:block;font:500 12px/1.3 var(--body);color:var(--dim);margin-top:2px}
 .unlic{flex:none;font-size:20px;display:grid;place-items:center;min-width:44px} .unlic svg{width:30px;height:30px}
 @keyframes unlin{from{opacity:0;transform:translateY(8px) scale(.97)}}
+.basewk{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:14px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,210,63,.2)}
+.wkh b{display:block;font:800 14px/1.2 var(--body);color:var(--ink)} .wkh small{display:block;font:500 12px/1.35 var(--body);color:var(--dim);margin-top:3px}
+.wkrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.wk{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,.05);text-align:center}
+.wk i{font-style:normal;font-size:20px} .wk span{font:700 10.5px/1.2 var(--body);color:var(--dim)}
+.wk.free{box-shadow:inset 0 0 0 1px var(--ok)} .wk.free span{color:var(--ok)} .wk.busy{box-shadow:inset 0 0 0 1px #ffd23f} .wk.busy span{color:#ffd23f} .wk.lock{opacity:.5}
+.wkbuy{align-self:stretch}
 .trprog{display:flex;flex-direction:column;gap:4px;margin-top:5px;pointer-events:none}
 .trp{display:flex;align-items:center;gap:6px;padding:3px 8px 5px 5px;position:relative;background:rgba(10,8,24,.62);border:1px solid color-mix(in srgb,var(--tc) 55%,transparent);border-radius:8px;width:max-content;min-width:86px}
 .trp>i{font-style:normal;font-size:15px;--ec:var(--tc)} .trp>span{display:flex;flex-direction:column;line-height:1} .trp b{font:900 12px/1 var(--body);color:var(--tc)} .trp small{font:700 8.5px/1.2 var(--body);color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
@@ -1588,12 +1595,14 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
     <div class="phead"><h2 class="h1">MA BASE</h2><span class="sub" id="baseBal"></span></div>
     <div class="basebar"><span id="baseBld"></span><button id="bBaseAll" class="btn primary" type="button">TOUT RÉCOLTER</button></div>
     <div class="basecv"><canvas id="baseCv"></canvas></div>
+    <div id="baseWk" class="basewk"></div>
     <div id="basePanel" class="basepanel"></div>
     <details class="howto"><summary>❓ Comment ça marche ?</summary><ul>
       <li>Tes bâtiments produisent des <b>nuggets ◆</b> et des <b>diams ✦</b> tout seuls, même quand le jeu est fermé.</li>
       <li>Touche une bulle au-dessus d’un bâtiment pour récolter. Quand la <b>Batterie</b> est pleine, la production s’arrête : reviens récolter de temps en temps.</li>
       <li>Améliore tes bâtiments avec des nuggets (et des ampoules 💡 pour le QG et le Laboratoire). Une amélioration prend du temps réel ; tu peux la finir tout de suite avec des diams.</li>
-      <li>Le <b>QG</b> limite le niveau des autres bâtiments et débloque les nouveaux. Un 2e ouvrier permet de construire deux choses en même temps.</li>
+      <li>Le <b>QG</b> limite le niveau des autres bâtiments et débloque les nouveaux.</li>
+      <li>Les <b>ouvriers</b> font les chantiers : chaque construction ou amélioration occupe un ouvrier jusqu’à la fin du chrono. Avec 1 ouvrier, tu ne peux améliorer qu’un bâtiment à la fois ; avec 4, quatre en même temps. Tu peux en embaucher jusqu’à 4 (avec des diams).</li>
     </ul></details>
     <button id="bBaseBack" class="btn" type="button">RETOUR</button>
   </div>
@@ -2508,6 +2517,13 @@ const ACCS = [
   { id: 'orage', n: _t('Nuage d’orage'), rar: 'mt', cost: 40000, d: _t('Animé : un petit nuage qui pleut et lâche des éclairs.') },
   { id: 'aura', n: _t('Aura dorée'), rar: 'lg' },
   { id: 'astral', n: _t('Couronne astrale'), rar: 'lg', cost: 80000, d: _t('Animée : couronne de lumière qui flotte, étoiles en orbite.') },
+  { id: 'm_cuivre', n: _t('Mèches cuivre'), rar: 'ur', cost: 12000, hair: 1, d: _t('Palier 1 : des mèches d’énergie couleur cuivre qui ondulent.') },
+  { id: 'm_charge', n: _t('Mèches chargées'), rar: 'ur', cost: 14000, hair: 2, d: _t('Palier 2 : mèches turquoise plus longues, avec des étincelles au bout.') },
+  { id: 'm_surch', n: _t('Mèches surchargées'), rar: 'ur', cost: 16000, hair: 3, d: _t('Palier 3 : une crinière indigo très longue qui crépite.') },
+  { id: 'm_neon', n: _t('Crête néon'), rar: 'mt', cost: 45000, hair: 4, d: _t('Palier 4 · animée : crête vert néon et aura qui pulse autour du tank.') },
+  { id: 'm_plasma', n: _t('Crête plasma'), rar: 'mt', cost: 50000, hair: 5, d: _t('Palier 5 · animée : crête violet plasma, aura et anneaux d’énergie.') },
+  { id: 'm_braise', n: _t('Crinière de braise'), rar: 'lg', cost: 90000, hair: 6, d: _t('Palier 6 · légendaire : crinière orange et blanche, flammes d’énergie qui montent autour du tank.') },
+  { id: 'm_prisme', n: _t('Crinière prismatique'), rar: 'upl', cost: 400000, hair: 7, d: _t('Palier 7 · Ultra Premium Légendaire : crinière holographique qui change de couleur, tourbillon de particules blanches et éclairs. Dans les coffres UPL, ou très cher.') },
   { id: 'tempete', n: _t('Esprit de la tempête'), rar: 'upl', cost: 350000, d: _t('Ultra Premium Légendaire : tourbillon de particules blanches, éclairs qui crépitent autour du tank et halo de lumière. Dans les coffres UPL, ou très cher.') },
   { id: 'casque', n: _t('Casque radio'), rar: 'ur', mp: true },
   { id: 'duo', n: _t('Halo jumelé'), rar: 'mt', mp: true }
@@ -2850,7 +2866,7 @@ function merge(s) {
   if (s.cls && typeof s.cls === 'object') Object.assign(meta.cls, s.cls);
   for (const k of ['bulb', 'keys', 'dgRuns']) if (Number.isFinite(s[k])) meta[k] = Math.max(0, Math.floor(s[k]));
   if (s.clsP && typeof s.clsP === 'object') for (const c of CLS) { const q = s.clsP[c.id]; if (q && typeof q === 'object') meta.clsP[c.id] = { lv: clamp(q.lv | 0, 1, 200), xp: Math.max(0, q.xp | 0), st: clamp(q.st | 0, 1, 5) }; }
-  if (s.base && typeof s.base === 'object' && s.base.b) { const b = s.base, o = { b: {}, st: {}, t: Number(b.t) || Date.now(), jobs: [], bld: clamp(b.bld | 0, 1, 2) };
+  if (s.base && typeof s.base === 'object' && s.base.b) { const b = s.base, o = { b: {}, st: {}, t: Number(b.t) || Date.now(), jobs: [], bld: clamp(b.bld | 0, 1, 4) };
     for (const k of ['qg', 'mine', 'raf', 'bat', 'lab']) { o.b[k] = clamp((b.b[k] | 0), 0, 12); o.st[k] = Math.max(0, Number(b.st && b.st[k]) || 0); }
     if (Array.isArray(b.jobs)) o.jobs = b.jobs.filter(j => j && o.b[j.id] !== undefined && Number.isFinite(j.end)).slice(0, 2).map(j => ({ id: j.id, end: j.end }));
     o.b.qg = Math.max(1, o.b.qg); meta.base = o; }
@@ -4394,6 +4410,8 @@ function updPlayer(dt) {
     else if (sk.deco === 'ocean') { if (Math.random() < 0.6) parts.push({ x: P.x + rnd(-14, 14), y: P.y + rnd(-14, 14), vx: rnd(-15, 15), vy: rnd(-50, -20), life: 0.7, max: 0.7, col: '#bff3ff', s: rnd(3, 6), bub: true }); }
     else if (sk.anim === 'nova') { for (let i = 0; i < 2; i++) { const a = rnd(0, TAU), d = rnd(34, 48); parts.push({ x: P.x + Math.cos(a) * d, y: P.y + Math.sin(a) * d, vx: -Math.cos(a + 0.9) * d * 1.7, vy: -Math.sin(a + 0.9) * d * 1.7, life: 0.5, max: 0.5, col: pick(['#ffb347', '#ff6a3d', '#c58bff', '#fff1c4']), s: rnd(1.6, 3) }); } }
     else if (sk.anim === 'tesla') { if (Math.random() < 0.55) { const a = rnd(0, TAU); parts.push({ x: P.x + Math.cos(a) * 22, y: P.y + Math.sin(a) * 22, vx: Math.cos(a) * rnd(40, 90), vy: Math.sin(a) * rnd(40, 90), life: 0.3, max: 0.3, col: Math.random() < 0.5 ? '#7df9ff' : '#ffffff', s: rnd(1.5, 2.6) }); } }
+    else if (meta.acc === 'm_neon' || meta.acc === 'm_plasma' || meta.acc === 'm_braise' || meta.acc === 'm_prisme') { const hc = HAIR[ACCS.find(a => a.id === meta.acc).hair]; if (Math.random() < 0.7) { const a = rnd(0, TAU), d = rnd(14, 26);
+      parts.push({ x: P.x + Math.cos(a) * d, y: P.y + Math.sin(a) * d, vx: rnd(-12, 12), vy: rnd(-70, -35), life: 0.6, max: 0.6, col: meta.acc === 'm_prisme' ? (Math.random() < 0.6 ? '#ffffff' : `hsl(${(T * 200) % 360},100%,75%)`) : pick([hc.c1, hc.c2, '#ffffff']), s: rnd(1.5, 3) }); } }
     else if (meta.acc === 'tempete') { for (let i = 0; i < 2; i++) { const a = rnd(0, TAU), d = rnd(20, 40); parts.push({ x: P.x + Math.cos(a) * d, y: P.y + Math.sin(a) * d, vx: -Math.sin(a) * 90, vy: Math.cos(a) * 90 - 25, life: 0.55, max: 0.55, col: Math.random() < 0.8 ? '#ffffff' : '#bfe9ff', s: rnd(1.4, 3) }); } }
     else if (meta.acc === 'aura') { if (Math.random() < 0.5) { const a = rnd(0, TAU); parts.push({ x: P.x + Math.cos(a) * 26, y: P.y + Math.sin(a) * 26, vx: 0, vy: -30, life: 0.6, max: 0.6, col: Math.random() < 0.5 ? '#ffd23f' : '#ff3d55', s: rnd(2, 3.5) }); } }
   }
@@ -5152,6 +5170,44 @@ function hull(g, sh, R) {
     default: poly(g, 0, 0, R, 6, Math.PI / 6); g.fill(); g.stroke();
   }
 }
+/* Coiffures à paliers : des mèches d'énergie ondulantes (pas des pics), plus longues et plus vives à chaque palier. */
+const HAIR = [null,
+  { n: 5, len: 0.9, w: 0.26, c1: '#7a3a14', c2: '#e08a4a', amp: 0.12, sp: 3 },
+  { n: 6, len: 1.15, w: 0.26, c1: '#0f5a66', c2: '#5ff5e0', amp: 0.16, sp: 4, spark: '#bffcff' },
+  { n: 7, len: 1.5, w: 0.27, c1: '#241a6e', c2: '#8a7bff', amp: 0.2, sp: 4.5, spark: '#d8d2ff', glow: 1 },
+  { n: 7, len: 1.55, w: 0.28, c1: '#0f5a2a', c2: '#7dff6a', amp: 0.22, sp: 5, spark: '#e8ffd8', glow: 1, aura: '125,255,106' },
+  { n: 8, len: 1.65, w: 0.28, c1: '#4a0f6e', c2: '#e05bff', amp: 0.24, sp: 5.5, spark: '#ffd8ff', glow: 1, aura: '224,91,255', rings: 1 },
+  { n: 9, len: 1.8, w: 0.3, c1: '#ff5a1f', c2: '#fff1c4', amp: 0.26, sp: 6, spark: '#fff6cf', glow: 1, aura: '255,140,50', flame: 1 },
+  { n: 10, len: 1.95, w: 0.3, c1: '#ff00c8', c2: '#ffffff', amp: 0.28, sp: 6.5, spark: '#ffffff', glow: 1, aura: '255,255,255', rainbow: 1, bolts: 1, swirl: 1 }
+];
+function drawHair(g, r, R, tier) {
+  const H = HAIR[tier] || HAIR[1], L = LITM();
+  if (H.aura) {   // aura autour du tank
+    g.save(); g.globalCompositeOperation = L; const pu = 0.65 + 0.35 * Math.sin(T * 6);
+    const ag = g.createRadialGradient(0, 0, R * 0.7, 0, 0, R * 2.1); ag.addColorStop(0, `rgba(${H.aura},${0.32 * pu})`); ag.addColorStop(1, `rgba(${H.aura},0)`); g.fillStyle = ag; g.beginPath(); g.ellipse(0, -R * 0.2, R * 1.8, R * 2.1, 0, 0, TAU); g.fill();
+    if (H.rings) for (let k = 0; k < 2; k++) { const f = (T * 0.9 + k * 0.5) % 1; g.strokeStyle = `rgba(${H.aura},${(0.7 * (1 - f)).toFixed(2)})`; g.lineWidth = r * 0.12; g.beginPath(); g.ellipse(0, 0, R * (1 + f * 1.1), R * (0.45 + f * 0.5), 0, 0, TAU); g.stroke(); }
+    if (H.flame) for (let k = 0; k < 9; k++) { const a = Math.PI * (0.9 + k / 8 * 1.2), f = (T * 1.6 + k * 0.37) % 1, bx = Math.cos(a) * R * 1.05, by = Math.sin(a) * R * 1.05, hgt = R * (0.6 + 0.6 * Math.sin(f * Math.PI)), sw = Math.sin(T * 7 + k) * r * 0.15;
+      const fg = g.createLinearGradient(bx, by, bx, by - hgt); fg.addColorStop(0, `rgba(255,120,40,${(0.7 * (1 - f * 0.5)).toFixed(2)})`); fg.addColorStop(1, 'rgba(255,240,200,0)'); g.fillStyle = fg;
+      g.beginPath(); g.moveTo(bx - r * 0.22, by); g.quadraticCurveTo(bx + sw - r * 0.2, by - hgt * 0.6, bx + sw, by - hgt); g.quadraticCurveTo(bx + sw + r * 0.2, by - hgt * 0.6, bx + r * 0.22, by); g.closePath(); g.fill(); }
+    if (H.swirl) for (let k = 0; k < 22; k++) { const f = (T * 0.6 + k / 22) % 1, a = k * 2.4 + T * 2.6, rr = R * (2.2 - f); g.globalAlpha = Math.sin(f * Math.PI); g.fillStyle = '#ffffff'; g.beginPath(); g.arc(Math.cos(a) * rr, Math.sin(a) * rr, r * (0.05 + 0.06 * f), 0, TAU); g.fill(); }
+    g.restore();
+  }
+  const n = H.n, spread = 1.5 + tier * 0.08, tips = [];
+  for (let pass = 0; pass < (H.glow ? 2 : 1); pass++) for (let i = 0; i < n; i++) {
+    const u = n > 1 ? i / (n - 1) - 0.5 : 0, a0 = -Math.PI / 2 + u * spread, len = R * H.len * (1 - Math.abs(u) * 0.45), bx = u * R * 1.3, by = -R * 0.45 - (1 - Math.abs(u) * 2) * R * 0.15;
+    const dx = Math.cos(a0), dy = Math.sin(a0), qx = -dy, qy = dx, ph = T * H.sp + i * 1.3, Lp = [], Rp = [], seg = 10;
+    for (let k = 0; k <= seg; k++) { const t = k / seg, wv = Math.sin(t * 4 + ph) * R * H.amp * t * 1.6, cx = bx + dx * len * t + qx * wv, cy = by + dy * len * t + qy * wv, w = R * H.w * (1 - t * 0.9) * (pass ? 1.9 : 1);
+      Lp.push([cx + qx * w, cy + qy * w]); Rp.push([cx - qx * w, cy - qy * w]); if (k === seg && !pass) tips.push([cx, cy]); }
+    g.save(); if (pass === 0 && H.glow) { g.globalCompositeOperation = L; g.globalAlpha = 0.28 + 0.12 * Math.sin(T * 5 + i); }
+    const c1 = H.rainbow ? `hsl(${(T * 160 + i * 36) % 360},100%,60%)` : H.c1, c2 = H.rainbow ? '#ffffff' : H.c2, gr = g.createLinearGradient(bx, by, bx + dx * len, by + dy * len); gr.addColorStop(0, c1); gr.addColorStop(1, c2);
+    g.fillStyle = gr; g.beginPath(); g.moveTo(Lp[0][0], Lp[0][1]); for (const q of Lp) g.lineTo(q[0], q[1]); for (let k = Rp.length - 1; k >= 0; k--) g.lineTo(Rp[k][0], Rp[k][1]); g.closePath(); g.fill();
+    if (!(pass === 0 && H.glow)) { g.strokeStyle = 'rgba(10,8,24,.55)'; g.lineWidth = Math.max(0.8, r * 0.05); g.stroke(); }
+    g.restore();
+  }
+  if (H.spark) { g.save(); g.globalCompositeOperation = L; for (const [x, y] of tips) { if (Math.random() < 0.45) continue; g.fillStyle = H.spark; g.globalAlpha = 0.6 + 0.4 * Math.random(); star(g, x, y, r * (0.1 + Math.random() * 0.12), 4, Math.random() * 3, 0.3); g.fill(); } g.restore(); }
+  if (H.bolts) { g.save(); g.globalCompositeOperation = L; g.lineJoin = 'round'; for (let k = 0; k < 2; k++) { if (Math.random() < 0.4) continue; const a = Math.random() * TAU, x0 = Math.cos(a) * R, y0 = Math.sin(a) * R, L2 = R * rnd(1.6, 2.3);
+    g.strokeStyle = 'rgba(220,200,255,.65)'; g.lineWidth = Math.max(1.4, r * 0.14); zap(g, x0, y0, Math.cos(a) * L2, Math.sin(a) * L2, 6, r * 0.5); g.stroke(); g.strokeStyle = '#fff'; g.lineWidth = Math.max(0.7, r * 0.05); g.stroke(); } g.restore(); }
+}
 /* Accessoires : tournés avec le tank (le haut de l'accessoire = l'avant du canon), par-dessus la couleur. */
 function drawAcc(g, id, x, y, r) {
   if (!id || id === 'none') return;
@@ -5292,6 +5348,8 @@ function drawAcc(g, id, x, y, r) {
       g.save(); g.globalCompositeOperation = LIT; for (let k2 = 0; k2 < 5; k2++) { const a = T * 1.4 + k2 * TAU / 5, sx = Math.cos(a) * R * 1.6, sy = Math.sin(a) * R * 0.7 - r * 0.2;
         g.fillStyle = k2 % 2 ? '#bfe9ff' : '#fff6cf'; g.globalAlpha = 0.6 + 0.4 * Math.sin(T * 6 + k2); star(g, sx, sy, r * 0.17, 4, a, 0.3); g.fill(); } g.restore(); break;
     }
+    case 'm_cuivre': case 'm_charge': case 'm_surch': case 'm_neon': case 'm_plasma': case 'm_braise': case 'm_prisme':
+      drawHair(g, r, R, ACCS.find(a => a.id === id).hair); break;
     case 'tempete': {
       g.save(); g.globalCompositeOperation = LIT; const pu = 0.6 + 0.4 * Math.sin(T * 7);
       const hg = g.createRadialGradient(0, 0, R * 0.8, 0, 0, R * 2.2); hg.addColorStop(0, `rgba(255,255,255,${0.35 * pu})`); hg.addColorStop(0.5, `rgba(190,230,255,${0.18 * pu})`); hg.addColorStop(1, 'rgba(190,230,255,0)');
@@ -7346,7 +7404,7 @@ function chestLoot(ri) {
   if (ri >= 4 || Math.random() < 0.5) { const rr = randRune(RARS[ri].id); L.push({ k: 'rune', rk: rr.k, r: rr.r }); }
   if (ri <= 4) it(RARS[ri].id);
   else if (ri === 5) { it('lg'); addCos(5); }
-  else { it('lg'); it('lg'); L.push({ k: 'item', t: 'wpn', id: pick(WPNS.slice(1)).id, r: 'mt' }); addCos(5); addCos(5); if (!meta.accs.tempete && Math.random() < 0.1) L.push({ k: 'acc', id: 'tempete' }); }
+  else { it('lg'); it('lg'); L.push({ k: 'item', t: 'wpn', id: pick(WPNS.slice(1)).id, r: 'mt' }); addCos(5); addCos(5); { const up = ACCS.filter(a => a.rar === 'upl' && !meta.accs[a.id]); if (up.length && Math.random() < 0.12) L.push({ k: 'acc', id: pick(up).id }); } }
   return L;
 }
 function applyLoot(L) {
@@ -11141,11 +11199,32 @@ function renderBase() {
   else if (L < D.max) {
     const need = D.qg && !L && B.b.qg < D.qg ? D.qg : (L + 1 > baseLvMax(id, B) ? (id === 'qg' ? 0 : L - 1) : 0), C2 = baseCost(id, L + 1);
     if (need) { const q = document.createElement('p'); q.className = 'sub'; q.textContent = _tf('🔒 Il faut le QG niveau {0}.', [Math.max(need, D.qg || 0)]); row.appendChild(q); }
-    else if (B.jobs.length >= B.bld) { const q = document.createElement('p'); q.className = 'sub'; q.textContent = _t('Tous tes ouvriers sont occupés.'); row.appendChild(q); }
+    else if (B.jobs.length >= B.bld) { const q = document.createElement('p'); q.className = 'sub'; q.textContent = _t('Tous tes ouvriers sont occupés : attends la fin d’un chantier, finis-le avec des diams, ou embauche un ouvrier de plus (plus bas).'); row.appendChild(q); }
     else { const lab = (L ? _t('AMÉLIORER') : _t('CONSTRUIRE')) + ' · ' + fmtDur(baseTime(id, L + 1)); row.appendChild(multiBuyBtn({ sh: C2.sh, bulb: C2.bulb }, () => { baseTick(); meta.base.jobs.push({ id, end: Date.now() + baseTime(id, L + 1) }); }, renderBase, lab)); }
   }
-  if (B.bld < 2) { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.innerHTML = _t('👷 2e OUVRIER') + ' ' + costHTML('✦', 300); b.onclick = () => { if (meta.jet < 300) { b.innerHTML = _t('IL MANQUE ') + costHTML('✦', 300 - meta.jet); return; } meta.jet -= 300; meta.base.bld = 2; save(); uis(() => sfx.buy()); renderBase(); }; row.appendChild(b); }
   P0.appendChild(row);
+  renderWorkers(B);
+}
+/* Ouvriers : un chantier (construction / amélioration) par ouvrier. Jusqu'à 4, de plus en plus chers. */
+const WK_COST = [0, 0, 300, 900, 2500];
+function renderWorkers(B) {
+  const box = $('#baseWk'); if (!box) return; box.innerHTML = '';
+  const hd = document.createElement('div'); hd.className = 'wkh'; hd.innerHTML = '<b></b><small></small>'; hd.querySelector('b').textContent = _tf('👷 Ouvriers {0}/4', [B.bld]);
+  hd.querySelector('small').textContent = _t('Chaque ouvrier fait un chantier à la fois (construire ou améliorer). Plus d’ouvriers = plus de bâtiments améliorés en même temps.'); box.appendChild(hd);
+  const row = document.createElement('div'); row.className = 'wkrow';
+  for (let i = 0; i < 4; i++) {
+    const c = document.createElement('div'), job = B.jobs[i]; c.className = 'wk' + (i >= B.bld ? ' lock' : job ? ' busy' : ' free');
+    const ic = document.createElement('i'); ic.textContent = i >= B.bld ? '🔒' : '👷'; const t = document.createElement('span');
+    if (i >= B.bld) t.textContent = i === B.bld ? _t('À embaucher') : _t('Verrouillé');
+    else if (job) { const D = BASEB[job.id]; t.textContent = (D ? D.n : '') + ' · ' + fmtDur(Math.max(0, job.end - Date.now())); }
+    else t.textContent = _t('Libre');
+    c.append(ic, t); row.appendChild(c);
+  }
+  box.appendChild(row);
+  if (B.bld < 4) { const n = B.bld + 1, cost = WK_COST[n], b = document.createElement('button'); b.type = 'button'; b.className = 'btn wkbuy';
+    b.innerHTML = _tf('👷 EMBAUCHER LE {0}e OUVRIER', [n]) + ' ' + costHTML('✦', cost);
+    b.onclick = () => { if (meta.jet < cost) { b.innerHTML = _t('IL MANQUE ') + costHTML('✦', cost - meta.jet); return; } meta.jet -= cost; meta.base.bld = n; save(); uis(() => sfx.buy()); toast(_tf('Nouvel ouvrier ! Tu peux faire {0} chantiers en même temps.', [n])); renderBase(); };
+    box.appendChild(b); }
 }
 $('#bBase').addEventListener('click', openBase); $('#bBaseBack').addEventListener('click', closeBase);
 $('#bBaseAll').addEventListener('click', () => { const a = baseCollect('mine', true), b = baseCollect('raf', true); if (a || b) { save(); initAudio(); uis(() => sfx.buy()); toast(_tf('Récolté : ◆ {0} · ✦ {1}', [fmt(a), b])); } else toast(_t('Rien à récolter pour l’instant.')); renderBase(); });
@@ -11211,6 +11290,8 @@ const UPDATES = [
     ['🔧', _t('Atelier premium'), _t('Nouveau look, rangs Fer → Diamant, et plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50). Les bonus par niveau sont revus à la baisse : c’était trop fort.')],
     ['🔊', _t('Son réparé'), _t('Après un vocal, un appel ou une autre appli, la musique et les bruitages repartent au toucher suivant.')],
     ['🛡️', _t('Châssis'), _t('Tu peux monter un châssis de niveau tout de suite avec des nuggets.')],
+    ['✨', _t('Coiffures à paliers'), _t('7 crinières d’énergie, du palier 1 au palier 7 : Mèches cuivre, chargées, surchargées (épiques), Crête néon et Crête plasma (mythiques, avec aura), Crinière de braise (légendaire, flammes) et Crinière prismatique (UPL, particules blanches et éclairs).')],
+    ['👷', _t('Ouvriers de la base'), _t('Jusqu’à 4 ouvriers : chacun fait un chantier à la fois. Le panneau Ouvriers montre qui travaille sur quoi.')],
     ['🌀', _t('Transformations'), _t('Un compteur 1/6 montre où tu en es pour chaque élément, en partie et sur les cartes (dès le Monde 6 débloqué).')],
     ['🏁', _t('Nouveautés débloquées'), _t('En revenant au menu après un monde, la liste de tout ce que tu viens de débloquer s’affiche.')] ] },
   { v: 7, n: _t('MAJ 7 · Énergie'), ic: '⚡', items: [
