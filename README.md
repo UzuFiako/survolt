@@ -31,6 +31,10 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - **Atelier premium** : nouveau look par catégories, rangs Fer → Diamant, et plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50).
 - **Nouvelle rareté de perks : Super rare** (bleue, entre Rare et Épique) : Gros calibre, Perforant, Ricochet, Coup critique, Siphon, Toxine, Incendiaire, Exécuteur, Adrénaline, Shrapnel, Dash tranchant, Dash de feu, Dash toxique, Souffle glacé.
 - **Son** : le jeu se mélange avec ta musique (Spotify…) au lieu de la couper ; le clic des boutons fait partie des Bruitages.
+- **Reprendre sa partie** : si tu quittes le jeu en pleine partie (monde, Infini, Backrooms), un écran te propose de reprendre là où tu étais, avec tes perks et ton butin. Jamais en multi.
+- **Zoom en partie** : de 50 % (tu vois plus loin) à 150 %, dans les Réglages ou le menu Pause.
+- **Taille d’interface très petite**, pratique en paysage.
+- **Look premium** : écran Multijoueur avec les modes en grille et le défi de la semaine en bandeau, ATH en verre (vie, XP, vague, boutons), menus plus soignés.
 - **Atelier rééquilibré** : bonus par niveau revus à la baisse (dégâts +2 %, Bonne étoile beaucoup moins forte, portée, Surcharge, nuggets…).
 - **Son réparé** : après un vocal, un appel ou une autre appli, la musique et les bruitages repartent normalement au toucher suivant.
 - **Châssis** : +1 niveau tout de suite avec des nuggets.

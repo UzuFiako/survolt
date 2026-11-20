@@ -77,6 +77,26 @@ button:focus-visible{outline:3px solid var(--ion);outline-offset:2px}
 .unlrow b{display:block;font:800 14px/1.2 var(--body);color:var(--ink)} .unlrow small{display:block;font:500 12px/1.3 var(--body);color:var(--dim);margin-top:2px}
 .unlic{flex:none;font-size:20px;display:grid;place-items:center;min-width:44px} .unlic svg{width:30px;height:30px}
 @keyframes unlin{from{opacity:0;transform:translateY(8px) scale(.97)}}
+.pzoom{display:flex;align-items:center;gap:10px;justify-content:center;padding:8px 12px;border-radius:14px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(125,249,255,.22)}
+.pzoom span{font:800 11px/1 var(--body);letter-spacing:.14em;color:var(--dim);margin-right:auto} .pzoom .btn{min-width:46px;min-height:40px;padding:0;font-size:20px} .pzoom b{min-width:64px;text-align:center;font:900 16px/1 var(--body);color:#7df9ff}
+.rescard{display:flex;gap:14px;align-items:center;padding:14px;border-radius:16px;background:linear-gradient(135deg,rgba(109,255,176,.14),rgba(61,232,255,.08));box-shadow:inset 0 0 0 1px rgba(109,255,176,.35)}
+.rescard i{font-style:normal;font-size:28px} .rescard b{display:block;font:900 16px/1.2 var(--body);color:var(--ink)} .rescard small{display:block;margin-top:3px;font:600 12px/1.3 var(--body);color:var(--dim)}
+.mpbody .mpcard.wk{position:relative;overflow:hidden;padding:18px;border-radius:20px;border:0;background:radial-gradient(120% 140% at 0% 0%,rgba(255,210,63,.28),transparent 55%),linear-gradient(135deg,#2a1d4e,#18123a 60%,#22183f);box-shadow:inset 0 0 0 1.5px rgba(255,210,63,.55),0 14px 34px rgba(0,0,0,.35)}
+.mpbody .mpcard.wk::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,240,180,.12) 50%,transparent 60%);background-size:250% 100%;animation:shsheen 4.5s linear infinite;pointer-events:none}
+.mpbody .mpcard.wk .mpic{background:linear-gradient(160deg,#ffe36a,#ffb02e);box-shadow:0 6px 18px rgba(255,190,50,.35);font-size:26px}
+.mpbody .mpcard.wk b{font-size:21px;color:#ffd23f}
+.mpgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.land .mpgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mpcard.tile{--mc:#7df9ff;display:flex;flex-direction:column;gap:8px;padding:14px 12px 12px;border:0;border-radius:18px;position:relative;overflow:hidden;
+  background:radial-gradient(130% 90% at 50% 0%,color-mix(in srgb,var(--mc) 22%,transparent),transparent 65%),linear-gradient(180deg,#1f1846,#151033);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--mc) 40%,transparent),0 10px 26px rgba(0,0,0,.3)}
+.mpcard.tile .mpic{width:56px;height:56px;line-height:56px;font-size:28px;margin:2px auto 0;border-radius:16px;background:color-mix(in srgb,var(--mc) 18%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--mc) 55%,transparent),0 0 20px color-mix(in srgb,var(--mc) 25%,transparent);display:grid;place-items:center}
+.mpcard.tile .mpic .eico.tile{background:none;box-shadow:none;width:100%;height:100%} .mpcard.tile .mpic .eico svg{width:60%;height:60%}
+.mpcard.tile .mpt{text-align:center;flex:1} .mpcard.tile b{display:block;font-size:16px;line-height:1.15;color:var(--ink)} .mpcard.tile p{font-size:11.5px;line-height:1.3}
+.mpchips{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:7px} .mpchips span{font:900 9px/1 var(--body);letter-spacing:.1em;padding:4px 6px;border-radius:6px;color:var(--mc,#7df9ff);background:color-mix(in srgb,var(--mc,#7df9ff) 12%,transparent)}
+.mpcard.tile .mpbtns{flex-direction:column;gap:6px;margin-top:0} .mpcard.tile .mpbtns .btn{min-height:40px;font-size:12px;border-radius:12px}
+.mpcard.tile .mpbtns .btn.primary{background:linear-gradient(180deg,color-mix(in srgb,var(--mc) 85%,#fff),var(--mc));color:#0d0a1f;border:0;box-shadow:0 4px 0 color-mix(in srgb,var(--mc) 50%,#000)}
+.mpcard.tile.open{grid-column:1/-1}
+.mpcard.tile.soon{opacity:.55}
 .basewk{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:14px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,210,63,.2)}
 .wkh b{display:block;font:800 14px/1.2 var(--body);color:var(--ink)} .wkh small{display:block;font:500 12px/1.35 var(--body);color:var(--dim);margin-top:3px}
 .wkrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
@@ -1411,6 +1431,37 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .it.cat{filter:grayscale(1) brightness(.85);opacity:.45} .it.cat.sel{opacity:.8}
 .catset{grid-column:1/-1;margin:8px 0 0;font:800 11px/1 var(--body);letter-spacing:.14em;color:var(--sc,var(--dim))}
 .eqdetail.none{display:block;font-size:13px;color:var(--dim)}
+
+/* ---------- MAJ 8 : ATH premium ---------- */
+#hud .xp{height:8px;border-radius:6px;background:rgba(61,232,255,.12);box-shadow:inset 0 0 0 1px rgba(61,232,255,.25),0 0 14px rgba(61,232,255,.12)}
+#hud .xp i{background:linear-gradient(90deg,#3de8ff,#7d8bff 55%,#d56bff);box-shadow:0 0 10px rgba(125,139,255,.7);border-radius:6px;position:relative}
+#hud .vit{padding:8px 11px 10px;border-radius:16px;background:linear-gradient(160deg,rgba(30,24,64,.72),rgba(12,9,28,.62));box-shadow:inset 0 0 0 1px rgba(125,249,255,.22),0 8px 22px rgba(0,0,0,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#hud .lv{display:inline-flex;align-items:baseline;gap:4px;padding:3px 8px;border-radius:8px;background:rgba(61,232,255,.14);box-shadow:inset 0 0 0 1px rgba(61,232,255,.35)}
+#hud .hp{height:12px;transform:none;margin-left:0;border-radius:7px;outline:0;background:rgba(255,61,129,.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+#hud .hp i{border-radius:7px;background:linear-gradient(180deg,#8dffb8,#2fd17a 60%,#1fa862);box-shadow:0 0 10px rgba(54,224,138,.55)}
+#hud .hp.low i{background:linear-gradient(180deg,#ff8aa0,#ff3d55);box-shadow:0 0 12px rgba(255,61,85,.7);animation:hplow .8s ease-in-out infinite}
+@keyframes hplow{50%{filter:brightness(1.35)}}
+#hud .info{padding:8px 11px;border-radius:16px;background:linear-gradient(200deg,rgba(30,24,64,.72),rgba(12,9,28,.62));box-shadow:inset 0 0 0 1px rgba(255,210,63,.22),0 8px 22px rgba(0,0,0,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#hud .wave{padding:3px 8px;border-radius:8px;background:rgba(255,210,63,.12);box-shadow:inset 0 0 0 1px rgba(255,210,63,.35)}
+#hud .score{text-shadow:0 0 14px rgba(255,255,255,.25)}
+#bPause{border-radius:14px;outline:0;background:linear-gradient(160deg,rgba(40,32,84,.85),rgba(14,10,32,.8));box-shadow:inset 0 0 0 1.5px rgba(125,249,255,.35),0 6px 16px rgba(0,0,0,.3)}
+#bPause::before{border-left-color:#7df9ff;border-right-color:#7df9ff;filter:drop-shadow(0 0 4px rgba(125,249,255,.6))}
+.act{background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.16),rgba(var(--nrgb),.8) 55%);box-shadow:0 8px 20px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.18)}
+.act.ready{background:radial-gradient(circle at 35% 28%,color-mix(in srgb,var(--c) 55%,#fff),var(--c) 60%);box-shadow:0 0 22px color-mix(in srgb,var(--c) 60%,transparent),0 8px 20px rgba(0,0,0,.35)}
+#boss .bar{height:12px;border-radius:7px;outline:0;box-shadow:inset 0 0 0 1px rgba(255,61,129,.6),0 0 16px rgba(255,61,129,.3)} #bossF{border-radius:7px;background:linear-gradient(90deg,#ff3d55,#ff8a3d)}
+/* menus premium (thème par défaut) */
+:root:not([data-th]) .screen>.sheet.panel,:root[data-th="neon"] .screen>.sheet.panel{background:radial-gradient(120% 60% at 50% 0%,rgba(125,90,255,.14),transparent 60%),linear-gradient(180deg,#191338,var(--night) 40%);outline:0;box-shadow:inset 0 0 0 1px rgba(160,140,255,.22),inset 0 1px 0 rgba(255,255,255,.08),0 24px 60px -20px rgba(0,0,0,.75)}
+:root:not([data-th]) .phead .h1,:root[data-th="neon"] .phead .h1{background:linear-gradient(180deg,#fff3a8,#ffd23f 45%,#ff9a2e);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 10px rgba(255,190,50,.25))}
+/* défi de la semaine en bandeau */
+.mpbody .mpcard.wk{grid-template-columns:58px 1fr;align-items:center}
+.mpbody .mpcard.wk .mpic{width:58px;height:58px;line-height:58px;display:grid;place-items:center;--ec:#1a1206}
+.mpbody .mpcard.wk .mpic .eico.tile{background:none;box-shadow:none} .mpbody .mpcard.wk .mpic svg{stroke:#1a1206}
+.mpbody .mpcard.wk .mpt{text-align:left}
+.mpbody .mpcard.wk .mpmods{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.mpbody .mpcard.wk .mpmods span{display:block;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.25);box-shadow:inset 0 0 0 1px rgba(255,210,63,.25);text-align:left}
+.mpbody .mpcard.wk .mpmods b{display:block;font-size:13.5px;color:#ffd23f} .mpbody .mpcard.wk .mpmods small{display:block;font:600 11px/1.3 var(--body);color:var(--dim);margin-top:2px}
+.mpbody .mpcard.wk .mprec{grid-column:1/-1;font:700 12px/1.2 var(--body);color:#7df9ff}
+.mpbody .mph{font:900 12px/1 var(--body);letter-spacing:.2em;color:var(--dim);display:flex;align-items:center;gap:10px;margin:8px 2px 0} .mpbody .mph::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.18),transparent)}
 </style>
 </head>
 <body>
@@ -1909,6 +1960,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
     <div class="phead"><h2 class="h1">PAUSE</h2><p class="sub" id="pInfo"></p></div>
     <div class="ploot" id="pLoot" data-raw></div>
     <div id="pBuild" class="pbuild" data-scroll></div>
+    <div class="pzoom"><span>🔍 ZOOM</span><button id="bZm" class="btn" type="button" aria-label="Dézoomer">−</button><b id="zmV">100 %</b><button id="bZp" class="btn" type="button" aria-label="Zoomer">+</button></div>
     <div class="pbtns">
       <button id="bResume" class="btn primary" type="button">REPRENDRE</button>
       <button id="bPOpts" class="btn" type="button">RÉGLAGES</button>
@@ -2838,7 +2890,7 @@ const meta = { shards: 0, best: 0, bestWave: 0, shop: {}, cls: { scout: 1 }, sel
   pseudo: '', dev: '', lbRun: {}, lbSent: {}, lbTime: {}, lbTSent: {}, avatar: 'scout', ts: 0, rv: 0, paid: [],
   shopV: 2, slv: {}, scr: {}, dq: null, wq: null, login: { d: '', n: 0 }, seen: { d: '', s: 0, b: 0 }, titles: {}, title: '', notes: [], bp: null, pl: null, prof: {}, ptime: 0, tot: { k: 0, r: 0, b: 0 }, welc: { t: 0, done: false },
   bulb: 0, keys: 0, clsP: {}, dgRuns: 0, dshop: { d: '', got: {} },
-  base: null, nrg: null, unlSeen: null };   // MAJ 8 : déblocages vus   // MAJ 7 : énergie des mondes   // MAJ 6 : la base (mode AFK), créée à la première visite   // v3 : ampoules (monnaie des Backrooms), clés, niveaux/étoiles des châssis, parties Backrooms, offres du jour
+  base: null, nrg: null, unlSeen: null, resume: null };   // MAJ 8 : déblocages vus   // MAJ 7 : énergie des mondes   // MAJ 6 : la base (mode AFK), créée à la première visite   // v3 : ampoules (monnaie des Backrooms), clés, niveaux/étoiles des châssis, parties Backrooms, offres du jour
 const META0 = JSON.stringify(meta);   // valeurs de départ, pour repartir de zéro
 const RV = 3;   // version de remise à zéro : toute sauvegarde plus ancienne repart de zéro (on garde seulement les réglages)
 function resetMeta() { const d = JSON.parse(META0); for (const k of Object.keys(meta)) delete meta[k]; Object.assign(meta, d); }   // jouer de côté, sticks fixes
@@ -2870,6 +2922,7 @@ function merge(s) {
     for (const k of ['qg', 'mine', 'raf', 'bat', 'lab']) { o.b[k] = clamp((b.b[k] | 0), 0, 12); o.st[k] = Math.max(0, Number(b.st && b.st[k]) || 0); }
     if (Array.isArray(b.jobs)) o.jobs = b.jobs.filter(j => j && o.b[j.id] !== undefined && Number.isFinite(j.end)).slice(0, 2).map(j => ({ id: j.id, end: j.end }));
     o.b.qg = Math.max(1, o.b.qg); meta.base = o; }
+  if (s.resume && typeof s.resume === 'object' && s.resume.v === 1 && s.resume.p) meta.resume = s.resume;
   if (Array.isArray(s.unlSeen)) meta.unlSeen = s.unlSeen.filter(x => typeof x === 'string').slice(0, 400);
   if (s.nrg && typeof s.nrg === 'object' && Number.isFinite(s.nrg.v) && Number.isFinite(s.nrg.t)) meta.nrg = { v: clamp(Math.floor(s.nrg.v), 0, 999), t: Math.min(Date.now(), s.nrg.t) };
   if (s.dshop && typeof s.dshop === 'object') meta.dshop = { d: String(s.dshop.d || ''), got: Object.assign({}, s.dshop.got) };
@@ -2882,7 +2935,7 @@ function merge(s) {
   for (const k of ['musVol', 'sfxVol']) if (Number.isFinite(s[k])) meta[k] = clamp(Math.round(s[k] / 10) * 10, 0, 100);
   meta.nm = !!s.nm;
   if (typeof s.mus === 'string' && ['auto', 'menu', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'inf'].includes(s.mus)) meta.mus = s.mus;
-  if (s.opt && typeof s.opt === 'object') for (const k of ['side', 'lock', 'flip', 'auto']) if (typeof s.opt[k] === 'boolean') meta.opt[k] = s.opt[k];
+  if (s.opt && typeof s.opt === 'object') { for (const k of ['side', 'lock', 'flip', 'auto', 'clk']) if (typeof s.opt[k] === 'boolean') meta.opt[k] = s.opt[k]; if (Number.isFinite(s.opt.uiz)) meta.opt.uiz = clamp(s.opt.uiz, 0.7, 1.2); if (Number.isFinite(s.opt.zoom)) meta.opt.zoom = clamp(s.opt.zoom, 0.5, 1.5); }
   if (typeof s.pseudo === 'string') meta.pseudo = cleanName(s.pseudo);
   if (typeof s.avatar === 'string') meta.avatar = s.avatar;
   if (Array.isArray(s.paid)) meta.paid = s.paid.filter(x => typeof x === 'string').slice(-300);
@@ -3242,7 +3295,7 @@ const vib = ms => { if (state === 'menu') return; try { if (navigator.vibrate) n
 
 /* ================= État ================= */
 const cv = $('#game'), ctx = cv.getContext('2d'), stage = $('#stage');
-let W = 0, H = 0, DPR = 1, SC = 1, ROT = false, VW = 0, VH = 0, FLIP = false, LAND = false, INS = { l: 0, t: 0, r: 0, b: 0 };
+let W = 0, H = 0, DPR = 1, SC = 1, SC0 = 1, ROT = false, VW = 0, VH = 0, FLIP = false, LAND = false, INS = { l: 0, t: 0, r: 0, b: 0 };
 const insProbe = document.createElement('div');
 insProbe.style.cssText = 'position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)';
 document.body.appendChild(insProbe);
@@ -3398,7 +3451,7 @@ function resize() {
   stage.classList.toggle('pads', meta.opt.lock); try { applyUiz(); } catch (e) {}
   DPR = Math.min(window.devicePixelRatio || 1, 2);
   cv.width = Math.max(1, Math.round(W * DPR)); cv.height = Math.max(1, Math.round(H * DPR));
-  SC = clamp(Math.sqrt(W * H) / 640, 0.55, 1.8);
+  SC0 = clamp(Math.sqrt(W * H) / 640, 0.55, 1.8); SC = SC0 * (meta.opt.zoom || 1);
   for (const j of [joy, aimJ]) { j.id = null; j.on = false; j.x = j.y = 0; }
   applyLayout();
 }
@@ -3689,7 +3742,7 @@ function startWave(n) {
 function waveClear() {
   G.breakT = G.world.quick ? 1.5 : 2.6; G.vacuum = 2.4; G.shards += 1; G.score += G.wave * 50;
   heal(P.s.maxHp * 0.03);
-  banner(_t('VAGUE ') + G.wave + _t(' NETTOYÉE'), '', C.ok, 1.8);
+  banner(_t('VAGUE ') + G.wave + _t(' NETTOYÉE'), '', C.ok, 1.8); runSnap();
 }
 function quickClock() {
   const W = G.world; if (!W.quick || G.demo || G.won || G.qkOut || G.wave >= W.waves) return;
@@ -4351,7 +4404,7 @@ function hurt(d) {
 }
 function die() {
   if (G && G.duel && G.mp && !G.mp.ended) { G.mp.ended = true; mpSend('ev', { t: 'dko' }); }
-  state = 'dying'; G.deadT = 1.15; G.banner = null;
+  state = 'dying'; G.deadT = 1.15; G.banner = null; if (!G.demo && meta.resume) { meta.resume = null; try { localStorage.setItem(SAVE, JSON.stringify(meta)); } catch (e) {} }
   burst(P.x, P.y, 'volt', 60, 380); burst(P.x, P.y, 'ink', 30, 240); ring(P.x, P.y, 220, 'volt', 0.6, 8);
   shake(22); vib(200); sfx.boom(); sfx.over();
 }
@@ -6306,8 +6359,10 @@ const OPTS = [
   { k: 'lock', n: _t('Sticks fixes'), h: _t('Sur OUI, les sticks restent à leur place. Sur NON, ils apparaissent là où tu poses le doigt.') },
   { k: 'mus', n: _t('Musique'), h: _t('Musique d’ambiance : calme au menu, plus rythmée en partie et pendant les boss.') },
   { k: 'snd', n: _t('Bruitages'), h: _t('Les sons du jeu et le petit clic des boutons.') },
+  { k: 'zoom', n: _t('Zoom en partie'), h: _t('Dézoome pour voir les ennemis de plus loin, ou zoome pour voir ton tank en plus gros. Réglable aussi dans le menu Pause.'),
+    ch: [[_t('50 %'), 0.5], [_t('75 %'), 0.75], [_t('100 %'), 1], [_t('125 %'), 1.25], [_t('150 %'), 1.5]].map(([t, v]) => [t, () => Math.abs((meta.opt.zoom || 1) - v) < 0.01, () => { meta.opt.zoom = v; save(); resize(); renderOpts(); }]) },
   { k: 'uiz', n: _t('Taille de l’interface'), h: _t('Agrandit ou réduit les menus. Le jeu lui-même ne change pas.'),
-    ch: [[_t('PETITE'), 0.88], [_t('NORMALE'), 1], [_t('GRANDE'), 1.12]].map(([t, v]) => [t, () => (meta.opt.uiz || 1) === v, () => { meta.opt.uiz = v; save(); applyUiz(); renderOpts(); }]) },
+    ch: [[_t('TRÈS PETITE'), 0.76], [_t('PETITE'), 0.88], [_t('NORMALE'), 1], [_t('GRANDE'), 1.12]].map(([t, v]) => [t, () => (meta.opt.uiz || 1) === v, () => { meta.opt.uiz = v; save(); applyUiz(); renderOpts(); }]) },
   { k: 'clk', n: _t('Sons de clic'), h: _t('Un petit clic quand tu touches un bouton.'), ch: [[_t('NON'), () => meta.opt.clk === false, () => { meta.opt.clk = false; renderOpts(); }], [_t('OUI'), () => meta.opt.clk !== false, () => { meta.opt.clk = true; renderOpts(); }]] }
 ];
 function applyUiz() { const z = meta.opt.uiz || 1; document.documentElement.style.setProperty('--uiz', z); }
@@ -6370,7 +6425,7 @@ function renderOpts() {
   row.append(nm, b, h); box.appendChild(row);
   // rangement en 3 rubriques : commandes, affichage, son
   const rows = {}; for (const r of [...box.children]) rows[r.dataset.k] = r; box.innerHTML = '';
-  for (const [title, ks] of [[_t('🎮 COMMANDES'), ['sens', 'lock', 'layout']], [_t('🖥️ AFFICHAGE'), ['lang', 'side', 'uiz', 'theme']], [_t('🔊 SON'), ['mus', 'track', 'snd', 'musVol', 'sfxVol']]]) {
+  for (const [title, ks] of [[_t('🎮 COMMANDES'), ['sens', 'lock', 'layout']], [_t('🖥️ AFFICHAGE'), ['lang', 'side', 'uiz', 'zoom', 'theme']], [_t('🔊 SON'), ['mus', 'track', 'snd', 'musVol', 'sfxVol']]]) {
     const h3 = document.createElement('h3'); h3.className = 'optsec'; h3.textContent = title; box.appendChild(h3);
     for (const k of ks) if (rows[k]) { box.appendChild(rows[k]); delete rows[k]; }
   }
@@ -6479,6 +6534,7 @@ function renderQuick() {
   }
 }
 function renderMenu() {
+  if (meta.resume && !resumeAsked) { resumeAsked = true; setTimeout(askResume, 1100); }
   try { renderBaseCard(); renderNrg(); } catch (e) {}
   try { const nw = meta.nw || {}, b = $('#bGarage'); if (b) b.classList.toggle('ndot2', meta.inv.some(i => nw[i.u]) || meta.runes.some(r => nw[r.u])); } catch (e) {}
   try { renderQuick(); renderDgCard(); } catch (e) {}
@@ -7648,10 +7704,10 @@ function pickCard(i) {
   if (cardKind === 'level') G.pending--;
   if (G.duel && G.duel.evoQ.length) { openCards('evo'); return; }
   if (G.pending > 0) { openCards('level'); return; }
-  el.cards.hidden = true; state = 'play'; P.inv = Math.max(P.inv, 0.7); G.readyT = 1.5; last = performance.now(); hud();
+  el.cards.hidden = true; state = 'play'; P.inv = Math.max(P.inv, 0.7); G.readyT = 1.5; last = performance.now(); hud(); runSnap();
 }
 function pause() {
-  if (state !== 'play') return; if (G && G.duel && !G.mp.ended) { toast(_t('Pas de pause en duel !')); return; } state = 'pause';
+  if (state !== 'play') return; if (G && G.duel && !G.mp.ended) { toast(_t('Pas de pause en duel !')); return; } state = 'pause'; try { showZoom(); } catch (e) {}
   { const pl = $('#pLoot'); pl.innerHTML = ''; const it = (cls, ic, v, lab) => { const x = document.createElement('span'); x.className = cls; if (ic) { const i = document.createElement('i'); i.className = 'cur ' + ic; x.appendChild(i); } x.append(v + ' ' + lab); pl.appendChild(x); };
     it('pn', 'n', fmt(runNug()), _t('nuggets')); it('pd', 'd', fmt(G.jet || 0), _t('diams')); if (G.scr) it('', '', '📜 ' + fmt(G.scr), _t('parchemins')); if (G.chDrops && G.chDrops.length) it('', '', '🎁 ' + G.chDrops.length, _t('coffre(s)')); if (G.drops && G.drops.length) it('', '', '⚔️ ' + G.drops.length, _t('objet(s)'));
     const h = document.createElement('small'); h.className = 'sub'; h.style.width = '100%'; h.textContent = _t('Ramassé pendant cette partie. Les bonus de fin s’ajoutent après. Si tu abandonnes, tu n’en gardes que 10 %.'); pl.appendChild(h); }
@@ -7669,7 +7725,7 @@ function pause() {
 function resume() { if (state !== 'pause' || !el.opts.hidden || !el.layout.hidden) return; el.pause.hidden = true; state = 'play'; last = performance.now(); }
 let nextW = null;
 function showOver(win, quit) {
-  state = 'over'; win = !!win; quit = !!quit && !win;
+  state = 'over'; win = !!win; quit = !!quit && !win; if (!G.demo && meta.resume) meta.resume = null;
   const Wd = G.world, wi = WORLDS.indexOf(Wd), bonus = win ? Wd.reward : 0, rec = G.score > meta.best && G.score > 0;
   const wkx = isWeekend() && !G.demo ? 2 : 1;
   const lm = G.demo ? 1 : lootMul(Wd) * (G.nm ? NM.loot : 1); G.jet = Math.round(G.jet * lm); G.scr = Math.round(G.scr * lm);
@@ -8023,7 +8079,7 @@ function dgFloor(k) {
   if (G.mp && G.mp.host) { if (MPP) { MPP.x = MPP.tx = L.st.cx + 55; MPP.y = MPP.ty = L.st.cy + 120; } mpSend('ev', dgPack()); }
   L.st.vis = L.st.seen = 1; L.st.clear = 1; for (const o of Object.values(L.st.nb)) o.seen = 1; D.cur = L.st;
   meta.wbest.dg = Math.max(meta.wbest.dg || 0, k + 1); dgTheme(k);
-  G.flash = 0.5; banner(F.n, F.sub, F.col, 3); sfx.wave();
+  G.flash = 0.5; banner(F.n, F.sub, F.col, 3); sfx.wave(); setTimeout(runSnap, 50);
 }
 function dgEnter(r) {
   const D = G.dg, F = DGF[D.k];
@@ -8407,7 +8463,55 @@ function duelArrow() {
   ctx.font = `700 11px ${TH.fb}`; ctx.textAlign = 'center'; ctx.fillStyle = C.hot; ctx.fillText('⚔️ ' + MPP.n, x, y + 24);
 }
 function startQuick(id) { RUNW = id; startRun(); }
+/* ================= Reprendre sa partie (monde, Infini, Backrooms ; jamais en multi) ================= */
+let resumeAsked = false, RESUMING = false;
+const resumeOk = () => !!(G && P && !G.demo && !G.mp && !G.chal && !G.duel && G.world && !G.world.quick && P.hp > 0 && (state === 'play' || state === 'cards' || state === 'pause'));
+function runSnap() {
+  if (!resumeOk() || RESUMING) return;
+  try {
+    const between = !G.boss && !enemies.length && !G.queue.length, g = {};
+    for (const k of ['t', 'score', 'kills', 'shards', 'jet', 'scr', 'bossN', 'bossK', 'miniK', 'petK', 'rerolls', 'lastMini', 'nm', 'combo']) g[k] = G[k];
+    meta.resume = { v: 1, ts: Date.now(), wid: G.dg ? 'dg' : G.world.id, cls: P.cls, wave: G.dg ? G.wave : (between ? G.wave : Math.max(0, G.wave - 1)), dgk: G.dg ? G.dg.k : null,
+      g, drops: G.drops || [], chDrops: G.chDrops || [], runes: G.runes || [], pending: G.pending || 0,
+      p: { level: P.level, xp: P.xp, need: P.need, hp: P.s.maxHp ? P.hp / P.s.maxHp : 1, up: Object.assign({}, P.up), relic: Object.assign({}, P.relic), trans: P.trans || null, charge: P.charge || 0 } };
+    try { localStorage.setItem(SAVE, JSON.stringify(meta)); } catch (e) {}   // sauvegarde locale seulement (pas d'envoi en ligne à chaque fois)
+  } catch (e) {}
+}
+setInterval(() => { if (state === 'play') runSnap(); }, 12000);
+document.addEventListener('visibilitychange', () => { if (document.hidden) runSnap(); });
+window.addEventListener('pagehide', runSnap);
+function resumeDesc(R) { const w = R.wid === 'dg' ? null : worldById(R.wid); return R.wid === 'dg' ? _tf('Backrooms · étage {0}', [(R.dgk || 0) + 1]) : (w.id === 'inf' ? _t('Infini') : _tf('Monde {0} · {1}', [w.no, w.n])) + ' · ' + _tf('vague {0}', [R.wave + 1]); }
+function askResume() {
+  const R = meta.resume; if (!R || state !== 'menu') return;
+  const box = sheet(_t('Partie en cours')); box.classList.add('resbox');
+  const c = document.createElement('div'); c.className = 'rescard'; c.innerHTML = '<i>⏯️</i><div><b></b><small></small></div>';
+  c.querySelector('b').textContent = resumeDesc(R);
+  c.querySelector('small').textContent = _tf('Niveau {0} · {1} perks · {2} éliminations', [R.p.level, Object.keys(R.p.up || {}).length, fmt((R.g && R.g.kills) || 0)]); box.appendChild(c);
+  const p = document.createElement('p'); p.className = 'pfhint'; p.textContent = _t('Tu as quitté le jeu en pleine partie. Reprends là où tu en étais, avec tes perks et ton butin.'); box.appendChild(p);
+  sBtn(box, _t('▶ REPRENDRE'), 'primary', () => { $('#frDet').hidden = true; resumeRun(); });
+  sBtn(box, _t('ABANDONNER CETTE PARTIE'), '', () => { meta.resume = null; save(); $('#frDet').hidden = true; renderMenu(); });
+}
+function resumeRun() {
+  const R = meta.resume; if (!R) return; RESUMING = true;
+  try {
+    if (R.cls && meta.cls[R.cls]) meta.sel = R.cls;
+    if (R.wid === 'dg') { DGM_ON = false; { const m = $('#dgm'); if (m) m.hidden = true; } RUNW = 'w1'; startRun(); dgInit(R.dgk || 0); }
+    else { RUNW = worldById(R.wid) ? R.wid : meta.world; startRun(); }
+    for (const k in (R.g || {})) G[k] = R.g[k];
+    G.drops = R.drops || []; G.chDrops = R.chDrops || []; G.runes = R.runes || [];
+    for (const id in (R.p.up || {})) { const u = UPID[id]; if (!u) continue; if (R.p.relic && R.p.relic[id]) P.relic[id] = 1; for (let i = 0; i < R.p.up[id]; i++) { try { u.f(P.s, P); } catch (e) {} P.up[id] = (P.up[id] || 0) + 1; } }
+    P.level = R.p.level || 1; P.xp = R.p.xp || 0; P.need = R.p.need || xpNeed(P.level); P.charge = R.p.charge || 0;
+    if (R.p.trans && TRANS[R.p.trans]) { P.trans = R.p.trans; TRANS[R.p.trans].f(P.s, P); }
+    P.hp = Math.max(1, Math.round(P.s.maxHp * clamp(R.p.hp || 1, 0.05, 1))); P.inv = 2;
+    if (!G.dg) { G.wave = R.wave || 0; G.queue = []; enemies = []; G.boss = null; G.breakT = 2.2; }
+    G.pending = R.pending || 0;
+    hud(); banner(_t('PARTIE REPRISE'), resumeDesc(R), C.ok, 2.6);
+  } catch (e) { console.warn(e); }
+  RESUMING = false; runSnap();
+  if (G.pending > 0) setTimeout(() => { if (state === 'play') openCards('level'); }, 600);
+}
 function startRun() {
+  if (!RESUMING && meta.resume) meta.resume = null;   // une nouvelle partie remplace l'ancienne
   el.mp.hidden = true; $('#mpInv').hidden = true; MPP = null;
   initAudio(); newRun(meta.sel, RUNW || meta.world); RUNW = null; state = 'play'; el.chests.hidden = el.chOpen.hidden = true;
   el.gear.hidden = !(P.stuff && P.stuff.ult); if (P.stuff && P.stuff.ult) { el.gear.textContent = P.stuff.btn; el.gear.style.setProperty('--c', P.stuff.col); }
@@ -10437,7 +10541,8 @@ function mpOver(win) {
 let mpFr = null, mpGh = null, mpGhW = 'w1';
 function openMp() { el.menu.hidden = true; el.mp.hidden = false; el.mp.scrollTop = 0; mpTop = true; setTimeout(() => { mpTop = false; }, 1500); requestAnimationFrame(() => el.mp.scrollTop = 0); for (const ms of [60, 250, 600]) setTimeout(() => { if (mpTop) el.mp.scrollTop = 0; }, ms); MP.view = MP.room ? 'lobby' : MP.view === 'lobby' ? 'hub' : MP.view; renderMp(); if (AUTH) rpcA('my_friends').then(l => { mpFr = (l || []).filter(c => c.rel === 'friend'); if (MP.view === 'lobby') renderMp(); }).catch(() => {}); }
 function closeMp() { if (MP.view !== 'hub') { if (MP.view === 'lobby') mpLeave(); MP.view = 'hub'; renderMp(); return; } el.mp.hidden = true; el.menu.hidden = false; renderMenu(); }
-function mpCard(ic, title, txt, cls) { const c = document.createElement('div'); c.className = 'mpcard ' + (cls || ''); c.innerHTML = '<div class="mpic"></div><div class="mpt"><b></b><p></p></div><div class="mpbtns"></div>'; c.querySelector('.mpic').textContent = ic; c.querySelector('b').textContent = title; c.querySelector('p').textContent = txt; return c; }
+function mpCard(ic, title, txt, cls, col, chips) { const c = document.createElement('div'); c.className = 'mpcard ' + (cls || ''); if (col) c.style.setProperty('--mc', col); c.innerHTML = '<div class="mpic"></div><div class="mpt"><b></b><p></p></div><div class="mpbtns"></div>'; c.querySelector('.mpic').textContent = ic; c.querySelector('b').textContent = title; c.querySelector('p').textContent = txt;
+  if (chips && chips.length) { const ch = document.createElement('div'); ch.className = 'mpchips'; for (const t of chips) { const x = document.createElement('span'); x.textContent = t; ch.appendChild(x); } c.querySelector('.mpt').appendChild(ch); } return c; }
 function mpBtn(t, cls, fn) { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn ' + (cls || ''); b.textContent = t; b.addEventListener('click', fn); return b; }
 function renderMp() {
   if (!el.mp || el.mp.hidden) return; const B = $('#mpBody'), keep = el.mp.scrollTop;
@@ -10454,24 +10559,26 @@ function renderMpIn(B) {
   const d = wkDef(), Wd = worldById(d.world), mine = meta.lbRun[d.id];
   const c1 = mpCard('🏆', _t('Défi de la semaine'), _tf("{0} · tank {1} de base (sans équipement ni atelier). Même défi pour tout le monde, classement à part. Nouveau défi dans {2}.", [Wd.n, CLS.find(c => c.id === d.cls).n, wkLeft()]), 'wk');
   const mods = document.createElement('div'); mods.className = 'mpmods'; for (const k of d.mods) { const m = WKMODS.find(x => x.id === k), s = document.createElement('span'); s.innerHTML = '<b></b> <small></small>'; s.querySelector('b').textContent = m.n; s.querySelector('small').textContent = m.d; mods.appendChild(s); }
-  c1.querySelector('.mpt').appendChild(mods);
-  const rec = document.createElement('small'); rec.className = 'mprec'; rec.textContent = mine ? _tf("Ton record : {0} (vague {1})", [fmt(mine.s), mine.w]) : _t('Pas encore joué cette semaine.'); c1.querySelector('.mpt').appendChild(rec);
+  c1.appendChild(mods);
+  const rec = document.createElement('small'); rec.className = 'mprec'; rec.textContent = mine ? _tf("Ton record : {0} (vague {1})", [fmt(mine.s), mine.w]) : _t('Pas encore joué cette semaine.'); c1.appendChild(rec); c1.appendChild(c1.querySelector('.mpbtns'));
   c1.querySelector('.mpbtns').append(mpBtn(_t('JOUER'), 'primary', startChal), mpBtn(_t('CLASSEMENT'), '', () => { el.mp.hidden = true; openLb(); lbMode = d.id; renderLbTabs(); loadLb(); }));
   B.appendChild(c1);
-  const c2 = mpCard('🤝', _t('Co-op à 2'), _t('Mondes 1 à 3 à deux, comme en solo. Ennemis 2× plus résistants et 2× plus de dégâts, +50 % de nombre. Relève ton partenaire, cartes duo, roue partagée.'));
+  { const h0 = document.createElement('h3'); h0.className = 'mph'; h0.textContent = _t('MODES DE JEU'); B.appendChild(h0); }
+  const grid = document.createElement('div'); grid.className = 'mpgrid'; B.appendChild(grid);
+  const c2 = mpCard('🤝', _t('Co-op à 2'), _t('Mondes 1 à 3 à deux. Ennemis plus costauds, relève ton partenaire, cartes duo.'), 'tile', '#6dffb0', [_t('2 JOUEURS'), _t('COOP')]);
   c2.querySelector('.mpbtns').append(mpBtn(_t('CRÉER'), 'primary', () => mpCreate('coop')), mpBtn(_t('REJOINDRE'), '', () => mpAskCode(c2)));
-  B.appendChild(c2);
-  const c3 = mpCard('🏁', _t('Course 1v1'), _t('Chacun dans son arène, même monde. Tes élites et boss battus sont envoyés chez l’adversaire. Le dernier debout ou le premier au bout gagne.'));
+  grid.appendChild(c2);
+  const c3 = mpCard('🏁', _t('Course 1v1'), _t('Chacun son arène : tes élites battus partent chez l’adversaire. Premier au bout gagne.'), 'tile', '#3de8ff', [_t('1V1'), _t('COURSE')]);
   c3.querySelector('.mpbtns').append(mpBtn(_t('CRÉER'), 'primary', () => mpCreate('race')), mpBtn(_t('REJOINDRE'), '', () => mpAskCode(c3)));
-  B.appendChild(c3);
-  const c3b = mpCard('⚔️', _t('1v1 Gare du Nord'), _t('Vraiment toi contre lui, aucun monstre. Tank de base, blocs à casser pour monter jusqu’au niveau 30 (arme, châssis, ultime), puis duel final. Le premier K.O. perd. ~15 min.'));
+  grid.appendChild(c3);
+  const c3b = mpCard('⚔️', _t('1v1 Gare du Nord'), _t('Toi contre lui, sans monstres. Monte au niveau 30 puis duel final. ~15 min.'), 'tile', '#ff5a6e', [_t('1V1'), _t('DUEL')]);
   c3b.querySelector('.mpbtns').append(mpBtn(_t('CRÉER'), 'primary', () => mpCreate('duel')), mpBtn(_t('REJOINDRE'), '', () => mpAskCode(c3b)));
-  B.appendChild(c3b);
-  const c4 = mpCard('👻', _t('Fantôme d’un ami'), _t('Joue contre le meilleur parcours d’un ami : son tank fantôme roule à côté de toi. Bats son score !'));
+  grid.appendChild(c3b);
+  const c4 = mpCard('👻', _t('Fantôme d’un ami'), _t('Son meilleur parcours roule à côté de toi. Bats son score !'), 'tile', '#c58bff', [_t('SOLO'), _t('AMIS')]);
   c4.querySelector('.mpbtns').append(mpBtn(_t('CHOISIR'), 'primary', () => { MP.view = 'ghost'; mpGh = null; mpGhW = (WORLDS.find(w => w.id === meta.world && w.waves) || WORLDS[0]).id; renderMp(); mpLoadGh(); }));
-  B.appendChild(c4);
-  const c5 = mpCard('⚔️', _t('Arène · Battle royale'), _t('Tous contre tous dans une grande arène, façon Diep.io.'), 'soon');
-  const so = document.createElement('span'); so.className = 'mpsoon'; so.textContent = _t('À VENIR'); c5.querySelector('.mpbtns').appendChild(so); B.appendChild(c5);
+  grid.appendChild(c4);
+  const c5 = mpCard('🌀', _t('Battle royale'), _t('Tous contre tous dans une grande arène.'), 'tile soon', '#ffd23f', [_t('BIENTÔT')]);
+  const so = document.createElement('span'); so.className = 'mpsoon'; so.textContent = _t('À VENIR'); c5.querySelector('.mpbtns').appendChild(so); grid.appendChild(c5);
   // quêtes multi
   const h = document.createElement('h3'); h.className = 'mph'; h.textContent = _t('QUÊTES MULTI'); B.appendChild(h);
   for (const q of MPQS) {
@@ -10484,7 +10591,8 @@ function renderMpIn(B) {
   if (!LB_ON() && !MPLOCAL) { const p = document.createElement('p'); p.className = 'sub'; p.textContent = _t('Le jeu en ligne n’est pas encore branché.'); B.appendChild(p); }
 }
 function mpAskCode(card) {
-  const B = $('#mpBody'), old = B.querySelector('.mpjoin'); if (old) { const same = old.parentNode === card; old.remove(); if (same) return; }
+  const B = $('#mpBody'), old = B.querySelector('.mpjoin'); for (const o of B.querySelectorAll('.mpcard.open')) o.classList.remove('open'); if (old) { const same = old.parentNode === card; old.remove(); if (same) return; }
+  if (card) card.classList.add('open');
   const f = document.createElement('div'); f.className = 'mpjoin';
   const i = document.createElement('input'); i.className = 'tin'; i.maxLength = 4; i.placeholder = 'ABCD'; i.autocapitalize = 'characters'; i.spellcheck = false;
   i.addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') mpJoin(i.value); }); i.addEventListener('keyup', e => e.stopPropagation());
@@ -11226,6 +11334,10 @@ function renderWorkers(B) {
     b.onclick = () => { if (meta.jet < cost) { b.innerHTML = _t('IL MANQUE ') + costHTML('✦', cost - meta.jet); return; } meta.jet -= cost; meta.base.bld = n; save(); uis(() => sfx.buy()); toast(_tf('Nouvel ouvrier ! Tu peux faire {0} chantiers en même temps.', [n])); renderBase(); };
     box.appendChild(b); }
 }
+const ZOOMS = [0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5];
+function setZoom(d) { const i = ZOOMS.findIndex(v => Math.abs(v - (meta.opt.zoom || 1)) < 0.01); meta.opt.zoom = ZOOMS[clamp((i < 0 ? 4 : i) + d, 0, ZOOMS.length - 1)]; save(); resize(); showZoom(); }
+function showZoom() { const e = $('#zmV'); if (e) e.textContent = Math.round((meta.opt.zoom || 1) * 100) + ' %'; }
+$('#bZm').addEventListener('click', () => setZoom(-1)); $('#bZp').addEventListener('click', () => setZoom(1));
 $('#bBase').addEventListener('click', openBase); $('#bBaseBack').addEventListener('click', closeBase);
 $('#bBaseAll').addEventListener('click', () => { const a = baseCollect('mine', true), b = baseCollect('raf', true); if (a || b) { save(); initAudio(); uis(() => sfx.buy()); toast(_tf('Récolté : ◆ {0} · ✦ {1}', [fmt(a), b])); } else toast(_t('Rien à récolter pour l’instant.')); renderBase(); });
 $('#baseCv').addEventListener('click', e => { const cv = e.currentTarget, r = cv.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 1000, y = (e.clientY - r.top) / r.height * 700;
@@ -11292,6 +11404,10 @@ const UPDATES = [
     ['🛡️', _t('Châssis'), _t('Tu peux monter un châssis de niveau tout de suite avec des nuggets.')],
     ['✨', _t('Coiffures à paliers'), _t('7 crinières d’énergie, du palier 1 au palier 7 : Mèches cuivre, chargées, surchargées (épiques), Crête néon et Crête plasma (mythiques, avec aura), Crinière de braise (légendaire, flammes) et Crinière prismatique (UPL, particules blanches et éclairs).')],
     ['🔷', _t('Nouvelle rareté de perks : Super rare'), _t('Une rareté bleue entre Rare et Épique, avec 14 perks : Gros calibre, Perforant, Ricochet, Coup critique, Siphon, Toxine, Incendiaire, Exécuteur, Adrénaline, Shrapnel et les dashs (tranchant, de feu, toxique, Souffle glacé).')],
+    ['⏯️', _t('Reprendre sa partie'), _t('Tu quittes le jeu en pleine partie (monde, Infini ou Backrooms) ? Au retour, tu peux reprendre là où tu étais, avec tes perks et ton butin. Jamais en multi.')],
+    ['🔍', _t('Zoom en partie'), _t('Dézoome jusqu’à 50 % pour voir les ennemis de plus loin, ou zoome jusqu’à 150 %. Dans les Réglages ou directement dans le menu Pause.')],
+    ['📱', _t('Interface très petite'), _t('Une 4e taille d’interface, pratique en paysage.')],
+    ['💎', _t('Look premium'), _t('Nouvel écran Multijoueur avec les modes en grille, ATH en verre, menus plus soignés.')],
     ['👷', _t('Ouvriers de la base'), _t('Jusqu’à 4 ouvriers : chacun fait un chantier à la fois. Le panneau Ouvriers montre qui travaille sur quoi.')],
     ['🌀', _t('Transformations'), _t('Un compteur 1/6 montre où tu en es pour chaque élément, en partie et sur les cartes (dès le Monde 6 débloqué).')],
     ['🏁', _t('Nouveautés débloquées'), _t('En revenant au menu après un monde, la liste de tout ce que tu viens de débloquer s’affiche.')] ] },
