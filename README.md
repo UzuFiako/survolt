@@ -29,6 +29,8 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - **Ma base : ouvriers** expliqués dans un panneau dédié, et jusqu’à 4 ouvriers (2e : 300 diams, 3e : 900, 4e : 2 500). Chaque ouvrier fait un chantier à la fois.
 - Les cosmétiques de basse rareté coûtent un peu plus cher.
 - **Atelier premium** : nouveau look par catégories, rangs Fer → Diamant, et plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50).
+- **Nouvelle rareté de perks : Super rare** (bleue, entre Rare et Épique) : Gros calibre, Perforant, Ricochet, Coup critique, Siphon, Toxine, Incendiaire, Exécuteur, Adrénaline, Shrapnel, Dash tranchant, Dash de feu, Dash toxique, Souffle glacé.
+- **Son** : le jeu se mélange avec ta musique (Spotify…) au lieu de la couper ; le clic des boutons fait partie des Bruitages.
 - **Atelier rééquilibré** : bonus par niveau revus à la baisse (dégâts +2 %, Bonne étoile beaucoup moins forte, portée, Surcharge, nuggets…).
 - **Son réparé** : après un vocal, un appel ou une autre appli, la musique et les bruitages repartent normalement au toucher suivant.
 - **Châssis** : +1 niveau tout de suite avec des nuggets.

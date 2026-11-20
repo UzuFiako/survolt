@@ -272,11 +272,11 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .card.sup{--rc:var(--rk-s);border-image:linear-gradient(90deg,#ff3d55,#ffd23f,#3de8ff,#b56bff) 1;border-top-width:6px;border-style:solid;border-width:6px 0 0}
 .card.sup .ico{animation:supglow 1.2s ease-in-out infinite alternate}
 @keyframes supglow{from{box-shadow:0 0 6px #ffd23f}to{box-shadow:0 0 22px #ff8a3d}}
-:root{--rk-c:#a7a3c9;--rk-r:#5fe08a;--rk-e:#b56bff;--rk-m:#ff3d55;--rk-l:#ffb02e;--rk-s:#ffd23f}
-:root[data-th="metal"]{--rk-c:#a9b0bc;--rk-r:#7ccf95;--rk-e:#a487d6;--rk-m:#d65a5a;--rk-l:#e8b84a;--rk-s:#f0cf6a}
-:root[data-th="sketch"]{--rk-c:#8a857a;--rk-r:#3f9a4a;--rk-e:#7b55c9;--rk-m:#d9483b;--rk-l:#e0a81c;--rk-s:#c98d10}
-:root[data-th="pastel"]{--rk-c:#8b7e96;--rk-r:#3fae6a;--rk-e:#8f6fe0;--rk-m:#e5566f;--rk-l:#e9952f;--rk-s:#d9a520}
-.r-c{--rc:var(--rk-c)} .r-r{--rc:var(--rk-r)} .r-e{--rc:var(--rk-e)} .r-m{--rc:var(--rk-m)} .r-l{--rc:var(--rk-l)} .r-s{--rc:var(--rk-s)}
+:root{--rk-c:#a7a3c9;--rk-r:#5fe08a;--rk-b:#4aa8ff;--rk-e:#b56bff;--rk-m:#ff3d55;--rk-l:#ffb02e;--rk-s:#ffd23f}
+:root[data-th="metal"]{--rk-c:#a9b0bc;--rk-r:#7ccf95;--rk-b:#6fa3d9;--rk-e:#a487d6;--rk-m:#d65a5a;--rk-l:#e8b84a;--rk-s:#f0cf6a}
+:root[data-th="sketch"]{--rk-c:#8a857a;--rk-r:#3f9a4a;--rk-b:#2f6fc0;--rk-e:#7b55c9;--rk-m:#d9483b;--rk-l:#e0a81c;--rk-s:#c98d10}
+:root[data-th="pastel"]{--rk-c:#8b7e96;--rk-r:#3fae6a;--rk-b:#4f8fe0;--rk-e:#8f6fe0;--rk-m:#e5566f;--rk-l:#e9952f;--rk-s:#d9a520}
+.r-c{--rc:var(--rk-c)} .r-r{--rc:var(--rk-r)} .r-b{--rc:var(--rk-b)} .r-e{--rc:var(--rk-e)} .r-m{--rc:var(--rk-m)} .r-l{--rc:var(--rk-l)} .r-s{--rc:var(--rk-s)}
 .card:active{background:var(--raise)}
 #cards.lock .card{pointer-events:none}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -711,7 +711,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .pk .pi{width:40px;height:40px;display:grid;place-items:center;border-radius:10px;color:var(--rc);background:color-mix(in srgb,var(--rc) 16%,transparent)} .pk .pi svg{width:22px;height:22px}
 .pk b{display:block;font:800 13px/1.2 var(--body);color:var(--ink)} .pk small{display:block;font:600 11.5px/1.25 var(--body);color:var(--dim);margin-top:2px}
 .pk .pips{display:flex;flex-wrap:wrap;gap:2px;margin-top:5px} .pk .pips i{width:8px;height:4px;border-radius:2px;background:rgba(var(--irgb),.15)} .pk .pips i.on{background:var(--rc)}
-.pk.r-c{--rc:var(--rk-c)} .pk.r-r{--rc:var(--rk-r)} .pk.r-e{--rc:var(--rk-e)} .pk.r-m{--rc:var(--rk-m)} .pk.r-l{--rc:var(--rk-l)}
+.pk.r-c{--rc:var(--rk-c)} .pk.r-r{--rc:var(--rk-r)} .pk.r-b{--rc:var(--rk-b)} .pk.r-e{--rc:var(--rk-e)} .pk.r-m{--rc:var(--rk-m)} .pk.r-l{--rc:var(--rk-l)}
 .pk.sup{--rc:#ffd23f;background:linear-gradient(90deg,rgba(255,210,63,.14),var(--panel) 70%)}
 .card .ptot{display:block;font:800 11.5px/1.25 var(--body);color:var(--rc);letter-spacing:.02em}
 .grow{display:grid;grid-template-columns:1fr;gap:6px;padding:8px;margin-bottom:6px;border-left:4px solid var(--rc);background:linear-gradient(90deg,color-mix(in srgb,var(--rc) 16%,transparent),transparent 80%)}
@@ -2141,7 +2141,7 @@ function clsGainXp(win) {
 }
 /* Mêmes taux que les coffres : Commun 43,9 · Rare 30 · Épique 22 (SR 15 + UR 7) · Mythique 3 · Légendaire 1 */
 delete THEMES.foret;   // thème retiré
-const RAR = { c: { n: _t('Commun'), w: 55 }, r: { n: _t('Rare'), w: 27 }, e: { n: _t('Épique'), w: 12.5 }, m: { n: _t('Mythique'), w: 4 }, l: { n: _t('Légendaire'), w: 1.5 }, s: { n: _t('Suprême'), w: 0 } };
+const RAR = { c: { n: _t('Commun'), w: 52 }, r: { n: _t('Rare'), w: 24 }, b: { n: _t('Super rare'), w: 12 }, e: { n: _t('Épique'), w: 8.5 }, m: { n: _t('Mythique'), w: 4 }, l: { n: _t('Légendaire'), w: 1.5 }, s: { n: _t('Suprême'), w: 0 } };
 const UP = [
   { id: 'dmg', n: _t('Calibre'), d: _t('+12 % de dégâts'), r: 'c', max: 10, c: 'atk', f: s => { s.dmg *= 1.12; } },
   { id: 'rate', n: _t('Cadence'), d: _t('+10 % de cadence de tir'), r: 'c', max: 10, c: 'atk', f: s => { s.rate *= 1.1; } },
@@ -2150,15 +2150,15 @@ const UP = [
   { id: 'mag', n: _t('Aimant'), d: _t('+35 % de portée de ramassage'), r: 'c', max: 5, c: 'mob', f: s => { s.magnet *= 1.35; } },
   { id: 'vel', n: _t('Vélocité'), d: _t('Tirs 18 % plus rapides, donc plus lointains'), r: 'c', max: 8, c: 'atk', f: s => { s.bspd *= 1.18; } },
   { id: 'regen', n: _t('Réparation'), d: _t('+0,6 PV par seconde'), r: 'c', max: 10, c: 'def', f: s => { s.regen += 0.6; } },
-  { id: 'big', n: _t('Gros calibre'), d: _t('Tirs 20 % plus gros, +5 % de dégâts'), r: 'c', max: 6, c: 'atk', f: s => { s.bsize *= 1.2; s.dmg *= 1.05; } },
+  { id: 'big', n: _t('Gros calibre'), d: _t('Tirs 20 % plus gros, +5 % de dégâts'), r: 'b', max: 6, c: 'atk', f: s => { s.bsize *= 1.2; s.dmg *= 1.05; } },
   { id: 'multi', n: _t('+1 canon'), d: _t('Un deuxième canon côte à côte'), r: 'l', max: 4, c: 'atk',
     dl: [_t('Niv. 1 : deux canons côte à côte'), _t('Niv. 2 : trois canons en cône'), _t('Niv. 3 : quatre canons, cadence +50 %, dégâts −30 %'), _t('Niv. 4 : deux gros canons à +200 % de dégâts, plus deux petits canons de chaque côté (7 canons), cadence −10 %')],
     f: s => { s.gun += 1; if (s.gun === 3) s.rate *= 1.5; if (s.gun === 4) s.rate *= 0.9; } },
-  { id: 'pierce', n: _t('Perforant'), d: _t('Les tirs traversent 1 ennemi de plus'), r: 'e', max: 5, c: 'atk', f: s => { s.pierce += 1; } },
-  { id: 'bounce', n: _t('Ricochet'), d: _t('Les tirs rebondissent vers 1 ennemi de plus'), r: 'e', max: 5, c: 'atk', f: s => { s.bounce += 1; } },
-  { id: 'crit', n: _t('Coup critique'), d: _t('+7 % de chances de critique'), r: 'r', max: 8, c: 'atk', f: s => { s.crit += 0.07; } },
+  { id: 'pierce', n: _t('Perforant'), d: _t('Les tirs traversent 1 ennemi de plus'), r: 'b', max: 5, c: 'atk', f: s => { s.pierce += 1; } },
+  { id: 'bounce', n: _t('Ricochet'), d: _t('Les tirs rebondissent vers 1 ennemi de plus'), r: 'b', max: 5, c: 'atk', f: s => { s.bounce += 1; } },
+  { id: 'crit', n: _t('Coup critique'), d: _t('+7 % de chances de critique'), r: 'b', max: 8, c: 'atk', f: s => { s.crit += 0.07; } },
   { id: 'critd', n: _t('Point faible'), d: _t('Les critiques frappent 50 % plus fort'), r: 'e', max: 5, c: 'atk', f: s => { s.critMul += 0.5; } },
-  { id: 'leech', n: _t('Siphon'), d: _t('10 % de chances de regagner 2 PV par élimination'), r: 'r', max: 5, c: 'def', f: s => { s.leech += 1; } },
+  { id: 'leech', n: _t('Siphon'), d: _t('10 % de chances de regagner 2 PV par élimination'), r: 'b', max: 5, c: 'def', f: s => { s.leech += 1; } },
   { id: 'drone', n: _t('Satellite'), d: _t('+1 satellite qui tourne autour de toi et percute les ennemis'), r: 'r', max: 4, c: 'spe', f: s => { s.drones += 1; } },
   { id: 'rear', n: _t('Canon arrière'), d: _t('Tire aussi vers l’arrière'), r: 'm', max: 1, c: 'atk', f: s => { s.rear += 1; } },
   { id: 'thorns', n: _t('Coque à pointes'), d: _t('Renvoie des dégâts au contact'), r: 'r', max: 5, c: 'def', f: s => { s.thorns += 1; } },
@@ -2188,17 +2188,17 @@ const UP = [
   { id: 'range', n: _t('Lunette'), d: _t('+15 % de portée de tir'), r: 'c', max: 5, c: 'atk', f: s => { s.range *= 1.15; } },
   { id: 'plate', n: _t('Plaques d’acier'), d: _t('−5 % de dégâts reçus'), r: 'c', max: 5, c: 'def', f: s => { s.armor = Math.min(0.6, (s.armor || 0) + 0.05); } },
   { id: 'dashl', n: _t('Grand saut'), d: _t('Dash 20 % plus long'), r: 'c', max: 4, c: 'mob', f: s => { s.dashLen *= 1.2; } },
-  { id: 'exec', n: _t('Exécuteur'), d: _t('+60 % de dégâts sur les ennemis sous 25 % de PV (+30 % par niveau)'), r: 'r', max: 3, c: 'atk', f: s => { s.exec = (s.exec || 0) + 1; } },
-  { id: 'adren', n: _t('Adrénaline'), d: _t('Chaque élimination donne +3 % de cadence pendant 3 s (jusqu’à 10 fois)'), r: 'r', max: 3, c: 'atk', f: s => { s.adren = (s.adren || 0) + 1; } },
+  { id: 'exec', n: _t('Exécuteur'), d: _t('+60 % de dégâts sur les ennemis sous 25 % de PV (+30 % par niveau)'), r: 'b', max: 3, c: 'atk', f: s => { s.exec = (s.exec || 0) + 1; } },
+  { id: 'adren', n: _t('Adrénaline'), d: _t('Chaque élimination donne +3 % de cadence pendant 3 s (jusqu’à 10 fois)'), r: 'b', max: 3, c: 'atk', f: s => { s.adren = (s.adren || 0) + 1; } },
   { id: 'mine', w: 2, n: _t('Poseur de mines'), d: _t('Chaque dash laisse une mine qui explose en zone (dégâts ×2,5)'), r: 'r', max: 3, c: 'spe', f: s => { s.mine = (s.mine || 0) + 1; } },
-  { id: 'cryodash', w: 2, n: _t('Souffle glacé'), d: _t('Ton dash gèle les ennemis autour de toi pendant 2 s'), r: 'e', max: 1, c: 'spe', f: s => { s.cryoDash = 1; } },
+  { id: 'cryodash', w: 2, n: _t('Souffle glacé'), d: _t('Ton dash gèle les ennemis autour de toi pendant 2 s'), r: 'b', max: 1, c: 'spe', f: s => { s.cryoDash = 1; } },
   { id: 'thunder', w: 2, n: _t('Canon-foudre'), d: _t('Toutes les 5 salves, la foudre frappe l’ennemi le plus proche (dégâts ×3). Plus souvent à chaque niveau'), r: 'e', max: 3, c: 'spe', f: s => { s.thunder = (s.thunder || 0) + 1; } },
   { id: 'mt_berserk', w: 2, n: _t('Berserker'), d: _t('+1 % de dégâts pour chaque % de PV qui te manque'), r: 'm', max: 1, c: 'atk', f: s => { s.berserk = 1; } },
   { id: 'mt_singu', w: 3, n: _t('Trou noir'), d: _t('Toutes les 7 s, un trou noir aspire un groupe d’ennemis puis explose (dégâts ×6)'), r: 'm', max: 1, c: 'spe', f: s => { s.singu = 1; } },
   { id: 'meteor', w: 3, n: _t('Pluie de météores'), d: _t('Toutes les 3 s, 2 météores s’écrasent sur les ennemis (dégâts ×4 en zone)'), r: 'l', max: 1, c: 'spe', f: s => { s.meteor = 1; } },
   // perks débloqués par monde (Monde 2, Monde 3)
-  { id: 'poison', w: 2, n: _t('Toxine'), d: _t('Tes tirs empoisonnent 3 s : dégâts à chaque demi-seconde, plus forts à chaque niveau'), r: 'r', max: 5, c: 'spe', f: s => { s.poison += 1; } },
-  { id: 'ignite', w: 2, n: _t('Incendiaire'), d: _t('Tes tirs enflamment 3 s, puis la cible peut exploser. +30 % de dégâts de feu par niveau'), r: 'r', max: 5, c: 'spe', f: s => { s.burn = 1; s.burnLvl += 1; } },
+  { id: 'poison', w: 2, n: _t('Toxine'), d: _t('Tes tirs empoisonnent 3 s : dégâts à chaque demi-seconde, plus forts à chaque niveau'), r: 'b', max: 5, c: 'spe', f: s => { s.poison += 1; } },
+  { id: 'ignite', w: 2, n: _t('Incendiaire'), d: _t('Tes tirs enflamment 3 s, puis la cible peut exploser. +30 % de dégâts de feu par niveau'), r: 'b', max: 5, c: 'spe', f: s => { s.burn = 1; s.burnLvl += 1; } },
   { id: 'elem', w: 2, n: _t('Fléau de foudre'), d: _t('Chaque tir qui touche peut appeler un éclair du ciel : il frappe l’ennemi et électrocute ceux autour.'), dl: [9, 13, 17, 21, 25].map(n => _tf('{0} % de chances, à chaque tir qui touche, qu’un éclair tombe du ciel sur l’ennemi et électrocute tous ceux autour.', [n])), r: 'e', max: 5, c: 'spe', f: s => { s.elem += 1; } },
   { id: 'elemF', w: 2, n: _t('Fléau de feu'), d: _t('À chaque tir qui touche, une petite chance qu’une boule de feu tombe du ciel sur l’ennemi et brûle le sol autour pendant 1 s. Plus de chances à chaque niveau.'), r: 'e', max: 5, c: 'spe', f: s => { s.elemF = (s.elemF || 0) + 1; } },
   { id: 'elemI', w: 2, n: _t('Fléau de glace'), d: _t('À chaque tir qui touche, une petite chance qu’une onde de glace parte de l’ennemi et gèle aussi ceux autour pendant 1,2 s. Plus de chances à chaque niveau.'), r: 'e', max: 5, c: 'spe', f: s => { s.elemI = (s.elemI || 0) + 1; } },
@@ -2212,12 +2212,12 @@ const UP = [
   { id: 'drTox', w: 5, n: _t('Drone toxique'), d: _t('Un drone qui empoisonne ce qu’il touche'), r: 'e', max: 3, c: 'spe', f: s => { s.cmp = s.cmp || {}; s.cmp.tox = (s.cmp.tox || 0) + 1; } },
   { id: 'drVolt', w: 5, n: _t('Drone électro'), d: _t('Un drone dont les tirs électrocutent la cible, puis sautent sur 2 ennemis proches'), r: 'e', max: 3, c: 'spe', f: s => { s.cmp = s.cmp || {}; s.cmp.volt = (s.cmp.volt || 0) + 1; } },
   { id: 'drBomb', w: 6, n: _t('Drone bombardier'), d: _t('Un drone qui largue des bombes : explosions en zone'), r: 'm', max: 2, c: 'spe', f: s => { s.cmp = s.cmp || {}; s.cmp.bomb = (s.cmp.bomb || 0) + 1; } },
-  { id: 'frag', w: 3, n: _t('Shrapnel'), d: _t('Chaque ennemi éliminé éclate en éclats qui touchent ses voisins'), r: 'r', max: 5, c: 'atk', f: s => { s.frag += 1; } },
+  { id: 'frag', w: 3, n: _t('Shrapnel'), d: _t('Chaque ennemi éliminé éclate en éclats qui touchent ses voisins'), r: 'b', max: 5, c: 'atk', f: s => { s.frag += 1; } },
   { id: 'satDef', n: _t('Satellites de défense'), d: _t('+1 petit satellite collé à toi qui détruit les tirs ennemis qu’il touche'), r: 'm', max: 3, c: 'def', f: s => { s.satDef = (s.satDef || 0) + 1; } },
   { id: 'dBump', n: _t('Dash bélier'), d: _t('Ton dash repousse les ennemis que tu traverses, de plus en plus fort à chaque niveau'), r: 'c', max: 4, c: 'mob', f: s => { s.dBump = (s.dBump || 0) + 1; } },
-  { id: 'dCut', n: _t('Dash tranchant'), d: _t('Les ennemis que tu traverses pendant le dash prennent des dégâts (plus à chaque niveau)'), r: 'r', max: 3, c: 'mob', f: s => { s.dCut = (s.dCut || 0) + 1; } },
-  { id: 'dFire', w: 2, n: _t('Dash de feu'), d: _t('Ton dash laisse une traînée de flammes qui brûle les ennemis'), r: 'e', max: 1, c: 'mob', f: s => { s.dFire = 1; } },
-  { id: 'dTox', w: 3, n: _t('Dash toxique'), d: _t('Là où ton dash s’arrête, une flaque de poison de 5 s ralentit les ennemis et les empoisonne'), r: 'e', max: 1, c: 'mob', f: s => { s.dTox = 1; } },
+  { id: 'dCut', n: _t('Dash tranchant'), d: _t('Les ennemis que tu traverses pendant le dash prennent des dégâts (plus à chaque niveau)'), r: 'b', max: 3, c: 'mob', f: s => { s.dCut = (s.dCut || 0) + 1; } },
+  { id: 'dFire', w: 2, n: _t('Dash de feu'), d: _t('Ton dash laisse une traînée de flammes qui brûle les ennemis'), r: 'b', max: 1, c: 'mob', f: s => { s.dFire = 1; } },
+  { id: 'dTox', w: 3, n: _t('Dash toxique'), d: _t('Là où ton dash s’arrête, une flaque de poison de 5 s ralentit les ennemis et les empoisonne'), r: 'b', max: 1, c: 'mob', f: s => { s.dTox = 1; } },
   { id: 'dMirror', w: 2, n: _t('Dash miroir'), d: _t('Les tirs ennemis que tu touches pendant ton dash sont renvoyés sur eux (tirs dorés)'), r: 'm', max: 1, c: 'def', f: s => { s.dMirror = 1; } },
   { id: 'phase', w: 3, n: _t('Tirs fantômes'), d: _t('Tes tirs et tes éclairs traversent les murs et les obstacles'), r: 'e', max: 1, c: 'atk', f: s => { s.phase = 1; } },
   // satellites élémentaires (v77) : anneau du milieu, tournent dans l'autre sens, cumulables
@@ -5933,8 +5933,8 @@ function renderAlmX(fil) {
   const icoEl = (html, col, lock) => { const d = document.createElement('span'); d.className = 'axico' + (lock ? ' lock' : ''); d.style.setProperty('--rc', col); if (typeof html === 'function') d.appendChild(html()); else d.innerHTML = html; return d; };
   const cvIco = draw => () => { const c = document.createElement('canvas'); c.width = c.height = 88; c.className = 'axcv'; draw(c.getContext('2d')); return c; };
   if (almTab === 'perk') {
-    fil.appendChild(chipRow(_t('Rareté'), [['', _t('TOUTES')], ['c', RAR.c.n.toUpperCase(), 'var(--rk-c)'], ['r', RAR.r.n.toUpperCase(), 'var(--rk-r)'], ['e', RAR.e.n.toUpperCase(), 'var(--rk-e)'], ['m', RAR.m.n.toUpperCase(), 'var(--rk-m)'], ['l', RAR.l.n.toUpperCase(), 'var(--rk-l)'], ['s', RAR.s.n.toUpperCase(), 'var(--rk-s)']], almF.rar, v => { almF.rar = v; }));
-    const col = { c: 'var(--rk-c)', r: 'var(--rk-r)', e: 'var(--rk-e)', m: 'var(--rk-m)', l: 'var(--rk-l)', s: 'var(--rk-s)' };
+    fil.appendChild(chipRow(_t('Rareté'), [['', _t('TOUTES')], ['c', RAR.c.n.toUpperCase(), 'var(--rk-c)'], ['r', RAR.r.n.toUpperCase(), 'var(--rk-r)'], ['b', RAR.b.n.toUpperCase(), 'var(--rk-b)'], ['e', RAR.e.n.toUpperCase(), 'var(--rk-e)'], ['m', RAR.m.n.toUpperCase(), 'var(--rk-m)'], ['l', RAR.l.n.toUpperCase(), 'var(--rk-l)'], ['s', RAR.s.n.toUpperCase(), 'var(--rk-s)']], almF.rar, v => { almF.rar = v; }));
+    const col = { c: 'var(--rk-c)', r: 'var(--rk-r)', b: 'var(--rk-b)', e: 'var(--rk-e)', m: 'var(--rk-m)', l: 'var(--rk-l)', s: 'var(--rk-s)' };
     L = UP.filter(u => !almF.rar || u.r === almF.rar).map(u => ({ id: u.id, n: u.n, own: !!meta.alm['p:' + u.id], col: col[u.r], ic: perkIcon(u), kind: RAR[u.r].n.toUpperCase() + (u.w ? _tf(" · MONDE {0}+", [u.w]) : '') + (u.wu ? _tf(" · MONDE {0} DÉBLOQUÉ", [u.wu]) : ''),
       d: u.d + (u.max > 1 ? _tf(" Jusqu’au niveau {0}.", [u.max]) : '') + (Array.isArray(u.dl) && typeof u.dl[0] === 'string' ? ' ' + u.dl.join(' · ') + '.' : '') + (u.sup ? _tf(" Apparaît quand « {0} » est au niveau max.", [UPID[u.req].n]) : ''), how: u.wu ? _tf("Se tire en partie une fois le Monde {0} débloqué.", [u.wu]) : u.w ? _tf("Se tire en partie à partir du Monde {0}.", [u.w]) : _t('Se tire en partie en montant de niveau.') }));
     if (!almF.rar) L = L.concat(Object.keys(TRANS).map(k => { const t = TRANS[k]; return { id: 'tr:' + k, n: _t('Transformation ') + t.n, own: !!meta.alm['tr:' + k], col: t.col,
@@ -7566,13 +7566,13 @@ let rollRarity = 'c', rollT = null;
 function rollCards(n, relic) {
   const luck = P.s.luck, full = slotsUsed() >= slotMax(), b = k => RAR[k].w;   // seule la Bonne étoile (atelier) pousse les raretés
   const guar = !relic && P.level > 1 && P.level % 10 === 0;   // tous les 10 niveaux : au moins Épique (violet), mêmes faibles chances au-dessus
-  const w = relic ? { c: 0, r: 0, e: b('e'), m: b('m'), l: b('l') } : guar ? { c: 0, r: 0, e: b('c') + b('r') + b('e'), m: b('m') * (1 + luck * 0.2), l: b('l') * (1 + luck * 0.25) } : { c: b('c'), r: b('r') * (1 + luck * 0.08), e: b('e') * (1 + luck * 0.12), m: b('m') * (1 + luck * 0.2), l: b('l') * (1 + luck * 0.25) };
+  const w = relic ? { c: 0, r: 0, b: 0, e: b('e'), m: b('m'), l: b('l') } : guar ? { c: 0, r: 0, b: 0, e: b('c') + b('r') + b('b') + b('e'), m: b('m') * (1 + luck * 0.2), l: b('l') * (1 + luck * 0.25) } : { c: b('c'), r: b('r') * (1 + luck * 0.08), b: b('b') * (1 + luck * 0.1), e: b('e') * (1 + luck * 0.12), m: b('m') * (1 + luck * 0.2), l: b('l') * (1 + luck * 0.25) };
   const supOk = u => !u.sup || ((P.up[u.req] || 0) >= UPID[u.req].max && worldPerkOk({ w: 4 }));   // les suprêmes arrivent à partir du Monde 4
   const duoOk = u => !u.duo || !!(G.mp && G.mp.mode === 'coop');
   let avail = UP.filter(u => (P.up[u.id] || 0) < u.max && worldPerkOk(u) && supOk(u) && duoOk(u) && (relic ? (u.r === 'e' || u.r === 'm' || u.r === 'l') : (!full || P.up[u.id] || u.sup)));
   if (relic && avail.length < n) avail = UP.filter(u => (P.up[u.id] || 0) < u.max && worldPerkOk(u) && supOk(u) && duoOk(u) && !u.sup);
   // 1) on tire UNE rareté (parmi celles qui ont encore des cartes), 2) les 3 cartes sont de cette rareté
-  const ORD = ['c', 'r', 'e', 'm', 'l'], cnt = k => avail.filter(u => u.r === k && !u.sup).length, out = [];
+  const ORD = ['c', 'r', 'b', 'e', 'm', 'l'], cnt = k => avail.filter(u => u.r === k && !u.sup).length, out = [];
   let rars = full ? ORD.filter(k => w[k] > 0) : ORD.filter(k => w[k] > 0 && cnt(k) >= n); if (!rars.length) rars = ORD.filter(k => w[k] > 0 && cnt(k) > 0);
   const take = k => { let p2 = avail.filter(u => u.r === k && !out.includes(u)); while (out.length < n && p2.length) { const ch = pick(p2); out.push(ch); p2 = p2.filter(u => u !== ch); } };
   let rr = rars[0] || 'c';
@@ -7584,7 +7584,7 @@ function rollCards(n, relic) {
     while (out.length < cap && Math.random() < pO) { const p2 = own.filter(u => !out.includes(u)); if (!p2.length) break; out.push(pick(p2)); }
   }
   take(rr);
-  const i0 = ORD.indexOf(rr); for (let st = 1; out.length < n && st < 5; st++) { if (i0 - st >= 0) take(ORD[i0 - st]); if (i0 + st < 5) take(ORD[i0 + st]); }   // pas assez de cartes : on complète au plus proche
+  const i0 = ORD.indexOf(rr); for (let st = 1; out.length < n && st < 6; st++) { if (i0 - st >= 0) take(ORD[i0 - st]); if (i0 + st < 6) take(ORD[i0 + st]); }   // pas assez de cartes : on complète au plus proche
   rollRarity = rr;
   if (out.length < n) out.push(HEALCARD);
   if (out.length < n) out.push(Math.random() < 0.25 ? SUPERPRIME : SHARDCARD);
@@ -7622,11 +7622,11 @@ function renderCards() {
   });
   const rr = $('#bReroll'); rr.textContent = _tf("RELANCER ({0})", [G.rerolls]); rr.disabled = G.rerolls <= 0 || cardKind === 'evo';
   // la rareté défile, puis se fixe ; les cartes apparaissent ensuite
-  const roll = $('#cRoll'), ORD = ['c', 'r', 'e', 'm', 'l'], RC = { c: 'var(--rk-c)', r: 'var(--rk-r)', e: 'var(--rk-e)', m: 'var(--rk-m)', l: 'var(--rk-l)' };
+  const roll = $('#cRoll'), ORD = ['c', 'r', 'b', 'e', 'm', 'l'], RC = { c: 'var(--rk-c)', r: 'var(--rk-r)', b: 'var(--rk-b)', e: 'var(--rk-e)', m: 'var(--rk-m)', l: 'var(--rk-l)' };
   list.classList.add('rolling'); el.cards.classList.add('lock'); clearTimeout(lockT); clearTimeout(rollT);
   let k = 0, delay = 45; const fin = rollRarity;
   const step = () => {
-    const show = delay > 190 ? fin : ORD[(k++) % 5]; roll.textContent = _t('Tirage : ') + RAR[show].n.toUpperCase(); roll.style.setProperty('--rc', RC[show]);
+    const show = delay > 190 ? fin : ORD[(k++) % 6]; roll.textContent = _t('Tirage : ') + RAR[show].n.toUpperCase(); roll.style.setProperty('--rc', RC[show]);
     if (delay > 190) { roll.classList.add('done'); list.classList.remove('rolling'); lockT = setTimeout(() => el.cards.classList.remove('lock'), 300); return; }
     if (k % 2 === 0) uis(() => sfx.pick()); delay *= 1.22; rollT = setTimeout(step, delay);
   };
@@ -11291,6 +11291,7 @@ const UPDATES = [
     ['🔊', _t('Son réparé'), _t('Après un vocal, un appel ou une autre appli, la musique et les bruitages repartent au toucher suivant.')],
     ['🛡️', _t('Châssis'), _t('Tu peux monter un châssis de niveau tout de suite avec des nuggets.')],
     ['✨', _t('Coiffures à paliers'), _t('7 crinières d’énergie, du palier 1 au palier 7 : Mèches cuivre, chargées, surchargées (épiques), Crête néon et Crête plasma (mythiques, avec aura), Crinière de braise (légendaire, flammes) et Crinière prismatique (UPL, particules blanches et éclairs).')],
+    ['🔷', _t('Nouvelle rareté de perks : Super rare'), _t('Une rareté bleue entre Rare et Épique, avec 14 perks : Gros calibre, Perforant, Ricochet, Coup critique, Siphon, Toxine, Incendiaire, Exécuteur, Adrénaline, Shrapnel et les dashs (tranchant, de feu, toxique, Souffle glacé).')],
     ['👷', _t('Ouvriers de la base'), _t('Jusqu’à 4 ouvriers : chacun fait un chantier à la fois. Le panneau Ouvriers montre qui travaille sur quoi.')],
     ['🌀', _t('Transformations'), _t('Un compteur 1/6 montre où tu en es pour chaque élément, en partie et sur les cartes (dès le Monde 6 débloqué).')],
     ['🏁', _t('Nouveautés débloquées'), _t('En revenant au menu après un monde, la liste de tout ce que tu viens de débloquer s’affiche.')] ] },
