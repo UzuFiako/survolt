@@ -3014,8 +3014,8 @@ function tone(f, dur, type, vol, slide, delay) {
     const t = AC.currentTime + (delay || 0), o = AC.createOscillator(), g = AC.createGain();
     o.type = type; o.frequency.setValueAtTime(f, t);
     if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(30, f + slide), t + dur);
-    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-    o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.02);
+    const at = Math.min(0.005, dur * 0.2); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vol, t + at); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.03);
   } catch (e) {}
 }
 function noise(dur, vol, cut) {
@@ -3031,7 +3031,7 @@ const sfx = {
   _l: {},
   ok(k, ms) { const n = performance.now(); if (n - (this._l[k] || 0) < ms) return false; this._l[k] = n; return true; },
   shoot() { if (this.ok('s', 80)) tone(640, 0.05, 'square', 0.03, -330); },
-  ui() { if (this.ok('u', 40)) { tone(1250, 0.04, 'sine', 0.09, 420); tone(2600, 0.018, 'square', 0.025, 0); } },
+  ui() { if (this.ok('u', 40)) { tone(1400, 0.05, 'sine', 0.08, 300); tone(2800, 0.025, 'triangle', 0.02, 0); } },
   hit() { if (this.ok('h', 50)) tone(210, 0.04, 'triangle', 0.06, -60); },
   kill() { if (this.ok('k', 55)) { noise(0.1, 0.11, 1400); tone(150, 0.1, 'sawtooth', 0.05, -90); } },
   pick() { if (this.ok('p', 45)) tone(880 + Math.random() * 320, 0.05, 'sine', 0.05, 200); },
@@ -3197,12 +3197,12 @@ function startMusic() {
 }
 for (const ev of ['pointerdown', 'touchend', 'keydown']) window.addEventListener(ev, () => startMusic(), { once: true, capture: true });
 // petit son de clic sur tous les boutons (le menu est muet par défaut : on passe par uis() et on réveille l'audio au premier appui)
-document.addEventListener('click', e => { if (meta.opt && meta.opt.clk === false) return; const b = e.target.closest && e.target.closest('button,.btn,summary,[role=button],.tile,.card,.offer,label'); if (b && !b.disabled) try { initAudio(); uis(() => sfx.ui()); } catch (er) {} }, true);
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('button,.btn,summary,[role=button],.tile,.card,.offer,label'); if (b && !b.disabled) try { initAudio(); uis(() => sfx.ui()); } catch (er) {} }, true);
 /* Quitter l'appli : on baisse tout en 60 ms puis on met le son en veille (sinon iOS coupe net au milieu des notes : « bruit bizarre »). */
 let audSleepT = 0;
 /* Baisse la musique pendant un vocal (enregistrement ou écoute). */
 var musDucked = false;
-function musicDuck(on) { musDucked = !!on; if (!on) { audNeedRebuild = true; audSession('playback'); } if (!AC || !musG) return; try { musApply(); } catch (e) {} }
+function musicDuck(on) { musDucked = !!on; if (!on) { audNeedRebuild = true; audSession('ambient'); } if (!AC || !musG) return; try { musApply(); } catch (e) {} }
 function audioSleep() {
   if (!AC) return; clearTimeout(audSleepT); const t = AC.currentTime;
   try { for (const g of [master, musG]) if (g) { g.gain.cancelScheduledValues(t); g.gain.setValueAtTime(g.gain.value, t); g.gain.linearRampToValueAtTime(0, t + 0.06); } } catch (e) {}
@@ -3227,8 +3227,8 @@ function audioRebuild() {
   try { if (old) old.close(); } catch (e) {}
   startMusic();
 }
-function audSession(t) { try { if (navigator.audioSession) navigator.audioSession.type = t; } catch (e) {} }   // iOS 17+ : lecture seule (son normal) ou micro
-audSession('playback');
+function audSession(t) { try { if (navigator.audioSession) navigator.audioSession.type = t; } catch (e) {} }   // iOS 17+ : « ambient » = le jeu se mélange avec ta musique (Spotify…) sans la couper ; micro seulement pendant un vocal
+audSession('ambient');
 const vocalOn = () => !!(VREC || (VPLAY && VPLAY.a && !VPLAY.a.paused && !VPLAY.a.ended));
 function audioGesture() {
   if (document.hidden) return;
@@ -6305,7 +6305,7 @@ const OPTS = [
     ch: [[_t('NORMALE'), 1], [_t('RAPIDE'), 1.4], [_t('TRÈS RAPIDE'), 1.8], [_t('MAX'), 2.5]].map(([t, v]) => [t, () => (meta.sens || 1) === v, () => { meta.sens = v; save(); renderOpts(); }]) },
   { k: 'lock', n: _t('Sticks fixes'), h: _t('Sur OUI, les sticks restent à leur place. Sur NON, ils apparaissent là où tu poses le doigt.') },
   { k: 'mus', n: _t('Musique'), h: _t('Musique d’ambiance : calme au menu, plus rythmée en partie et pendant les boss.') },
-  { k: 'snd', n: _t('Bruitages'), h: '' },
+  { k: 'snd', n: _t('Bruitages'), h: _t('Les sons du jeu et le petit clic des boutons.') },
   { k: 'uiz', n: _t('Taille de l’interface'), h: _t('Agrandit ou réduit les menus. Le jeu lui-même ne change pas.'),
     ch: [[_t('PETITE'), 0.88], [_t('NORMALE'), 1], [_t('GRANDE'), 1.12]].map(([t, v]) => [t, () => (meta.opt.uiz || 1) === v, () => { meta.opt.uiz = v; save(); applyUiz(); renderOpts(); }]) },
   { k: 'clk', n: _t('Sons de clic'), h: _t('Un petit clic quand tu touches un bouton.'), ch: [[_t('NON'), () => meta.opt.clk === false, () => { meta.opt.clk = false; renderOpts(); }], [_t('OUI'), () => meta.opt.clk !== false, () => { meta.opt.clk = true; renderOpts(); }]] }
@@ -6370,7 +6370,7 @@ function renderOpts() {
   row.append(nm, b, h); box.appendChild(row);
   // rangement en 3 rubriques : commandes, affichage, son
   const rows = {}; for (const r of [...box.children]) rows[r.dataset.k] = r; box.innerHTML = '';
-  for (const [title, ks] of [[_t('🎮 COMMANDES'), ['sens', 'lock', 'layout']], [_t('🖥️ AFFICHAGE'), ['lang', 'side', 'uiz', 'theme']], [_t('🔊 SON'), ['mus', 'track', 'snd', 'clk', 'musVol', 'sfxVol']]]) {
+  for (const [title, ks] of [[_t('🎮 COMMANDES'), ['sens', 'lock', 'layout']], [_t('🖥️ AFFICHAGE'), ['lang', 'side', 'uiz', 'theme']], [_t('🔊 SON'), ['mus', 'track', 'snd', 'musVol', 'sfxVol']]]) {
     const h3 = document.createElement('h3'); h3.className = 'optsec'; h3.textContent = title; box.appendChild(h3);
     for (const k of ks) if (rows[k]) { box.appendChild(rows[k]); delete rows[k]; }
   }
@@ -9465,7 +9465,7 @@ async function voiceStart(kind) {
   if (!AUTH) return showErr(_t('Connecte-toi (Profil) pour envoyer un vocal.'));
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === 'undefined') return showErr(_t('Ton appareil ne permet pas d’enregistrer ici.'));
   audSession('play-and-record');
-  let st; try { st = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } }); } catch (e) { audSession('playback'); return showErr(_t('Micro refusé : autorise le micro pour Survolt dans les réglages du téléphone.')); }
+  let st; try { st = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } }); } catch (e) { audSession('ambient'); return showErr(_t('Micro refusé : autorise le micro pour Survolt dans les réglages du téléphone.')); }
   const mt = ['audio/mp4', 'audio/aac', 'audio/webm;codecs=opus', 'audio/webm'].find(x => MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(x)) || '';
   let rec; try { rec = mt ? new MediaRecorder(st, { mimeType: mt, audioBitsPerSecond: 48000 }) : new MediaRecorder(st); } catch (e) { st.getTracks().forEach(t => t.stop()); return showErr(_t('Ton appareil ne permet pas d’enregistrer ici.')); }
   const chunks = []; rec.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };

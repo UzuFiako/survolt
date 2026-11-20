@@ -1,6 +1,6 @@
 // Survolt : mise en cache pour jouer hors ligne. Le jeu se met à jour tout seul quand il y a du réseau.
 // v79 (MAJ 7) : énergie des mondes affichée en haut du menu avec le chrono, +5 en finissant les Backrooms, base AFK.
-const CACHE = 'survolt-v83';
+const CACHE = 'survolt-v84';
 const FILES = ['./', './index.html', './comptes.html', './manifest.webmanifest', './sv-icon-192.png', './sv-icon-512.png', './sv-icon-maskable.png', './sv-apple-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => Promise.all(FILES.map(f => c.add(f).catch(() => {})))).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(k => Promise.all(k.filter(n => n !== CACHE).map(n => caches.delete(n)))).then(() => self.clients.claim())); });
