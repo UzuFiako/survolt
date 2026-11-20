@@ -16,34 +16,54 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
-### MAJ 8 · Cosmétiques et atelier
+### MAJ 8 · Cosmétiques, atelier et confort
 
+**Skins**
 - **Supernova** devient un **trou noir animé** : disque de matière qui tourne, jets d’énergie, matière aspirée en spirale.
-- **Nouveau skin légendaire : Tesla** (bobine en cuivre, sphères reliées par des éclairs, cœur de plasma).
-- **Skins animés** : le Scarabée marche et ouvre ses ailes, le Cristal scintille avec des éclats en orbite. Étoile passe Rare et Char d’assaut Super rare, pour avoir 2 skins par rareté.
+- **Nouveau skin légendaire : Tesla** : bobine en cuivre, sphères reliées par des éclairs, cœur de plasma.
+- **Skins animés** : le Scarabée marche et ouvre ses ailes, le Cristal scintille avec des éclats en orbite.
+- Étoile passe Rare et Char d’assaut Super rare, pour avoir au moins 2 skins par rareté.
+
+**Couleurs et balles**
 - **Couleurs** : 2 nouvelles par rareté (Corail, Sable, Turquoise, Ardoise, Émeraude, Lilas, Bronze, Nacre), animées en Mythique (Aurore boréale, Toxine) et psychédéliques en Légendaire (Psyché, Kaléidoscope).
 - **Balles** : 2 nouvelles par rareté (Orange, Menthe, Citron, Corail, Indigo, Framboise, Bulle de savon, Shuriken), animées en Mythique (Comète, Pulsar) et psychédéliques en Légendaire (Psyché, Kaléidoscope).
-- **Accessoires** : Casquette, Nœud, Monocle, Bonnet à pompon, Haut-de-forme, Lunettes d’aviateur, Chapeau de sorcier, Tricorne, Nuage d’orage, Couronne astrale, et l’**Esprit de la tempête** en Ultra Premium Légendaire (coffres UPL, ou 350 000 nuggets). Le chapeau de paille passe Mythique.
-- **Coiffures à paliers** : 7 crinières d’énergie, Mèches cuivre / chargées / surchargées (épiques), Crête néon et Crête plasma (mythiques, aura animée), Crinière de braise (légendaire, flammes d’énergie), Crinière prismatique (UPL, particules blanches et éclairs, coffres UPL ou 400 000 nuggets).
-- Les **accessoires suivent la direction du canon**.
-- **Ma base : ouvriers** expliqués dans un panneau dédié, et jusqu’à 4 ouvriers (2e : 300 diams, 3e : 900, 4e : 2 500). Chaque ouvrier fait un chantier à la fois.
 - Les cosmétiques de basse rareté coûtent un peu plus cher.
-- **Atelier premium** : nouveau look par catégories, rangs Fer → Bronze → Argent → Or → Émeraude → Platine → Diamant → Master, et plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50).
-- **Nouvelle rareté de perks : Super rare** (bleue, entre Rare et Épique) : Gros calibre, Perforant, Ricochet, Coup critique, Siphon, Toxine, Incendiaire, Exécuteur, Adrénaline, Shrapnel, Dash tranchant, Dash de feu, Dash toxique, Souffle glacé.
-- **Son** : le jeu se mélange avec ta musique (Spotify…) au lieu de la couper ; le clic des boutons fait partie des Bruitages.
+
+**Accessoires**
+- Nouveaux : Casquette, Nœud, Monocle, Bonnet à pompon, Haut-de-forme, Lunettes d’aviateur, Chapeau de sorcier, Tricorne, Nuage d’orage, Couronne astrale.
+- **Esprit de la tempête** en Ultra Premium Légendaire : coffres UPL, ou 350 000 nuggets.
+- **Coiffures à paliers** : Mèches cuivre / chargées / surchargées (épiques), Crête néon et Crête plasma (mythiques, aura animée), Crinière de braise (légendaire, flammes d’énergie), Crinière prismatique (UPL, particules blanches et éclairs, coffres UPL ou 400 000 nuggets).
+- Le chapeau de paille passe Mythique.
+- Les **accessoires suivent la direction du canon**.
+
+**Perks et transformations**
+- **Nouvelle rareté Super rare** (bleue, entre Rare et Épique) : Gros calibre, Perforant, Ricochet, Coup critique, Siphon, Toxine, Incendiaire, Exécuteur, Adrénaline, Shrapnel, Dash tranchant, Dash de feu, Dash toxique, Souffle glacé.
+- **Transformations** : débloquées avec le Monde 6, avec un compteur 1/6 par élément en partie et sur les cartes.
+- Niveaux en partie 12 % plus rapides.
+
+**Atelier, garage et progression**
+- **Atelier premium** : nouveau look par catégories, rangs Fer → Bronze → Argent → Or → Émeraude → Platine → Diamant → Master, plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50).
+- **Atelier rééquilibré** : bonus par niveau revus à la baisse (dégâts +2 %, Bonne étoile beaucoup moins forte, portée, Surcharge, nuggets…).
+- **Garage plus lisible** : la fiche d’un objet prend toute la largeur, bonus en vert, malus en rouge, encadré du set (pièces actives cochées, ce que tu gagnes en l’équipant).
+- **Bonus de set perdus** : la fiche d’un objet affiche en rouge les bonus de set que tu perds en l’équipant ou en le retirant.
+- **Paliers des emplacements** : Bronze → Argent → Or → Émeraude → Platine → Diamant → Master (l’éveil fait passer au palier suivant).
+- **Plus de puissance avec la rareté** : objets de haute rareté, paliers d’emplacement, runes et étoiles de châssis rapportent un peu plus.
+- **Châssis** : +1 niveau tout de suite avec des nuggets.
+- **Ma base** : les ouvriers sont expliqués dans un panneau dédié, jusqu’à 4 ouvriers (2e : 300 diams, 3e : 900, 4e : 2 500). Chaque ouvrier fait un chantier à la fois.
+
+**Confort de jeu**
 - **Reprendre sa partie** : si tu quittes le jeu en pleine partie (monde, Infini, Backrooms), un écran te propose de reprendre là où tu étais, avec tes perks et ton butin. Jamais en multi.
+- **Nouveautés débloquées** : au retour au menu après un monde, la liste de ce que tu viens de débloquer s’affiche.
 - **Zoom en partie** : de 50 % (tu vois plus loin) à 150 %, dans les Réglages ou le menu Pause.
 - **Taille d’interface très petite**, pratique en paysage.
+- **Son** : le jeu se mélange avec ta musique (Spotify…) au lieu de la couper, il repart normalement après un vocal ou un appel, et le clic des boutons fait partie des Bruitages.
+
+**Interface**
 - **Look premium** : écran Multijoueur avec les modes en grille et le défi de la semaine en bandeau, ATH en verre (vie, XP, vague, boutons), menus plus soignés.
+- **Paysage** : dans le Garage (Équipement et Runes), deux volets qui défilent chacun de leur côté ; ULT en cartes compactes ; nom de l’arme sous le panneau de vie ; barre d’XP jusqu’au bord ; rien sous l’encoche.
 - **Almanach** : filtre des perks par monde (Monde 1 à 6).
-- **Statistiques du profil** : nouvelle ligne Perks découverts ; touche une statistique pour voir le détail (Backrooms : meilleur étage, salles vidées, record de salles en une partie, boss battus, éliminations, plus longue partie…). Compteur d’étages des Backrooms réparé (il affichait 10/3).
-- **Garage plus lisible** : la fiche d’un objet prend toute la largeur, bonus en vert, malus en rouge, encadré du set (pièces actives cochées, ce que tu gagnes en l’équipant). Les emplacements ont des paliers Bronze → Argent → Or → Émeraude → Platine → Diamant → Master (l’éveil fait passer au palier suivant).
-- **Plus de puissance avec la rareté** : objets de haute rareté, paliers d’emplacement, runes et étoiles de châssis rapportent un peu plus.
-- **Atelier rééquilibré** : bonus par niveau revus à la baisse (dégâts +2 %, Bonne étoile beaucoup moins forte, portée, Surcharge, nuggets…).
-- **Son réparé** : après un vocal, un appel ou une autre appli, la musique et les bruitages repartent normalement au toucher suivant.
-- **Châssis** : +1 niveau tout de suite avec des nuggets.
-- **Transformations** : débloquées avec le Monde 6, avec un compteur 1/6 par élément en partie et sur les cartes.
-- **Nouveautés débloquées** : au retour au menu après un monde, la liste de ce que tu viens de débloquer s’affiche.
+- **Statistiques du profil** : nouvelle ligne Perks découverts ; touche une statistique pour voir le détail (Backrooms : meilleur étage, salles vidées, record de salles en une partie, boss battus…). Compteur d’étages des Backrooms réparé (il affichait 10/3).
+- **Panel admin** : dernière activité réelle des joueurs et leur niveau joueur.
 
 ### MAJ 7 · Énergie
 

@@ -1086,6 +1086,17 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 /* ---------- Équipement façon Archero ---------- */
 .eqwrap,.invwrap{display:flex;flex-direction:column;gap:10px;min-width:0}
 .land #gEq:not([hidden]){display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px;align-items:start}
+/* paysage : deux volets qui défilent chacun de leur côté */
+.land #gEq:not([hidden])>.eqwrap,.land #gEq:not([hidden])>.invwrap,.land #gRu:not([hidden]) .ruL,.land #gRu:not([hidden]) .ruR{position:sticky;top:58px;max-height:calc(100dvh - 70px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:0 4px 12px 0;scrollbar-width:thin}
+.land #gRu:not([hidden]) .ru2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+.ruL,.ruR{display:flex;flex-direction:column;gap:10px}
+.land #gRu .ruR .inv{grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.land .ruslot .it{width:min(56px,100%)}
+/* ULT : cartes compactes, petites icônes */
+.land .ultlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ultc{grid-template-columns:64px 1fr!important;gap:10px!important;padding:9px 11px!important}
+.ultc .ultpv canvas,.ultc .ultpv img{width:64px!important;height:64px!important}
+.ultc .ultt b{font-size:16px!important} .ultc .ultt p{font-size:12px!important;line-height:1.35!important} .ultc .ultt small{font-size:10px!important} .ultc .ultt em{font-size:12px!important}
 .eqstage{display:grid;grid-template-columns:72px 1fr 72px;gap:10px;align-items:center;padding:12px;background:radial-gradient(circle at 50% 42%,rgba(var(--irgb),.09),transparent 65%),var(--panel);clip-path:var(--cut)}
 .eqcol{display:flex;flex-direction:column;gap:12px}
 .eqmid{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}
@@ -1437,6 +1448,10 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .eqdetail:not(.none):not(.catinfo)>:nth-child(n+4){grid-column:1/-1}
 .eqdetail p.st{font:800 11px/1.2 var(--body);letter-spacing:.12em;color:var(--dim)}
 .eqdetail .rtag{margin-left:8px}
+.eqloss{padding:10px 12px;border-radius:12px;background:rgba(255,61,85,.1);box-shadow:inset 0 0 0 1px rgba(255,61,85,.45)}
+.eqloss>b{display:block;font:900 12.5px/1.2 var(--body)!important;color:#ff7a8a;letter-spacing:.04em}
+.eqloss p{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin:6px 0 0;font:700 12.5px/1.35 var(--body)!important;color:#ffb3bd!important;text-decoration:line-through;text-decoration-color:rgba(255,122,138,.6)}
+.eqloss p i{font-style:normal;text-decoration:none;display:inline-block;padding:2px 6px;border-radius:6px;font:900 10.5px/1.2 var(--body);color:#0b0a1a;background:var(--sc)}
 .fxchips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0}
 .fxchips span{padding:6px 10px;border-radius:10px;font:800 13px/1.25 var(--body)}
 .fxchips .up{color:#5ff5a0;background:rgba(54,224,138,.12);box-shadow:inset 0 0 0 1px rgba(54,224,138,.4)}
@@ -1630,12 +1645,13 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
     </div>
     <div id="gRu" class="gpane" hidden>
       <div class="fuhead"><b>ᛟ Runes</b><p>Chaque rune donne un bonus permanent. 4 emplacements qui se débloquent avec les mondes, pas deux fois le même type. Les boss lâchent toujours une rune.</p></div>
+      <div class="ru2"><div class="ruL">
       <div id="ruSlots" class="ruslots"></div>
       <button id="bRuBest" class="btn ok bestb" type="button">⚡ ÉQUIPER LES MEILLEURES</button>
-      <div id="ruInfo"></div>
+      <div id="ruInfo"></div></div><div class="ruR">
       <h3 class="lab">Ta collection (<span id="ruN">0</span>)</h3>
       <div id="ruInv" class="inv"></div>
-      <p class="sub">Touche une rune pour la voir · <b>double-touche</b> pour l’équiper ou la retirer. 3 runes identiques se fusionnent dans l’onglet FUSION.</p>
+      <p class="sub">Touche une rune pour la voir · <b>double-touche</b> pour l’équiper ou la retirer. 3 runes identiques se fusionnent dans l’onglet FUSION.</p></div></div>
     </div>
     <div id="gLook" class="gpane" hidden>
       <div class="lookhead"><div id="lookPv"></div><div class="lookt"><p class="lab">Ton tank</p><b id="lookNm"></b><span id="lookSb"></span></div></div>
@@ -7084,6 +7100,12 @@ const powNow = () => powerOf(buildStats(meta.sel).s);
 function statsWith(fn) { const k0 = Object.assign({}, meta.eq); try { fn(); return buildStats(meta.sel).s; } finally { meta.eq = k0; } }
 const EQSTL = s2 => [[_t('ATQ'), Math.round(s2.dmg * 10), ''], ['PV', Math.round(s2.maxHp), ''], [_t('VIT'), Math.round(s2.speed / 2.15), ' %'], [_t('CRIT'), Math.round(s2.crit * 100), ' %']];
 /* Stats du tank si on équipe (ou retire) l'objet choisi, avec la différence, comme sous les emplacements. */
+/* Bonus de set perdus si on équipe (ou retire) cet objet : ex. remplacer une pièce Berserker fait perdre « 2 pièces : +10 % de dégâts ». */
+function setLoss(it) {
+  const k = slotOf(it), cnt = () => { const c = {}; for (const kk of GEARK) { const x = itemById(meta.eq[kk]); if (x && x.t === 'gear') { const g = setOf(x); if (g) c[g.id] = (c[g.id] || 0) + 1; } } return c; };
+  const a = cnt(), k0 = Object.assign({}, meta.eq); let b; try { if (isEq(it)) delete meta.eq[k]; else meta.eq[k] = it.u; b = cnt(); } finally { meta.eq = k0; }
+  const out = []; for (const g of GSETS) { const n0 = a[g.id] || 0, n1 = b[g.id] || 0; for (const [need, txt] of [[4, g.b4], [2, g.b2]]) if (n0 >= need && n1 < need) out.push([g, need, txt]); } return out;
+}
 function eqCmpRow(it) {
   const k = slotOf(it), now = EQSTL(buildStats(meta.sel).s), aft = EQSTL(statsWith(() => { if (isEq(it)) delete meta.eq[k]; else meta.eq[k] = it.u; }));
   const w = document.createElement('div'); w.className = 'eqcmp'; const h = document.createElement('small'); h.textContent = isEq(it) ? _t('Tes stats si tu le retires :') : _t('Tes stats si tu l’équipes :'); w.appendChild(h);
@@ -7140,7 +7162,9 @@ function renderEq() {
     d.append(nm, p1, fxChips(itemStat(it)));
     { const k = slotOf(it), pw0 = powNow(), dv = isEq(it) ? powWith(() => { delete meta.eq[k]; }) - pw0 : powWith(() => { meta.eq[k] = it.u; }) - pw0;
       const pp = document.createElement('p'); pp.className = 'pwline'; pp.textContent = isEq(it) ? _t('Puissance si tu le retires : ') : _t('Puissance si tu l’équipes : '); pp.appendChild(powTag(dv)); d.appendChild(pp);
-      try { d.appendChild(eqCmpRow(it)); } catch (e) {} }
+      try { d.appendChild(eqCmpRow(it)); } catch (e) {}
+      try { const lost = setLoss(it); if (lost.length) { const w = document.createElement('div'); w.className = 'eqloss'; const h = document.createElement('b'); h.textContent = isEq(it) ? _t('⚠ Si tu le retires, tu perds :') : _t('⚠ En l’équipant, tu perds :'); w.appendChild(h);
+        for (const [st2, need, txt] of lost) { const l = document.createElement('p'); l.style.setProperty('--sc', st2.col); l.innerHTML = '<i></i><span></span>'; l.querySelector('i').textContent = st2.n + ' ' + need + '/4'; l.querySelector('span').textContent = txt; w.appendChild(l); } d.appendChild(w); } } catch (e) {} }
     if (it.t === 'gear') { const st2 = setOf(it), n = B.g.cnt[st2.id] || 0, n2 = n + (isEq(it) ? 0 : 1), bx = document.createElement('div'); bx.className = 'eqsetbox'; bx.style.setProperty('--sc', st2.col);
       const h = document.createElement('b'); h.textContent = _tf('SET {0}', [st2.n.toUpperCase()]) + (st2.leg ? _t(' · LÉGENDAIRE') : ''); const cnt = document.createElement('em'); cnt.textContent = isEq(it) ? n + '/4' : _tf('{0}/4 → {1}/4 si tu l’équipes', [n, Math.min(4, n2)]); h.appendChild(cnt); bx.appendChild(h);
       for (const [need, txt] of [[2, st2.b2], [4, st2.b4]]) { const l = document.createElement('p'); l.className = n >= need ? 'on' : n2 >= need ? 'soon' : ''; l.innerHTML = '<i></i><span></span>'; l.querySelector('i').textContent = n >= need ? '✓' : need; l.querySelector('span').textContent = _tf('{0} pièces : ', [need]) + txt; bx.appendChild(l); }
