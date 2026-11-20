@@ -97,6 +97,7 @@ button:focus-visible{outline:3px solid var(--ion);outline-offset:2px}
 .mpcard.tile .mpbtns .btn.primary{background:linear-gradient(180deg,color-mix(in srgb,var(--mc) 85%,#fff),var(--mc));color:#0d0a1f;border:0;box-shadow:0 4px 0 color-mix(in srgb,var(--mc) 50%,#000)}
 .mpcard.tile.open{grid-column:1/-1}
 .mpcard.tile.soon{opacity:.55}
+.pst .rw.tap{cursor:pointer} .pst .rw.tap:active{transform:scale(.98)} .psthint{margin:8px 2px 0;font:600 11.5px/1.3 var(--body);color:var(--dim);text-align:center}
 .basewk{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:14px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,210,63,.2)}
 .wkh b{display:block;font:800 14px/1.2 var(--body);color:var(--ink)} .wkh small{display:block;font:500 12px/1.35 var(--body);color:var(--dim);margin-top:3px}
 .wkrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
@@ -2953,6 +2954,8 @@ function merge(s) {
   if (meta.opt.auto) window.addEventListener('pointerdown', startAuto, { once: true });   // le jeu démarre de côté par défaut
   meta.v8 = true;
   for (const k of ['wdone', 'wbest', 'skins']) if (s[k] && typeof s[k] === 'object') Object.assign(meta[k], s[k]);
+  if ((meta.wbest.dg || 0) > 3) { const v = meta.wbest.dg; meta.wbest.dg = meta.wdone.dg || v >= 36 ? 3 : v >= 28 ? 2 : 1; }   // réparation : la vague avait été enregistrée à la place de l'étage
+  if (s.dgs && typeof s.dgs === 'object') { meta.dgs = {}; for (const k of ['rooms', 'max', 'boss', 'wins', 'kills', 'bt']) meta.dgs[k] = Math.max(0, Math.floor(+s.dgs[k] || 0)); }
   if (typeof s.skin === 'string' && meta.skins[s.skin] && SKINS.some(k => k.id === s.skin)) meta.skin = s.skin;
   if (typeof s.world === 'string' && WORLDS.some(w => w.id === s.world)) meta.world = s.world;
   if (!wOpen(worldById(meta.world))) meta.world = 'w1';
@@ -5927,7 +5930,7 @@ function almEnemy(a, x, y, rot, r) {
 }
 let almSel = 'chase', almT = 0, almLast = 0;
 const almCv = $('#almCv'), almG = almCv.getContext('2d');
-let almPop = false; let almTab = 'mon', almF = { rar: '', typ: '', set: '', grp: '', sort: 'set' }, almX = null;
+let almPop = false; let almTab = 'mon', almF = { rar: '', typ: '', set: '', grp: '', sort: 'set', wld: '' }, almX = null;
 const ALM_TABS = [['mon', _t('MONSTRES')], ['perk', _t('PERKS')], ['bon', _t('BONUS')], ['mus', _t('MUSIQUES')], ['eq', _t('ÉQUIPEMENT')], ['skin', _t('SKINS')], ['acc', _t('ACCESSOIRES')], ['col', _t('COULEURS')], ['bul', _t('BALLES')], ['cls', _t('CHÂSSIS')], ['rune', _t('RUNES')], ['pet', _t('FAMILIERS')], ['th', _t('THÈMES')]];
 const CLS_RAR = { scout: 'co', twin: 'r', sniper: 'co', shot: 'r', hive: 'sr', gardien: 'sr', spectre: 'sr', leviathan: 'ur', titan: 'ur' };
 function eqEntries() {
@@ -5952,6 +5955,7 @@ function groupRows(d, groups, mk) {
     row.append(b, tl); d.appendChild(row); }
 }
 /* Almanach complet : monstres + équipement + skins + accessoires + couleurs + balles + châssis */
+const perkW = u => u.wu || u.w || (u.sup ? 4 : 1);   // monde à partir duquel le perk peut sortir (suprêmes : Monde 4)
 function almTotal() {
   const eq = eqEntries().filter(e => !e.soon);
   const parts = [[ALM.filter(a => meta.alm[a.k]).length, ALM.length], [eq.filter(e => foundR(e.key) >= 0).length, eq.length],
@@ -5973,7 +5977,7 @@ function renderAlm() { renderAlm0(); const t = $('#almCv').closest('.almtop'); t
 function renderAlm0() {
   const tabs = $('#almTabs'); tabs.innerHTML = '';
   for (const [k, n] of ALM_TABS) { const b = document.createElement('button'); b.type = 'button'; b.textContent = n; b.className = almTab === k ? 'on' : ''; b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', almTab === k ? 'true' : 'false');
-    b.addEventListener('click', () => { almTab = k; almX = null; almPop = false; almF = { rar: '', typ: '', set: '', grp: '', sort: almF.sort }; renderAlm(); }); tabs.appendChild(b); }
+    b.addEventListener('click', () => { almTab = k; almX = null; almPop = false; almF = { rar: '', typ: '', set: '', grp: '', sort: almF.sort, wld: '' }; renderAlm(); }); tabs.appendChild(b); }
   $('#almCv').closest('.almtop').classList.toggle('nocv', almTab !== 'mon');
   const fil = $('#almFil'); fil.innerHTML = '';
   if (almTab === 'mon') { fil.appendChild(chipRow(_t('Section'), [['', _t('TOUT')], ['w0', _t('MONDE 1')], ['w1', _t('MONDE 2')], ['w2', _t('MONDE 3')], ['w3', _t('MONDE 4')], ['w4', _t('MONDE 5')], ['w5', _t('MONDE 6')], ['m', _t('MINI-BOSS')], ['b', _t('BOSS')], ['nm', 'NIGHTMARE'], ['dg', 'BACKROOMS']], almF.grp, v => { almF.grp = v; })); renderAlmMon(); return; }
@@ -5991,10 +5995,11 @@ function renderAlmX(fil) {
   const cvIco = draw => () => { const c = document.createElement('canvas'); c.width = c.height = 88; c.className = 'axcv'; draw(c.getContext('2d')); return c; };
   if (almTab === 'perk') {
     fil.appendChild(chipRow(_t('Rareté'), [['', _t('TOUTES')], ['c', RAR.c.n.toUpperCase(), 'var(--rk-c)'], ['r', RAR.r.n.toUpperCase(), 'var(--rk-r)'], ['b', RAR.b.n.toUpperCase(), 'var(--rk-b)'], ['e', RAR.e.n.toUpperCase(), 'var(--rk-e)'], ['m', RAR.m.n.toUpperCase(), 'var(--rk-m)'], ['l', RAR.l.n.toUpperCase(), 'var(--rk-l)'], ['s', RAR.s.n.toUpperCase(), 'var(--rk-s)']], almF.rar, v => { almF.rar = v; }));
+    fil.appendChild(chipRow(_t('Monde'), [['', _t('TOUS')]].concat([1, 2, 3, 4, 5, 6].map(n => [String(n), _tf('MONDE {0}', [n])])), almF.wld, v => { almF.wld = v; }));
     const col = { c: 'var(--rk-c)', r: 'var(--rk-r)', b: 'var(--rk-b)', e: 'var(--rk-e)', m: 'var(--rk-m)', l: 'var(--rk-l)', s: 'var(--rk-s)' };
-    L = UP.filter(u => !almF.rar || u.r === almF.rar).map(u => ({ id: u.id, n: u.n, own: !!meta.alm['p:' + u.id], col: col[u.r], ic: perkIcon(u), kind: RAR[u.r].n.toUpperCase() + (u.w ? _tf(" · MONDE {0}+", [u.w]) : '') + (u.wu ? _tf(" · MONDE {0} DÉBLOQUÉ", [u.wu]) : ''),
+    L = UP.filter(u => (!almF.rar || u.r === almF.rar) && (!almF.wld || perkW(u) === +almF.wld)).map(u => ({ id: u.id, n: u.n, own: !!meta.alm['p:' + u.id], col: col[u.r], ic: perkIcon(u), kind: RAR[u.r].n.toUpperCase() + (u.w ? _tf(" · MONDE {0}+", [u.w]) : '') + (u.wu ? _tf(" · MONDE {0} DÉBLOQUÉ", [u.wu]) : ''),
       d: u.d + (u.max > 1 ? _tf(" Jusqu’au niveau {0}.", [u.max]) : '') + (Array.isArray(u.dl) && typeof u.dl[0] === 'string' ? ' ' + u.dl.join(' · ') + '.' : '') + (u.sup ? _tf(" Apparaît quand « {0} » est au niveau max.", [UPID[u.req].n]) : ''), how: u.wu ? _tf("Se tire en partie une fois le Monde {0} débloqué.", [u.wu]) : u.w ? _tf("Se tire en partie à partir du Monde {0}.", [u.w]) : _t('Se tire en partie en montant de niveau.') }));
-    if (!almF.rar) L = L.concat(Object.keys(TRANS).map(k => { const t = TRANS[k]; return { id: 'tr:' + k, n: _t('Transformation ') + t.n, own: !!meta.alm['tr:' + k], col: t.col,
+    if (!almF.rar && (!almF.wld || almF.wld === '6')) L = L.concat(Object.keys(TRANS).map(k => { const t = TRANS[k]; return { id: 'tr:' + k, n: _t('Transformation ') + t.n, own: !!meta.alm['tr:' + k], col: t.col,
       ic: cvIco(g => { const st = baseStats(); g.save(); drawTank(g, 44, 50, -Math.PI / 2, st, 22, 0, false, t.sk); g.restore(); }), kind: _t('TRANSFORMATION · ') + t.el.toUpperCase(),
       d: _tf('Prends 6 perks différents de l’élément {0} dans une même partie : ton tank devient {1} jusqu’à la fin de la partie ({2}). Ta Surcharge lance alors son attaque spéciale, {3} : {4}', [t.el, t.n, t.buff, t.sp, t.spd]),
       how: _t('Perks qui comptent : ') + t.ids.filter(id => UPID[id]).map(id => UPID[id].n).join(', ') + '. ' + _t('Rien n’est gardé après la partie : seule la fiche se débloque ici.') }; }));
@@ -6035,7 +6040,7 @@ function renderAlmX(fil) {
     b.addEventListener('click', () => { almX = x.id; almPop = true; renderAlm(); }); box.appendChild(b); }
   grid.appendChild(box);
   const x = L.find(y => y.id === almX) || L[0]; if (!x) { $('#almInfo').innerHTML = ''; return; }
-  almInfoBox(icoEl(x.ic, x.col, !x.own), x.own || almTab === 'th' || almTab === 'pet' ? x.n : '???', x.kind, null, x.own || almTab === 'th' || almTab === 'pet' ? x.d : _t('Pas encore découvert.') + (x.how ? ' ' + x.how : ''), x.own ? (almTab === 'mus' ? '' : _t('Découvert.')) : x.how);
+  almInfoBox(icoEl(x.ic, x.col, !x.own), x.own || almTab === 'th' || almTab === 'pet' ? x.n : '???', x.kind, null, x.own || almTab === 'th' || almTab === 'pet' ? x.d : _t('Pas encore découvert.'), x.own ? (almTab === 'mus' ? '' : _t('Découvert.')) : x.how);
   if (almTab === 'mus' && x.own) { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn primary'; b.textContent = musPreview === x.id ? _t('■ ARRÊTER') : _t('▶ ÉCOUTER');
     b.addEventListener('click', () => { musPreview = musPreview === x.id ? null : x.id; initAudio(); startMusic(); renderAlm(); }); $('#almInfo').appendChild(b);
     const b2 = document.createElement('button'); b2.type = 'button'; b2.className = 'btn'; b2.textContent = meta.mus === x.id ? _t('✓ CHOISIE') : _t('CHOISIR CETTE MUSIQUE'); b2.disabled = meta.mus === x.id;
@@ -7760,7 +7765,8 @@ function showOver(win, quit) {
   const cxp = quit || G.demo || G.chal || nogain || G.duel ? null : clsGainXp(win);
   const before = WORLDS.filter(wOpen).map(w => w.id);
   meta.shards += earned; if (rec) meta.best = G.score; if (G.wave > meta.bestWave) meta.bestWave = G.wave;
-  meta.wbest[Wd.id] = Math.max(meta.wbest[Wd.id] || 0, G.wave);
+  if (!Wd.dg) meta.wbest[Wd.id] = Math.max(meta.wbest[Wd.id] || 0, G.wave);   // Backrooms : wbest.dg = étage atteint (pas la vague)
+  if (Wd.dg && !G.demo && !nogain) { const D = meta.dgs = Object.assign({ rooms: 0, max: 0, boss: 0, wins: 0, kills: 0, bt: 0 }, meta.dgs || {}); const rr = G.dgRooms || 0; D.rooms += rr; D.max = Math.max(D.max, rr); D.boss += G.bossN || 0; D.kills += G.kills || 0; if (win) D.wins++; D.bt = Math.max(D.bt, Math.round(G.t || 0)); }
   if (win && !G.chal) meta.wdone[Wd.id] = 1;
   if (win && G.nm && !G.chal && !G.mp && NMW.includes(Wd.id)) meta.wdone['n' + Wd.id] = 1;   // Nightmare terminé (ouvre l'étage 3 des Backrooms)
   const lk = lbKeyOf(Wd), mate = G.mp && typeof MPP !== 'undefined' && MPP ? MPP.n : '';
@@ -8136,7 +8142,7 @@ function dgTrap(w) {
   banner(_t('PIÈGE !'), _t('La salle se verrouille : ') + _t(MINIB[mi].n), C.hot, 2.4); sfx.boss(); shake(10); vib(80);
 }
 function dgClear(r) {
-  const D = G.dg; r.clear = 1; D.lock = null; D.rc++; D.diff += r.type === 'elite' ? 2.5 : 1.6; G.kind = 'normal';
+  const D = G.dg; r.clear = 1; D.lock = null; D.rc++; G.dgRooms = (G.dgRooms || 0) + 1; D.diff += r.type === 'elite' ? 2.5 : 1.6; G.kind = 'normal';
   G.vacuum = 2.4; G.shards += 2 + D.k; G.score += 120 * (D.k + 1); heal(P.s.maxHp * 0.04);
   { const b = (1 + D.k) * (r.type === 'elite' ? 2 : 1) + (r.type === 'boss' ? 6 * (D.k + 1) : 0) + (r.trap ? 3 : 0); G.bulb = (G.bulb || 0) + b; G.rooms = (G.rooms || 0) + 1; addText(P.x, P.y - 70, '+' + b + ' 💡', '#ffe680', r.type === 'boss' ? 22 : 16); }   // ampoules : la monnaie des Backrooms
   if (r.type === 'boss') { G.keys = (G.keys || 0) + 1; addText(P.x, P.y - 96, _t('+1 🔑 CLÉ'), '#ffd23f', 18); }
@@ -8474,7 +8480,7 @@ function runSnap() {
   if (!resumeOk() || RESUMING) return;
   try {
     const between = !G.boss && !enemies.length && !G.queue.length, g = {};
-    for (const k of ['t', 'score', 'kills', 'shards', 'jet', 'scr', 'bossN', 'bossK', 'miniK', 'petK', 'rerolls', 'lastMini', 'nm', 'combo']) g[k] = G[k];
+    for (const k of ['t', 'score', 'kills', 'shards', 'jet', 'scr', 'bossN', 'bossK', 'miniK', 'petK', 'rerolls', 'lastMini', 'nm', 'combo', 'dgRooms', 'bulb', 'keys']) g[k] = G[k];
     meta.resume = { v: 1, ts: Date.now(), wid: G.dg ? 'dg' : G.world.id, cls: P.cls, wave: G.dg ? G.wave : (between ? G.wave : Math.max(0, G.wave - 1)), dgk: G.dg ? G.dg.k : null,
       g, drops: G.drops || [], chDrops: G.chDrops || [], runes: G.runes || [], pending: G.pending || 0,
       p: { level: P.level, xp: P.xp, need: P.need, hp: P.s.maxHp ? P.hp / P.s.maxHp : 1, up: Object.assign({}, P.up), relic: Object.assign({}, P.relic), trans: P.trans || null, charge: P.charge || 0 } };
@@ -8853,7 +8859,7 @@ function renderProf() {
   const S = $('#prSecs'), acc0 = $('#prAcc'); if (acc0 && S.contains(acc0)) S.after(acc0); S.innerHTML = '';
   // stats
   { const d = pfold('lv', '⭐', _t('Niveau joueur'), _t('Niv. ') + P0.lv + ' / ' + PL_MAX); d.querySelector('.pfbody').appendChild(lvTrack()); S.appendChild(d); }
-  { const d = pfold('st', '📊', _t('Statistiques'), '', true); d.querySelector('.pfbody').appendChild(statPanel(myStatObj())); S.appendChild(d); }
+  { const d = pfold('st', '📊', _t('Statistiques'), '', true); d.querySelector('.pfbody').appendChild(statPanel(Object.assign(myStatObj(), { mine: 1 }))); S.appendChild(d); }
   // titres
   const ttlGrid = (key, cur, none) => {
     const tg = document.createElement('div'); tg.className = 'ttlgrid';
@@ -8954,16 +8960,39 @@ const PSVG = {"tro": "<path d=\"M8 4h8v4a4 4 0 0 1-8 0zM8 6H4v1a3 3 0 0 0 4 3M16
 function statPanel(s) {   // stats façon Garage : sections, icône dessinée, valeur, barre de progression
   const g = document.createElement('div'); g.className = 'pst'; const fr = v => { const m = String(v).split('/'); return m.length === 2 ? [+m[0] || 0, +m[1] || 1] : null; };
   const SEC = [[_t('Performances'), [['tro', fmt(s.best || 0), _t('Record de score'), '#ffd23f'], ['wav', s.bw || 0, _t('Meilleure vague'), '#4fc8ff'], s.pw ? ['blt', fmt(s.pw), _t('Puissance'), '#ffe14a'] : null]],
-    [_t('Progression'), [['glo', (s.wd || 0) + '/' + NW, _t('Mondes terminés'), '#5fe08a'], ['haz', (s.nmw || 0) + '/6', _t('Mondes Nightmare'), '#9dff3d'], ['dor', (s.dg || 0) + '/3', _t('Étages des Backrooms'), '#e9d46a'], s.alm ? ['bok', s.alm, _t('Almanach'), '#b56bff'] : null]],
+    [_t('Progression'), [['glo', (s.wd || 0) + '/' + NW, _t('Mondes terminés'), '#5fe08a'], ['haz', (s.nmw || 0) + '/6', _t('Mondes Nightmare'), '#9dff3d'], ['dor', Math.min(3, s.dg || 0) + '/3', _t('Étages des Backrooms'), '#e9d46a'], s.pk ? ['bok', s.pk, _t('Perks découverts'), '#4aa8ff'] : null, s.alm ? ['bok', s.alm, _t('Almanach'), '#b56bff'] : null]],
     [_t('Activité'), [['clk', ptimeTxt(s.pt), _t('Temps de jeu'), '#9fe8ff'], ['ply', fmt(s.r || 0), _t('Parties jouées'), '#ff9a4d'], ['crs', fmt(s.k || 0), _t('Éliminations'), '#ff5a7a']]]];
   for (const [h, rows] of SEC) {
     const t = document.createElement('h5'); t.textContent = h; g.appendChild(t);
     for (const r of rows) { if (!r) continue; const [ic, v, l, col] = r, c = document.createElement('div'); c.className = 'rw'; c.style.setProperty('--sc', col);
       c.innerHTML = '<span class="ic"><svg viewBox="0 0 24 24">' + PSVG[ic] + '</svg></span><span class="lb"></span><b class="v"></b>'; c.querySelector('.lb').textContent = l; c.querySelector('.v').textContent = v;
       const f = typeof v === 'string' && fr(v); if (f) { const b = document.createElement('i'); b.className = 'bar'; b.innerHTML = '<i></i>'; b.firstChild.style.width = Math.min(100, 100 * f[0] / f[1]).toFixed(1) + '%'; c.appendChild(b); }
-      g.appendChild(c); }
+      if (s.mine && STATD[ic]) { c.classList.add('tap'); c.addEventListener('click', () => statDetail(ic, l)); } g.appendChild(c); }
   }
+  if (s.mine) { const h = document.createElement('p'); h.className = 'psthint'; h.textContent = _t('Touche une statistique pour voir le détail.'); g.appendChild(h); }
   return g;
+}
+/* Détail d'une statistique (profil perso) */
+const STATD = {
+  tro: () => [[_t('Record de score'), fmt(meta.best || 0)], [_t('Meilleure vague (tous modes)'), meta.bestWave || 0]].concat(WORLDS.filter(w => meta.wbest[w.id]).map(w => [(w.no ? _tf('Monde {0}', [w.no]) : w.n) + ' · ' + _t('record'), _tf('vague {0}', [meta.wbest[w.id]])])),
+  wav: () => STATD.tro(),
+  blt: () => [[_t('Puissance'), fmt(myPower())], [_t('Niveau joueur'), plLv()], [_t('Châssis'), selCls().n]],
+  glo: () => WORLDS.filter(w => w.waves).map(w => [_tf('Monde {0} · {1}', [w.no, w.n]), (meta.wdone[w.id] ? '✓ ' : '') + (meta.wbest[w.id] ? _tf('record vague {0} / {1}', [meta.wbest[w.id], w.waves]) : _t('pas joué'))]).concat([[_t('Infini · record'), _tf('vague {0}', [meta.wbest.inf || 0])]]),
+  haz: () => NMW.map(w => [_tf('Nightmare · Monde {0}', [worldById(w).no]), meta.wdone['n' + w] ? '✓ ' + _t('terminé') : '✗']),
+  dor: () => { const D = meta.dgs || {}, fl = Math.min(3, meta.wbest.dg || 0); return [[_t('Meilleur étage atteint'), fl + ' / 3'], [_t('Backrooms terminées'), D.wins || (meta.wdone.dg ? 1 : 0)], [_t('Parties dans les Backrooms'), meta.dgRuns || 0],
+    [_t('Salles vidées (total)'), fmt(D.rooms || 0)], [_t('Record de salles en une partie'), D.max || 0], [_t('Boss battus dans les Backrooms'), D.boss || 0], [_t('Éliminations dans les Backrooms'), fmt(D.kills || 0)], [_t('Plus longue partie'), D.bt ? mmss(D.bt) : '—'], [_t('Ampoules en réserve'), fmt(meta.bulb || 0)]]; },
+  bok: () => { const pk = UP.filter(u => meta.alm['p:' + u.id]).length, tr = Object.keys(TRANS).filter(k => meta.alm['tr:' + k]).length; const out = [[_t('Perks'), pk + ' / ' + UP.length], [_t('Transformations'), tr + ' / ' + Object.keys(TRANS).length]];
+    for (const r of ['c', 'r', 'b', 'e', 'm', 'l', 's']) { const L = UP.filter(u => u.r === r); if (L.length) out.push([_tf('Perks {0}', [RAR[r].n]), L.filter(u => meta.alm['p:' + u.id]).length + ' / ' + L.length]); }
+    for (let n = 1; n <= 6; n++) { const L = UP.filter(u => perkW(u) === n); if (L.length) out.push([_tf('Perks du Monde {0}', [n]), L.filter(u => meta.alm['p:' + u.id]).length + ' / ' + L.length]); }
+    out.push([_t('Almanach complet'), almTotal()[0] + ' / ' + almTotal()[1]]); return out; },
+  clk: () => { const t = meta.tot || {}; return [[_t('Temps de jeu'), ptimeTxt(Math.round(meta.ptime || 0))], [_t('Parties jouées'), t.r || 0], [_t('Temps moyen par partie'), t.r ? mmss(Math.round((meta.ptime || 0) / t.r)) : '—']]; },
+  ply: () => { const t = meta.tot || {}; return [[_t('Parties jouées'), fmt(t.r || 0)], [_t('Dont Backrooms'), meta.dgRuns || 0], [_t('Boss et mini-boss battus'), fmt(t.b || 0)], [_t('Éliminations par partie'), t.r ? fmt(Math.round((t.k || 0) / t.r)) : '—']]; },
+  crs: () => { const t = meta.tot || {}; return [[_t('Éliminations'), fmt(t.k || 0)], [_t('Boss et mini-boss battus'), fmt(t.b || 0)], [_t('Monstres découverts'), ALM.filter(a => meta.alm[a.k]).length + ' / ' + ALM.length]]; }
+};
+function statDetail(ic, title) {
+  const box = sheet(title), kv = document.createElement('div'); kv.className = 'adkv';
+  for (const [k, v] of STATD[ic]()) { const a = document.createElement('span'); a.textContent = k; const b = document.createElement('b'); b.textContent = v; kv.append(a, b); }
+  box.appendChild(kv); sBtn(box, _t('FERMER'), '', () => { $('#frDet').hidden = true; });
 }
 function statPanelOld(s) {
   const g = document.createElement('div'); g.className = 'pstats';
@@ -8974,7 +9003,8 @@ function statPanelOld(s) {
   return g;
 }
 const myStatObj = () => { const t = meta.tot || {}; return { best: Math.round(meta.best || 0), bw: meta.bestWave || 0, wd: WORLDS.filter(w => w.waves && meta.wdone[w.id]).length, nmw: NMW.filter(w => meta.wdone['n' + w]).length,
-  dg: meta.wbest.dg || 0, pt: Math.round(meta.ptime || 0), k: t.k || 0, r: t.r || 0, alm: almTotal()[0] + '/' + almTotal()[1], pw: myPower() }; };
+  dg: Math.min(3, meta.wbest.dg || 0), pt: Math.round(meta.ptime || 0), k: t.k || 0, r: t.r || 0, alm: almTotal()[0] + '/' + almTotal()[1], pw: myPower(),
+  pk: UP.filter(u => meta.alm['p:' + u.id]).length + Object.keys(TRANS).filter(k => meta.alm['tr:' + k]).length + '/' + (UP.length + Object.keys(TRANS).length) }; };
 function pfold(id, ic, title, sub, open) {
   const d = document.createElement('details'); d.className = 'pfold'; d.dataset.k = id; if (open || (meta.profOpen || {})[id]) d.open = true;
   d.innerHTML = '<summary><i></i><b></b><small></small><em>▾</em></summary><div class="pfbody"></div>';
@@ -9086,7 +9116,7 @@ async function rpcA(name, body) {
   if (!r.ok) { const m = (j && (j.message || j.hint)) || ''; if (r.status === 404 || /could not find the function|schema cache/i.test(m)) throw new Error(_t('Pas encore activé sur le serveur (lance ') + ({ admin_give: 'cadeaux.sql', claim_gifts: 'cadeaux.sql', admin_gifts: 'cadeaux.sql', admin_save: 'admin-joueur.sql', ping: 'en-ligne.sql', ghost_list: 'multi.sql', get_ghost: 'multi.sql', save_ghost: 'multi.sql', gchat_send_voice: 'vocal.sql', send_voice: 'vocal.sql', gchat_delete_own: 'moderation-messages.sql', delete_message: 'moderation-messages.sql', admin_gchat_recent: 'moderation-messages.sql', admin_user_gchat: 'moderation-messages.sql', admin_achats: 'titres-achats.sql', admin_achat_delete: 'titres-achats.sql', my_inbox: 'boite.sql', claim_gift: 'boite.sql', admin_give_all: 'boite.sql', admin_gifts_recent: 'boite.sql', admin_gift_cancel: 'boite.sql' }[name] || 'amis.sql') + _t(' dans Supabase).')); throw new Error(_t(m) || _t('Erreur serveur.')); }
   return j;
 }
-function myStats() { const o = {}; for (const m in meta.lbRun) { const r = meta.lbRun[m]; if (r && r.s > 0) o[m] = { s: Math.round(r.s), w: r.w | 0 }; } if (meta.title && titleOwn(meta.title)) o.title = meta.title; o.streak = streakOf(meta.seen); try { o.p = profP(); const st = myStatObj(); delete st.alm; o.st = st; } catch (e) {} return o; }
+function myStats() { const o = {}; for (const m in meta.lbRun) { const r = meta.lbRun[m]; if (r && r.s > 0) o[m] = { s: Math.round(r.s), w: r.w | 0 }; } if (meta.title && titleOwn(meta.title)) o.title = meta.title; o.streak = streakOf(meta.seen); o.lv = plLv(); o.at = new Date().toISOString(); try { o.p = profP(); const st = myStatObj(); delete st.alm; o.st = st; } catch (e) {} return o; }
 async function pushProfile() { if (!AUTH) return; await rpcA('save_profile', { p_pseudo: meta.pseudo || '', p_avatar: meta.avatar || 'scout', p_stats: myStats() }); }
 let frList = null, frRes = null, frQ = '', frMsg = '', frBusy = false, frUnread = {};
 const REL = { friend: [_t('AMI'), 'fr'], incoming: [_t('DEMANDE'), 'in'], outgoing: [_t('ENVOYÉE'), ''], blocked: [_t('BLOQUÉ'), ''], none: ['', ''] };
@@ -9094,8 +9124,13 @@ const REL = { friend: [_t('AMI'), 'fr'], incoming: [_t('DEMANDE'), 'in'], outgoi
 function seenTxt(c) { if (c.online) return _t('En ligne'); if (!c.seen) return _t('Hors ligne'); const m = Math.max(1, Math.round((Date.now() - Date.parse(c.seen)) / 60000));
   return _t('Hors ligne · vu il y a ') + (m < 60 ? m + ' min' : m < 1440 ? Math.round(m / 60) + ' h' : Math.round(m / 1440) + _t(' j')); }
 let pingT = 0;
-function pingLoop() { clearInterval(pingT); const go = () => { if (AUTH && !document.hidden) rpcA('ping').catch(() => {}); }; go(); pingT = setInterval(go, 45000); }
-document.addEventListener('visibilitychange', () => { if (!document.hidden && AUTH) rpcA('ping').catch(() => {}); });
+/* Admin : dernière activité = la plus récente entre le dernier login et la dernière ouverture du jeu (envoyée avec le profil). */
+function adLast(u) { const a = u && u.stats && typeof u.stats.at === 'string' ? u.stats.at : '', b = (u && u.last) || '', c = (u && u.save && u.save.updated) || ''; let best = '', bt = 0; for (const x of [a, b, c]) { const t = x ? Date.parse(String(x).replace(' ', 'T')) : 0; if (t > bt) { bt = t; best = x; } } return best; }
+function adLv(u) { const s = u && u.stats; return s ? (+s.lv || (s.p && +s.p.lv) || 0) : 0; }
+function pingLoop() { clearInterval(pingT); const go = () => { if (AUTH && !document.hidden) rpcA('ping').catch(() => {}); }; go(); try { profSeen(); } catch (e) {} pingT = setInterval(go, 45000); }
+let profAt = 0;
+function profSeen() { if (!AUTH || Date.now() - profAt < 180000) return; profAt = Date.now(); pushProfile().catch(() => {}); }   // « dernière activité » vue par l'admin : à chaque ouverture du jeu (max 1 fois / 3 min)
+document.addEventListener('visibilitychange', () => { if (!document.hidden && AUTH) { rpcA('ping').catch(() => {}); profSeen(); } });
 function frRow(c) {
   const li = document.createElement('li'); li.appendChild(avatarCv(c.avatar, 88, true));
   const mid = document.createElement('div'); const n = document.createElement('div'); n.className = 'nm'; n.textContent = c.pseudo || _t('Sans nom');
@@ -9277,7 +9312,7 @@ async function adLoad() {
 }
 var adRows = [], adBy = 'new';
 const AD_SORT = [['new', _t('Plus récents'), (a, b) => (b.created || '').localeCompare(a.created || '')], ['old', _t('Plus anciens'), (a, b) => (a.created || '').localeCompare(b.created || '')],
-  ['last', _t('Dernière connexion'), (a, b) => (b.last || '').localeCompare(a.last || '')], ['spent', _t('Dépenses'), (a, b) => (b.spent || 0) - (a.spent || 0)],
+  ['last', _t('Dernière activité'), (a, b) => (Date.parse(String(adLast(b)).replace(' ', 'T')) || 0) - (Date.parse(String(adLast(a)).replace(' ', 'T')) || 0)], ['spent', _t('Dépenses'), (a, b) => (b.spent || 0) - (a.spent || 0)],
   ['score', _t('Record Infini'), (a, b) => ((b.stats && b.stats.inf && b.stats.inf.s) || 0) - ((a.stats && a.stats.inf && a.stats.inf.s) || 0)], ['name', 'A → Z', (a, b) => (a.pseudo || '~').localeCompare(b.pseudo || '~', 'fr')]];
 function adRender() {
   const ch = $('#adSort'); ch.innerHTML = '';
@@ -9290,7 +9325,7 @@ function adRender() {
       const mid = document.createElement('div'); const n = document.createElement('div'); n.className = 'nm'; n.textContent = (u.pseudo || _t('Sans pseudo')) + (u.admin ? ' 🛡️' : '');
       const id = document.createElement('div'); id.className = 'id'; id.textContent = u.email + (u.pid ? ' · ' + u.pid : ''); mid.append(n, id); li.appendChild(mid);
       const tg = document.createElement('span'); tg.className = 'tg' + (u.spent ? ' fr' : '');
-      tg.textContent = adBy === 'spent' ? euro(u.spent) : adBy === 'score' ? fmt((u.stats && u.stats.inf && u.stats.inf.s) || 0) : adBy === 'last' ? (u.last ? dfr(u.last).slice(0, 8) : 'jamais') : u.spent ? euro(u.spent) : dfr(u.created).slice(0, 8);
+      tg.textContent = adBy === 'spent' ? euro(u.spent) : adBy === 'score' ? fmt((u.stats && u.stats.inf && u.stats.inf.s) || 0) : adBy === 'last' ? (adLast(u) ? dfr(adLast(u)).slice(0, 8) : 'jamais') : u.spent ? euro(u.spent) : dfr(u.created).slice(0, 8);
       li.appendChild(tg); li.addEventListener('click', () => adOpen(u.uid)); l.appendChild(li);
   });
 }
@@ -9389,8 +9424,8 @@ async function adOpen(uid) {
     const kv = document.createElement('div'); kv.className = 'adkv';
     const row = (k, v) => { const a = document.createElement('span'); a.textContent = k; const b = document.createElement('b'); b.textContent = v == null || v === '' ? '—' : v; kv.append(a, b); };
     const sec = x => { const h = document.createElement('h4'); h.textContent = x; kv.appendChild(h); };
-    sec(_t('Compte')); row(_t('Email'), u.email); row(_t('Email confirmé'), u.confirmed ? 'oui' : 'non'); row(_t('Créé le'), dfr(u.created)); row(_t('Dernière connexion'), dfr(u.last)); row(_t('ID interne'), u.uid);
-    sec(_t('Progression'));
+    sec(_t('Compte')); row(_t('Email'), u.email); row(_t('Email confirmé'), u.confirmed ? 'oui' : 'non'); row(_t('Créé le'), dfr(u.created)); row(_t('Dernière activité'), adLast(u) ? dfr(adLast(u)) : _t('pas encore (version trop ancienne)')); row(_t('Dernier login (mot de passe)'), dfr(u.last)); row(_t('ID interne'), u.uid);
+    sec(_t('Progression')); row(_t('Niveau joueur'), adLv(u) ? fmt(adLv(u)) : '—');
     if (u.save) { row(_t('Diams'), fmt(+u.save.diams || 0)); row(_t('Nuggets'), fmt(+u.save.nuggets || 0)); row(_t('Meilleur score'), fmt(+u.save.best || 0) + _t(' (vague ') + (u.save.bestWave || 0) + ')'); row(_t('Mondes finis'), u.save.worlds + ' / ' + NW); row(_t('Objets'), u.save.items); row(_t('Coffres en stock'), u.save.chests); row(_t('Thème'), u.save.theme); row(_t('Sauvegardé le'), dfr(u.save.updated)); }
     else row(_t('Sauvegarde'), _t('aucune en ligne'));
     sec(_t('Classement')); if (u.scores && u.scores.length) for (const r of u.scores) row(MODE_N[r.mode] || r.mode, fmt(r.score) + ' · V' + r.wave); else row(_t('Scores'), _t('aucun relié au compte'));
@@ -11412,6 +11447,7 @@ const UPDATES = [
     ['🔍', _t('Zoom en partie'), _t('Dézoome jusqu’à 50 % pour voir les ennemis de plus loin, ou zoome jusqu’à 150 %. Dans les Réglages ou directement dans le menu Pause.')],
     ['📱', _t('Interface très petite'), _t('Une 4e taille d’interface, pratique en paysage.')],
     ['💎', _t('Look premium'), _t('Nouvel écran Multijoueur avec les modes en grille, ATH en verre, menus plus soignés.')],
+    ['📖', _t('Almanach et statistiques'), _t('Filtre des perks par monde dans l’Almanach. Dans ton profil, touche une statistique pour voir le détail (Backrooms : salles vidées, record de salles, boss…). Le compteur d’étages des Backrooms est réparé.')],
     ['👷', _t('Ouvriers de la base'), _t('Jusqu’à 4 ouvriers : chacun fait un chantier à la fois. Le panneau Ouvriers montre qui travaille sur quoi.')],
     ['🌀', _t('Transformations'), _t('Un compteur 1/6 montre où tu en es pour chaque élément, en partie et sur les cartes (dès le Monde 6 débloqué).')],
     ['🏁', _t('Nouveautés débloquées'), _t('En revenant au menu après un monde, la liste de tout ce que tu viens de débloquer s’affiche.')] ] },
