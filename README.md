@@ -28,7 +28,7 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - Les **accessoires suivent la direction du canon**.
 - **Ma base : ouvriers** expliqués dans un panneau dédié, et jusqu’à 4 ouvriers (2e : 300 diams, 3e : 900, 4e : 2 500). Chaque ouvrier fait un chantier à la fois.
 - Les cosmétiques de basse rareté coûtent un peu plus cher.
-- **Atelier premium** : nouveau look par catégories, rangs Fer → Diamant, et plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50).
+- **Atelier premium** : nouveau look par catégories, rangs Fer → Bronze → Argent → Or → Émeraude → Platine → Diamant → Master, et plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50).
 - **Nouvelle rareté de perks : Super rare** (bleue, entre Rare et Épique) : Gros calibre, Perforant, Ricochet, Coup critique, Siphon, Toxine, Incendiaire, Exécuteur, Adrénaline, Shrapnel, Dash tranchant, Dash de feu, Dash toxique, Souffle glacé.
 - **Son** : le jeu se mélange avec ta musique (Spotify…) au lieu de la couper ; le clic des boutons fait partie des Bruitages.
 - **Reprendre sa partie** : si tu quittes le jeu en pleine partie (monde, Infini, Backrooms), un écran te propose de reprendre là où tu étais, avec tes perks et ton butin. Jamais en multi.
@@ -37,6 +37,8 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - **Look premium** : écran Multijoueur avec les modes en grille et le défi de la semaine en bandeau, ATH en verre (vie, XP, vague, boutons), menus plus soignés.
 - **Almanach** : filtre des perks par monde (Monde 1 à 6).
 - **Statistiques du profil** : nouvelle ligne Perks découverts ; touche une statistique pour voir le détail (Backrooms : meilleur étage, salles vidées, record de salles en une partie, boss battus, éliminations, plus longue partie…). Compteur d’étages des Backrooms réparé (il affichait 10/3).
+- **Garage plus lisible** : la fiche d’un objet prend toute la largeur, bonus en vert, malus en rouge, encadré du set (pièces actives cochées, ce que tu gagnes en l’équipant). Les emplacements ont des paliers Bronze → Argent → Or → Émeraude → Platine → Diamant → Master (l’éveil fait passer au palier suivant).
+- **Plus de puissance avec la rareté** : objets de haute rareté, paliers d’emplacement, runes et étoiles de châssis rapportent un peu plus.
 - **Atelier rééquilibré** : bonus par niveau revus à la baisse (dégâts +2 %, Bonne étoile beaucoup moins forte, portée, Surcharge, nuggets…).
 - **Son réparé** : après un vocal, un appel ou une autre appli, la musique et les bruitages repartent normalement au toucher suivant.
 - **Châssis** : +1 niveau tout de suite avec des nuggets.

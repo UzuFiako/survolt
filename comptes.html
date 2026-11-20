@@ -1432,6 +1432,29 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .it.cat{filter:grayscale(1) brightness(.85);opacity:.45} .it.cat.sel{opacity:.8}
 .catset{grid-column:1/-1;margin:8px 0 0;font:800 11px/1 var(--body);letter-spacing:.14em;color:var(--sc,var(--dim))}
 .eqdetail.none{display:block;font-size:13px;color:var(--dim)}
+/* MAJ 8 : fiche objet plus lisible — tout ce qui suit le nom prend toute la largeur */
+.eqdetail:not(.none):not(.catinfo) .it{grid-row:1/span 2}
+.eqdetail:not(.none):not(.catinfo)>:nth-child(n+4){grid-column:1/-1}
+.eqdetail p.st{font:800 11px/1.2 var(--body);letter-spacing:.12em;color:var(--dim)}
+.eqdetail .rtag{margin-left:8px}
+.fxchips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0}
+.fxchips span{padding:6px 10px;border-radius:10px;font:800 13px/1.25 var(--body)}
+.fxchips .up{color:#5ff5a0;background:rgba(54,224,138,.12);box-shadow:inset 0 0 0 1px rgba(54,224,138,.4)}
+.fxchips .dn{color:#ff7a8a;background:rgba(255,61,85,.12);box-shadow:inset 0 0 0 1px rgba(255,61,85,.45)}
+.fxchips .nt{color:var(--ink);background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);font-weight:600}
+.eqdetail .pwline{color:var(--ink)!important;font-weight:700}
+.eqcmp em.up{color:#5ff5a0!important;font-weight:900} .eqcmp em.dn{color:#ff7a8a!important;font-weight:900}
+.eqsetbox{--sc:#ffc43d;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--sc) 9%,rgba(0,0,0,.2));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--sc) 45%,transparent)}
+.eqsetbox>b{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;font:900 13px/1.2 var(--body)!important;letter-spacing:.08em;color:var(--sc)}
+.eqsetbox>b em{font:700 11px/1 var(--body);font-style:normal;letter-spacing:.04em;color:var(--dim)}
+.eqsetbox p{display:flex;gap:8px;align-items:flex-start;margin:7px 0 0;font:600 12.5px/1.35 var(--body)!important;color:var(--dim)!important}
+.eqsetbox p i{flex:none;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font:900 11px/1 var(--body);font-style:normal;background:rgba(255,255,255,.08);color:var(--dim)}
+.eqsetbox p.on{color:#d9ffe9!important} .eqsetbox p.on i{background:#36e08a;color:#0b0a1a}
+.eqsetbox p.soon{color:var(--ink)!important} .eqsetbox p.soon i{background:color-mix(in srgb,var(--sc) 30%,transparent);color:var(--sc)}
+.it .slb{--tc:#ffc43d;background:var(--tc)!important;color:#0b0a1a!important;border-color:#0b0a1a!important}
+.slrow b i.sltier{color:var(--sc)!important;font-weight:900;letter-spacing:.06em}
+.slrow p.slfx{color:var(--ink)} .slrow p.slfx .up{color:#5ff5a0;font-weight:800} .slrow p.slfx .nt{color:var(--dim)} .slrow p.slfx em{font-style:normal;color:var(--sc);font-weight:800} .slrow p.slfx .nx{color:#a8ffd0;font-weight:700}
+.eqsets p.on{color:#5ff5a0!important;font-weight:700}
 
 /* ---------- MAJ 8 : ATH premium ---------- */
 #hud .xp{height:8px;border-radius:6px;background:rgba(61,232,255,.12);box-shadow:inset 0 0 0 1px rgba(61,232,255,.25),0 0 14px rgba(61,232,255,.12)}
@@ -2187,7 +2210,7 @@ const clsRar = (id, st) => (CLSR[id] || ['co'])[Math.min(clsStMax(id), st || cls
 const clsNeed = lv => Math.round(25 * Math.pow(1 + (lv - 1) % CLS_LVP, 1.1) * (1 + 0.5 * Math.floor((lv - 1) / CLS_LVP)));
 const clsEvo = (id, st) => { const t = CLST[id] || 1, i = clamp(st - 1, 0, 3); return { b: Math.round([30, 90, 220, 400][i] * t), sh: Math.round([2000, 6000, 15000, 30000][i] * t / 5) * 5 }; };
 const clsLvCost = (id, q) => Math.round(Math.max(1, clsNeed(q.lv) - q.xp) * 14 * (CLST[id] || 1) * (1 + 0.6 * (q.st - 1)) / 5) * 5;   // +1 niveau payé en nuggets
-const clsBonus = id => { const q = clsP(id); return 0.003 * (q.lv - 1) + 0.05 * (q.st - 1); };   // +0,3 % de dégâts et de PV par niveau, +5 % par étoile
+const clsBonus = id => { const q = clsP(id); return 0.0035 * (q.lv - 1) + 0.06 * (q.st - 1) + 0.01 * (q.st - 1) * (q.st - 1); };   // +0,35 % par niveau, et chaque étoile rapporte un peu plus que la précédente
 function clsGainXp(win) {
   const id = P && P.cls; if (!id || !meta.cls[id]) return null; const c = CLS.find(x => x.id === id); if (!c) return null;
   let xp = Math.round(((G.dg ? (G.rooms || 0) * 18 + G.bossN * 40 : G.wave * 5 + G.kills * 0.3 + G.bossN * 25)) * (win ? 1.5 : 1)); if (xp <= 0) return null;
@@ -2412,10 +2435,21 @@ const SHOP = [
   { id: 'm_start', n: _t('Départ lancé'), max: 3, base: 2500, mul: 3, fx: l => _tf("{0} carte{1} offerte{2} au début", [l, l > 1 ? 's' : '', l > 1 ? 's' : '']), info: _t('Tu commences la partie avec des cartes déjà choisies.') }
 ];
 /* Niveaux d'emplacement (façon Archero) : niv. 1 à 100, puis Éveil = rang suivant (max rang 5). Ça renforce le tank, pas l'objet. */
-const SLV_RANKS = 5;
+const SLV_RANKS = 7;
+/* Paliers des emplacements : chaque rang (éveil) = un palier */
+const SLTIER = [[_t('Bronze'), '#d08a4a'], [_t('Argent'), '#cfd8e6'], [_t('Or'), '#ffd23f'], [_t('Émeraude'), '#36e08a'], [_t('Platine'), '#7df9ff'], [_t('Diamant'), '#ff6fd8'], [_t('Master'), '#ff5a3d']];
+const slTier = rk => SLTIER[Math.max(0, Math.min(6, rk - 1))];
+/* Texte d'effet coloré : les morceaux en « + » en vert, en « − » en rouge. */
+function fxChips(txt) {
+  const w = document.createElement('div'); w.className = 'fxchips';
+  for (let part of String(txt).replace(/\.\s*$/, '').split(/,\s+|\.\s+/)) { part = part.trim(); if (!part) continue;
+    const c = document.createElement('span'); const neg = /(^|\s)[−-]\s?\d/.test(part) && !/^\+/.test(part), pos = /\+\s?\d/.test(part) || /plus vite|plus long/.test(part);
+    c.className = neg ? 'dn' : pos ? 'up' : 'nt'; c.textContent = part; w.appendChild(c); }
+  return w;
+}
 const SLVN = { arme: _t('Arme'), coque: _t('Coque'), chenilles: _t('Chenilles'), amulette: _t('Amulette'), anneau: _t('Anneau') };
 const slvOf = k => meta.slv[k] || [1, 1];
-const slvRm = r => 1 + 0.5 * (r - 1);
+const slvRm = r => 1 + 0.55 * (r - 1) + 0.05 * (r - 1) * (r - 1);   // chaque palier rapporte un peu plus que le précédent
 const slvE = (lv, rk) => { let e = 0; for (let r = 1; r < rk; r++) e += 99 * slvRm(r); return e + (lv - 1) * slvRm(rk); };
 const SLVFX = {
   arme: E => ({ t: _tf("+{0} % de dégâts", [pc1(0.1 * E)]), f: s => { s.dmg *= 1 + 0.001 * E; } }),
@@ -2425,11 +2459,11 @@ const SLVFX = {
   anneau: E => ({ t: _tf("+{0} % de critique, +{1} % de dégâts", [pc1(0.008 * E), pc1(0.04 * E)]), f: s => { s.crit += 0.00008 * E; s.dmg *= 1 + 0.0004 * E; } })
 };
 const slvL = (lv, rk) => (rk - 1) * 100 + lv;
-const slvCost = (lv, rk) => { if (lv >= 100) return rk >= SLV_RANKS ? null : { sh: 3000 * rk, sc: 40 * rk, wake: true }; const L = slvL(lv, rk); return { sh: Math.round((20 + 3 * L + 0.12 * L * L) / 5) * 5, sc: 1 + Math.floor(L / 15) }; };
+const slvCost = (lv, rk) => { if (lv >= 100) return rk >= SLV_RANKS ? null : { sh: 3000 * rk * (rk > 4 ? rk - 3 : 1), sc: 40 * rk, wake: true }; const L = slvL(lv, rk); return { sh: Math.round((20 + 3 * L + 0.12 * L * L) / 5) * 5, sc: 1 + Math.floor(L / 15) }; };
 const SHCAT = [['atk', _t('ATTAQUE'), '#ff5a6e', ['m_dmg', 'm_crit', 'm_rng', 'm_pet']], ['def', _t('DÉFENSE'), '#3de8ff', ['m_hp', 'm_regen']], ['mob', _t('MOBILITÉ'), '#6dffb0', ['m_spd', 'm_dash', 'm_dashx']],
   ['pow', _t('SURCHARGE'), '#ffd23f', ['m_ult', 'm_ovr']], ['run', _t('PROGRESSION'), '#b56bff', ['m_xp', 'm_luck', 'm_reroll', 'm_start', 'm_mag', 'm_gold']]];
-const SHTIER = [[_t('Fer'), '#8d93a6'], [_t('Bronze'), '#d08a4a'], [_t('Argent'), '#cfd8e6'], [_t('Or'), '#ffd23f'], [_t('Platine'), '#7df9ff'], [_t('Diamant'), '#ff6fd8']];
-const shTier = (lv, max) => max <= 5 ? Math.min(5, Math.round(lv / max * 5)) : Math.min(5, Math.floor(lv / 10));
+const SHTIER = [[_t('Fer'), '#8d93a6'], [_t('Bronze'), '#d08a4a'], [_t('Argent'), '#cfd8e6'], [_t('Or'), '#ffd23f'], [_t('Émeraude'), '#36e08a'], [_t('Platine'), '#7df9ff'], [_t('Diamant'), '#ff6fd8'], [_t('Master'), '#ff5a3d']];
+const shTier = (lv, max) => lv >= max ? 7 : Math.min(6, Math.floor(lv / max * 7));   // Master = niveau max
 const shopCost = (it, lv) => lv >= it.max ? null : Math.round(it.base * Math.pow(it.mul || 1.55, Math.min(lv, 10)) * Math.pow(it.mul2 || 1.22, Math.min(10, Math.max(0, lv - 10))) * Math.pow(1.12, Math.min(15, Math.max(0, lv - 20))) * Math.pow(1.07, Math.max(0, lv - 35)) / 5) * 5;
 
 /* Ennemis : min = première vague où ils apparaissent, cost = poids dans le budget d'une vague */
@@ -2588,7 +2622,7 @@ const ACCS = [
 /* Équipement façon Archero : 1 arme + 4 pièces. Les pièces d'un même set donnent des bonus à 2 et 4 pièces. */
 const EQK = ['arme', 'coque', 'chenilles', 'amulette', 'anneau'], GEARK = ['coque', 'chenilles', 'amulette', 'anneau'];
 const SLOTN = { arme: _t('Arme'), coque: _t('Coque'), chenilles: _t('Chenilles'), amulette: _t('Amulette'), anneau: _t('Anneau') };
-const RMULT = [1, 1.35, 1.75, 2.25, 2.9, 3.6, 4.6];
+const RMULT = [1, 1.4, 1.85, 2.45, 3.2, 4.1, 5.4];   // MAJ 8 : les raretés hautes valent un peu plus
 /* Puissance d'un objet : rareté, plus les niveaux 2 à 4 du Légendaire (le niveau 5 devient UPL). */
 const ilv = it => it.r === 'lg' ? Math.min(4, Math.max(1, it.lv | 0 || 1)) : 1;
 const pidx = it => RIDX[it.r] + (it.r === 'lg' ? (ilv(it) - 1) * 0.25 : 0);
@@ -2651,7 +2685,7 @@ const RUNES = [
   { k: 'fortune', n: _t('Rune de fortune'), col: '#ffb02e', v: [4, 7, 10, 14, 19, 25, 32], txt: v => _tf("+{0} % de nuggets en partie", [v]), f: (s, v) => { s.runeLoot = (s.runeLoot || 0) + v / 100; }, gl: [[0.3, 0.1, 0.3, 0.9], [0.3, 0.2, 0.7, 0.1], [0.3, 0.45, 0.7, 0.35]] }
 ];
 const RUNEK = k => RUNES.find(r => r.k === k) || RUNES[0];
-const runeVal = ru => RUNEK(ru.k).v[Math.min(6, RIDX[ru.r] || 0)];
+const runeVal = ru => { const i = Math.min(6, RIDX[ru.r] || 0), v = RUNEK(ru.k).v[i] * (1 + 0.03 * i); return Math.round(v * 10) / 10; };   // +3 % par rareté
 const runeOpen = i => i === 0 || WORLDS.filter(w => w.waves && meta.wdone[w.id]).length >= [0, 1, 3, 5][i];
 const RUNEUNL = [_t('Ouvert'), _t('Termine le Monde 1'), _t('Termine 3 mondes'), _t('Termine 5 mondes')];
 function newRune(k, r) { const ru = { u: meta.uid++, k, r }; meta.runes.push(ru); markFound('rune', k, r); (meta.nw = meta.nw || {})[ru.u] = 1; return ru; }
@@ -2904,7 +2938,8 @@ function merge(s) {
   for (const k of ['shards', 'best', 'bestWave']) if (Number.isFinite(s[k])) meta[k] = s[k];
   if (s.shop && typeof s.shop === 'object') { for (const it of SHOP) { const v = s.shop[it.id]; if (Number.isFinite(v)) meta.shop[it.id] = clamp(Math.floor(it.max > 3 && !s.shopV ? v * 2 : v), 0, it.max); } }   // ancien atelier (5 niv.) → nouveau (10 niv.)
   meta.shopV = 2;
-  if (s.slv && typeof s.slv === 'object') for (const k of EQK) { const a = s.slv[k]; if (Array.isArray(a)) meta.slv[k] = [clamp(a[0] | 0, 1, 100), clamp(a[1] | 0, 1, SLV_RANKS)]; }
+  if (s.slv && typeof s.slv === 'object') for (const k of EQK) { const a = s.slv[k]; if (Array.isArray(a)) { let rk = a[1] | 0; if (!s.slvMig && rk >= 4) rk++; meta.slv[k] = [clamp(a[0] | 0, 1, 100), clamp(rk, 1, SLV_RANKS)]; } }
+  meta.slvMig = 1;   // palier Émeraude inséré entre Or et Platine : on garde Platine et Diamant
   if (s.scr && typeof s.scr === 'object') for (const k of EQK) if (Number.isFinite(s.scr[k])) meta.scr[k] = Math.max(0, Math.floor(s.scr[k]));
   for (const q of ['dq', 'wq']) if (s[q] && typeof s[q] === 'object' && typeof s[q].k === 'string') meta[q] = { k: s[q].k, p: Object.assign({}, s[q].p), c: Object.assign({}, s[q].c), m: Object.assign({}, s[q].m) };
   if (s.login && typeof s.login === 'object') meta.login = { d: String(s.login.d || ''), n: clamp(s.login.n | 0, 0, LOGIN_N) };
@@ -7077,7 +7112,7 @@ function renderEq() {
   // emplacements
   const slot = k => {
     const it = itemById(meta.eq[k]);
-    const badge = b => { const t = document.createElement('span'); t.className = 'slb'; const [lv, rk] = slvOf(k); t.textContent = (rk > 1 ? 'R' + rk + ' · ' : '') + _t('Niv. ') + lv; b.appendChild(t); return b; };
+    const badge = b => { const t = document.createElement('span'); t.className = 'slb'; const [lv, rk] = slvOf(k), [tn, tc] = slTier(rk); t.style.setProperty('--tc', tc); t.textContent = tn.toUpperCase() + ' ' + lv; b.appendChild(t); return b; };
     if (it) { const b = itemTile(it, eqSel === it.u ? ' sel' : ''); b.dataset.slot = k; tapEq(b, it); b.addEventListener('click', () => { eqSlotK = k; }); return badge(b); }
     const b = document.createElement('button'); b.type = 'button'; b.className = 'it empty'; b.dataset.slot = k; b.setAttribute('aria-label', SLOTN[k] + _t(', vide'));
     const c2 = document.createElement('canvas'); c2.width = c2.height = 96; drawIcon(c2.getContext('2d'), k === 'arme' ? 'canon' : k, '#8a86b0', 96); b.appendChild(c2);
@@ -7101,12 +7136,15 @@ function renderEq() {
     d.className = 'eqdetail'; d.style.setProperty('--rc', rcol(it.r)); d.appendChild(itemTile(it));
     const nm = document.createElement('b'); nm.textContent = itemName(it);
     const tg = document.createElement('span'); tg.className = 'rtag'; tg.style.setProperty('--rc', rcol(it.r)); tg.textContent = rname(it); nm.appendChild(tg);
-    const p1 = document.createElement('p'); p1.className = 'st'; p1.textContent = SLOTN[slotOf(it)] + ' · ' + itemStat(it);
-    d.append(nm, p1);
+    const p1 = document.createElement('p'); p1.className = 'st'; p1.textContent = SLOTN[slotOf(it)].toUpperCase() + (it.lv > 1 ? ' · ' + _t('NIV. ') + it.lv : '');
+    d.append(nm, p1, fxChips(itemStat(it)));
     { const k = slotOf(it), pw0 = powNow(), dv = isEq(it) ? powWith(() => { delete meta.eq[k]; }) - pw0 : powWith(() => { meta.eq[k] = it.u; }) - pw0;
       const pp = document.createElement('p'); pp.className = 'pwline'; pp.textContent = isEq(it) ? _t('Puissance si tu le retires : ') : _t('Puissance si tu l’équipes : '); pp.appendChild(powTag(dv)); d.appendChild(pp);
       try { d.appendChild(eqCmpRow(it)); } catch (e) {} }
-    if (it.t === 'gear') { const st2 = setOf(it), p2 = document.createElement('p'); p2.textContent = _tf("Set {0} : 2 pièces, {1} 4 pièces, {2}", [st2.n, st2.b2, st2.b4]); d.appendChild(p2); }
+    if (it.t === 'gear') { const st2 = setOf(it), n = B.g.cnt[st2.id] || 0, n2 = n + (isEq(it) ? 0 : 1), bx = document.createElement('div'); bx.className = 'eqsetbox'; bx.style.setProperty('--sc', st2.col);
+      const h = document.createElement('b'); h.textContent = _tf('SET {0}', [st2.n.toUpperCase()]) + (st2.leg ? _t(' · LÉGENDAIRE') : ''); const cnt = document.createElement('em'); cnt.textContent = isEq(it) ? n + '/4' : _tf('{0}/4 → {1}/4 si tu l’équipes', [n, Math.min(4, n2)]); h.appendChild(cnt); bx.appendChild(h);
+      for (const [need, txt] of [[2, st2.b2], [4, st2.b4]]) { const l = document.createElement('p'); l.className = n >= need ? 'on' : n2 >= need ? 'soon' : ''; l.innerHTML = '<i></i><span></span>'; l.querySelector('i').textContent = n >= need ? '✓' : need; l.querySelector('span').textContent = _tf('{0} pièces : ', [need]) + txt; bx.appendChild(l); }
+      d.appendChild(bx); }
     const bt = document.createElement('div'); bt.className = 'ebtns';
     const on = isEq(it), b1 = document.createElement('button'); b1.type = 'button'; b1.className = 'btn ok' + (on ? ' on' : ''); b1.textContent = on ? _t('✕ RETIRER') : _t('✓ ÉQUIPER');
     b1.addEventListener('click', () => toggleEq(it));
@@ -7160,19 +7198,20 @@ function renderSlots() {
   const box = $('#eqSlots'); box.innerHTML = '';
   for (const k of EQK) {
     const [lv, rk] = slvOf(k), c = slvCost(lv, rk), sc = meta.scr[k] || 0, row = document.createElement('div');
-    row.className = 'slrow' + (eqSlotK === k ? ' sel' : ''); row.style.setProperty('--sc', ['#ffc43d', '#36e08a', '#4fc8ff', '#ff6bd5', '#ff8a3d'][rk - 1]);
+    row.className = 'slrow' + (eqSlotK === k ? ' sel' : ''); row.style.setProperty('--sc', slTier(rk)[1]);
     const cv2 = document.createElement('canvas'); cv2.width = cv2.height = 88; drawIcon(cv2.getContext('2d'), k === 'arme' ? 'canon' : k, '#ffc43d', 88);
-    const nm = document.createElement('b'); nm.textContent = SLVN[k].toUpperCase(); const lab = document.createElement('i'); lab.textContent = _t('Rang ') + rk + _t(' · Niv. ') + lv + '/100'; nm.appendChild(lab);
+    const nm = document.createElement('b'); nm.textContent = SLVN[k].toUpperCase(); const lab = document.createElement('i'); lab.className = 'sltier'; lab.textContent = slTier(rk)[0].toUpperCase() + ' · ' + _t('Niv. ') + lv + '/100'; nm.appendChild(lab);
     const E = slvE(lv, rk), p1 = document.createElement('p');
     const nx = c && !c.wake ? slvE(lv + 1, rk) : c && c.wake ? slvE(1, rk + 1) : null;
-    p1.textContent = (E > 0 ? SLVFX[k](E).t : _t('Aucun bonus pour l’instant')) + (nx !== null ? '  →  ' + SLVFX[k](nx).t : '  (MAX)');
+    p1.className = 'slfx'; { const a = document.createElement('span'); a.className = E > 0 ? 'up' : 'nt'; a.textContent = E > 0 ? SLVFX[k](E).t : _t('Aucun bonus pour l’instant'); p1.appendChild(a);
+      if (nx !== null) { const ar = document.createElement('em'); ar.textContent = c && c.wake ? _tf(' ➜ palier {0} : ', [slTier(rk + 1)[0]]) : ' ➜ '; const b2 = document.createElement('span'); b2.className = 'nx'; b2.textContent = SLVFX[k](nx).t; p1.append(ar, b2); } else { const mx = document.createElement('em'); mx.textContent = '  (MAX)'; p1.appendChild(mx); } }
     const p2 = document.createElement('p');
     if (c) { const okS = meta.shards >= c.sh, okC = sc >= c.sc; p2.innerHTML = `◆ <span class="${okS ? 'ok' : 'no'}">${fmt(meta.shards)}/${fmt(c.sh)}</span> &nbsp; 📜 <span class="${okC ? 'ok' : 'no'}">${fmt(sc)}/${fmt(c.sc)}</span> <small>parchemins ${SLVN[k]}</small>`; }
     else p2.textContent = _t('Niveau maximum atteint. 📜 ') + fmt(sc);
     const bt = document.createElement('div'); bt.className = 'sbtn';
     if (c) {
       const can = meta.shards >= c.sh && sc >= c.sc;
-      const b1 = document.createElement('button'); b1.type = 'button'; b1.className = 'btn ' + (c.wake ? 'wake' : 'up'); b1.textContent = c.wake ? _t('🌟 ÉVEILLER') : _t('⬆ AMÉLIORER'); b1.disabled = !can;
+      const b1 = document.createElement('button'); b1.type = 'button'; b1.className = 'btn ' + (c.wake ? 'wake' : 'up'); b1.textContent = c.wake ? _tf('🌟 PASSER {0}', [slTier(rk + 1)[0].toUpperCase()]) : _t('⬆ AMÉLIORER'); b1.disabled = !can;
       b1.addEventListener('click', () => { eqSlotK = k; slvUp(k, 1); }); bt.appendChild(b1);
       if (!c.wake) { const b2 = document.createElement('button'); b2.type = 'button'; b2.className = 'btn fast'; b2.textContent = _t('⏩ ×10'); b2.disabled = !can; b2.addEventListener('click', () => { eqSlotK = k; slvUp(k, 10); }); bt.appendChild(b2); }
     }
@@ -9493,7 +9532,7 @@ function adFull(d, upd) {
       for (const x of meta.inv.slice().sort((a, c) => RIDX[c.r] - RIDX[a.r])) { const t = itemTile(x); t.title = itemName(x) + ' · ' + rname(x); if (isEq(x)) { const m2 = document.createElement('span'); m2.className = 'eqm'; m2.textContent = _t('ÉQUIPÉ'); t.appendChild(m2); } g.appendChild(t); }
       if (!meta.inv.length) g.textContent = _t('Inventaire vide.'); b.appendChild(g);
       const cnt = {}; for (const x of meta.inv) cnt[x.r] = (cnt[x.r] || 0) + 1; kvs(b, RARS.filter(R0 => cnt[R0.id]).map(R0 => [R0.n, cnt[R0.id]])); });
-    det(_t('📈 Niveaux d’emplacement et parchemins'), false, b => kvs(b, EQK.map(k => { const [lv, rk] = slvOf(k); return [SLOTN[k], _t('Rang ') + rk + _t(' · Niv. ') + lv + '/100 · 📜 ' + fmt(+meta.scr[k] || 0)]; })));
+    det(_t('📈 Niveaux d’emplacement et parchemins'), false, b => kvs(b, EQK.map(k => { const [lv, rk] = slvOf(k); return [SLOTN[k], slTier(rk)[0] + _t(' · Niv. ') + lv + '/100 · 📜 ' + fmt(+meta.scr[k] || 0)]; })));
     det(_t('🔧 Atelier'), false, b => kvs(b, SHOP.map(it => { const lv = meta.shop[it.id] || 0; return [it.n, lv + '/' + it.max + (lv ? ' · ' + it.fx(lv) : '')]; })));
     det(_t('🚗 Châssis'), false, b => kvs(b, CLS.map(c => [c.n, (meta.cls[c.id] ? '✓ ' + _t('débloqué') : '✗') + (meta.sel === c.id ? _t(' · choisi') : '')])));
     det(_tf("🌍 Mondes ({0}/{1})", [WORLDS.filter(w => w.waves && meta.wdone[w.id]).length, NW]), false, b => kvs(b, WORLDS.map(w => [(w.no ? _t('Monde ') + w.no + ' · ' : '') + w.n, (meta.wdone[w.id] ? '✓ ' + _t('terminé') : '✗') + _t(' · record vague ') + (meta.wbest[w.id] || 0)])));
@@ -11438,7 +11477,7 @@ const UPDATES = [
     ['✨', _t('Skins animés'), _t('Le Scarabée marche et ouvre ses ailes, le Cristal scintille avec des éclats en orbite. Étoile passe Rare, Char d’assaut Super rare.')],
     ['🎨', _t('Couleurs et balles'), _t('2 nouvelles couleurs et 2 nouvelles balles par rareté, animées en Mythique et psychédéliques en Légendaire (Psyché, Kaléidoscope). Les cosmétiques de basse rareté coûtent un peu plus.')],
     ['👑', _t('Accessoires'), _t('Casquette, Nœud, Monocle, Bonnet, Haut-de-forme, Aviateur, Sorcier, Tricorne, Nuage d’orage, Couronne astrale, et l’Esprit de la tempête en Ultra Premium Légendaire (coffres UPL). Le chapeau de paille passe Mythique. Les accessoires suivent maintenant la direction du canon.')],
-    ['🔧', _t('Atelier premium'), _t('Nouveau look, rangs Fer → Diamant, et plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50). Les bonus par niveau sont revus à la baisse : c’était trop fort.')],
+    ['🔧', _t('Atelier premium'), _t('Nouveau look, rangs Fer → Bronze → Argent → Or → Émeraude → Platine → Diamant → Master, et plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50). Les bonus par niveau sont revus à la baisse : c’était trop fort.')],
     ['🔊', _t('Son réparé'), _t('Après un vocal, un appel ou une autre appli, la musique et les bruitages repartent au toucher suivant.')],
     ['🛡️', _t('Châssis'), _t('Tu peux monter un châssis de niveau tout de suite avec des nuggets.')],
     ['✨', _t('Coiffures à paliers'), _t('7 crinières d’énergie, du palier 1 au palier 7 : Mèches cuivre, chargées, surchargées (épiques), Crête néon et Crête plasma (mythiques, avec aura), Crinière de braise (légendaire, flammes) et Crinière prismatique (UPL, particules blanches et éclairs).')],
@@ -11448,6 +11487,7 @@ const UPDATES = [
     ['📱', _t('Interface très petite'), _t('Une 4e taille d’interface, pratique en paysage.')],
     ['💎', _t('Look premium'), _t('Nouvel écran Multijoueur avec les modes en grille, ATH en verre, menus plus soignés.')],
     ['📖', _t('Almanach et statistiques'), _t('Filtre des perks par monde dans l’Almanach. Dans ton profil, touche une statistique pour voir le détail (Backrooms : salles vidées, record de salles, boss…). Le compteur d’étages des Backrooms est réparé.')],
+    ['🛠️', _t('Garage plus lisible'), _t('Fiche d’objet sur toute la largeur, bonus en vert et malus en rouge, encadré du set avec les pièces actives. Les emplacements ont des paliers : Bronze, Argent, Or, Émeraude, Platine, Diamant et Master. Les raretés hautes, les paliers et les étoiles de châssis donnent un peu plus de puissance.')],
     ['👷', _t('Ouvriers de la base'), _t('Jusqu’à 4 ouvriers : chacun fait un chantier à la fois. Le panneau Ouvriers montre qui travaille sur quoi.')],
     ['🌀', _t('Transformations'), _t('Un compteur 1/6 montre où tu en es pour chaque élément, en partie et sur les cartes (dès le Monde 6 débloqué).')],
     ['🏁', _t('Nouveautés débloquées'), _t('En revenant au menu après un monde, la liste de tout ce que tu viens de débloquer s’affiche.')] ] },
