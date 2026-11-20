@@ -16,6 +16,23 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 8 · Cosmétiques et atelier
+
+- **Supernova** devient un **trou noir animé** : disque de matière qui tourne, jets d’énergie, matière aspirée en spirale.
+- **Nouveau skin légendaire : Tesla** (bobine en cuivre, sphères reliées par des éclairs, cœur de plasma).
+- **Skins animés** : le Scarabée marche et ouvre ses ailes, le Cristal scintille avec des éclats en orbite. Étoile passe Rare et Char d’assaut Super rare, pour avoir 2 skins par rareté.
+- **Couleurs** : 2 nouvelles par rareté (Corail, Sable, Turquoise, Ardoise, Émeraude, Lilas, Bronze, Nacre), animées en Mythique (Aurore boréale, Toxine) et psychédéliques en Légendaire (Psyché, Kaléidoscope).
+- **Balles** : 2 nouvelles par rareté (Orange, Menthe, Citron, Corail, Indigo, Framboise, Bulle de savon, Shuriken), animées en Mythique (Comète, Pulsar) et psychédéliques en Légendaire (Psyché, Kaléidoscope).
+- **Accessoires** : Casquette, Nœud, Monocle, Bonnet à pompon, Haut-de-forme, Lunettes d’aviateur, Chapeau de sorcier, Tricorne, Nuage d’orage, Couronne astrale, et l’**Esprit de la tempête** en Ultra Premium Légendaire (coffres UPL, ou 350 000 nuggets). Le chapeau de paille passe Mythique.
+- Les **accessoires suivent la direction du canon**.
+- Les cosmétiques de basse rareté coûtent un peu plus cher.
+- **Atelier premium** : nouveau look par catégories, rangs Fer → Diamant, et plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 50).
+- **Atelier rééquilibré** : bonus par niveau revus à la baisse (dégâts +2 %, Bonne étoile beaucoup moins forte, portée, Surcharge, nuggets…).
+- **Son réparé** : après un vocal, un appel ou une autre appli, la musique et les bruitages repartent normalement au toucher suivant.
+- **Châssis** : +1 niveau tout de suite avec des nuggets.
+- **Transformations** : débloquées avec le Monde 6, avec un compteur 1/6 par élément en partie et sur les cartes.
+- **Nouveautés débloquées** : au retour au menu après un monde, la liste de ce que tu viens de débloquer s’affiche.
+
 ### MAJ 7 · Énergie
 
 - Chaque partie dans un **monde** ou en **Infini** coûte **5 ⚡**.
