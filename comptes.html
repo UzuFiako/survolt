@@ -513,7 +513,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .rlab{font:400 13px/1 var(--display);color:var(--rc);text-align:center;padding-top:10px;letter-spacing:.04em}
 .rtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:6px}
 .freerow{margin:0 0 8px 38px}
-.rtiles .cls.lock canvas,.rtiles .cls.lock .swbig{opacity:.55;filter:saturate(.6)}
+.rtiles .cls.lock canvas,.rtiles .cls.lock .swbig{opacity:.88;filter:none}
 .slotseg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px} .slotseg button{font-size:10.5px;padding:0 4px;min-height:40px}
 .swbig{display:block;width:44px;height:44px;margin:6px auto 2px;border-radius:50%;background:var(--c);border:2px solid rgba(var(--irgb),.3)}
 .swbig.auto{background:conic-gradient(from 30deg,#ff3d81,#ffd23f,#6dff7a,#3de8ff,#b56bff,#ff3d81)}
@@ -737,7 +737,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .card .ptot{display:block;font:800 11.5px/1.25 var(--body);color:var(--rc);letter-spacing:.02em}
 .grow{display:grid;grid-template-columns:1fr;gap:6px;padding:8px;margin-bottom:6px;border-left:4px solid var(--rc);background:linear-gradient(90deg,color-mix(in srgb,var(--rc) 16%,transparent),transparent 80%)}
 .grow>b{font:700 10.5px/1 var(--body);letter-spacing:.16em;color:var(--rc);text-transform:uppercase}
-.almgrid .it{width:100%;aspect-ratio:1} .almgrid .it.lock,.almgrid .cls.lock{filter:grayscale(1) brightness(.9);opacity:.5}
+.almgrid .it{width:100%;aspect-ratio:1} .almgrid .it.lock{filter:grayscale(1) brightness(.9);opacity:.5} .almgrid .cls.lock{opacity:.8}
 .almgrid .it.soon{filter:grayscale(1) brightness(.45);opacity:.5}
 .almtop{display:grid;gap:12px;align-items:center;position:relative}
 .almtop.pop{position:fixed;left:10px;right:10px;bottom:10px;z-index:60;max-height:62%;overflow:auto;padding:14px 14px 12px;background:var(--panel);border-top:4px solid var(--ion);box-shadow:0 -10px 40px rgba(0,0,0,.55);animation:popup .18s ease-out}
@@ -1452,6 +1452,19 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .eqloss>b{display:block;font:900 12.5px/1.2 var(--body)!important;color:#ff7a8a;letter-spacing:.04em}
 .eqloss p{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin:6px 0 0;font:700 12.5px/1.35 var(--body)!important;color:#ffb3bd!important;text-decoration:line-through;text-decoration-color:rgba(255,122,138,.6)}
 .eqloss p i{font-style:normal;text-decoration:none;display:inline-block;padding:2px 6px;border-radius:6px;font:900 10.5px/1.2 var(--body);color:#0b0a1a;background:var(--sc)}
+.stats{grid-template-columns:repeat(3,minmax(0,1fr))!important} .land .stats{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+.stats div:not(.mpowc) dd{font-size:clamp(13px,3.9vw,16px)!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .stats div:not(.mpowc) dd .cur,.stats div:not(.mpowc) dd img{width:.95em;height:.95em}
+.stats dd.pw{color:#ffe14a} .stats dd.cb{color:#ffe680} .stats dt .eico{width:1em;height:1em;vertical-align:-.15em}
+.stats dd.ky{color:#ffd76a}
+.mpowc{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;background:linear-gradient(90deg,rgba(255,225,74,.16),var(--panel) 70%)!important;cursor:pointer;box-shadow:inset 0 0 0 1.5px rgba(255,225,74,.45)} .mpowc:active{transform:scale(.97)} .mpowc dt{color:#ffe14a!important}
+.powtot{text-align:center;padding:12px;border-radius:16px;background:linear-gradient(135deg,rgba(255,225,74,.18),rgba(181,107,255,.12));box-shadow:inset 0 0 0 1px rgba(255,225,74,.4)}
+.powtot small{display:block;font:800 10.5px/1 var(--body);letter-spacing:.18em;color:var(--dim)} .powtot b{display:block;margin-top:6px;font:900 30px/1 var(--title,var(--body));color:#ffe14a;text-shadow:0 0 16px rgba(255,225,74,.4)}
+.powlist{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.powrow{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04);box-shadow:inset 3px 0 0 var(--pc)}
+.powrow>i{font-style:normal;font-size:20px;display:grid;place-items:center} .powrow b{display:block;font:800 13.5px/1.2 var(--body);color:var(--ink)} .powrow small{display:block;font:600 11px/1.3 var(--body);color:var(--dim);margin-top:1px}
+.powrow .pbar{display:block;height:4px;margin-top:5px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden} .powrow .pbar s{display:block;height:100%;background:var(--pc);text-decoration:none}
+.powrow em{font:900 15px/1 var(--body);font-style:normal;color:var(--pc)}
+.powh{margin:14px 2px 6px;font:900 11px/1 var(--body);letter-spacing:.16em;color:var(--dim)}
 .fxchips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0}
 .fxchips span{padding:6px 10px;border-radius:10px;font:800 13px/1.25 var(--body)}
 .fxchips .up{color:#5ff5a0;background:rgba(54,224,138,.12);box-shadow:inset 0 0 0 1px rgba(54,224,138,.4)}
@@ -1553,10 +1566,13 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
         <p class="tag">Survis aux vagues, booste ton tank carte après carte, fais sauter les boss.</p>
       </header>
       <dl class="stats">
+        <div id="mPowC" class="mpowc" role="button" tabindex="0" aria-label="Voir le détail de la puissance"><dt>⚡ Puissance · touche pour le détail ›</dt><dd id="mPow" class="pw">0</dd></div>
         <div><dt>Record</dt><dd id="mBest">0</dd></div>
         <div><dt>Mondes</dt><dd id="mWorlds">0/6</dd></div>
+        <div><dt>🔑 Clés</dt><dd id="mKeys" class="ky">0</dd></div>
         <div><dt>Nuggets</dt><dd id="mShards" class="sh">0</dd></div>
         <div><dt>Diams</dt><dd id="mJet" class="jt">0</dd></div>
+        <div><dt>💡 Ampoules</dt><dd id="mBulb" class="cb">0</dd></div>
       </dl>
     </div>
     <div class="mbody" data-scroll>
@@ -2358,7 +2374,7 @@ const UPID = Object.fromEntries(UP.map(u => [u.id, u]));
 const slotMax = () => 6 + Math.min(6, WORLDS.filter(w => w.waves && meta.wdone[w.id]).length) + (meta.wdone.nw3 ? 1 : 0) + (meta.wdone.nw6 ? 1 : 0);   // 6 perks au départ, +1 par monde terminé, +1 au Monde 3 et +1 au Monde 6 en Nightmare (les reliques et les suprêmes n'en prennent pas)
 const worldPerkOk = u => (!u.wu || !!meta.wdone['w' + (u.wu - 1)]) && (!u.w || (G && G.world && (G.world.dg ? G.world.no >= u.w && (u.w <= 1 || !!meta.wdone['w' + (u.w - 1)]) : (G.world.no >= u.w || (G.world.id === 'inf' && meta.wdone['w' + (u.w - 1)])))));
 const SHARDCARD = { id: '_shard', n: _t('Prime'), d: _t('+15 nuggets à la fin de la partie'), r: 'c', max: 1e9, c: 'spe', f: () => { G.shards += 15; } };
-const SUPERPRIME = { id: '_shard2', n: _t('Super prime'), d: _t('+2 diams à la fin de la partie'), r: 'r', max: 1e9, c: 'spe', f: () => { G.jet += 2; } };
+const SUPERPRIME = { id: '_shard2', n: _t('Super prime'), d: _t('+1 diam à la fin de la partie'), r: 'r', max: 1e9, c: 'spe', f: () => { G.jet += 1; } };
 const HEALCARD = { id: '_heal', n: _t('Réparation express'), d: _t('Répare 40 % des PV'), r: 'c', max: 1e9, c: 'def', f: (s, p) => { p.hp = Math.min(s.maxHp, p.hp + s.maxHp * 0.4); } };
 const ICON2 = {
   wind: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h16a3 3 0 1 1-3 3M3 16h8"/></svg>',
@@ -2592,12 +2608,14 @@ const SKINS = [
   { id: 'drone', n: _t('Drone'), set: 'forme', rar: 'mt', shape: 'drone' },
   { id: 'soucoupe', n: _t('Soucoupe'), set: 'forme', rar: 'mt', shape: 'soucoupe' },
   { id: 'supernova', n: _t('Supernova'), set: 'leg', rar: 'lg', shape: 'trou', anim: 'nova', shot: 'volt', mv: 1 },
-  { id: 'tesla', n: _t('Tesla'), set: 'leg', rar: 'lg', shape: 'tesla', anim: 'tesla', shot: 'ion', mv: 1 }
+  { id: 'tesla', n: _t('Tesla'), set: 'leg', rar: 'lg', shape: 'tesla', anim: 'tesla', shot: 'ion', mv: 1 },
+  { id: 'dragonc', n: _t('Dragon céleste'), set: 'leg', rar: 'lg', shape: 'dragon', anim: 'dragon', shot: 'plasma', mv: 1, pack: 'celeste' }
 ];
 /* Skins uniques des tenues légendaires : ils remplacent la couleur choisie. */
 const STUFFSK = {
-  magma: { id: 'magma', n: _t('Magma'), deco: 'magma', line: '#ff6a1f', fill: '#24110c', core: '#ffd27a', shot: 'ember', barrel: '#3a1a10' },
-  ocean: { id: 'ocean', n: _t('Abysses'), deco: 'ocean', grad: ['#0b4a8a', '#2a9be0', '#062652'], line: '#7fe4ff', core: '#e8fbff', shot: 'ion', barrel: '#0d3a6a' }
+  magma: { id: 'magma', n: _t('Magma'), deco: 'magma', shape: 'titan', line: '#ff8a3d', fill: '#2a1712', core: '#ffd27a', shot: 'ember', barrel: '#3a1a10' },
+  ocean: { id: 'ocean', n: _t('Abysses'), deco: 'ocean', shape: 'levi', grad: ['#0b4a8a', '#2a9be0', '#062652'], line: '#7fe4ff', core: '#e8fbff', shot: 'ion', barrel: '#0d3a6a' },
+  celeste: { id: 'celeste', n: _t('Dragon céleste'), deco: 'celeste', shape: 'dragon', grad: ['#ffffff', '#dfeaff', '#9fb8e8'], line: '#5aa8ff', core: '#ffe9a8', shot: 'plasma', barrel: '#c8d8f0' }
 };
 const ACCS = [
   { id: 'none', n: _t('Aucun'), rar: 'co' },
@@ -2744,6 +2762,7 @@ function shotKey() {
   if (sk.anim === 'pastel') return PASTEL[(prismI++) % 3];
   if (sk.anim === 'nova') return (prismI++) % 2 ? 'plasma' : 'hot';
   if (sk.anim === 'tesla') return (prismI++) % 2 ? 'ion' : 'volt';
+  if (sk.anim === 'dragon') return (prismI++) % 2 ? 'plasma' : 'ion';
   return sk.shot || TH.tank.shot || 'volt';
 }
 function skinCols(sk, g, r) {
@@ -2751,6 +2770,7 @@ function skinCols(sk, g, r) {
   if (sk.anim === 'prism') return { line: `hsl(${h},100%,64%)`, fill: '#1c1848', core: `hsl(${(h + 160) % 360},100%,70%)`, barrel: '#2c2670' };
   if (sk.anim === 'pastel') return { line: `hsl(${h},90%,84%)`, fill: `hsl(${(h + 40) % 360},38%,34%)`, core: `hsl(${(h + 150) % 360},90%,90%)`, barrel: '#4a4a7a' };
   if (sk.anim === 'nova') return { line: '#ffb347', fill: '#000', core: '#000', barrel: '#1a0c26', deco: 'hole', shape: 'trou' };
+  if (sk.anim === 'dragon') { let fill = '#eef4ff'; if (g) { const rg = g.createRadialGradient(0, 0, 0, 0, 0, r * 1.2); rg.addColorStop(0, '#ffffff'); rg.addColorStop(1, '#a9c4f0'); fill = rg; } return { line: '#5aa8ff', fill, core: '#ffe9a8', barrel: '#c8d8f0', deco: 'celeste', shape: 'dragon' }; }
   if (sk.anim === 'tesla') {
     let fill = '#0b1c30';
     if (g) { const rg = g.createRadialGradient(0, 0, 0, 0, 0, r * 1.2); rg.addColorStop(0, '#16426a'); rg.addColorStop(1, '#040a16'); fill = rg; }
@@ -2905,7 +2925,7 @@ function bulletPreview(id) {
   g.globalAlpha = 1; return cv;
 }
 /* Tous les objets cosmétiques, pour les coffres. */
-const COSM = () => SKINS.filter(k => k.id !== 'hexa').map(k => ({ kind: 'skin', id: k.id, n: k.n, rar: k.rar, own: !!meta.skins[k.id] }))
+const COSM = () => SKINS.filter(k => k.id !== 'hexa' && !k.pack).map(k => ({ kind: 'skin', id: k.id, n: k.n, rar: k.rar, own: !!meta.skins[k.id] }))
   .concat(ACCS.filter(a => a.id !== 'none' && !a.mp).map(a => ({ kind: 'acc', id: a.id, n: a.n, rar: a.rar, own: !!meta.accs[a.id] })))
   .concat(COLITEMS().map(x => ({ kind: 'col', id: x.id, n: x.n, rar: x.rar, prem: !!x.prem, own: !!meta.cols[x.id] })))
   .concat(BULS.filter(b => b.id !== 'theme').map(x => ({ kind: 'bul', id: x.id, n: x.n, rar: x.rar, prem: !!x.prem, own: !!meta.buls[x.id] })));
@@ -2934,7 +2954,8 @@ const PAY = {
   d6500: 'https://buy.stripe.com/9B68wRfg02nKfJ58TrdMI04',
   pack_ocean: 'https://buy.stripe.com/bJe9AV2tefawcwT3z7dMI05',
   pack_volcan: 'https://buy.stripe.com/3cIbJ33xi6E0gN98TrdMI06',
-  pack_celeste: ''
+  pack_celeste: '',
+  pack_spacelord: ''
 };
 const CGV_URL = 'cgv.html';
 const meta = { shards: 0, best: 0, bestWave: 0, shop: {}, cls: { scout: 1 }, sel: 'scout', mute: false,
@@ -3098,8 +3119,16 @@ function curFx() {   // petite bulle « −40 ✦ » / « +120 ◆ » qui s'envo
       for (const q of document.querySelectorAll(k === 'j' ? '.jt,.cj,#cJet' : '.sh,.cs')) { if (!q.offsetParent) continue; q.classList.remove('curbump'); void q.offsetWidth; q.classList.add('curbump'); } } } } catch (e) {}
   curLast = c;
 }
+/* Soldes affichés en haut des menus : remis à jour à chaque sauvegarde (donc après chaque achat, amélioration, vente…). */
+function balRefresh() {
+  const set = (id, v) => { const e = document.getElementById(id); if (e && e.textContent !== v) e.textContent = v; };
+  set('mShards', fmt(meta.shards)); set('mJet', fmt(meta.jet)); set('mBulb', fmt(meta.bulb || 0)); set('mKeys', fmt(meta.keys || 0)); set('gShards', fmt(meta.shards)); set('gJet', fmt(meta.jet)); set('sShards', fmt(meta.shards)); set('cJet', fmt(meta.jet));
+  { const e = document.getElementById('gBulb'); if (e) { const v = '💡 ' + fmt(meta.bulb || 0); if (e.dataset.v !== v) { e.dataset.v = v; e.textContent = v; } } }
+  { const e = document.getElementById('stBal'); if (e && e.offsetParent) e.innerHTML = `<span class="sh">${fmt(meta.shards)}</span> &nbsp; <span class="jt">${fmt(meta.jet)}</span> &nbsp; <span class="ck">🔑 ${fmt(meta.keys || 0)}</span>`; }
+  try { const e = document.getElementById('mPow'); if (e) e.textContent = fmt(myPower()); } catch (e) {}
+}
 function save() {
-  meta.ts = Date.now(); meta.rv = RV; curFx();
+  meta.ts = Date.now(); meta.rv = RV; curFx(); try { balRefresh(); } catch (e) {}
   try { localStorage.setItem(SAVE, JSON.stringify(meta)); } catch (e) {}
   if (AUTH) { clearTimeout(pushT); pushT = setTimeout(() => cloudPush().catch(() => { cloudState = 'err'; renderSync(); }), 4000); }
 }
@@ -4105,7 +4134,7 @@ function kill(e) {
 }
 function miniDown(e) {
   G.scr += 3; G.bossN++;
-  G.boss = null; G.shards += 6; G.score += 400; G.jet += 2;
+  G.boss = null; G.shards += 6; G.score += 400; G.jet += 1;
   addText(e.x, e.y - 30, '+6 ◆  +2 ✦', C.volt, 18);
   ring(e.x, e.y, 200, e.col, 0.5, 8); burst(e.x, e.y, 'ink', 20, 260);
   { const two = shuffle(['auto', 'heal'].concat(PKFX)).slice(0, 2); addPickup(two[0], e.x + 26, e.y); addPickup(two[1], e.x - 26, e.y); }
@@ -4120,10 +4149,10 @@ function miniDown(e) {
 }
 function bossDown(e) {
   const sh = 15 + 5 * Math.min(6, G.bossK);
-  G.boss = null; G.shards += sh; G.score += 1000 * G.bossK; G.jet += 5; G.scr += 6 + 2 * Math.min(6, G.bossK); G.bossN++;
+  G.boss = null; G.shards += sh; G.score += 1000 * G.bossK; G.jet += 3; G.scr += 6 + 2 * Math.min(6, G.bossK); G.bossN++;
   if (!G.demo && !G.duel) spawnWheel();
   G.drops.push(randItem(worldRar())); if (!G.demo) { G.runes.push(randRune(worldRar())); addText(e.x, e.y + 40, _t('+ 1 RUNE'), C.plasma, 18); }
-  if (e.boss.secret) { G.chDrops.push('lg'); G.jet += 50; addText(e.x, e.y - 60, _t('COFFRE LG + 50 ✦ !'), C.volt, 22); }
+  if (e.boss.secret) { G.chDrops.push('lg'); G.jet += 30; addText(e.x, e.y - 60, _t('COFFRE LG + 30 ✦ !'), C.volt, 22); }
   addText(e.x, e.y - 30, '+' + sh + ' ◆  +5 ✦', C.volt, 20);
   for (const o of enemies) if (!o.dead) { o.dead = true; burst(o.x, o.y, o.col, 8, 160); dropXp(o.x, o.y, o.xp * 0.5); }
   for (const b of ebul) b.dead = true; for (const h of hazards) h.dead = true; for (const s of spawns) s.dead = true;
@@ -4520,6 +4549,7 @@ function updPlayer(dt) {
     if (sk.deco === 'magma') flame(P.x + rnd(-12, 12), P.y + rnd(-12, 12), Math.random() < 0.3);
     else if (sk.deco === 'ocean') { if (Math.random() < 0.6) parts.push({ x: P.x + rnd(-14, 14), y: P.y + rnd(-14, 14), vx: rnd(-15, 15), vy: rnd(-50, -20), life: 0.7, max: 0.7, col: '#bff3ff', s: rnd(3, 6), bub: true }); }
     else if (sk.anim === 'nova') { for (let i = 0; i < 2; i++) { const a = rnd(0, TAU), d = rnd(34, 48); parts.push({ x: P.x + Math.cos(a) * d, y: P.y + Math.sin(a) * d, vx: -Math.cos(a + 0.9) * d * 1.7, vy: -Math.sin(a + 0.9) * d * 1.7, life: 0.5, max: 0.5, col: pick(['#ffb347', '#ff6a3d', '#c58bff', '#fff1c4']), s: rnd(1.6, 3) }); } }
+    else if (sk.anim === 'dragon' || sk.deco === 'celeste') { if (Math.random() < 0.5) { const a = rnd(0, TAU), d = rnd(26, 40); parts.push({ x: P.x + Math.cos(a) * d, y: P.y + Math.sin(a) * d, vx: -Math.sin(a) * 40, vy: Math.cos(a) * 40, life: 0.7, max: 0.7, col: pick(['#ffffff', '#cfe6ff', '#ffe9a8']), s: rnd(1.5, 3) }); } }
     else if (sk.anim === 'tesla') { if (Math.random() < 0.55) { const a = rnd(0, TAU); parts.push({ x: P.x + Math.cos(a) * 22, y: P.y + Math.sin(a) * 22, vx: Math.cos(a) * rnd(40, 90), vy: Math.sin(a) * rnd(40, 90), life: 0.3, max: 0.3, col: Math.random() < 0.5 ? '#7df9ff' : '#ffffff', s: rnd(1.5, 2.6) }); } }
     else if (meta.acc === 'm_neon' || meta.acc === 'm_plasma' || meta.acc === 'm_braise' || meta.acc === 'm_prisme') { const hc = HAIR[ACCS.find(a => a.id === meta.acc).hair]; if (Math.random() < 0.7) { const a = rnd(0, TAU), d = rnd(14, 26);
       parts.push({ x: P.x + Math.cos(a) * d, y: P.y + Math.sin(a) * d, vx: rnd(-12, 12), vy: rnd(-70, -35), life: 0.6, max: 0.6, col: meta.acc === 'm_prisme' ? (Math.random() < 0.6 ? '#ffffff' : `hsl(${(T * 200) % 360},100%,75%)`) : pick([hc.c1, hc.c2, '#ffffff']), s: rnd(1.5, 3) }); } }
@@ -5129,21 +5159,95 @@ function drawTank(g, x, y, ang, s, r, recoil, hot, sk) {
     g.restore();
     g.save(); g.fillStyle = '#5b6b80'; g.strokeStyle = C.ink; g.lineWidth = 1.8; for (const yy of [-1, 1]) { g.beginPath(); g.moveTo(-r * 0.4, yy * r * 0.95); g.lineTo(r * 0.55, yy * r * 1.12); g.lineTo(r * 0.75, yy * r * 0.82); g.lineTo(-r * 0.3, yy * r * 0.7); g.closePath(); g.fill(); g.stroke(); } g.restore();
   }
-  if (k.deco === 'magma') {   // fissures de lave qui pulsent
+  if (k.deco === 'magma' && k.shape === 'hexa') {   // fissures de lave qui pulsent
     g.save(); poly(g, 0, 0, r * 1.05, 6, Math.PI / 6); g.clip();
     g.lineWidth = r * 0.11; g.strokeStyle = `rgba(255,${(120 + 70 * Math.sin(T * 4)) | 0},40,0.95)`; g.beginPath();
     g.moveTo(-r * 0.8, -r * 0.25); g.lineTo(-r * 0.35, -r * 0.02); g.lineTo(-r * 0.5, r * 0.5); g.moveTo(-r * 0.35, -r * 0.02); g.lineTo(-r * 0.1, -r * 0.2);
     g.moveTo(r * 0.05, -r * 0.85); g.lineTo(r * 0.25, -r * 0.4); g.lineTo(r * 0.7, -r * 0.25);
     g.moveTo(r * 0.3, r * 0.3); g.lineTo(r * 0.55, r * 0.6); g.lineTo(r * 0.3, r * 0.9); g.stroke(); g.restore();
-  } else if (k.deco === 'ocean') {   // vagues qui défilent
+  } else if (k.deco === 'ocean' && k.shape === 'hexa') {   // vagues qui défilent
     g.save(); poly(g, 0, 0, r * 1.05, 6, Math.PI / 6); g.clip(); g.lineWidth = r * 0.09; g.strokeStyle = 'rgba(232,251,255,0.7)';
     for (const yy of [-0.42, 0.05, 0.52]) { g.beginPath(); for (let i = 0; i <= 12; i++) { const xx = -r * 1.1 + i * r * 0.2, y2 = r * yy + Math.sin(i * 1.1 + T * 4 + yy * 5) * r * 0.1; if (i) g.lineTo(xx, y2); else g.moveTo(xx, y2); } g.stroke(); }
     g.restore();
   }
   if (k.deco === 'hole') holeFront(g, r * 1.12);
+  else if (k.shape === 'dragon') dragonFront(g, r * 1.12, hot);
+  else if (k.shape === 'titan') titanFront(g, r * 1.12, hot);
+  else if (k.shape === 'levi') leviFront(g, r * 1.12, hot);
   else if (k.deco === 'tesla') teslaFront(g, r * 1.12, hot);
   else { g.fillStyle = hot ? '#fff6cf' : k.core; g.beginPath(); g.arc(0, 0, r * 0.4, 0, TAU); g.fill(); }
   g.restore();
+}
+/* ===== Skins de légende (sets et packs) — designs originaux ===== */
+/* Léviathan des abysses : grande créature marine, nageoires qui battent, queue qui ondule, lignes lumineuses turquoise. */
+function hullLevi(g, R) {
+  const fs = g.fillStyle, ss = g.strokeStyle, lw = g.lineWidth, sw = Math.sin(T * 3), fl = Math.sin(T * 2.4);
+  g.save(); g.translate(-R * 1.05, 0); g.rotate(sw * 0.22);   // queue en éventail
+  g.beginPath(); g.moveTo(R * 0.25, 0); g.quadraticCurveTo(-R * 0.35, -R * 0.15, -R * 0.75, -R * 0.75); g.quadraticCurveTo(-R * 0.45, -R * 0.1, -R * 0.55, 0); g.quadraticCurveTo(-R * 0.45, R * 0.1, -R * 0.75, R * 0.75); g.quadraticCurveTo(-R * 0.35, R * 0.15, R * 0.25, 0); g.closePath(); g.fill(); g.stroke(); g.restore();
+  for (const sy of [-1, 1]) { g.save(); g.translate(-R * 0.05, sy * R * 0.7); g.rotate(sy * (0.35 + fl * 0.25));   // grandes nageoires
+    g.beginPath(); g.moveTo(R * 0.35, 0); g.quadraticCurveTo(R * 0.1, sy * R * 0.9, -R * 0.75, sy * R * 0.95); g.quadraticCurveTo(-R * 0.3, sy * R * 0.35, -R * 0.35, 0); g.closePath(); g.fill(); g.stroke();
+    g.save(); g.globalCompositeOperation = LITM(); g.strokeStyle = 'rgba(127,228,255,.7)'; g.lineWidth = Math.max(1, R * 0.05); g.beginPath(); g.moveTo(R * 0.1, sy * R * 0.1); g.quadraticCurveTo(-R * 0.15, sy * R * 0.55, -R * 0.55, sy * R * 0.75); g.stroke(); g.restore(); g.restore(); }
+  g.beginPath(); g.ellipse(R * 0.05, 0, R * 1.2, R * 0.82, 0, 0, TAU); g.fill(); g.stroke();   // corps
+  g.save(); g.beginPath(); g.ellipse(R * 0.05, 0, R * 1.2, R * 0.82, 0, 0, TAU); g.clip(); g.fillStyle = 'rgba(200,240,255,.18)'; g.beginPath(); g.ellipse(R * 0.25, R * 0.45, R * 1.0, R * 0.45, 0, 0, TAU); g.fill(); g.restore();   // ventre clair
+  g.save(); g.globalCompositeOperation = LITM(); const pu = 0.55 + 0.45 * Math.sin(T * 2.2);   // motifs lumineux (arcs) qui pulsent
+  g.strokeStyle = `rgba(127,228,255,${0.5 + 0.4 * pu})`; g.lineWidth = Math.max(1.2, R * 0.07); g.shadowColor = '#7fe4ff'; g.shadowBlur = R * 0.5 * pu;
+  for (const [x0, rr] of [[-0.55, 0.32], [-0.1, 0.42], [0.42, 0.3]]) { g.beginPath(); g.arc(R * x0, 0, R * rr, -1.1, 1.1); g.stroke(); g.beginPath(); g.arc(R * x0, 0, R * rr, Math.PI - 1.1, Math.PI + 1.1); g.stroke(); }
+  g.restore(); g.fillStyle = fs; g.strokeStyle = ss; g.lineWidth = lw;
+}
+function leviFront(g, R) {   // yeux lumineux + bulles qui tournent autour
+  g.save(); g.globalCompositeOperation = LITM(); for (const sy of [-1, 1]) { const eg = g.createRadialGradient(R * 0.88, sy * R * 0.38, 0, R * 0.88, sy * R * 0.38, R * 0.22); eg.addColorStop(0, '#ffffff'); eg.addColorStop(0.4, '#7fe4ff'); eg.addColorStop(1, 'rgba(127,228,255,0)'); g.fillStyle = eg; g.beginPath(); g.arc(R * 0.88, sy * R * 0.38, R * 0.22, 0, TAU); g.fill(); }
+  g.restore(); g.save(); g.strokeStyle = 'rgba(232,251,255,.75)'; g.lineWidth = 1;
+  for (let i = 0; i < 6; i++) { const f = (T * 0.4 + i / 6) % 1, a = i * 1.7 + T * 0.6, rr = R * (1.3 + f * 0.6); g.globalAlpha = 1 - f; g.beginPath(); g.arc(Math.cos(a) * rr, Math.sin(a) * rr, R * (0.06 + 0.06 * f), 0, TAU); g.stroke(); } g.restore();
+}
+/* Titan de magma : armure de roche noire, fissures de lave qui battent, piques sur les épaules, cœur en fusion. */
+const TITPTS = [[1.15, 0], [0.8, 0.55], [0.35, 0.95], [-0.35, 1.0], [-0.95, 0.6], [-1.1, 0], [-0.95, -0.6], [-0.35, -1.0], [0.35, -0.95], [0.8, -0.55]];
+function hullTitan(g, R) {
+  const fs = g.fillStyle, ss = g.strokeStyle, lw = g.lineWidth, hb = Math.sin(T * 3.2);
+  for (const sy of [-1, 1]) for (const [x0, len] of [[0.35, 0.7], [-0.25, 0.9], [-0.8, 0.65]]) {   // piques de roche, pointe en fusion
+    g.save(); g.translate(R * x0, sy * R * 0.82); g.rotate(sy * (Math.PI / 2 - 0.25)); g.fillStyle = '#1c100c'; g.strokeStyle = '#ff8a3d'; g.lineWidth = Math.max(1, lw * 0.6);
+    g.beginPath(); g.moveTo(-R * 0.3, R * 0.1); g.lineTo(-R * 0.05, -R * len); g.lineTo(R * 0.3, R * 0.1); g.closePath(); g.fill(); g.stroke();
+    g.fillStyle = `rgba(255,${(150 + 60 * hb) | 0},40,.95)`; g.beginPath(); g.moveTo(-R * 0.07, -R * len * 0.6); g.lineTo(0, -R * len); g.lineTo(R * 0.07, -R * len * 0.6); g.closePath(); g.fill(); g.restore(); }
+  for (const sy of [-1, 1]) { g.save(); g.fillStyle = '#1c100c'; g.strokeStyle = ss; g.beginPath(); g.moveTo(R * 0.85, sy * R * 0.35); g.lineTo(R * 1.45, sy * R * 0.55); g.lineTo(R * 1.0, sy * R * 0.12); g.closePath(); g.fill(); g.stroke(); g.restore(); }   // cornes avant
+  g.beginPath(); TITPTS.forEach(([x, y], i) => { const px = x * R, py = y * R; if (i) g.lineTo(px, py); else g.moveTo(px, py); }); g.closePath(); g.fill(); g.stroke();
+  g.save(); g.beginPath(); TITPTS.forEach(([x, y], i) => { if (i) g.lineTo(x * R, y * R); else g.moveTo(x * R, y * R); }); g.closePath(); g.clip();
+  g.strokeStyle = 'rgba(10,6,4,.8)'; g.lineWidth = Math.max(1, R * 0.06); g.beginPath(); for (const [a, b, c, d] of [[-0.9, -0.3, -0.2, -0.75], [0.1, -0.95, 0.4, -0.2], [-0.5, 0.9, 0.0, 0.25], [0.6, 0.7, 0.2, 0.15]]) { g.moveTo(a * R, b * R); g.lineTo(c * R, d * R); } g.stroke();   // plaques
+  g.globalCompositeOperation = LITM(); g.lineWidth = Math.max(1.3, R * 0.09); g.strokeStyle = `rgba(255,${(110 + 80 * hb) | 0},30,.95)`; g.shadowColor = '#ff6a1f'; g.shadowBlur = R * 0.4;
+  g.beginPath(); g.moveTo(-R * 0.95, -R * 0.1); g.lineTo(-R * 0.45, R * 0.05); g.lineTo(-R * 0.6, R * 0.55); g.moveTo(-R * 0.45, R * 0.05); g.lineTo(-R * 0.1, -R * 0.35); g.lineTo(R * 0.1, -R * 0.85);
+  g.moveTo(R * 0.25, R * 0.3); g.lineTo(R * 0.55, R * 0.55); g.lineTo(R * 0.4, R * 0.9); g.moveTo(R * 0.25, R * 0.3); g.lineTo(R * 0.75, -R * 0.1); g.stroke(); g.restore();
+  g.fillStyle = fs; g.strokeStyle = ss; g.lineWidth = lw;
+}
+function titanFront(g, R, hot) {   // cœur de magma qui bat
+  const p = 0.85 + 0.15 * Math.sin(T * 3.2) + (hot ? 0.25 : 0); g.save(); g.globalCompositeOperation = LITM();
+  const cg = g.createRadialGradient(0, 0, 0, 0, 0, R * 0.55 * p); cg.addColorStop(0, '#fff3c4'); cg.addColorStop(0.35, '#ffb347'); cg.addColorStop(0.75, 'rgba(255,90,31,.6)'); cg.addColorStop(1, 'rgba(255,90,31,0)');
+  g.fillStyle = cg; g.beginPath(); g.arc(0, 0, R * 0.55 * p, 0, TAU); g.fill(); g.restore();
+}
+/* Dragon céleste : un long dragon nacré qui s'enroule autour d'une perle de lumière, crinière azur, cornes dorées, nuages. */
+function dragonPath(t, R) { const a = t * TAU * 1.15 + T * 1.1, rr = R * (1.25 + 0.22 * Math.sin(t * 9 + T * 3)); return [Math.cos(a) * rr, Math.sin(a) * rr * 0.92]; }
+function hullDragon(g, R) {
+  const L = LITM(), N = 22;
+  g.save(); g.globalCompositeOperation = L; for (let i = 0; i < 4; i++) { const a = T * 0.35 + i * 1.6, x = Math.cos(a) * R * 1.9, y = Math.sin(a) * R * 1.6;   // nuages
+    g.fillStyle = 'rgba(220,235,255,.16)'; for (const [dx, dy, rr] of [[0, 0, 0.42], [0.35, 0.08, 0.3], [-0.35, 0.1, 0.3]]) { g.beginPath(); g.arc(x + dx * R, y + dy * R, rr * R, 0, TAU); g.fill(); } } g.restore();
+  g.save(); g.globalCompositeOperation = L; const og = g.createRadialGradient(0, 0, 0, 0, 0, R * 1.1); og.addColorStop(0, 'rgba(255,240,200,.6)'); og.addColorStop(1, 'rgba(120,170,255,0)'); g.fillStyle = og; g.beginPath(); g.arc(0, 0, R * 1.1, 0, TAU); g.fill(); g.restore();
+  const fs = g.fillStyle, ss = g.strokeStyle, lw = g.lineWidth;
+  g.beginPath(); g.arc(0, 0, R * 0.62, 0, TAU); g.fill(); g.stroke();   // la perle (le tank)
+  const pts = []; for (let i = 0; i <= 40; i++) { const t = i / 40; pts.push([...dragonPath(t, R), R * (0.06 + 0.2 * Math.sin(Math.PI * Math.min(1, t * 1.1 + 0.04)))]); }
+  g.lineCap = 'round'; g.lineJoin = 'round';
+  for (const [col, k] of [['#3d7fd6', 1.35], ['#f4f8ff', 1]]) for (let i = 1; i < pts.length; i++) { const a = pts[i - 1], b = pts[i]; g.strokeStyle = col; g.lineWidth = (a[2] + b[2]) * k; g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }   // corps (contour azur, nacre)
+  g.strokeStyle = 'rgba(90,168,255,.45)'; g.lineWidth = Math.max(1, R * 0.03); for (let i = 3; i < pts.length - 1; i += 2) { const [x, y, w] = pts[i]; g.beginPath(); g.arc(x, y, w * 0.55, 0, TAU); g.stroke(); }   // écailles
+  for (let i = 4; i < pts.length - 2; i += 3) { const [x, y, w] = pts[i], [x2, y2] = pts[i + 1], nx = x2 - x, ny = y2 - y, ln = Math.hypot(nx, ny) || 1, ox = ny / ln, oy = -nx / ln;   // crête azur
+    g.fillStyle = '#7fc4ff'; g.beginPath(); g.moveTo(x + ox * w * 0.8, y + oy * w * 0.8); g.lineTo(x + ox * w * 2.0 - nx / ln * w * 0.8, y + oy * w * 2.0 - ny / ln * w * 0.8); g.lineTo(x + ox * w * 0.7 - nx / ln * w * 1.4, y + oy * w * 0.7 - ny / ln * w * 1.4); g.closePath(); g.fill(); }
+  { const [hx, hy] = dragonPath(0.98, R), [px, py] = dragonPath(0.94, R), a = Math.atan2(hy - py, hx - px);   // tête
+    g.save(); g.translate(hx, hy); g.rotate(a); const s2 = R * 0.48;
+    g.strokeStyle = 'rgba(255,233,168,.85)'; g.lineWidth = Math.max(1, R * 0.035); for (const sy of [-1, 1]) { g.beginPath(); g.moveTo(s2 * 0.6, sy * s2 * 0.25); g.quadraticCurveTo(s2 * 1.4, sy * s2 * (0.9 + Math.sin(T * 4) * 0.3), s2 * 2.1, sy * s2 * (0.6 + Math.sin(T * 3 + sy) * 0.4)); g.stroke(); }   // moustaches
+    g.fillStyle = '#7fc4ff'; for (const sy of [-1, 1]) { g.beginPath(); g.moveTo(-s2 * 0.4, sy * s2 * 0.3); g.lineTo(-s2 * 1.2, sy * s2 * (0.9 + Math.sin(T * 5) * 0.15)); g.lineTo(-s2 * 0.1, sy * s2 * 0.55); g.closePath(); g.fill(); }   // crinière
+    g.fillStyle = '#ffd77a'; g.strokeStyle = '#a8761c'; g.lineWidth = 1; for (const sy of [-1, 1]) { g.beginPath(); g.moveTo(-s2 * 0.2, sy * s2 * 0.35); g.lineTo(-s2 * 1.0, sy * s2 * 0.75); g.lineTo(-s2 * 0.05, sy * s2 * 0.15); g.closePath(); g.fill(); g.stroke(); }   // cornes
+    g.fillStyle = '#f7faff'; g.strokeStyle = '#5aa8ff'; g.lineWidth = Math.max(1, lw * 0.6); g.beginPath(); g.moveTo(s2 * 0.95, 0); g.quadraticCurveTo(s2 * 0.6, s2 * 0.62, -s2 * 0.45, s2 * 0.45); g.lineTo(-s2 * 0.45, -s2 * 0.45); g.quadraticCurveTo(s2 * 0.6, -s2 * 0.62, s2 * 0.95, 0); g.closePath(); g.fill(); g.stroke();
+    g.save(); g.globalCompositeOperation = L; g.fillStyle = '#ffe9a8'; for (const sy of [-1, 1]) { g.beginPath(); g.arc(s2 * 0.25, sy * s2 * 0.25, s2 * 0.11, 0, TAU); g.fill(); } g.restore(); g.restore(); }
+  g.fillStyle = fs; g.strokeStyle = ss; g.lineWidth = lw;
+}
+function dragonFront(g, R, hot) {   // la perle qui brille au centre
+  const p = 0.85 + 0.15 * Math.sin(T * 2.5) + (hot ? 0.2 : 0); g.save(); g.globalCompositeOperation = LITM();
+  const cg = g.createRadialGradient(-R * 0.08, -R * 0.08, 0, 0, 0, R * 0.45 * p); cg.addColorStop(0, '#ffffff'); cg.addColorStop(0.45, '#ffe9a8'); cg.addColorStop(1, 'rgba(255,233,168,0)'); g.fillStyle = cg; g.beginPath(); g.arc(0, 0, R * 0.45 * p, 0, TAU); g.fill(); g.restore();
 }
 /* ===== Skins animés ===== */
 const LITM = () => typeof LIT !== 'undefined' ? LIT : 'lighter';
@@ -5269,6 +5373,9 @@ function hull(g, sh, R) {
     case 'scarabee': hullScarab(g, R); break;
     case 'cristal': hullCrystal(g, R); break;
     case 'trou': holeBack(g, R); break;
+    case 'levi': hullLevi(g, R); break;
+    case 'titan': hullTitan(g, R); break;
+    case 'dragon': hullDragon(g, R); break;
     case 'tesla': teslaBack(g, R); break;
     case 'drone': {
       g.save(); g.lineWidth *= 1.8; g.beginPath(); g.moveTo(-R, -R); g.lineTo(R, R); g.moveTo(-R, R); g.lineTo(R, -R); g.stroke(); g.restore();
@@ -6604,7 +6711,7 @@ function renderMenu() {
     const wl = welcLeft(); ev.hidden = !isWeekend() && !wl;
     ev.textContent = isWeekend() ? _t('⚡ WEEK-END SURVOLTÉ : nuggets ×2 en partie !') : _t('🎁 Offre de bienvenue en Boutique : encore ') + Math.ceil(wl / 864e5) + ' j'; }
   { const d = document.querySelector('#bQuests .qdot'); if (d) d.hidden = !questsReady(); } inboxDot();
-  $('#mBest').textContent = fmt(meta.best); $('#mShards').textContent = fmt(meta.shards); $('#mJet').textContent = fmt(meta.jet);
+  $('#mBest').textContent = fmt(meta.best); $('#mShards').textContent = fmt(meta.shards); $('#mJet').textContent = fmt(meta.jet); $('#mBulb').textContent = fmt(meta.bulb || 0); $('#mKeys').textContent = fmt(meta.keys || 0); try { $('#mPow').textContent = fmt(myPower()); } catch (e) {}
   $('#mWorlds').textContent = WORLDS.filter(w => w.waves && meta.wdone[w.id]).length + '/' + NW;
   $('#mHint').textContent = COARSE
     ? (meta.opt.lock ? _t('Stick gauche pour bouger, stick droit pour viser et tirer. ') : _t('Premier doigt pour bouger, deuxième doigt pour viser et tirer. ')) + _t('Le bonus TIR AUTO fait tirer le tank tout seul pendant 15 s.')
@@ -6861,13 +6968,14 @@ function renderLook() {
   const skinGrid = (set, d) => {
     rarRows(d, SKINS.filter(x => x.set === set || (set === 'forme' && x.set === 'leg')), k => {
       const own = !!meta.skins[k.id], b = tile(preview(c, k, meta.acc), k.n, null, own ? [meta.skin === k.id ? _t('ÉQUIPÉ') : _t('À TOI'), 1] : ['◆ ' + fmt(JPRICE[k.rar])], (meta.skin === k.id ? 'sel' : '') + (focusSk === k.id ? ' foc' : '') + (own ? '' : ' lock'));
-      b.addEventListener('click', () => { if (!own && focusSk === k.id) { askBuy(k.n, k.rar, JPRICE[k.rar], '◆', () => { meta.skins[k.id] = 1; meta.skin = k.id; curSk = k; }, renderGarage, preview(c, k, meta.acc)); return; } focusSk = k.id; if (own) { meta.skin = k.id; curSk = k; save(); startDemo(); } renderLook(); });
+      b.addEventListener('click', () => { if (!own && focusSk === k.id && k.pack) { toast(_tf('Exclusif au {0} (Boutique).', [PACKS.find(p => p.id === k.pack).n])); return; } if (!own && focusSk === k.id) { askBuy(k.n, k.rar, JPRICE[k.rar], '◆', () => { meta.skins[k.id] = 1; meta.skin = k.id; curSk = k; }, renderGarage, preview(c, k, meta.acc)); return; } focusSk = k.id; if (own) { meta.skin = k.id; curSk = k; save(); startDemo(); } renderLook(); });
       return b;
     });
     const fk = skinById(focusSk); if (fk.set !== set) return;
     const si = document.createElement('div'); si.className = 'clsinfo'; d.appendChild(si);
     infoLine(si, fk.n, (fk.anim === 'nova' ? _t('Skin animé : un trou noir avec son disque de matière brûlante qui tourne, des jets d’énergie et de la matière aspirée en spirale. ') : fk.anim === 'tesla' ? _t('Skin animé : une bobine Tesla en cuivre, trois sphères en orbite reliées par des éclairs et un cœur de plasma qui crépite. ') : fk.mv ? _t('Skin animé. Change la forme du tank (les couleurs se règlent dans Couleurs). ') : set === 'leg' ? _t('Garde ses propres couleurs. ') : _t('Change la forme du tank (les couleurs se règlent dans Couleurs). ')) + (meta.skins[fk.id] ? (meta.skin === fk.id ? _t('Équipé.') : _t('Touche pour l’équiper.')) : _t('Dans les coffres, ou tout de suite avec des nuggets.')), fk.rar);
-    if (!meta.skins[fk.id]) si.appendChild(buyBtn(JPRICE[fk.rar], '◆', () => { meta.skins[fk.id] = 1; meta.skin = fk.id; curSk = fk; }, renderGarage));
+    if (!meta.skins[fk.id] && fk.pack) { const p = document.createElement('p'); p.className = 'pfhint'; p.textContent = _tf('Exclusif au {0} (Boutique).', [PACKS.find(q => q.id === fk.pack).n]); si.appendChild(p); }
+    else if (!meta.skins[fk.id]) si.appendChild(buyBtn(JPRICE[fk.rar], '◆', () => { meta.skins[fk.id] = 1; meta.skin = fk.id; curSk = fk; }, renderGarage));
     si.prepend(tryOn({ sk: fk })); placeInfo(d, si);
   };
   const cnt = set => { const a = SKINS.filter(x => x.set === set); return a.filter(x => meta.skins[x.id]).length + '/' + a.length; };
@@ -7095,8 +7203,44 @@ function drawEqTank() {
 }
 /* Puissance si on change temporairement la sauvegarde (équiper, améliorer…), sans rien garder. */
 function powWith(fn) { const k0 = { eq: Object.assign({}, meta.eq), slv: JSON.parse(JSON.stringify(meta.slv)), shop: Object.assign({}, meta.shop) }; let p = 0;
-  try { fn(); p = powerOf(buildStats(meta.sel).s); } finally { meta.eq = k0.eq; meta.slv = k0.slv; meta.shop = k0.shop; } return p; }
-const powNow = () => powerOf(buildStats(meta.sel).s);
+  try { fn(); p = totalPow(buildStats(meta.sel).s); } finally { meta.eq = k0.eq; meta.slv = k0.slv; meta.shop = k0.shop; } return p; }
+const powNow = () => totalPow(buildStats(meta.sel).s);
+/* Puissance complète = stats du tank + familier + châssis (rareté, niveau, étoiles). */
+function petPow(s) { const p = meta.pet && meta.pets[meta.pet] && PETS.find(x => x.id === meta.pet); if (!p) return 0; const lv = petLv(p.id); return Math.round(s.dmg * 10 * 3 * petPct(p, lv) / petRate(p, lv) * 1.5); }
+function clsPow() { const c = selCls(), q = clsP(c.id); return Math.round((RIDX[clsRar(c.id)] || 0) * 25 + (q.lv - 1) * 4 + (q.st - 1) * 35); }
+const totalPow = s => powerOf(s) + petPow(s) + clsPow();
+/* Détail : on enlève une source à la fois et on regarde ce que la puissance perd. */
+function powSnap(fn) { const k0 = { eq: Object.assign({}, meta.eq), slv: JSON.parse(JSON.stringify(meta.slv)), shop: Object.assign({}, meta.shop), rsl: (meta.rsl || []).slice(), clsP: JSON.parse(JSON.stringify(meta.clsP || {})), pet: meta.pet, pl: meta.pl ? Object.assign({}, meta.pl) : meta.pl };
+  try { fn(); return totalPow(buildStats(meta.sel).s); } finally { Object.assign(meta, k0); } }
+function powParts() {
+  const tot = myPower(), s = buildStats(meta.sel).s, L = [], add = (ic, n, v, sub, col) => L.push({ ic, n, v: Math.max(0, Math.round(v)), sub, col });
+  const eqTot = tot - powSnap(() => { meta.eq = {}; });
+  add('🛡️', _t('Équipement porté'), eqTot, _tf('{0} objets', [Object.keys(meta.eq).filter(k => meta.eq[k] != null).length]), '#ffc43d');
+  const items = EQK.filter(k => meta.eq[k] != null).map(k => { const it = itemById(meta.eq[k]); return it ? { n: SLOTN[k] + ' · ' + itemName(it), v: tot - powSnap(() => { delete meta.eq[k]; }), r: it.r } : null; }).filter(Boolean);
+  add('📈', _t('Paliers des emplacements'), tot - powSnap(() => { meta.slv = {}; }), EQK.map(k => slTier(slvOf(k)[1])[0] + ' ' + slvOf(k)[0]).join(' · '), '#cfd8e6');
+  add('🔧', _t('Atelier'), tot - powSnap(() => { meta.shop = {}; }), _tf('{0} niveaux achetés', [SHOP.reduce((a, it) => a + (meta.shop[it.id] || 0), 0)]), '#ff9a4d');
+  add('🔮', _t('Runes'), tot - powSnap(() => { meta.rsl = []; }), _tf('{0} équipées', [(meta.rsl || []).filter(u => u != null && meta.runes.some(r => r.u === u)).length]), '#b56bff');
+  { const c = selCls(), q = clsP(c.id); add('🚗', _t('Châssis'), tot - powSnap(() => { meta.clsP[c.id] = { lv: 1, xp: 0, st: 1 }; }), _tf('{0} · niv. {1} · {2}★ · {3}', [c.n, q.lv, q.st, rname({ r: clsRar(c.id) })]), '#3de8ff'); }
+  { const p = meta.pet && meta.pets[meta.pet] && PETS.find(x => x.id === meta.pet); add('🛰️', _t('Familier'), petPow(s), p ? _tf('{0} · niv. {1}', [p.n, petLv(p.id)]) : _t('aucun familier'), '#6dffb0'); }
+  add('⭐', _t('Niveau joueur'), tot - powSnap(() => { meta.pl = Object.assign({}, meta.pl, { lv: 1 }); }), _tf('niveau {0}', [plLv()]), '#ffd23f');
+  const sum = L.reduce((a, x) => a + x.v, 0); L.unshift({ ic: '⚙️', n: _t('Tank de base'), v: Math.max(0, tot - sum), sub: _t('stats de départ du tank et du châssis'), col: '#8d93a6' });
+  return { tot, L, items, s };
+}
+function openPow() {
+  const { tot, L, items, s } = powParts(), box = sheet(_t('Ta puissance')); box.classList.add('powbox');
+  const h = document.createElement('div'); h.className = 'powtot'; h.innerHTML = '<small></small><b></b>'; h.querySelector('small').textContent = _t('PUISSANCE TOTALE'); h.querySelector('b').textContent = '⚡ ' + fmt(tot); box.appendChild(h);
+  const mx = Math.max(1, ...L.map(x => x.v)), list = document.createElement('div'); list.className = 'powlist';
+  for (const x of L.sort((a, b) => b.v - a.v)) { const r = document.createElement('div'); r.className = 'powrow'; r.style.setProperty('--pc', x.col);
+    r.innerHTML = '<i></i><div><b></b><small></small><span class="pbar"><s></s></span></div><em></em>'; r.querySelector('i').textContent = x.ic; r.querySelector('b').textContent = x.n; r.querySelector('small').textContent = x.sub;
+    r.querySelector('em').textContent = '+' + fmt(x.v); r.querySelector('s').style.width = (x.v / mx * 100).toFixed(1) + '%'; list.appendChild(r); }
+  box.appendChild(list);
+  if (items.length) { const t = document.createElement('h5'); t.className = 'powh'; t.textContent = _t('OBJET PAR OBJET'); box.appendChild(t); const kv = document.createElement('div'); kv.className = 'adkv';
+    for (const it of items.sort((a, b) => b.v - a.v)) { const a = document.createElement('span'); a.textContent = it.n; a.style.color = rcol(it.r); const b = document.createElement('b'); b.textContent = '+' + fmt(Math.max(0, Math.round(it.v))); kv.append(a, b); } box.appendChild(kv); }
+  { const t = document.createElement('h5'); t.className = 'powh'; t.textContent = _t('COMMENT C’EST CALCULÉ'); box.appendChild(t); const kv = document.createElement('div'); kv.className = 'adkv';
+    for (const [k, v] of [[_tf('ATQ {0} × 3', [Math.round(s.dmg * 10)]), Math.round(s.dmg * 30)], [_tf('PV {0} × 2', [Math.round(s.maxHp)]), Math.round(s.maxHp * 2)], [_tf('Critique {0} % × 15', [Math.round(s.crit * 100)]), Math.round(s.crit * 1500)], [_tf('Vitesse {0} %', [Math.round(s.speed / 2.15)]), Math.round(s.speed / 2.15)], [_tf('Soin {0} PV/s × 60', [String(Math.round(s.regen * 100) / 100).replace('.', ',')]), Math.round(s.regen * 60)], [_t('Familier'), petPow(s)], [_t('Bonus de châssis (rareté, niveau, étoiles)'), clsPow()]]) {
+      const a = document.createElement('span'); a.textContent = k; const b = document.createElement('b'); b.textContent = fmt(v); kv.append(a, b); } box.appendChild(kv); }
+  sBtn(box, _t('FERMER'), '', () => { $('#frDet').hidden = true; });
+}
 function statsWith(fn) { const k0 = Object.assign({}, meta.eq); try { fn(); return buildStats(meta.sel).s; } finally { meta.eq = k0; } }
 const EQSTL = s2 => [[_t('ATQ'), Math.round(s2.dmg * 10), ''], ['PV', Math.round(s2.maxHp), ''], [_t('VIT'), Math.round(s2.speed / 2.15), ' %'], [_t('CRIT'), Math.round(s2.crit * 100), ' %']];
 /* Stats du tank si on équipe (ou retire) l'objet choisi, avec la différence, comme sous les emplacements. */
@@ -7123,7 +7267,7 @@ function renderEq() {
   if (s2.aura && !eqAnim) { const loop = () => { if (el.garage.hidden || !eqTankB || !eqTankB.s.aura) { eqAnim = 0; return; } drawEqTank(); eqAnim = requestAnimationFrame(loop); }; eqAnim = requestAnimationFrame(loop); }
   const st = $('#eqStats'); st.innerHTML = '';
   for (const [l, v] of [[_t('ATQ'), Math.round(s2.dmg * 10)], ['PV', Math.round(s2.maxHp)], [_t('VIT'), Math.round(s2.speed / 2.15) + ' %'], [_t('CRIT'), Math.round(s2.crit * 100) + ' %']]) { const sp = document.createElement('span'); const b = document.createElement('b'); b.textContent = v; sp.append(l, b); st.appendChild(sp); }
-  const pw = powerOf(s2), pe = $('#eqPow'); pe.innerHTML = _t('⚡ PUISSANCE <b></b><small></small>'); pe.querySelector('b').textContent = fmt(pw);
+  const pw = totalPow(s2), pe = $('#eqPow'); pe.innerHTML = _t('⚡ PUISSANCE <b></b><small></small>'); pe.querySelector('b').textContent = fmt(pw);
   if (lastPow && pw !== lastPow) { const sm = pe.querySelector('small'); sm.textContent = (pw > lastPow ? '+' : '−') + fmt(Math.abs(pw - lastPow)); sm.className = pw > lastPow ? 'up' : 'dn'; } lastPow = pw;
   { const sel = eqSel ? meta.inv.find(x => x.u === eqSel) : null; if (sel) { const k = slotOf(sel), dv = isEq(sel) ? powWith(() => { delete meta.eq[k]; }) - pw : powWith(() => { meta.eq[k] = sel.u; }) - pw;
       const pv = document.createElement('em'); pv.className = 'pwprev'; pv.textContent = (isEq(sel) ? _t('Si tu le retires : ') : _t('Si tu l’équipes : ')); pv.appendChild(powTag(dv)); pe.appendChild(pv); } }
@@ -7217,7 +7361,7 @@ function renderEq() {
 let eqCatK = null, eqSlotK = null, lastPow = 0;
 /* Puissance : un seul chiffre qui résume ATQ, PV, critique, vitesse et régénération */
 const powerOf = s => Math.round(s.dmg * 10 * 3 + s.maxHp * 2 + s.crit * 1500 + s.speed / 2.15 + s.regen * 60);
-const myPower = () => powerOf(buildStats(meta.sel).s);
+const myPower = () => totalPow(buildStats(meta.sel).s);
 function renderSlots() {
   const box = $('#eqSlots'); box.innerHTML = '';
   for (const k of EQK) {
@@ -7310,9 +7454,9 @@ const bpEnds = () => BP_EPOCH + (bpSeason() + 1) * 30 * 864e5;
 function bpState() { const k = bpSeason(); if (!meta.bp || meta.bp.s !== k) meta.bp = { s: k, xp: 0, prem: false, f: {}, p: {} }; return meta.bp; }
 const bpTier = () => Math.min(BP_T, Math.floor(bpState().xp / BP_XP));
 function bpRw(i, prem) {   // i = 1..30
-  if (!prem) return i % 10 === 0 ? [{ k: 'chest', r: i === 30 ? 'ur' : 'sr' }] : i % 5 === 0 ? [{ k: 'jet', v: 15 }] : i % 2 ? [{ k: 'sh', v: 250 + i * 20 }] : [{ k: 'scr', v: 3 }];
-  if (i === 30) return [{ k: 'chest', r: 'lg' }, { k: 'jet', v: 300 }];
-  return i % 10 === 0 ? [{ k: 'chest', r: 'mt' }] : i % 5 === 0 ? [{ k: 'chest', r: 'ur' }, { k: 'jet', v: 40 }] : i % 3 === 0 ? [{ k: 'jet', v: 25 }] : i % 2 ? [{ k: 'sh', v: 700 + i * 40 }] : [{ k: 'scr', v: 8 }];
+  if (!prem) return i % 10 === 0 ? [{ k: 'chest', r: i === 30 ? 'ur' : 'sr' }] : i % 5 === 0 ? [{ k: 'jet', v: 10 }] : i % 2 ? [{ k: 'sh', v: 250 + i * 20 }] : [{ k: 'scr', v: 3 }];
+  if (i === 30) return [{ k: 'chest', r: 'lg' }, { k: 'jet', v: 210 }];
+  return i % 10 === 0 ? [{ k: 'chest', r: 'mt' }] : i % 5 === 0 ? [{ k: 'chest', r: 'ur' }, { k: 'jet', v: 28 }] : i % 3 === 0 ? [{ k: 'jet', v: 18 }] : i % 2 ? [{ k: 'sh', v: 700 + i * 40 }] : [{ k: 'scr', v: 8 }];
 }
 function bpAdd(n) { if (!n) return; const b = bpState(); b.xp = Math.min(BP_T * BP_XP, b.xp + Math.round(n)); }
 const bpReady = () => { const b = bpState(), t = bpTier(); for (let i = 1; i <= t; i++) if (!b.f[i] || (b.prem && !b.p[i])) return true; return false; };
@@ -7349,14 +7493,14 @@ const QW = [
   { id: 'upg', n: _t('Améliore tes emplacements 30 fois'), goal: 30, pts: 20 },
   { id: 'world', n: _t('Termine 1 monde'), goal: 1, pts: 15 }
 ];
-const QMD = [[36, [{ k: 'sh', v: 400 }]], [72, [{ k: 'scr', v: 8 }]], [108, [{ k: 'jet', v: 15 }]], [144, [{ k: 'chest', r: 'sr' }]], [180, [{ k: 'chest', r: 'ur' }, { k: 'jet', v: 20 }, { k: 'scr', v: 10 }]]];
-const QMW = [[20, [{ k: 'sh', v: 2000 }]], [40, [{ k: 'scr', v: 30 }]], [60, [{ k: 'jet', v: 60 }]], [80, [{ k: 'chest', r: 'ur' }]], [100, [{ k: 'chest', r: 'mt' }, { k: 'jet', v: 40 }]]];
-const LOGIN = [[{ k: 'sh', v: 500 }], [{ k: 'scr', v: 5 }], [{ k: 'jet', v: 20 }], [{ k: 'chest', r: 'co' }], [{ k: 'sh', v: 1000 }], [{ k: 'scr', v: 10 }],
-  [{ k: 'chest', r: 'sr' }, { k: 'jet', v: 50 }, { k: 'scr', v: 10 }], [{ k: 'sh', v: 1500 }], [{ k: 'scr', v: 10 }], [{ k: 'jet', v: 30 }], [{ k: 'chest', r: 'r' }], [{ k: 'sh', v: 2500 }], [{ k: 'scr', v: 15 }],
-  [{ k: 'chest', r: 'ur' }, { k: 'jet', v: 100 }, { k: 'sh', v: 5000 }],
-  [{ k: 'sh', v: 3000 }], [{ k: 'scr', v: 15 }], [{ k: 'jet', v: 40 }], [{ k: 'chest', r: 'sr' }], [{ k: 'sh', v: 3500 }], [{ k: 'scr', v: 20 }],
-  [{ k: 'chest', r: 'ur' }, { k: 'jet', v: 120 }, { k: 'scr', v: 20 }], [{ k: 'sh', v: 4000 }], [{ k: 'scr', v: 20 }], [{ k: 'jet', v: 50 }], [{ k: 'chest', r: 'ur' }], [{ k: 'sh', v: 5000 }],
-  [{ k: 'scr', v: 25 }], [{ k: 'jet', v: 60 }], [{ k: 'chest', r: 'mt' }], [{ k: 'cls' }, { k: 'jet', v: 200 }, { k: 'sh', v: 8000 }]];
+const QMD = [[36, [{ k: 'sh', v: 400 }]], [72, [{ k: 'scr', v: 8 }]], [108, [{ k: 'jet', v: 10 }]], [144, [{ k: 'chest', r: 'sr' }]], [180, [{ k: 'chest', r: 'ur' }, { k: 'jet', v: 14 }, { k: 'scr', v: 10 }]]];
+const QMW = [[20, [{ k: 'sh', v: 2000 }]], [40, [{ k: 'scr', v: 30 }]], [60, [{ k: 'jet', v: 42 }]], [80, [{ k: 'chest', r: 'ur' }]], [100, [{ k: 'chest', r: 'mt' }, { k: 'jet', v: 28 }]]];
+const LOGIN = [[{ k: 'sh', v: 500 }], [{ k: 'scr', v: 5 }], [{ k: 'jet', v: 14 }], [{ k: 'chest', r: 'co' }], [{ k: 'sh', v: 1000 }], [{ k: 'scr', v: 10 }],
+  [{ k: 'chest', r: 'sr' }, { k: 'jet', v: 35 }, { k: 'scr', v: 10 }], [{ k: 'sh', v: 1500 }], [{ k: 'scr', v: 10 }], [{ k: 'jet', v: 21 }], [{ k: 'chest', r: 'r' }], [{ k: 'sh', v: 2500 }], [{ k: 'scr', v: 15 }],
+  [{ k: 'chest', r: 'ur' }, { k: 'jet', v: 70 }, { k: 'sh', v: 5000 }],
+  [{ k: 'sh', v: 3000 }], [{ k: 'scr', v: 15 }], [{ k: 'jet', v: 28 }], [{ k: 'chest', r: 'sr' }], [{ k: 'sh', v: 3500 }], [{ k: 'scr', v: 20 }],
+  [{ k: 'chest', r: 'ur' }, { k: 'jet', v: 84 }, { k: 'scr', v: 20 }], [{ k: 'sh', v: 4000 }], [{ k: 'scr', v: 20 }], [{ k: 'jet', v: 35 }], [{ k: 'chest', r: 'ur' }], [{ k: 'sh', v: 5000 }],
+  [{ k: 'scr', v: 25 }], [{ k: 'jet', v: 42 }], [{ k: 'chest', r: 'mt' }], [{ k: 'cls' }, { k: 'jet', v: 140 }, { k: 'sh', v: 8000 }]];
 const LOGIN_N = 30, LOGIN_BIG = [6, 13, 20, 29];
 /* Jours de connexion d'affilée : on compte chaque jour où le jeu est ouvert. */
 function seenTick() {
@@ -7808,7 +7952,7 @@ function showOver(win, quit) {
   const lostCh = quit ? G.chDrops.length : 0;
   if (quit) { G.jet = nogain ? 0 : Math.floor(G.jet * 0.1); G.drops = []; G.chDrops = []; G.runes = []; }
   if (quit) G.scr = nogain ? 0 : Math.floor(G.scr * 0.1);
-  if (win) { G.jet += 15; G.scr += 10; }
+  if (win) { G.jet += 10; G.scr += 10; }
   const scrGot = giveScrolls(G.scr);
   let plUps = [], plX = 0; if (!G.demo && !nogain) { plX = runXp(win, quit); plUps = plAdd(plX); meta.tot = meta.tot || { k: 0, r: 0, b: 0 }; meta.tot.k += G.kills; meta.tot.r++; meta.tot.b += G.bossN; }
   if (!G.demo && !nogain) { qAdd('run', 1); qAdd('kill', G.kills); qAdd('boss', G.bossN); qMax('wave', G.wave); if (win && !G.world.quick && !G.world.duel) qAdd('world', 1); }
@@ -7911,7 +8055,7 @@ setTimeout(() => { try { $('#bONext').addEventListener('click', () => overStep(M
 /* ---- Roulette de fin de monde : diams, nuggets, parchemins, cosmétique, équipement ou coffre ---- */
 function prizeOf(k, Wd) {
   const lv = Wd.lv || 0;
-  if (k === 'jet') return { k: 'jet', v: [25, 40, 60, 80, 110, 150][lv] };
+  if (k === 'jet') return { k: 'jet', v: [18, 28, 42, 56, 77, 105][lv] };
   if (k === 'sh') return { k: 'sh', v: [600, 1000, 1500, 2200, 3200, 4500][lv] };
   if (k === 'scr') return { k: 'scr', s: pick(EQK), v: [12, 18, 25, 35, 45, 60][lv] };
   if (k === 'chest') return { k: 'chest', r: ['r', 'sr', 'sr', 'ur', 'ur', 'mt'][lv] };
@@ -8896,7 +9040,7 @@ const AVATARS = [
   { id: 'abysses', n: _t('Abysses'), sk: () => STUFFSK.ocean, ok: () => Object.keys(meta.found).filter(k => k.startsWith('g:ocean.')).length >= 2, how: _t('Trouve 2 pièces du set Léviathan océanique.') },
   { id: 'magma', n: _t('Magma'), sk: () => STUFFSK.magma, ok: () => Object.keys(meta.found).filter(k => k.startsWith('g:volcan.')).length >= 2, how: _t('Trouve 2 pièces du set Titan volcanique.') },
   { id: 'supernova', n: _t('Supernova'), sk: () => skinById('supernova'), ok: () => !!meta.skins.supernova, how: _t('Débloque le skin Supernova.') },
-  { id: 'celeste', n: _t('Céleste'), sk: () => skinById('etoile'), ok: () => false, how: _t('Arrive avec le set Dragon céleste.') }
+  { id: 'celeste', n: _t('Céleste'), sk: () => skinById('dragonc'), ok: () => !!meta.skins.dragonc, how: _t('Débloque le skin Dragon céleste (Pack Céleste).') }
 ];
 function avatarCv(id, z, other, noBg) {
   const a = AVATARS.find(x => x.id === id) || AVATARS[0], cv = document.createElement('canvas'); cv.width = cv.height = z; const g = cv.getContext('2d');
@@ -8974,7 +9118,7 @@ const plLv = () => (meta.pl && meta.pl.lv) || 1;
 const cosOk = (list, id) => { const c = list.find(x => x.id === id); return !!c && plLv() >= c.lv; };
 function lvReward(lv) {
   const r = [{ k: 'sh', v: 50 + lv * 8 }];
-  if (lv % 5 === 0) r.push({ k: 'jet', v: 5 + Math.floor(lv / 10) + (lv % 50 === 0 ? 50 : 0) });
+  if (lv % 5 === 0) r.push({ k: 'jet', v: 3 + Math.floor(lv / 15) + (lv % 50 === 0 ? 35 : 0) });
   if (lv % 10 === 0) { let c = plRar(lv); if (lv % 50 === 0) c = RARS[Math.min(RIDX.lg, RIDX[c] + 1)].id; r.push({ k: 'chest', r: c }); }
   for (const [L, k] of [[PBORD, _t('Bordure')], [PBG, _t('Fond')], [PFX, _t('Animation')]]) for (const c of L) if (c.lv === lv && c.lv > 1) r.push({ k: 'cos', n: k + ' « ' + c.n + ' »' });
   for (const t of TITLES) if (t.plv === lv) r.push({ k: 'ttl', n: _t('Titre « ') + t.n + ' »' });
@@ -9537,7 +9681,7 @@ function adFull(d, upd) {
     meta.wdone = obj(d.wdone, {}); meta.wbest = obj(d.wbest, {});
     const det = (title, open, fill) => { const x = document.createElement('details'); x.className = 'addet'; if (open) x.open = true; const sm = document.createElement('summary'); sm.textContent = title; x.appendChild(sm); const b = document.createElement('div'); b.className = 'adbody'; fill(b); x.appendChild(b); wrap.appendChild(x); };
     const kvs = (b, rows) => { const kv = document.createElement('div'); kv.className = 'adkv'; for (const [k, v] of rows) { const a = document.createElement('span'); a.textContent = k; const c = document.createElement('b'); c.textContent = v == null || v === '' ? '—' : String(v); kv.append(a, c); } b.appendChild(kv); };
-    const B = buildStats(meta.sel), st = B.s, pw = powerOf(st);
+    const B = buildStats(meta.sel), st = B.s, pw = totalPow(st);
     const scrT = EQK.reduce((a, k) => a + (+meta.scr[k] || 0), 0);
     det(_t('⚡ Puissance et monnaies'), true, b => kvs(b, [[_t('Puissance'), fmt(pw)], [_t('Attaque'), Math.round(st.dmg * 10) / 10], [_t('PV max'), Math.round(st.maxHp)], [_t('Vitesse'), Math.round(st.speed / 2.15) + ' %'], [_t('Critique'), Math.round(st.crit * 100) + ' %'],
       [_t('Châssis'), (CLS.find(c => c.id === meta.sel) || CLS[0]).n], [_t('Arme'), (WPNS.find(w => w.kind === B.g.wk) || WPNS[0]).n], [_t('Diams'), fmt(+d.jet || 0)], [_t('Nuggets'), fmt(+d.shards || 0)], [_t('Parchemins'), fmt(scrT)],
@@ -9799,7 +9943,7 @@ $('#bFrBack').addEventListener('click', closeFriends);
 $('#frDet').addEventListener('click', e => { if (e.target.id === 'frDet') $('#frDet').hidden = true; });
 /* ================= Boutique ================= */
 const NUGP = [{ v: 500, c: 50 }, { v: 1200, c: 100, b: '+20 %' }, { v: 3500, c: 250, b: '+40 %' }, { v: 8000, c: 500, b: '+60 %' }];
-const DIAP = [{ id: 'd80', v: 80, e: '0,99 €' }, { id: 'd500', v: 500, e: '4,99 €', b: '+25 %' }, { id: 'd1200', v: 1200, e: '9,99 €', b: '+50 %' }, { id: 'd2600', v: 2600, e: '19,99 €', b: '+60 %' }, { id: 'd6500', v: 6500, e: '49,99 €', b: '+60 %' }];
+const DIAP = [{ id: 'd80', v: 70, e: '0,99 €' }, { id: 'd500', v: 420, e: '4,99 €', b: '+20 %' }, { id: 'd1200', v: 1000, e: '9,99 €', b: '+40 %' }, { id: 'd2600', v: 2200, e: '19,99 €', b: '+55 %' }, { id: 'd6500', v: 5500, e: '49,99 €', b: '+55 %' }];   // MAJ 8 : un peu moins de diams pour le même prix (les id restent ceux des liens Stripe)
 /* v3 : les coffres de la Boutique s'ouvrent avec des clés 🔑 (k = nombre de clés). */
 const STCH = [{ r: 'x', n: _t('Coffre mystère'), k: 1, d: _t('Rareté tirée à l’ouverture, avec les chances habituelles.') }, { r: 'ur', n: _t('Coffre épique'), k: 6, d: _t('Rareté UR garantie.') }, { r: 'mt', n: _t('Coffre mythique'), k: 15, d: _t('Rareté MT garantie.') }, { r: 'lg', n: _t('Coffre légendaire'), k: 35, d: _t('Rareté LG garantie, cosmétiques premium possibles.') }];
 const KEYP = [{ n: 1, c: 40 }, { n: 5, c: 180, b: '−10 %' }, { n: 10, c: 340, b: '−15 %' }, { n: 30, c: 950, b: '−21 %' }];
@@ -9847,7 +9991,8 @@ function openMulti(n) {
 const PACKS = [
   { id: 'ocean', n: _t('Pack Océanique'), col: '#4fc8ff', set: 'ocean', e: '44,99 €', items: [_t('Set complet Léviathan océanique (4 pièces LG) : skin Abysses et ULT Typhon'), _t('Balle premium Glace et couleur Givre'), _t('Châssis exclusif Léviathan (triple canon, tirs glacés perforants)'), _t('Thème exclusif Abysses (menus, arène et ambiance sous-marine)'), _t('3 coffres légendaires'), _t('✦ 600 diams'), _t('◆ 8 000 nuggets')] },
   { id: 'volcan', n: _t('Pack Volcanique'), col: '#ff8a3d', set: 'volcan', e: '44,99 €', items: [_t('Set complet Titan volcanique (4 pièces LG) : skin Magma et ULT Coulée de lave'), _t('Balle premium Lave et couleur Braise'), _t('Châssis exclusif Titan (obus de magma, coque blindée)'), _t('Thème exclusif Volcanique (menus, arène et lave qui rougeoie)'), _t('3 coffres légendaires'), _t('✦ 600 diams'), _t('◆ 8 000 nuggets')] },
-  { id: 'celeste', n: _t('Pack Céleste'), col: '#c9b6ff', set: 'celeste', e: '44,99 €', items: [_t('Set complet Dragon céleste (4 pièces LG), dévoilé à sa sortie'), _t('Balle premium Galaxie et couleur Arc-en-ciel'), _t('3 coffres légendaires'), _t('✦ 600 diams'), _t('◆ 8 000 nuggets')] }
+  { id: 'celeste', n: _t('Pack Céleste'), col: '#9fd0ff', set: 'celeste', e: '44,99 €', items: [_t('Skin exclusif Dragon céleste (animé : un dragon nacré qui s’enroule autour de ton tank)'), _t('Set complet Dragon céleste (4 pièces LG), dévoilé à sa sortie'), _t('Balle premium Galaxie et couleur Arc-en-ciel'), _t('3 coffres légendaires'), _t('✦ 500 diams'), _t('◆ 8 000 nuggets')] },
+  { id: 'spacelord', n: _t('Pack Spacelord'), col: '#ffb347', set: 'spacelord', e: '44,99 €', items: [_t('Skin Supernova (trou noir animé)'), _t('Familier Supernova (mini trous noirs)'), _t('Balle psychédélique Kaléidoscope et couleur Psyché'), _t('3 coffres légendaires'), _t('✦ 500 diams'), _t('◆ 8 000 nuggets')] }
 ];
 function chestIcon(col) { const cv = document.createElement('canvas'); cv.width = cv.height = 144; const g = cv.getContext('2d'); g.scale(2, 2); g.translate(36, 40); g.lineJoin = 'round';
   g.fillStyle = '#241e4c'; g.strokeStyle = col; g.lineWidth = 2.5; g.fillRect(-24, -4, 48, 24); g.strokeRect(-24, -4, 48, 24); g.fillStyle = col; g.fillRect(-18, -4, 5, 24); g.fillRect(13, -4, 5, 24);
@@ -9892,15 +10037,17 @@ function grantOffer(id) {
   if (id === 'pack_testeur') { meta.titles.testeur = 1; if (!meta.title) meta.title = 'testeur'; meta.jet += 300; meta.shards += 3000; meta.chests.push('lg');
     try { pushProfile().catch(() => {}); } catch (e) {}
     return [_t('🧪 Titre exclusif Testeur'), _t('✦ +300 diams'), _t('◆ +3 000 nuggets'), _t('1 coffre légendaire')]; }
-  const pk = { pack_ocean: ['ocean', 'glace', 'givre'], pack_volcan: ['volcan', 'lave', 'braise'], pack_celeste: [null, 'galaxie', 'arcenciel'] }[id];
+  const pk = { pack_ocean: ['ocean', 'glace', 'givre'], pack_volcan: ['volcan', 'lave', 'braise'], pack_celeste: [null, 'galaxie', 'arcenciel'], pack_spacelord: [null, 'kaleido', 'psyche'] }[id];
   if (!pk) return [];
   const out = [];
   if (pk[0]) { for (const sl of GEARK) newItem('gear', pk[0] + '.' + sl, 'lg'); out.push(_t('Set complet ') + GSETS.find(g => g.id === pk[0]).n); }
   meta.buls[pk[1]] = 1; meta.cols[pk[2]] = 1; out.push(_t('Balle ') + bulById(pk[1]).n + _t(' et couleur ') + COLITEMS().find(c => c.id === pk[2]).n);
   const th = { pack_ocean: 'aqua', pack_volcan: 'magma' }[id]; if (th) { meta.themes[th] = 1; out.push(_tf("Thème exclusif {0}", [THEMES[th].n])); }
   const ch = { pack_ocean: 'leviathan', pack_volcan: 'titan' }[id]; if (ch) { meta.cls[ch] = 1; out.push(_tf("Châssis exclusif {0}", [CLS.find(c => c.id === ch).n])); }
-  for (let i = 0; i < 3; i++) meta.chests.push('lg'); meta.jet += 600; meta.shards += 8000;
-  out.push(_t('3 coffres légendaires'), _t('✦ +600 diams'), _t('◆ +8 000 nuggets'));
+  if (id === 'pack_celeste') { meta.skins.dragonc = 1; out.push(_t('Skin Dragon céleste')); }
+  if (id === 'pack_spacelord') { meta.skins.supernova = 1; meta.pets.nova = 1; out.push(_t('Skin Supernova'), _t('Familier Supernova')); }
+  for (let i = 0; i < 3; i++) meta.chests.push('lg'); meta.jet += 500; meta.shards += 8000;
+  out.push(_t('3 coffres légendaires'), _t('✦ +500 diams'), _t('◆ +8 000 nuggets'));
   const tl = { pack_ocean: 'abysses', pack_volcan: 'laves' }[id]; if (tl) { meta.titles[tl] = 1; out.push(_tf('Titre {0}', [titleById(tl).ic + ' ' + titleById(tl).n])); }
   return out;
 }
@@ -10113,7 +10260,7 @@ function renderStore() {
       if (meta.jet < WELC_PRICE) return _t('IL MANQUE ') + costHTML('✦', WELC_PRICE - meta.jet); if (meta.welc.done) return null;
       meta.jet -= WELC_PRICE; meta.welc.done = true; const got = grantRw([{ k: 'chest', r: 'r' }, { k: 'chest', r: 'r' }, { k: 'chest', r: 'r' }, { k: 'sh', v: 3000 }, { k: 'scr', v: 20 }, { k: 'jet', v: 20 }]);
       renderStore(); showDet(_t('Merci !'), got, _t('SUPER'), () => { $('#stDet').hidden = true; return null; }); return null; }))); }
-  for (const P2 of PACKS) pk.appendChild(offer(preview(c, P2.set === 'celeste' ? skinById('supernova') : STUFFSK[P2.set === 'ocean' ? 'ocean' : 'magma'], 'none', 110), P2.n, _t('Tout le stuff légendaire, des coffres et de la monnaie.'), { html: P2.e + (payable('pack_' + P2.id) ? '' : _t(' · À VENIR')), soon: payable('pack_' + P2.id) ? 0 : 1 }, P2.col, 'pack', _t('PACK'),
+  for (const P2 of PACKS) pk.appendChild(offer(preview(c, P2.set === 'spacelord' ? skinById('supernova') : P2.set === 'celeste' ? skinById('dragonc') : STUFFSK[P2.set === 'ocean' ? 'ocean' : 'magma'], 'none', 110), P2.n, _t('Tout le stuff légendaire, des coffres et de la monnaie.'), { html: P2.e + (payable('pack_' + P2.id) ? '' : _t(' · À VENIR')), soon: payable('pack_' + P2.id) ? 0 : 1 }, P2.col, 'pack', _t('PACK'),
     () => { if (payable('pack_' + P2.id)) { buyReal('pack_' + P2.id, P2.n, P2.e); const ul = document.createElement('ul'); for (const l of P2.items) { const li = document.createElement('li'); li.textContent = l; ul.appendChild(li); } $('#stDetBody ul').replaceWith(ul); } else showDet(P2.n, P2.items, _t('BIENTÔT · ') + P2.e, null); }));
   // offres du jour
   { const D = dshop(), dl = $('#stDaily'); dl.innerHTML = ''; const now = new Date(), end = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1), hl = Math.max(0, end - now);
@@ -10615,12 +10762,12 @@ function ghWave() { const g = G.ghost; if (!g) return 0; const i = Math.floor(G.
 
 /* ---- Quêtes multijoueur et cosmétiques exclusifs ---- */
 const MPQS = [
-  { id: 'mq1', k: 'coop', n: 3, d: _t('Joue 3 parties en co-op'), rw: { k: 'jet', v: 30 } },
+  { id: 'mq1', k: 'coop', n: 3, d: _t('Joue 3 parties en co-op'), rw: { k: 'jet', v: 21 } },
   { id: 'mq2', k: 'coopW', n: 1, d: _t('Termine un monde en co-op'), rw: { k: 'acc', id: 'duo' } },
   { id: 'mq3', k: 'raceW', n: 2, d: _t('Gagne 2 courses 1v1'), rw: { k: 'acc', id: 'casque' } },
-  { id: 'mq6', k: 'duelW', n: 3, d: _t('Gagne 3 duels à la Gare du Nord'), rw: { k: 'jet', v: 40 } },
-  { id: 'mq4', k: 'ghostW', n: 1, d: _t('Bats le fantôme d’un ami'), rw: { k: 'jet', v: 25 } },
-  { id: 'mq5', k: 'wk', n: 3, d: _t('Joue 3 défis de la semaine'), rw: { k: 'jet', v: 25 } }
+  { id: 'mq6', k: 'duelW', n: 3, d: _t('Gagne 3 duels à la Gare du Nord'), rw: { k: 'jet', v: 28 } },
+  { id: 'mq4', k: 'ghostW', n: 1, d: _t('Bats le fantôme d’un ami'), rw: { k: 'jet', v: 18 } },
+  { id: 'mq5', k: 'wk', n: 3, d: _t('Joue 3 défis de la semaine'), rw: { k: 'jet', v: 18 } }
 ];
 function mpqAdd(k, v) { const q = meta.mpq; q.c[k] = (q.c[k] || 0) + v; save(); }
 function mpqClaim(q) {
@@ -11129,7 +11276,7 @@ $('#fuAll').addEventListener('click', fuAll);
    Drones : cartes de perks (escorte dès le Monde 1, puis glace M3, feu M4, électro et poison M5, bombardier M6) qui suivent le tank en orbite. */
 const PETJ = { frost: 120, blaze: 240, venom: 380, mortar: 550, prism: 750, tide: 1100, magmo: 1100, nova: 1600 };   // les familiers coûtent aussi des diams
 const PETB = { frost: 10, blaze: 20, venom: 35, mortar: 50, prism: 75, tide: 120, magmo: 120, nova: 180 };   // … et des ampoules des Backrooms
-const PETLV = { frost: 5, blaze: 10, venom: 15, mortar: 22, prism: 30, tide: 35, magmo: 35, nova: 45 };   // niveau joueur pour les débloquer
+const PETLV = { frost: 15, blaze: 28, venom: 40, mortar: 52, prism: 65, tide: 80, magmo: 80, nova: 100 };   // niveau joueur pour les débloquer
 const PETS = [
   { id: 'spark', n: _t('Étincelle'), d: _t('Mini tourelle de base : tire sur l’ennemi le plus proche.'), col: 'volt', fx: null, cost: null, rate: 0.55, pct: 0.1 },
   { id: 'frost', n: _t('Givrette'), d: _t('Ses tirs gèlent : les ennemis touchés sont ralentis.'), col: 'ion', fx: 'slow', cost: ['sh', 6000], rate: 0.7, pct: 0.08 },
@@ -11361,7 +11508,7 @@ const BASEB = {
 };
 const BASE_IDS = Object.keys(BASEB);
 function baseInit() { if (!meta.base) meta.base = { b: { qg: 1, mine: 1, raf: 0, bat: 1, lab: 0 }, st: { mine: 0, raf: 0 }, t: Date.now(), jobs: [], bld: 1 }; return meta.base; }
-const baseRate = (id, B) => { const L = B.b[id] || 0; if (!L) return 0; const k = 1 + 0.06 * (B.b.lab || 0); return id === 'mine' ? 60 * Math.pow(1.38, L - 1) * k : id === 'raf' ? 0.2 * Math.pow(1.3, L - 1) * k : 0; };   // par heure
+const baseRate = (id, B) => { const L = B.b[id] || 0; if (!L) return 0; const k = 1 + 0.06 * (B.b.lab || 0); return id === 'mine' ? 60 * Math.pow(1.38, L - 1) * k : id === 'raf' ? 0.14 * Math.pow(1.3, L - 1) * k : 0; };   // MAJ 8 : un peu moins de diams   // par heure
 const baseHours = B => 4 + 2 * (B.b.bat || 1);
 const baseCap = (id, B) => baseRate(id, B) * baseHours(B);
 const baseCost = (id, L) => { const c = BASEB[id].c0; return { sh: Math.round(c.sh * Math.pow(1.8, L - 1) / 50) * 50, bulb: c.bulb ? Math.round(c.bulb * Math.pow(1.6, L - 1)) : 0 }; };
@@ -11440,7 +11587,8 @@ const ZOOMS = [0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5];
 function setZoom(d) { const i = ZOOMS.findIndex(v => Math.abs(v - (meta.opt.zoom || 1)) < 0.01); meta.opt.zoom = ZOOMS[clamp((i < 0 ? 4 : i) + d, 0, ZOOMS.length - 1)]; save(); resize(); showZoom(); }
 function showZoom() { const e = $('#zmV'); if (e) e.textContent = Math.round((meta.opt.zoom || 1) * 100) + ' %'; }
 $('#bZm').addEventListener('click', () => setZoom(-1)); $('#bZp').addEventListener('click', () => setZoom(1));
-$('#bBase').addEventListener('click', openBase); $('#bBaseBack').addEventListener('click', closeBase);
+$('#bBase').addEventListener('click', openBase);
+$('#mPowC').addEventListener('click', () => { initAudio(); uis(() => sfx.ui()); openPow(); }); $('#mPowC').addEventListener('keydown', e => { if (e.key === 'Enter') openPow(); }); $('#bBaseBack').addEventListener('click', closeBase);
 $('#bBaseAll').addEventListener('click', () => { const a = baseCollect('mine', true), b = baseCollect('raf', true); if (a || b) { save(); initAudio(); uis(() => sfx.buy()); toast(_tf('Récolté : ◆ {0} · ✦ {1}', [fmt(a), b])); } else toast(_t('Rien à récolter pour l’instant.')); renderBase(); });
 $('#baseCv').addEventListener('click', e => { const cv = e.currentTarget, r = cv.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 1000, y = (e.clientY - r.top) / r.height * 700;
   for (const h of baseHit) if (Math.abs(x - h.x) < h.w && Math.abs(y - h.y) < h.h) { if (h.col) { baseCollect(h.id); } baseSel = h.id; renderBase(); return; } });
@@ -11512,6 +11660,8 @@ const UPDATES = [
     ['💎', _t('Look premium'), _t('Nouvel écran Multijoueur avec les modes en grille, ATH en verre, menus plus soignés.')],
     ['📖', _t('Almanach et statistiques'), _t('Filtre des perks par monde dans l’Almanach. Dans ton profil, touche une statistique pour voir le détail (Backrooms : salles vidées, record de salles, boss…). Le compteur d’étages des Backrooms est réparé.')],
     ['🛠️', _t('Garage plus lisible'), _t('Fiche d’objet sur toute la largeur, bonus en vert et malus en rouge, encadré du set avec les pièces actives. Les emplacements ont des paliers : Bronze, Argent, Or, Émeraude, Platine, Diamant et Master. Les raretés hautes, les paliers et les étoiles de châssis donnent un peu plus de puissance.')],
+    ['⚡', _t('Puissance détaillée'), _t('Ta puissance s’affiche sur l’écran d’accueil : touche-la pour voir ce qui te donne quoi (équipement, paliers, atelier, runes, châssis, familier, niveau). Le familier et le châssis comptent maintenant dans la puissance.')],
+    ['🐉', _t('Nouveaux skins de légende'), _t('Dragon céleste (Pack Céleste), Léviathan des abysses et Titan de magma retravaillés, et le nouveau Pack Spacelord avec le skin et le familier Supernova.')],
     ['👷', _t('Ouvriers de la base'), _t('Jusqu’à 4 ouvriers : chacun fait un chantier à la fois. Le panneau Ouvriers montre qui travaille sur quoi.')],
     ['🌀', _t('Transformations'), _t('Un compteur 1/6 montre où tu en es pour chaque élément, en partie et sur les cartes (dès le Monde 6 débloqué).')],
     ['🏁', _t('Nouveautés débloquées'), _t('En revenant au menu après un monde, la liste de tout ce que tu viens de débloquer s’affiche.')] ] },

@@ -36,6 +36,12 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - Le chapeau de paille passe Mythique.
 - Les **accessoires suivent la direction du canon**.
 
+**Packs et skins de légende**
+- **Pack Céleste** : nouveau skin exclusif **Dragon céleste**, un dragon nacré qui s’enroule autour de ton tank.
+- **Pack Spacelord** (nouveau) : skin Supernova, familier Supernova, balle Kaléidoscope et couleur Psyché.
+- Skins de set retravaillés : **Abysses** devient un léviathan des profondeurs, **Magma** un titan de roche et de lave.
+- Les packs donnent 500 diams au lieu de 600.
+
 **Perks et transformations**
 - **Nouvelle rareté Super rare** (bleue, entre Rare et Épique) : Gros calibre, Perforant, Ricochet, Coup critique, Siphon, Toxine, Incendiaire, Exécuteur, Adrénaline, Shrapnel, Dash tranchant, Dash de feu, Dash toxique, Souffle glacé.
 - **Transformations** : débloquées avec le Monde 6, avec un compteur 1/6 par élément en partie et sur les cartes.
@@ -50,6 +56,12 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - **Plus de puissance avec la rareté** : objets de haute rareté, paliers d’emplacement, runes et étoiles de châssis rapportent un peu plus.
 - **Châssis** : +1 niveau tout de suite avec des nuggets.
 - **Ma base** : les ouvriers sont expliqués dans un panneau dédié, jusqu’à 4 ouvriers (2e : 300 diams, 3e : 900, 4e : 2 500). Chaque ouvrier fait un chantier à la fois.
+
+**Économie**
+- **Puissance sur l’écran d’accueil**, avec le détail de ce qui donne quoi. Le familier et le châssis comptent dans la puissance.
+- Les familiers se débloquent plus tard (niveau joueur 15 à 100).
+- Moins de diams gagnés en jouant (boss, mondes, quêtes, connexion, passe, base) et un peu moins de diams par euro dans la boutique (ex. 5 500 au lieu de 6 500 pour l’offre à 49,99 €).
+- Écran d’accueil : nuggets, diams, **ampoules** et **clés**. Les soldes se mettent à jour partout dès que tu achètes ou améliores.
 
 **Confort de jeu**
 - **Reprendre sa partie** : si tu quittes le jeu en pleine partie (monde, Infini, Backrooms), un écran te propose de reprendre là où tu étais, avec tes perks et ton butin. Jamais en multi.
