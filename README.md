@@ -63,6 +63,11 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - Moins de diams gagnés en jouant (boss, mondes, quêtes, connexion, passe, base) et un peu moins de diams par euro dans la boutique (ex. 5 500 au lieu de 6 500 pour l’offre à 49,99 €).
 - Écran d’accueil : nuggets, diams, **ampoules** et **clés**. Les soldes se mettent à jour partout dès que tu achètes ou améliores.
 
+**Équilibrage**
+- 1 ⚡ toutes les **6 minutes**.
+- Moins de butin en partie : coffres des mini-boss 2 fois plus rares, runes et objets des boss pas garantis, salles d’élite des Backrooms moins généreuses.
+- **Atelier** : deux fois plus de niveaux (dégâts, PV, soin et nuggets jusqu’au niveau 100), chaque niveau un peu plus petit, et des prix bien plus élevés.
+
 **Confort de jeu**
 - **Reprendre sa partie** : si tu quittes le jeu en pleine partie (monde, Infini, Backrooms), un écran te propose de reprendre là où tu étais, avec tes perks et ton butin. Jamais en multi.
 - **Nouveautés débloquées** : au retour au menu après un monde, la liste de ce que tu viens de débloquer s’affiche.
@@ -81,7 +86,7 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 - Chaque partie dans un **monde** ou en **Infini** coûte **5 ⚡**.
 - **50 ⚡** au niveau 1, puis **+1 ⚡ max tous les 5 niveaux** joueur.
-- **1 ⚡ revient toutes les 3 minutes**, même jeu fermé.
+- **1 ⚡ revient toutes les 6 minutes** (3 avant la MAJ 8), même jeu fermé.
 - Les **Backrooms**, les parties rapides, le multi et les défis restent **gratuits**.
 - **Terminer les Backrooms** rapporte **+5 ⚡** (même au-delà du max).
 - Plus d’énergie ? Recharge à fond pour **30 diams**.

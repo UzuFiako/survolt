@@ -1926,7 +1926,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
   </ul></details>
   <details><summary>⚡ Énergie</summary><ul>
     <li>Une partie dans un <b>monde</b> ou en <b>Infini</b> coûte <b>5 ⚡</b>. Tu as 50 ⚡ au niveau 1, et +1 ⚡ max tous les 5 niveaux joueur.</li>
-    <li>1 ⚡ revient toutes les <b>3 minutes</b>, même jeu fermé. Les Backrooms, les parties rapides, le multi et les défis sont gratuits, et <b>terminer les Backrooms</b> rapporte <b>+5 ⚡</b>.</li>
+    <li>1 ⚡ revient toutes les <b>6 minutes</b>, même jeu fermé. Les Backrooms, les parties rapides, le multi et les défis sont gratuits, et <b>terminer les Backrooms</b> rapporte <b>+5 ⚡</b>.</li>
   </ul></details>
   <details><summary>🏰 Ma base</summary><ul>
     <li>Ta base produit des <b>nuggets</b> et des <b>diams</b> en temps réel, même quand le jeu est fermé. Viens récolter avant que la Batterie soit pleine.</li>
@@ -2439,7 +2439,7 @@ const ICON = {
 /* Atelier : 10 niveaux par amélioration, chaque niveau coûte ~55 % de plus que le précédent. */
 const pc1 = x => x.toLocaleString(LOC, { maximumFractionDigits: 2 });
 /* Bonus de l'atelier par niveau (MAJ 8 : revus à la baisse, c'était trop fort). */
-const SHK = { dmg: 0.02, hp: 5, spd: 0.008, xp: 0.02, luck: 0.15, regen: 0.05, crit: 0.006, mag: 0.03, dash: 0.015, ult: 0.018, rng: 0.025, dashx: 0.03, ovr: 0.2, pet: 0.025, gold: 0.02 };
+const SHK = { dmg: 0.014, hp: 3.5, spd: 0.0056, xp: 0.014, luck: 0.105, regen: 0.035, crit: 0.0042, mag: 0.021, dash: 0.008, ult: 0.0126, rng: 0.0175, dashx: 0.021, ovr: 0.14, pet: 0.0175, gold: 0.014 };   // MAJ 8 : 2× plus de niveaux, chacun un peu plus petit
 function applyShop(s, m, luck) {
   s.dmg *= 1 + SHK.dmg * (m.m_dmg || 0); s.maxHp += SHK.hp * (m.m_hp || 0); s.speed *= 1 + SHK.spd * (m.m_spd || 0);
   s.xpMul *= 1 + SHK.xp * (m.m_xp || 0); if (luck) s.luck += SHK.luck * (m.m_luck || 0);
@@ -2448,22 +2448,22 @@ function applyShop(s, m, luck) {
   s.range *= 1 + SHK.rng * (m.m_rng || 0); s.dashLen *= 1 + SHK.dashx * (m.m_dashx || 0); s.ultDur += SHK.ovr * (m.m_ovr || 0);
 }
 const SHOP = [
-  { id: 'm_dmg', n: _t('Munitions lourdes'), max: 50, base: 80, fx: l => _tf("+{0} % de dégâts", [pc1(SHK.dmg * 100 * l)]), info: _t('Tous tes tirs (et drones) font plus mal.') },
-  { id: 'm_hp', n: _t('Coque renforcée'), max: 50, base: 60, fx: l => _tf("+{0} PV max", [SHK.hp * l]), info: _t('Tu encaisses plus de coups avant de sauter.') },
-  { id: 'm_spd', n: _t('Moteur gonflé'), max: 35, base: 40, fx: l => _tf("+{0} % de vitesse", [pc1(SHK.spd * 100 * l)]), info: _t('Ton tank roule plus vite pour esquiver.') },
-  { id: 'm_xp', n: _t('Capteurs'), max: 35, base: 40, fx: l => _tf("+{0} % d’XP", [pc1(SHK.xp * 100 * l)]), info: _t('Tu montes de niveau plus vite en partie, donc plus de cartes.') },
-  { id: 'm_luck', n: _t('Bonne étoile'), max: 30, base: 100, fx: l => _tf("Cartes Épiques +{0} %, Légendaires +{1} %", [Math.round(SHK.luck * l * 12), Math.round(SHK.luck * l * 25)]), info: _t('Les cartes Rares, Épiques, Mythiques et Légendaires sortent plus souvent.') },
+  { id: 'm_dmg', n: _t('Munitions lourdes'), max: 100, base: 80, fx: l => _tf("+{0} % de dégâts", [pc1(SHK.dmg * 100 * l)]), info: _t('Tous tes tirs (et drones) font plus mal.') },
+  { id: 'm_hp', n: _t('Coque renforcée'), max: 100, base: 60, fx: l => _tf("+{0} PV max", [SHK.hp * l]), info: _t('Tu encaisses plus de coups avant de sauter.') },
+  { id: 'm_spd', n: _t('Moteur gonflé'), max: 70, base: 40, fx: l => _tf("+{0} % de vitesse", [pc1(SHK.spd * 100 * l)]), info: _t('Ton tank roule plus vite pour esquiver.') },
+  { id: 'm_xp', n: _t('Capteurs'), max: 70, base: 40, fx: l => _tf("+{0} % d’XP", [pc1(SHK.xp * 100 * l)]), info: _t('Tu montes de niveau plus vite en partie, donc plus de cartes.') },
+  { id: 'm_luck', n: _t('Bonne étoile'), max: 60, base: 100, fx: l => _tf("Cartes Épiques +{0} %, Légendaires +{1} %", [Math.round(SHK.luck * l * 12), Math.round(SHK.luck * l * 25)]), info: _t('Les cartes Rares, Épiques, Mythiques et Légendaires sortent plus souvent.') },
   { id: 'm_reroll', n: _t('Relance'), max: 4, base: 450, mul: 2.6, fx: l => _tf("{0} relance{1} de cartes par partie", [l, l > 1 ? 's' : '']), info: _t('Permet de retirer 3 nouvelles cartes quand le choix ne te plaît pas.') },
-  { id: 'm_regen', n: _t('Nano-réparateurs'), max: 50, base: 50, fx: l => _tf("+{0} PV par seconde", [pc1(SHK.regen * l)]), info: _t('Tu regagnes de la vie tout seul, même en combat.') },
-  { id: 'm_crit', n: _t('Viseur'), max: 40, base: 85, fx: l => _tf("+{0} % de coups critiques", [pc1(SHK.crit * 100 * l)]), info: _t('Un critique fait de gros dégâts (×2 de base).') },
-  { id: 'm_mag', n: _t('Électroaimant'), max: 35, base: 30, fx: l => _tf("+{0} % de portée de ramassage", [pc1(SHK.mag * 100 * l)]), info: _t('L’XP et les bonus viennent à toi de plus loin.') },
-  { id: 'm_dash', n: _t('Amortisseurs'), max: 25, base: 40, fx: l => _tf("Dash rechargé {0} % plus vite", [pc1(SHK.dash * 100 * l)]), info: _t('Tu peux dasher plus souvent pour fuir.') },
-  { id: 'm_ult', n: _t('Batterie de secours'), max: 35, base: 60, fx: l => _tf("Surcharge chargée {0} % plus vite", [pc1(SHK.ult * 100 * l)]), info: _t('Ta Surcharge (ULT) est prête plus souvent.') },
-  { id: 'm_gold', n: _t('Prospecteur'), max: 50, base: 60, fx: l => _tf("+{0} % de nuggets gagnés", [pc1(SHK.gold * 100 * l)]), info: _t('Chaque partie rapporte plus de nuggets.') },
-  { id: 'm_rng', n: _t('Canon allongé'), max: 40, base: 60, fx: l => _tf("+{0} % de portée des tirs", [pc1(SHK.rng * 100 * l)]), info: _t('Tes tirs vont plus loin avant de disparaître.') },
-  { id: 'm_dashx', n: _t('Ressorts de dash'), max: 30, base: 90, mul: 1.6, fx: l => _tf("Dash {0} % plus long", [pc1(SHK.dashx * 100 * l)]), info: _t('Chaque dash t’emmène plus loin.') },
-  { id: 'm_ovr', n: _t('Supercondensateur'), max: 30, base: 170, mul: 1.62, fx: l => _tf("Surcharge {0} s plus longue", [pc1(SHK.ovr * l)]), info: _t('Ta Surcharge (ULT) dure plus longtemps. Le plus puissant, donc le plus cher.') },
-  { id: 'm_pet', n: _t('Servo-tourelles'), max: 40, base: 90, mul: 1.5, fx: l => _tf("+{0} % de dégâts des drones et du familier", [pc1(SHK.pet * 100 * l)]), info: _t('Tes satellites, drones et ton familier frappent plus fort.') },
+  { id: 'm_regen', n: _t('Nano-réparateurs'), max: 100, base: 50, fx: l => _tf("+{0} PV par seconde", [pc1(SHK.regen * l)]), info: _t('Tu regagnes de la vie tout seul, même en combat.') },
+  { id: 'm_crit', n: _t('Viseur'), max: 80, base: 85, fx: l => _tf("+{0} % de coups critiques", [pc1(SHK.crit * 100 * l)]), info: _t('Un critique fait de gros dégâts (×2 de base).') },
+  { id: 'm_mag', n: _t('Électroaimant'), max: 70, base: 30, fx: l => _tf("+{0} % de portée de ramassage", [pc1(SHK.mag * 100 * l)]), info: _t('L’XP et les bonus viennent à toi de plus loin.') },
+  { id: 'm_dash', n: _t('Amortisseurs'), max: 50, base: 40, fx: l => _tf("Dash rechargé {0} % plus vite", [pc1(SHK.dash * 100 * l)]), info: _t('Tu peux dasher plus souvent pour fuir.') },
+  { id: 'm_ult', n: _t('Batterie de secours'), max: 70, base: 60, fx: l => _tf("Surcharge chargée {0} % plus vite", [pc1(SHK.ult * 100 * l)]), info: _t('Ta Surcharge (ULT) est prête plus souvent.') },
+  { id: 'm_gold', n: _t('Prospecteur'), max: 100, base: 60, fx: l => _tf("+{0} % de nuggets gagnés", [pc1(SHK.gold * 100 * l)]), info: _t('Chaque partie rapporte plus de nuggets.') },
+  { id: 'm_rng', n: _t('Canon allongé'), max: 80, base: 60, fx: l => _tf("+{0} % de portée des tirs", [pc1(SHK.rng * 100 * l)]), info: _t('Tes tirs vont plus loin avant de disparaître.') },
+  { id: 'm_dashx', n: _t('Ressorts de dash'), max: 60, base: 90, mul: 1.6, fx: l => _tf("Dash {0} % plus long", [pc1(SHK.dashx * 100 * l)]), info: _t('Chaque dash t’emmène plus loin.') },
+  { id: 'm_ovr', n: _t('Supercondensateur'), max: 60, base: 170, mul: 1.62, fx: l => _tf("Surcharge {0} s plus longue", [pc1(SHK.ovr * l)]), info: _t('Ta Surcharge (ULT) dure plus longtemps. Le plus puissant, donc le plus cher.') },
+  { id: 'm_pet', n: _t('Servo-tourelles'), max: 80, base: 90, mul: 1.5, fx: l => _tf("+{0} % de dégâts des drones et du familier", [pc1(SHK.pet * 100 * l)]), info: _t('Tes satellites, drones et ton familier frappent plus fort.') },
   { id: 'm_start', n: _t('Départ lancé'), max: 3, base: 2500, mul: 3, fx: l => _tf("{0} carte{1} offerte{2} au début", [l, l > 1 ? 's' : '', l > 1 ? 's' : '']), info: _t('Tu commences la partie avec des cartes déjà choisies.') }
 ];
 /* Niveaux d'emplacement (façon Archero) : niv. 1 à 100, puis Éveil = rang suivant (max rang 5). Ça renforce le tank, pas l'objet. */
@@ -2496,7 +2496,8 @@ const SHCAT = [['atk', _t('ATTAQUE'), '#ff5a6e', ['m_dmg', 'm_crit', 'm_rng', 'm
   ['pow', _t('SURCHARGE'), '#ffd23f', ['m_ult', 'm_ovr']], ['run', _t('PROGRESSION'), '#b56bff', ['m_xp', 'm_luck', 'm_reroll', 'm_start', 'm_mag', 'm_gold']]];
 const SHTIER = [[_t('Fer'), '#8d93a6'], [_t('Bronze'), '#d08a4a'], [_t('Argent'), '#cfd8e6'], [_t('Or'), '#ffd23f'], [_t('Émeraude'), '#36e08a'], [_t('Platine'), '#7df9ff'], [_t('Diamant'), '#ff6fd8'], [_t('Master'), '#ff5a3d']];
 const shTier = (lv, max) => lv >= max ? 7 : Math.min(6, Math.floor(lv / max * 7));   // Master = niveau max
-const shopCost = (it, lv) => lv >= it.max ? null : Math.round(it.base * Math.pow(it.mul || 1.55, Math.min(lv, 10)) * Math.pow(it.mul2 || 1.22, Math.min(10, Math.max(0, lv - 10))) * Math.pow(1.12, Math.min(15, Math.max(0, lv - 20))) * Math.pow(1.07, Math.max(0, lv - 35)) / 5) * 5;
+const shopCost = (it, lv) => lv >= it.max ? null : it.mul ? Math.round(it.base * 2 * Math.pow(it.mul, Math.min(lv, 10)) * Math.pow(it.mul2 || 1.22, Math.max(0, lv - 10)) / 5) * 5
+  : Math.round(it.base * 3 * Math.pow(lv + 1, 1.75) * Math.pow(1.02, lv) / 5) * 5;   // MAJ 8 : plus cher dès le début, et ça grimpe jusqu'au niveau 100
 
 /* Ennemis : min = première vague où ils apparaissent, cost = poids dans le budget d'une vague */
 const ET = {
@@ -4139,21 +4140,21 @@ function miniDown(e) {
   ring(e.x, e.y, 200, e.col, 0.5, 8); burst(e.x, e.y, 'ink', 20, 260);
   { const two = shuffle(['auto', 'heal'].concat(PKFX)).slice(0, 2); addPickup(two[0], e.x + 26, e.y); addPickup(two[1], e.x - 26, e.y); }
   shake(12); vib(60); sfx.boom();
-  // coffre en bonus : 50 % CO, 10 % R, 3 % SR, 1 % UR, 0,3 % MT (un seul tirage, le meilleur l'emporte)
-  let cr = null; if (!G.demo) { const q = Math.random() * 100; cr = q < 0.3 ? 'mt' : q < 1.3 ? 'ur' : q < 4.3 ? 'sr' : q < 14.3 ? 'r' : q < 64.3 ? 'co' : null; }
+  // coffre en bonus (MAJ 8 : moins souvent) : 20 % CO, 6 % R, 2 % SR, 0,6 % UR, 0,2 % MT
+  let cr = null; if (!G.demo) { const q = Math.random() * 100; cr = q < 0.2 ? 'mt' : q < 0.8 ? 'ur' : q < 2.8 ? 'sr' : q < 8.8 ? 'r' : q < 28.8 ? 'co' : null; }
   if (cr && G.world.lv && Math.random() < 0.15 * G.world.lv) cr = RARS[Math.min(RIDX.lg, RIDX[cr] + 1)].id;
   if (cr && G.world.quick && RIDX[cr] > RIDX[G.world.cap]) cr = G.world.cap;
   if (cr) { G.chDrops.push(cr); addText(e.x, e.y - 56, _t('COFFRE ') + RARS[RIDX[cr]].s + ' !', rcol(cr), 20); }
-  if (!G.demo && Math.random() < 0.3) { G.runes.push(randRune(RARS[Math.max(0, RIDX[worldRar()] - 1)].id)); addText(e.x, e.y + 40, _t('+ 1 RUNE'), C.plasma, 18); }
+  if (!G.demo && Math.random() < 0.15) { G.runes.push(randRune(RARS[Math.max(0, RIDX[worldRar()] - 1)].id)); addText(e.x, e.y + 40, _t('+ 1 RUNE'), C.plasma, 18); }
   banner(_t(e.boss.n) + _t(' DÉTRUIT'), cr ? _t('2 bonus + coffre ') + RARS[RIDX[cr]].n : _t('Il a lâché 2 bonus'), C.volt, 2.2);
 }
 function bossDown(e) {
   const sh = 15 + 5 * Math.min(6, G.bossK);
   G.boss = null; G.shards += sh; G.score += 1000 * G.bossK; G.jet += 3; G.scr += 6 + 2 * Math.min(6, G.bossK); G.bossN++;
   if (!G.demo && !G.duel) spawnWheel();
-  G.drops.push(randItem(worldRar())); if (!G.demo) { G.runes.push(randRune(worldRar())); addText(e.x, e.y + 40, _t('+ 1 RUNE'), C.plasma, 18); }
+  if (Math.random() < 0.6) G.drops.push(randItem(worldRar())); if (!G.demo && Math.random() < 0.5) { G.runes.push(randRune(worldRar())); addText(e.x, e.y + 40, _t('+ 1 RUNE'), C.plasma, 18); }
   if (e.boss.secret) { G.chDrops.push('lg'); G.jet += 30; addText(e.x, e.y - 60, _t('COFFRE LG + 30 ✦ !'), C.volt, 22); }
-  addText(e.x, e.y - 30, '+' + sh + ' ◆  +5 ✦', C.volt, 20);
+  addText(e.x, e.y - 30, '+' + sh + ' ◆  +3 ✦', C.volt, 20);
   for (const o of enemies) if (!o.dead) { o.dead = true; burst(o.x, o.y, o.col, 8, 160); dropXp(o.x, o.y, o.xp * 0.5); }
   for (const b of ebul) b.dead = true; for (const h of hazards) h.dead = true; for (const s of spawns) s.dead = true;
   G.typh = null; G.queue = []; G.slow = 1.1; G.breakT = 4.2; G.vacuum = 3.6; G.flash = 0.5;
@@ -7962,7 +7963,7 @@ function showOver(win, quit) {
   const firstWin = win && !meta.wdone[Wd.id], slots0 = slotMax();
   const roul = win && !G.demo ? rollWorldPrize(Wd) : null; if (roul) applyLoot([roul.x]);
   for (const d of G.drops) newItem(d.t, d.id, d.r);
-  const chest = win ? (Wd.quick ? quickChest(Wd) : 'x') : null; if (chest) meta.chests.push(chest); if (chest && Wd.dg) meta.chests.push(chest, chest);
+  const chest = win ? (Wd.quick ? quickChest(Wd) : 'x') : null; if (chest) meta.chests.push(chest); if (chest && Wd.dg) meta.chests.push(chest);
   for (const c of G.chDrops) meta.chests.push(c);
   meta.jet += G.jet;
   const bulbGot = G.demo || nogain ? 0 : quit ? Math.floor((G.bulb || 0) * 0.1) : (G.bulb || 0); if (bulbGot) meta.bulb = (meta.bulb || 0) + bulbGot;
@@ -8353,7 +8354,7 @@ function dgClear(r) {
   G.vacuum = 2.4; G.shards += 2 + D.k; G.score += 120 * (D.k + 1); heal(P.s.maxHp * 0.04);
   { const b = (1 + D.k) * (r.type === 'elite' ? 2 : 1) + (r.type === 'boss' ? 6 * (D.k + 1) : 0) + (r.trap ? 3 : 0); G.bulb = (G.bulb || 0) + b; G.rooms = (G.rooms || 0) + 1; addText(P.x, P.y - 70, '+' + b + ' 💡', '#ffe680', r.type === 'boss' ? 22 : 16); }   // ampoules : la monnaie des Backrooms
   if (r.type === 'boss') { G.keys = (G.keys || 0) + 1; addText(P.x, P.y - 96, _t('+1 🔑 CLÉ'), '#ffd23f', 18); }
-  if (r.type === 'elite') { const q = Math.random(); if (q < 0.45) { const cr = q < 0.08 ? 'ur' : q < 0.2 ? 'sr' : 'r'; G.chDrops.push(cr); addText(P.x, P.y - 50, _t('COFFRE ') + RARS[RIDX[cr]].s + ' !', rcol(cr), 20); } addPickup(pick(PKFX), r.cx, r.cy); }
+  if (r.type === 'elite') { const q = Math.random(); if (q < 0.25) { const cr = q < 0.04 ? 'ur' : q < 0.11 ? 'sr' : 'r'; G.chDrops.push(cr); addText(P.x, P.y - 50, _t('COFFRE ') + RARS[RIDX[cr]].s + ' !', rcol(cr), 20); } addPickup(pick(PKFX), r.cx, r.cy); }
   else if (Math.random() < 0.2) addPickup('heal', r.cx, r.cy);
   if (r.trap) G.relicT = 0.9;
   if (r.type === 'boss' && D.k < DGF.length - 1 && dgOpen(D.k + 1)) { D.stairs = { x: r.cx, y: r.cy }; infoBox('🕳️', _t('ESCALIER'), _t('Une trappe s’est ouverte au centre de la salle : marche dessus pour descendre à l’étage suivant.'), C.volt, 0); }
@@ -11457,9 +11458,9 @@ function frame(now) {
   render();
 }
 /* ================= MAJ 7 : énergie des mondes =================
-   Chaque partie dans un monde (ou en Infini) coûte 5 énergies. Max 50 au niveau 1, +1 tous les 5 niveaux joueur. 1 énergie toutes les 3 min.
+   Chaque partie dans un monde (ou en Infini) coûte 5 énergies. Max 50 au niveau 1, +1 tous les 5 niveaux joueur. 1 énergie toutes les 6 min.
    Les Backrooms, les parties rapides, le multi et les défis restent gratuits. */
-const NRG_COST = 5, NRG_MS = 180000, NRG_REFILL = 30;
+const NRG_COST = 5, NRG_MS = 360000, NRG_REFILL = 30;   // 1 énergie toutes les 6 min
 const nrgMax = () => 50 + Math.floor(plLv() / 5);
 function nrg() {
   const m = nrgMax(), now = Date.now(); let N = meta.nrg; if (!N || !Number.isFinite(N.v)) N = meta.nrg = { v: m, t: now };
@@ -11490,7 +11491,7 @@ function openNrg(info) {
     m.innerHTML = '<div class="newsin panel nrgmod"><div class="nrgbig">⚡</div><h2 class="h1"></h2><p id="nrgMt"></p><p id="nrgMw" class="nrgw"></p><div class="bpa"><button class="btn primary" id="nrgFill" type="button"></button><button class="btn" id="nrgDg" type="button"></button><button class="btn" id="nrgNo" type="button"></button></div><p class="sub" id="nrgMs"></p></div>';
     (document.getElementById('stage') || document.body).appendChild(m);
     m.querySelector('h2').textContent = _t('PLUS ASSEZ D’ÉNERGIE'); $('#nrgDg').textContent = _t('🚪 BACKROOMS (gratuit, +5 ⚡ si tu les finis)'); $('#nrgNo').textContent = _t('ATTENDRE');
-    $('#nrgMs').textContent = _t('1 ⚡ revient toutes les 3 minutes, et +1 ⚡ max tous les 5 niveaux joueur. Les Backrooms, les parties rapides et le multi ne coûtent rien, et terminer les Backrooms rapporte +5 ⚡.');
+    $('#nrgMs').textContent = _t('1 ⚡ revient toutes les 6 minutes, et +1 ⚡ max tous les 5 niveaux joueur. Les Backrooms, les parties rapides et le multi ne coûtent rien, et terminer les Backrooms rapporte +5 ⚡.');
     $('#nrgFill').addEventListener('click', () => { if (meta.jet < NRG_REFILL) { $('#nrgFill').innerHTML = _t('IL MANQUE ') + costHTML('✦', NRG_REFILL - meta.jet); return; } meta.jet -= NRG_REFILL; const N = nrg(); N.v = Math.max(N.v, nrgMax()); N.t = Date.now(); save(); initAudio(); uis(() => sfx.buy()); m.hidden = true; renderNrg(); });
     $('#nrgDg').addEventListener('click', () => { m.hidden = true; openDgMenu(); });
     $('#nrgNo').addEventListener('click', () => { m.hidden = true; });
@@ -11662,11 +11663,12 @@ const UPDATES = [
     ['🛠️', _t('Garage plus lisible'), _t('Fiche d’objet sur toute la largeur, bonus en vert et malus en rouge, encadré du set avec les pièces actives. Les emplacements ont des paliers : Bronze, Argent, Or, Émeraude, Platine, Diamant et Master. Les raretés hautes, les paliers et les étoiles de châssis donnent un peu plus de puissance.')],
     ['⚡', _t('Puissance détaillée'), _t('Ta puissance s’affiche sur l’écran d’accueil : touche-la pour voir ce qui te donne quoi (équipement, paliers, atelier, runes, châssis, familier, niveau). Le familier et le châssis comptent maintenant dans la puissance.')],
     ['🐉', _t('Nouveaux skins de légende'), _t('Dragon céleste (Pack Céleste), Léviathan des abysses et Titan de magma retravaillés, et le nouveau Pack Spacelord avec le skin et le familier Supernova.')],
+    ['⚖️', _t('Équilibrage'), _t('1 ⚡ toutes les 6 minutes. Moins de coffres et de butin en fin de monde. Atelier : deux fois plus de niveaux (jusqu’à 100), plus chers.')],
     ['👷', _t('Ouvriers de la base'), _t('Jusqu’à 4 ouvriers : chacun fait un chantier à la fois. Le panneau Ouvriers montre qui travaille sur quoi.')],
     ['🌀', _t('Transformations'), _t('Un compteur 1/6 montre où tu en es pour chaque élément, en partie et sur les cartes (dès le Monde 6 débloqué).')],
     ['🏁', _t('Nouveautés débloquées'), _t('En revenant au menu après un monde, la liste de tout ce que tu viens de débloquer s’affiche.')] ] },
   { v: 7, n: _t('MAJ 7 · Énergie'), ic: '⚡', items: [
-    ['⚡', _t('Énergie des mondes'), _t('Chaque partie dans un monde ou en Infini coûte 5 ⚡. Tu en as 50 au niveau 1, +1 tous les 5 niveaux joueur, et 1 ⚡ revient toutes les 3 minutes.')],
+    ['⚡', _t('Énergie des mondes'), _t('Chaque partie dans un monde ou en Infini coûte 5 ⚡. Tu en as 50 au niveau 1, +1 tous les 5 niveaux joueur, et 1 ⚡ revient toutes les 6 minutes.')],
     ['🚪', _t('Toujours gratuit'), _t('Les Backrooms, les parties rapides, le multi et les défis ne coûtent pas d’énergie. Et terminer les Backrooms rapporte +5 ⚡.')],
     ['💎', _t('Plus d’énergie ?'), _t('Tu peux recharger à fond pour 30 diams quand tu n’en as plus.')] ] },
   { v: 6, n: _t('MAJ 6 · Ma base et morts-vivants'), ic: '🏰', items: [
