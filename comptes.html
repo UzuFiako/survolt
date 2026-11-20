@@ -1452,6 +1452,10 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 /* menus premium (thème par défaut) */
 :root:not([data-th]) .screen>.sheet.panel,:root[data-th="neon"] .screen>.sheet.panel{background:radial-gradient(120% 60% at 50% 0%,rgba(125,90,255,.14),transparent 60%),linear-gradient(180deg,#191338,var(--night) 40%);outline:0;box-shadow:inset 0 0 0 1px rgba(160,140,255,.22),inset 0 1px 0 rgba(255,255,255,.08),0 24px 60px -20px rgba(0,0,0,.75)}
 :root:not([data-th]) .phead .h1,:root[data-th="neon"] .phead .h1{background:linear-gradient(180deg,#fff3a8,#ffd23f 45%,#ff9a2e);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 10px rgba(255,190,50,.25))}
+/* paysage : le bandeau d'arme passe sous le panneau de vie ; la barre d'XP va jusqu'au bord gauche (au-dessus de l'encoche, rien ne la cache) */
+#hud .hudl{top:calc(var(--it,0px) + 92px)}
+.land #hud .hudl{top:calc(var(--it,0px) + 98px)}
+.land #hud .xp{margin-left:30px;margin-right:calc(var(--ir,0px) + 30px)}
 /* défi de la semaine en bandeau */
 .mpbody .mpcard.wk{grid-template-columns:58px 1fr;align-items:center}
 .mpbody .mpcard.wk .mpic{width:58px;height:58px;line-height:58px;display:grid;place-items:center;--ec:#1a1206}
@@ -3459,7 +3463,7 @@ const lkey = () => W > H ? 'land' : 'port';
 function lay() { const k = lkey(); if (!meta.layout[k]) meta.layout[k] = clone(LDEF[k]); return meta.layout[k]; }
 function lpos(id) {
   const L = lay()[id], r = LBASE[id] * L.s;
-  return { x: clamp(L.x * W, r, W - r), y: clamp(L.y * H, r, H - r), r };   // les boutons peuvent aller jusqu'au bord de l'écran
+  return { x: clamp(L.x * W, r + (INS.l || 0), W - r - (INS.r || 0)), y: clamp(L.y * H, r + (INS.t || 0), H - r - (INS.b || 0)), r };   // jusqu'au bord de l'écran, mais jamais sous l'encoche
 }
 function applyLayout() {
   const m = lpos('move'), a = lpos('aim');
@@ -3469,7 +3473,7 @@ function applyLayout() {
     b.style.width = b.style.height = d; b.style.left = Math.round(q.x - q.r) + 'px'; b.style.top = Math.round(q.y - q.r) + 'px'; b.style.setProperty('--sz', d);
   }
 }
-const xpNeed = l => Math.floor(12 + l * 9 + Math.pow(l, 1.85) * 1.6);
+const xpNeed = l => Math.floor((12 + l * 9 + Math.pow(l, 1.85) * 1.6) * 0.88);   // −12 % (MAJ 8 : niveaux un peu plus rapides)
 const waveHp = w => 1 + 0.17 * (w - 1) + 0.014 * (w - 1) * (w - 1);
 const comboMult = () => 1 + Math.min(4, Math.floor(G.combo / 8) * 0.5);
 
