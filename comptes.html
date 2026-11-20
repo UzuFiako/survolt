@@ -1187,6 +1187,22 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .newsu summary i{font-style:normal;font-size:20px;width:28px;text-align:center} .newsu summary b{flex:1} .newsu summary em{font:900 10px/1 var(--body);font-style:normal;padding:4px 7px;border-radius:6px;background:var(--hot);color:#fff;animation:offglow 1.4s ease-in-out infinite}
 .newsu ul{list-style:none;margin:0;padding:0 12px 12px;display:flex;flex-direction:column;gap:8px} .newsu li{display:flex;gap:10px;align-items:flex-start} .newsu li>i{font-style:normal;font-size:17px;width:26px;text-align:center;flex:none}
 .newsu li b{display:block;font:800 13px/1.25 var(--body)} .newsu li span{display:block;font:500 12px/1.35 var(--body);color:var(--dim)}
+.basecard{position:relative;display:flex;align-items:center;gap:12px;width:100%;margin:10px 0 0;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,210,63,.45);background:linear-gradient(135deg,#1f2a3c,#121a28 60%,#0b1018);color:var(--ink);text-align:left;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.basecard .bsi{font-size:26px;filter:drop-shadow(0 0 8px rgba(255,210,63,.5))} .basecard .bst{flex:1;display:flex;flex-direction:column;gap:3px;min-width:0} .basecard b{font:400 18px/1 var(--display);letter-spacing:.06em;color:#ffd23f} .basecard small{font:600 11.5px/1.3 var(--body);color:var(--dim)} .basecard .bsgo{font-size:26px;color:#ffd23f}
+.bsdot{position:absolute;top:10px;right:12px;width:11px;height:11px;border-radius:50%;background:var(--hot);box-shadow:0 0 0 3px rgba(255,61,129,.25);animation:offglow 1.2s ease-in-out infinite}
+.basebar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font:700 12px/1.3 var(--body);color:var(--dim)} .basebar .btn{padding:10px 14px;font-size:13px}
+.basecv{width:100%;aspect-ratio:10/7;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.12)} .basecv canvas{width:100%;height:100%;display:block;touch-action:manipulation}
+.basepanel{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.bph{display:flex;align-items:center;gap:10px} .bph i{font-style:normal;font-size:28px} .bph b{display:block;font:800 16px/1.2 var(--body)} .bph small{color:var(--dim);font:700 12px/1 var(--body)}
+.bpd{margin:0;font:500 12.5px/1.4 var(--body);color:var(--dim)} .bps{margin:0;padding-left:18px;font:700 12.5px/1.5 var(--body)} .bpa{display:flex;flex-direction:column;gap:8px} .bpa .btn{font-size:14px!important;line-height:1.35!important;padding:12px 14px!important;white-space:normal;letter-spacing:.02em}
+.nrgchip{gap:6px!important;padding:0 10px!important;border-color:rgba(255,210,63,.5)!important} .nrgchip>i{font-style:normal;font-size:16px;filter:drop-shadow(0 0 6px rgba(255,210,63,.7))}
+.nrgc{display:flex;flex-direction:column;align-items:flex-start;line-height:1} .nrgc b{font:900 14px/1 var(--body);color:#ffd23f} .nrgc small{font:700 9.5px/1.2 var(--body);color:var(--dim);margin-top:2px}
+.nrgchip .nrgtr{position:absolute;left:8px;right:8px;bottom:4px;height:3px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden} .nrgchip .nrgtr span{display:block;height:100%;background:linear-gradient(90deg,#ffb02e,#ffe14a)}
+.nrgchip{position:relative} .nrgchip.low{border-color:var(--hot)!important} .nrgchip.low b{color:var(--hot)}
+#bPlay.nonrg{filter:saturate(.4) brightness(.85)}
+.nrgmod{align-items:center;text-align:center;max-width:420px} .nrgmod p{margin:0;font:600 13px/1.4 var(--body)} .nrgbig{font-size:54px;filter:drop-shadow(0 0 16px rgba(255,210,63,.6))} .nrgw{color:#ffd23f;font-weight:800!important} .nrgmod .bpa{width:100%}
+@media (max-width:440px){#bUser>span:not(.ava):not(.pava){display:none} .mtop{gap:5px} .mtop .ibtn{padding:0 9px;min-width:40px} .nrgc small{font-size:9px}}
+@media (max-width:350px){.nrgchip .nrgc small{display:none}}
 /* la chute dans le sol */
 .dgfall{position:fixed;inset:0;z-index:90;pointer-events:all;background:#000;animation:dgfall 1.5s ease-in-out forwards}
 .dgfall i{position:absolute;left:0;right:0;height:8%;background:rgba(214,196,110,.55);mix-blend-mode:screen;opacity:0;animation:dgbar 1.5s steps(1) forwards}
@@ -1360,6 +1376,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
     <button id="bInbox" class="ibtn qbtn" type="button" aria-label="Boîte de réception"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.6 2H4.4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><i class="qdot" hidden>0</i></button>
     <button id="bQuests" class="ibtn qbtn" type="button" aria-label="Quêtes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8h6M9 11.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>QUÊTES</span><i class="qdot" hidden>!</i></button>
     <button id="bGChat" class="ibtn" type="button" aria-label="Social"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 9.5h8M8 12.5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>SOCIAL</span></button>
+    <button id="nrgBar" class="ibtn nrgchip" type="button" aria-label="Énergie"><i>⚡</i><span class="nrgc"><b id="nrgV">50/50</b><small id="nrgT"></small></span><span class="nrgtr"><span id="nrgF"></span></span></button>
   </div>
   <div class="sheet">
     <div class="mhead">
@@ -1397,6 +1414,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
       </details>
       <div class="dgwrap solo"><button id="bDg" class="dgcard" type="button"><span class="dgfx" aria-hidden="true"></span><span class="dgi" aria-hidden="true">🚪</span><span class="dgt"><b>BACKROOMS</b><small id="dgSub">Mode exploration · 3 étages · salles aléatoires</small></span><em class="dgnew">NOUVEAU</em><i class="dgp" aria-hidden="true">▶</i></button>
       </div>
+      <button id="bBase" class="basecard" type="button"><span class="bsi" aria-hidden="true">🏰</span><span class="bst"><b>MA BASE</b><small id="baseSub">Elle produit des nuggets et des diams, même quand tu ne joues pas</small></span><i class="bsdot" id="baseDot" hidden></i><span class="bsgo">›</span></button>
       <div class="cta">
         <div class="row4">
           <button id="bShop" class="btn mb" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>ATELIER</span></button>
@@ -1499,6 +1517,22 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
   </div>
 </div>
 
+<div id="base" class="screen dim" data-scroll hidden>
+  <div class="sheet panel">
+    <div class="phead"><h2 class="h1">MA BASE</h2><span class="sub" id="baseBal"></span></div>
+    <div class="basebar"><span id="baseBld"></span><button id="bBaseAll" class="btn primary" type="button">TOUT RÉCOLTER</button></div>
+    <div class="basecv"><canvas id="baseCv"></canvas></div>
+    <div id="basePanel" class="basepanel"></div>
+    <details class="howto"><summary>❓ Comment ça marche ?</summary><ul>
+      <li>Tes bâtiments produisent des <b>nuggets ◆</b> et des <b>diams ✦</b> tout seuls, même quand le jeu est fermé.</li>
+      <li>Touche une bulle au-dessus d’un bâtiment pour récolter. Quand la <b>Batterie</b> est pleine, la production s’arrête : reviens récolter de temps en temps.</li>
+      <li>Améliore tes bâtiments avec des nuggets (et des ampoules 💡 pour le QG et le Laboratoire). Une amélioration prend du temps réel ; tu peux la finir tout de suite avec des diams.</li>
+      <li>Le <b>QG</b> limite le niveau des autres bâtiments et débloque les nouveaux. Un 2e ouvrier permet de construire deux choses en même temps.</li>
+    </ul></details>
+    <button id="bBaseBack" class="btn" type="button">RETOUR</button>
+  </div>
+</div>
+
 <div id="store" class="screen dim" data-scroll hidden>
   <div class="sheet panel">
     <div class="phead"><h2 class="h1">BOUTIQUE</h2><span class="sub" id="stBal"></span></div>
@@ -1581,6 +1615,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
       <div><i>💀</i><b>Boss d’étage</b><span>Bats-le, une trappe s’ouvre pour descendre plus bas.</span></div>
       <div><i>×3</i><b>Ici, tout compte triple</b><span>Monstres 3× plus coriaces, butin 3× plus gros. XP joueur ×2.</span></div>
       <div><i>💡</i><b>Ampoules</b><span>La monnaie des Backrooms, à chaque salle vidée. Elle sert aux châssis (achat et étoiles).</span></div>
+      <div><i>⚡</i><b>+5 énergie</b><span>Termine les Backrooms pour gagner 5 ⚡ (pour les mondes).</span></div>
       <div><i>🔦</i><b>100 parties</b><span>Titre légendaire Captain Clark et thème Backrooms. <em id="dgmRuns"></em></span></div>
     </div>
     <button id="dgmGo" class="dgm-go" type="button">ENTRER</button>
@@ -1693,6 +1728,24 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
     <li>Chaque coffre donne des <b>nuggets</b> et un <b>équipement</b>. À partir du coffre <b>UR</b>, il donne aussi des <b>diams</b>.</li>
     <li>Les <b>cosmétiques</b> ne tombent jamais en partie : ils s’achètent au Garage ou sortent des coffres <b>LG</b> et <b>UPL</b>.</li>
     <li>Tu commences avec un <b>coffre mystère</b> : ouvre-le dans Coffres !</li></ul></details>
+  <details><summary>🚪 Backrooms et ampoules</summary><ul>
+    <li>Les <b>Backrooms</b> : 3 étages de salles qui se verrouillent, avec un boss par étage. Pour descendre, tu passes à travers le sol.</li>
+    <li>Chaque salle vidée rapporte des <b>ampoules 💡</b>, la monnaie qu’on ne trouve que là-bas. Elles servent à acheter et faire évoluer les châssis, à acheter les familiers et à construire certains bâtiments de la base.</li>
+    <li><b>100 parties</b> dans les Backrooms : titre légendaire Captain Clark et thème Backrooms.</li>
+  </ul></details>
+  <details><summary>🌀 Éléments et transformations</summary><ul>
+    <li>Beaucoup de perks ont un élément : <b>foudre, feu, poison, glace</b> ou <b>incantation</b> (sbires des ténèbres, à partir du Monde 6 débloqué).</li>
+    <li>Prends <b>6 perks différents du même élément</b> dans une partie : ton tank se transforme (Zeus, Lucifer, Roi des rats, Thrym ou Shinigami) jusqu’à la fin de la partie. Stats boostées, nouveau look, et ta Surcharge lance une attaque spéciale.</li>
+    <li>Rien n’est gardé après la partie : la transformation se débloque seulement dans l’Almanach (onglet Perks).</li>
+  </ul></details>
+  <details><summary>⚡ Énergie</summary><ul>
+    <li>Une partie dans un <b>monde</b> ou en <b>Infini</b> coûte <b>5 ⚡</b>. Tu as 50 ⚡ au niveau 1, et +1 ⚡ max tous les 5 niveaux joueur.</li>
+    <li>1 ⚡ revient toutes les <b>3 minutes</b>, même jeu fermé. Les Backrooms, les parties rapides, le multi et les défis sont gratuits, et <b>terminer les Backrooms</b> rapporte <b>+5 ⚡</b>.</li>
+  </ul></details>
+  <details><summary>🏰 Ma base</summary><ul>
+    <li>Ta base produit des <b>nuggets</b> et des <b>diams</b> en temps réel, même quand le jeu est fermé. Viens récolter avant que la Batterie soit pleine.</li>
+    <li>Améliore les bâtiments (temps réel, ou tout de suite avec des diams). Le QG débloque les nouveaux bâtiments et limite le niveau des autres.</li>
+  </ul></details>
   <details><summary>💎 Nuggets, diams et boutique</summary><ul>
     <li><b>Nuggets</b> ◆ : gagnés en partie et dans les coffres, pour l’Atelier et le Garage.</li>
     <li><b>Diams</b> ✦ : gagnés sur les boss et dans les coffres UR et plus. Ils servent à acheter des coffres et des cosmétiques.</li>
@@ -2109,10 +2162,11 @@ const UP = [
   { id: 'dSumT', wu: 6, n: _t('Dash des ombres'), d: _t('Ton dash laisse des sbires le long de son trajet (1 de plus par niveau).'), r: 'e', max: 3, c: 'mob', f: s => { s.dSumT = (s.dSumT || 0) + 1; } },
   { id: 'dSumA', wu: 6, n: _t('Portail d’ombre'), d: _t('Là où ton dash s’arrête, un portail fait sortir des sbires du sol et blesse les ennemis autour.'), r: 'e', max: 3, c: 'mob', f: s => { s.dSumA = (s.dSumA || 0) + 1; } },
   { id: 'sumRain', wu: 6, n: _t('Éclair de sbires'), d: _t('Des sbires sortent du sol au hasard, près des ennemis, comme la foudre qui tombe. Plus souvent à chaque niveau.'), r: 'e', max: 5, c: 'spe', f: s => { s.sumRain = (s.sumRain || 0) + 1; } },
-  { id: 'infest', wu: 6, n: _t('Infestation'), d: _t('Tes tirs ont 20 % de chances d’infester l’ennemi : petits dégâts pendant 4 s. S’il meurt infesté, un sbire sort de son corps. Plus de dégâts à chaque niveau.'), r: 'r', max: 5, c: 'spe', f: s => { s.infest = (s.infest || 0) + 1; } },
+  { id: 'infest', wu: 6, n: _t('Infestation'), d: _t('Tes tirs ont 20 % de chances d’infester l’ennemi : petits dégâts pendant 4 s, et 25 % de chances que l’infestation saute sur 2 ennemis proches. S’il meurt infesté, des sbires sortent de son corps.'), r: 'e', max: 3,
+    dl: [_t('Niv. 1 : 1 sbire sort du corps, sbires +5 %'), _t('Niv. 2 : 2 sbires sortent du corps, sbires +10 %'), _t('Niv. 3 : 3 sbires sortent du corps, sbires +15 %')], c: 'spe', f: s => { s.infest = (s.infest || 0) + 1; } },
   { id: 'sumBoom', wu: 6, n: _t('Pacte explosif'), d: _t('Quand un sbire disparaît, il explose et blesse les ennemis autour. Plus fort à chaque niveau.'), r: 'e', max: 3, c: 'spe', f: s => { s.sumBoom = (s.sumBoom || 0) + 1; } },
   { id: 'soul', wu: 6, n: _t('Moisson d’âmes'), d: _t('8 % de chances par niveau qu’un ennemi éliminé revienne comme sbire à tes côtés.'), r: 'r', max: 3, c: 'spe', f: s => { s.soul = (s.soul || 0) + 1; } },
-  { id: 'sumLord', wu: 6, n: _t('Nécromancien'), d: _t('Tes sbires ont 2× plus de PV et de dégâts, et tu peux en avoir 4 de plus.'), r: 'l', max: 1, c: 'spe', f: s => { s.sumLord = 1; s.minMul = (s.minMul || 1) * 2; } },
+  { id: 'sumLord', wu: 6, n: _t('Nécromancien'), d: _t('Tes sbires ont 2× plus de PV et de dégâts, tu peux en avoir 4 de plus, et 15 % des ennemis éliminés reviennent sous leur vraie forme, dans ton camp (50 % de leur vie, 75 % de leurs dégâts).'), r: 'l', max: 1, c: 'spe', f: s => { s.sumLord = 1; s.minMul = (s.minMul || 1) * 2; } },
   // perks suprêmes : apparaissent quand le perk de base est au niveau max
   { id: '_sdmg', sup: 1, req: 'dmg', n: _t('Fureur suprême'), d: _t('+25 % de dégâts, et 15 % de chances que chaque tir frappe ×3'), r: 's', max: 1, c: 'atk', f: s => { s.dmg *= 1.25; s.supCrush = 1; } },
   { id: '_srate', sup: 1, req: 'rate', n: _t('Gatling suprême'), d: _t('+20 % de cadence, et 20 % de chances de tirer chaque salve deux fois'), r: 's', max: 1, c: 'atk', f: s => { s.rate *= 1.2; s.echo = (s.echo || 0) + 0.2; } },
@@ -2124,6 +2178,7 @@ const UP = [
   { id: '_spois', sup: 1, req: 'poison', n: _t('Pandémie'), d: _t('Le poison se propage aux ennemis proches quand sa cible meurt, et fait deux fois plus mal'), r: 's', max: 1, c: 'spe', f: s => { s.plague = 1; } },
   { id: '_sfire', sup: 1, req: 'ignite', n: _t('Enfer'), d: _t('Chaque cible en feu explose à coup sûr et laisse une zone de feu'), r: 's', max: 1, c: 'spe', f: s => { s.inferno = 1; } },
   { id: '_sbub', sup: 1, req: 'bubble', n: _t('Méga-bulle'), d: _t('50 % de chances d’avoir une bulle, elle arrête 3 tirs ennemis, et éclate en vague d’eau sur l’ennemi touché'), r: 's', max: 1, c: 'def', f: s => { s.supBub = 1; } },
+  { id: '_sinf', sup: 1, req: 'infest', n: _t('Fléau des morts'), d: _t('5 sbires sortent de chaque ennemi infesté qui meurt, et ces sbires sont 40 % plus forts'), r: 's', max: 1, c: 'spe', f: s => { s.supInf = 1; } },
   { id: '_ssum', sup: 1, req: 'sum', n: _t('Armée des morts'), d: _t('Toutes les 6 s, 4 sbires sortent du sol d’un coup, tu peux en avoir 3 de plus, et chaque coup de sbire te rend 0,5 PV'), r: 's', max: 1, c: 'spe', f: s => { s.ssum = 1; } },
   { id: '_selem', sup: 1, req: 'elem', n: _t('Cataclysme'), d: _t('La foudre, le feu et la glace se déclenchent deux fois plus souvent et frappent deux fois plus fort'), r: 's', max: 1, c: 'spe', f: s => { s.cata = 1; } }
 ];
@@ -2164,7 +2219,7 @@ const ICON2 = {
 /* Icône et type d'effet de chaque perk (affichés sur la carte). */
 const PERKV = {
   bubble: ['bubble', _t('Défense')], aimL: ['aim', _t('Visée')], elemP: ['drop', _t('Poison')], miasma: ['drop', _t('Poison')], blizzard: ['snow', _t('Glace')],
-  sum: ['skull', _t('Incantation')], dSumT: ['skull', _t('Dash')], dSumA: ['skull', _t('Dash')], sumRain: ['skull', _t('Incantation')], infest: ['skull', _t('Incantation')], sumBoom: ['skull', _t('Incantation')], soul: ['skull', _t('Incantation')], sumLord: ['skull', _t('Incantation')],
+  _sinf: ['skull', _t('Incantation')], sum: ['skull', _t('Incantation')], dSumT: ['skull', _t('Dash')], dSumA: ['skull', _t('Dash')], sumRain: ['skull', _t('Incantation')], infest: ['skull', _t('Incantation')], sumBoom: ['skull', _t('Incantation')], soul: ['skull', _t('Incantation')], sumLord: ['skull', _t('Incantation')],
   range: ['target', _t('Portée')], plate: ['def', _t('Défense')], dashl: ['mob', _t('Dash')], exec: ['target', _t('Dégâts')], adren: ['rapid', _t('Vitesse d’attaque')], mine: ['boom', _t('Explosion')],
   cryodash: ['snow', _t('Ralentissement')], thunder: ['elem', _t('Foudre')], mt_berserk: ['bullet', _t('Dégâts')], mt_singu: ['aura', _t('Gravité')], meteor: ['fire', _t('Explosion')],
   drEsc: ['drone', _t('Drone')], drVolt: ['elem', _t('Drone')], drFire: ['fire', _t('Drone')], drIce: ['snow', _t('Drone')], drTox: ['drop', _t('Drone')], drBomb: ['boom', _t('Drone')],
@@ -2633,7 +2688,8 @@ const meta = { shards: 0, best: 0, bestWave: 0, shop: {}, cls: { scout: 1 }, sel
   opt: { side: true, lock: true, flip: false, auto: true }, v8: false, music: true, musVol: 60, sfxVol: 80, mus: 'auto', nm: false, mpq: { c: {}, got: {} }, sens: 1,
   pseudo: '', dev: '', lbRun: {}, lbSent: {}, lbTime: {}, lbTSent: {}, avatar: 'scout', ts: 0, rv: 0, paid: [],
   shopV: 2, slv: {}, scr: {}, dq: null, wq: null, login: { d: '', n: 0 }, seen: { d: '', s: 0, b: 0 }, titles: {}, title: '', notes: [], bp: null, pl: null, prof: {}, ptime: 0, tot: { k: 0, r: 0, b: 0 }, welc: { t: 0, done: false },
-  bulb: 0, keys: 0, clsP: {}, dgRuns: 0, dshop: { d: '', got: {} } };   // v3 : ampoules (monnaie des Backrooms), clés, niveaux/étoiles des châssis, parties Backrooms, offres du jour
+  bulb: 0, keys: 0, clsP: {}, dgRuns: 0, dshop: { d: '', got: {} },
+  base: null, nrg: null };   // MAJ 7 : énergie des mondes   // MAJ 6 : la base (mode AFK), créée à la première visite   // v3 : ampoules (monnaie des Backrooms), clés, niveaux/étoiles des châssis, parties Backrooms, offres du jour
 const META0 = JSON.stringify(meta);   // valeurs de départ, pour repartir de zéro
 const RV = 3;   // version de remise à zéro : toute sauvegarde plus ancienne repart de zéro (on garde seulement les réglages)
 function resetMeta() { const d = JSON.parse(META0); for (const k of Object.keys(meta)) delete meta[k]; Object.assign(meta, d); }   // jouer de côté, sticks fixes
@@ -2661,6 +2717,11 @@ function merge(s) {
   if (s.cls && typeof s.cls === 'object') Object.assign(meta.cls, s.cls);
   for (const k of ['bulb', 'keys', 'dgRuns']) if (Number.isFinite(s[k])) meta[k] = Math.max(0, Math.floor(s[k]));
   if (s.clsP && typeof s.clsP === 'object') for (const c of CLS) { const q = s.clsP[c.id]; if (q && typeof q === 'object') meta.clsP[c.id] = { lv: clamp(q.lv | 0, 1, 200), xp: Math.max(0, q.xp | 0), st: clamp(q.st | 0, 1, 5) }; }
+  if (s.base && typeof s.base === 'object' && s.base.b) { const b = s.base, o = { b: {}, st: {}, t: Number(b.t) || Date.now(), jobs: [], bld: clamp(b.bld | 0, 1, 2) };
+    for (const k of ['qg', 'mine', 'raf', 'bat', 'lab']) { o.b[k] = clamp((b.b[k] | 0), 0, 12); o.st[k] = Math.max(0, Number(b.st && b.st[k]) || 0); }
+    if (Array.isArray(b.jobs)) o.jobs = b.jobs.filter(j => j && o.b[j.id] !== undefined && Number.isFinite(j.end)).slice(0, 2).map(j => ({ id: j.id, end: j.end }));
+    o.b.qg = Math.max(1, o.b.qg); meta.base = o; }
+  if (s.nrg && typeof s.nrg === 'object' && Number.isFinite(s.nrg.v) && Number.isFinite(s.nrg.t)) meta.nrg = { v: clamp(Math.floor(s.nrg.v), 0, 999), t: Math.min(Date.now(), s.nrg.t) };
   if (s.dshop && typeof s.dshop === 'object') meta.dshop = { d: String(s.dshop.d || ''), got: Object.assign({}, s.dshop.got) };
   if ((meta.dgRuns || 0) >= 100) meta.themes.backrooms = 1;
   if (s.gearLook === false) meta.gearLook = false;
@@ -3718,7 +3779,11 @@ function kill(e) {
   if (e.dead) return;
   if (e.type === 'zombie' && !e.rez && !G.demo && !(G.mp && G.mp.guest)) { zombieDown(e); return; }
   if (G.dg && !G.demo && e.type !== 'boss') discover('dg:' + e.type);
-  if (!G.demo && P && P.s && e.type !== 'boss' && ((e.infT > 0 && P.s.infest) || (P.s.soul && Math.random() < 0.08 * P.s.soul))) summon(e.x, e.y);   // infestation / moisson d'âmes
+  if (!G.demo && P && P.s && e.type !== 'boss' && !e.ally) { const s = P.s;
+    if (e.infT > 0 && s.infest) { const n = s.supInf ? 5 : s.infest, xm = s.supInf ? 1.4 : 1 + 0.05 * s.infest; burst(e.x, e.y, 'plasma', 12, 200); for (let i = 0; i < n; i++) { const a = i * TAU / n; summon(e.x + Math.cos(a) * 18, e.y + Math.sin(a) * 18, null, xm); } }   // infestation
+    else if (s.soul && Math.random() < 0.08 * s.soul) summon(e.x, e.y);   // moisson d'âmes
+    if (s.sumLord && ET[e.type] && e.type !== 'mini' && Math.random() < 0.15) raiseAlly(e);   // nécromancien
+  }
   discover(e.type === 'boss' ? (e.mini ? 'm:' : 'b:') + e.boss.n : e.type + (e.v ? '@' + e.v : ''), e);
   e.dead = true; G.kills++; G.combo++; G.comboT = 2.6; mpRaceKill(e);
   if ((e.v || 0) >= 4 && e.type !== 'boss' && !G.demo) { const nb = e.v >= 5 ? 6 : 4, a0 = rnd(0, TAU); for (let k = 0; k < nb; k++) ebullet(e.x, e.y, a0 + k * TAU / nb, e.v >= 5 ? 190 : 150, e.dmg * 0.45, 5); }   // variantes des mondes 5 et 6 : éclatent à leur mort
@@ -4210,13 +4275,21 @@ function updPlayer(dt) {
 /* ================= MAJ 5 : Incantation (sbires) et transformations ================= */
 /* Sbires des ténèbres : petits alliés qui sortent du sol et attaquent au corps à corps (≈10 % de tes PV max et de tes dégâts). */
 function minCap() { const s = P.s; return 3 + (s.sum || 0) + (s.sumLord ? 4 : 0) + (s.ssum ? 3 : 0) + (P.trans === 'shini' ? 3 : 0) + (P.trans === 'rat' ? 8 : 0); }
-function summon(x, y, kind) {
-  if (!G || G.demo || !P) return; G.mins = G.mins || []; const s = P.s, live = G.mins.filter(m => !m.dead);
+function summon(x, y, kind, xm) {
+  if (!G || G.demo || !P) return; G.mins = G.mins || []; const s = P.s, live = G.mins.filter(m => !m.dead && !m.ally);
   if (live.length >= minCap()) { let o = live[0]; for (const m of live) if (m.life < o.life) o = m; o.dead = true; o.quiet = true; }
-  const mul = (s.minMul || 1) * (P.trans === 'shini' ? 1.5 : 1), rat = kind === 'rat', o = { x, y }; clampArena(o, 12);
+  const mul = (s.minMul || 1) * (P.trans === 'shini' ? 1.5 : 1) * (xm || 1), rat = kind === 'rat', o = { x, y }; clampArena(o, 12);
   const hp = Math.max(8, s.maxHp * 0.1 * mul * (rat ? 0.6 : 1));
   G.mins.push({ x: o.x, y: o.y, vx: 0, vy: 0, hp, max: hp, dmg: s.dmg * 0.1 * mul * (1 + 0.15 * Math.max(0, (s.sum || 1) - 1)) * (rat ? 0.8 : 1), life: rat ? 7 : 12, t: 0, cd: 0.3, rat, dead: false, a: rnd(0, TAU) });
   for (let i = 0; i < 6 && parts.length < 340; i++) parts.push({ x: o.x + rnd(-10, 10), y: o.y + rnd(-4, 6), vx: rnd(-40, 40), vy: rnd(-90, -30), life: 0.5, max: 0.5, col: rat ? '#8dff6a' : '#b98cff', s: rnd(2, 4) });
+}
+/* Nécromancien : l'ennemi éliminé revient sous sa vraie forme, mais dans ton camp (50 % de sa vie, 75 % de ses dégâts). */
+const ALLY_RANGED = new Set(['shoot', 'sniper', 'mortar', 'ghost', 'incant', 'spin']);
+function raiseAlly(e) {
+  G.mins = G.mins || []; const al = G.mins.filter(m => !m.dead && m.ally); if (al.length >= 4) { let o = al[0]; for (const m of al) if (m.life < o.life) o = m; o.dead = true; o.quiet = true; }
+  const hp = Math.max(10, (e.max || 40) * 0.5), look = almEnemy({ k: e.type, v: e.v || 0 }, e.x, e.y, e.rot || 0);
+  G.mins.push({ x: e.x, y: e.y, vx: 0, vy: 0, hp, max: hp, dmg: (e.dmg || 10) * 0.75, life: 30, t: 0, cd: 0.6, ally: true, ranged: ALLY_RANGED.has(e.type), look, r: e.r, dead: false, a: rnd(0, TAU), sp: Math.min(260, (ET[e.type].sp || 90) * 1.1) });
+  ring(e.x, e.y, 50, 'ok', 0.35, 4); burst(e.x, e.y, 'ok', 14, 180); addText(e.x, e.y - 24, _t('ALLIÉ !'), '#8dff6a', 15); tone(220, 0.4, 'triangle', 0.06, 300);
 }
 function minDie(m) {
   m.dead = true; if (m.quiet) return; const s = P.s; burst(m.x, m.y, m.rat ? 'ok' : 'plasma', 8, 140);
@@ -4228,10 +4301,15 @@ function updMins(dt) {
     m.t += dt; m.life -= dt; m.cd -= dt; if (m.life <= 0 || m.hp <= 0) { minDie(m); continue; }
     if (m.t < 0.35) continue;   // il sort encore du sol
     let tg = null, bd = 520 * 520; for (const e of enemies) { if (e.dead || e.downT > 0) continue; const d = dist2(e.x, e.y, m.x, m.y); if (d < bd) { bd = d; tg = e; } }
-    let tx, ty, sp = m.rat ? 300 : 230;
+    let tx, ty, sp = m.ally ? m.sp : m.rat ? 300 : 230;
     if (tg) { tx = tg.x; ty = tg.y; } else { m.a += dt * 1.4; tx = P.x + Math.cos(m.a) * 70; ty = P.y + Math.sin(m.a) * 70; sp *= 0.8; }
     const dx = tx - m.x, dy = ty - m.y, d = Math.hypot(dx, dy) || 1;
-    if (tg && d < tg.r + 10) { if (m.cd <= 0) { m.cd = 0.4; dmgEnemy(tg, m.dmg, false, m.rat ? '#8dff6a' : '#c58bff'); if (m.rat) { tg.psT = 3; tg.psLv = Math.max(tg.psLv || 0, 3); } if (s.ssum) heal(0.5); m.hp -= (tg.dmg || 8) * 0.3; } }
+    if (m.ally && tg) m.look.rot = Math.atan2(dy, dx);
+    if (m.ally && m.ranged && tg && d < 330) {   // allié à distance : il tire sur les ennemis
+      if (d < 180) { m.vx += (-dx / d * sp - m.vx) * Math.min(1, dt * 6); m.vy += (-dy / d * sp - m.vy) * Math.min(1, dt * 6); m.x += m.vx * dt; m.y += m.vy * dt; clampArena(m, m.r); }
+      if (m.cd <= 0) { m.cd = 1.1; bolt(m.x, m.y, tg.x, tg.y, 'ok'); dmgEnemy(tg, m.dmg, false, '#8dff6a'); burst(tg.x, tg.y, 'ok', 3, 90); }
+    }
+    else if (tg && d < tg.r + (m.ally ? m.r : 10)) { if (m.cd <= 0) { m.cd = 0.4; dmgEnemy(tg, m.dmg, false, m.rat ? '#8dff6a' : '#c58bff'); if (m.rat) { tg.psT = 3; tg.psLv = Math.max(tg.psLv || 0, 3); } if (s.ssum) heal(0.5); m.hp -= (tg.dmg || 8) * 0.3; } }
     else { const k = Math.min(1, dt * 8); m.vx += (dx / d * sp - m.vx) * k; m.vy += (dy / d * sp - m.vy) * k; m.x += m.vx * dt; m.y += m.vy * dt; clampArena(m, 10); }
   }
   if (L.length > 40 || L.some(m => m.dead)) G.mins = L.filter(m => !m.dead);
@@ -4241,7 +4319,10 @@ function drawMins(vis) {
   for (const m of L) { if (m.dead || !vis(m.x, m.y, 30)) continue; const up = clamp(m.t / 0.35, 0, 1), r = (m.rat ? 8 : 11) * (0.4 + 0.6 * up), fade = m.life < 1 ? m.life : 1;
     g.save(); g.globalAlpha = fade; g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); g.ellipse(m.x, m.y + r * 0.8, r * 1.2, r * 0.45, 0, 0, TAU); g.fill();
     const y = m.y - (1 - up) * -8 + Math.sin(m.t * 9) * 1.5, a = Math.atan2(m.vy, m.vx);
-    if (m.rat) {   // rat vert
+    if (m.ally) { g.restore(); const L2 = m.look; L2.x = m.x; L2.y = m.y; g.save(); g.globalAlpha = fade; drawEnemy(L2); g.globalAlpha = 1;
+      g.strokeStyle = '#8dff6a'; g.lineWidth = 2; g.setLineDash([5, 4]); g.beginPath(); g.arc(m.x, m.y, m.r + 7, T * 2, T * 2 + TAU); g.stroke(); g.setLineDash([]);
+      g.fillStyle = '#8dff6a'; g.font = '800 10px sans-serif'; g.textAlign = 'center'; g.fillText('♥', m.x, m.y - m.r - 10); }
+    else if (m.rat) {   // rat vert
       g.translate(m.x, y); g.rotate(a); g.strokeStyle = '#6a8a5a'; g.lineWidth = 2; g.beginPath(); g.moveTo(-r, 0); g.quadraticCurveTo(-r * 2, Math.sin(m.t * 12) * r, -r * 2.6, 0); g.stroke();
       g.fillStyle = '#3c5232'; g.beginPath(); g.ellipse(0, 0, r * 1.25, r * 0.8, 0, 0, TAU); g.fill(); g.fillStyle = '#5a7a4a'; g.beginPath(); g.arc(r * 0.2, -r * 0.7, r * 0.35, 0, TAU); g.arc(r * 0.2, r * 0.7, r * 0.35, 0, TAU); g.fill();
       g.fillStyle = '#c4ff8a'; g.beginPath(); g.arc(r * 0.9, -r * 0.25, 1.6, 0, TAU); g.arc(r * 0.9, r * 0.25, 1.6, 0, TAU); g.fill();
@@ -4359,7 +4440,8 @@ function onHit(b, e) {
   if (crit && s.critHeal) heal(1);
   if (s.poison) { e.psT = 3; e.psLv = Math.max(e.psLv || 0, s.poison); }
   { const cm = s.cata ? 2 : 1; if (s.elem && Math.random() < (0.05 + 0.04 * s.elem) * cm) elemProc(e, 0); if (s.elemF && Math.random() < (0.05 + 0.04 * s.elemF) * cm) elemProc(e, 1); if (s.elemI && Math.random() < (0.05 + 0.04 * s.elemI) * cm) elemProc(e, 2); }
-  if (s.infest && Math.random() < 0.2) { e.infT = 4; e.infLv = Math.max(e.infLv || 0, s.infest); }
+  if (s.infest && Math.random() < 0.2) { const fresh = !(e.infT > 0); e.infT = 4; e.infLv = Math.max(e.infLv || 0, s.infest);
+    if (fresh && Math.random() < 0.25) { let n = 0; for (const o of enemies) { if (n >= 2) break; if (o === e || o.dead || o.infT > 0 || dist2(o.x, o.y, e.x, e.y) > 160 * 160) continue; o.infT = 4; o.infLv = e.infLv; n++; bolt(e.x, e.y, o.x, o.y, 'plasma'); } } }   // propagation
   if (s.elemP && Math.random() < (0.05 + 0.04 * s.elemP) * (s.cata ? 2 : 1) && zones.length < 40) { zones.push({ x: e.x, y: e.y, r: 70, t: 2.5, max: 2.5, lava: false, water: false, poison: true, dps: s.dmg * (0.6 + 0.2 * s.elemP), tick: 0, pt: 0, dead: false }); bubbleFx(e.x, e.y, 6, 120); }
   if (b.bub > 0 && s.supBub) { shock(e.x, e.y, 70, dmg * 0.8, 160, 'ion'); bubbleFx(e.x, e.y, 10, 180); b.bub = 0; }
   if (s.frost) e.slow = Math.max(e.slow, 1.2 + s.frost * 0.8);
@@ -5427,8 +5509,8 @@ function renderAlmX(fil) {
   if (almTab === 'perk') {
     fil.appendChild(chipRow(_t('Rareté'), [['', _t('TOUTES')], ['c', RAR.c.n.toUpperCase(), 'var(--rk-c)'], ['r', RAR.r.n.toUpperCase(), 'var(--rk-r)'], ['e', RAR.e.n.toUpperCase(), 'var(--rk-e)'], ['m', RAR.m.n.toUpperCase(), 'var(--rk-m)'], ['l', RAR.l.n.toUpperCase(), 'var(--rk-l)'], ['s', RAR.s.n.toUpperCase(), 'var(--rk-s)']], almF.rar, v => { almF.rar = v; }));
     const col = { c: 'var(--rk-c)', r: 'var(--rk-r)', e: 'var(--rk-e)', m: 'var(--rk-m)', l: 'var(--rk-l)', s: 'var(--rk-s)' };
-    L = UP.filter(u => !almF.rar || u.r === almF.rar).map(u => ({ id: u.id, n: u.n, own: !!meta.alm['p:' + u.id], col: col[u.r], ic: perkIcon(u), kind: RAR[u.r].n.toUpperCase() + (u.w ? _tf(" · MONDE {0}+", [u.w]) : ''),
-      d: u.d + (u.max > 1 ? _tf(" Jusqu’au niveau {0}.", [u.max]) : '') + (u.sup ? _tf(" Apparaît quand « {0} » est au niveau max.", [UPID[u.req].n]) : ''), how: u.w ? _tf("Se tire en partie à partir du Monde {0}.", [u.w]) : _t('Se tire en partie en montant de niveau.') }));
+    L = UP.filter(u => !almF.rar || u.r === almF.rar).map(u => ({ id: u.id, n: u.n, own: !!meta.alm['p:' + u.id], col: col[u.r], ic: perkIcon(u), kind: RAR[u.r].n.toUpperCase() + (u.w ? _tf(" · MONDE {0}+", [u.w]) : '') + (u.wu ? _tf(" · MONDE {0} DÉBLOQUÉ", [u.wu]) : ''),
+      d: u.d + (u.max > 1 ? _tf(" Jusqu’au niveau {0}.", [u.max]) : '') + (Array.isArray(u.dl) && typeof u.dl[0] === 'string' ? ' ' + u.dl.join(' · ') + '.' : '') + (u.sup ? _tf(" Apparaît quand « {0} » est au niveau max.", [UPID[u.req].n]) : ''), how: u.wu ? _tf("Se tire en partie une fois le Monde {0} débloqué.", [u.wu]) : u.w ? _tf("Se tire en partie à partir du Monde {0}.", [u.w]) : _t('Se tire en partie en montant de niveau.') }));
     if (!almF.rar) L = L.concat(Object.keys(TRANS).map(k => { const t = TRANS[k]; return { id: 'tr:' + k, n: _t('Transformation ') + t.n, own: !!meta.alm['tr:' + k], col: t.col,
       ic: cvIco(g => { const st = baseStats(); g.save(); drawTank(g, 44, 50, -Math.PI / 2, st, 22, 0, false, t.sk); g.restore(); }), kind: _t('TRANSFORMATION · ') + t.el.toUpperCase(),
       d: _tf('Prends 6 perks différents de l’élément {0} dans une même partie : ton tank devient {1} jusqu’à la fin de la partie ({2}). Ta Surcharge lance alors son attaque spéciale, {3} : {4}', [t.el, t.n, t.buff, t.sp, t.spd]),
@@ -5444,7 +5526,7 @@ function renderAlmX(fil) {
     L = PETS.map(p => { const own = !!meta.pets[p.id], lv = petLv(p.id);
       return { id: 'pet:' + p.id, n: p.n, own, col: C[p.col], ic: cvIco(g => drawPetShape(g, 44, 46, -Math.PI / 4, p.col, 18, false, true)), kind: _t('FAMILIER') + (own ? ' · ' + _t('Niv. ') + lv + '/' + PETMAX : ''),
         d: p.d + ' ' + _tf("Dégâts : {0} % des tiens au niveau 1, {1} % au niveau 20.", [Math.round(petPct(p, 1) * 100), Math.round(petPct(p, PETMAX) * 100)]) + ' ' + _t('Niv. 10 : ') + PETFX10[p.id] + '. ' + _t('Niv. 20 : Éveil, une rafale tous les 4 tirs.'),
-        how: p.cost ? _tf("Au Garage, onglet FAMILIER : ◆ {0}.", [fmt(p.cost[1])]) + (PETJ[p.id] ? ' + ✦ ' + PETJ[p.id] : '') + (PETLV[p.id] ? ' ' + _tf('Dès le niveau joueur {0}.', [PETLV[p.id]]) : '') : _t('Offert dès le début.') }; })
+        how: p.cost ? _tf("Au Garage, onglet FAMILIER : ◆ {0}.", [fmt(p.cost[1])]) + (PETJ[p.id] ? ' + ✦ ' + PETJ[p.id] : '') + (PETB[p.id] ? ' + 💡 ' + PETB[p.id] : '') + (PETLV[p.id] ? ' ' + _tf('Dès le niveau joueur {0}.', [PETLV[p.id]]) : '') : _t('Offert dès le début.') }; })
       .concat(Object.keys(DRONES).map(k => { const u = UP.find(x => x.id === 'dr' + k[0].toUpperCase() + k.slice(1)) || UP.find(x => x.id === { esc: 'drEsc', fire: 'drFire', ice: 'drIce', tox: 'drTox', bomb: 'drBomb', volt: 'drVolt' }[k]); const d = DRONES[k], w = (u && u.w) || 1;
         return { id: 'dr:' + k, n: u ? u.n : k, own: !!(u && meta.alm['p:' + u.id]), col: C[d.col], ic: cvIco(g => drawPetShape(g, 44, 46, -Math.PI / 4, d.col, 16, false, false)), kind: _t('DRONE · CARTE') + _tf(" · MONDE {0}+", [w]), d: u ? u.d : '', how: _tf("Se tire en partie à partir du Monde {0}.", [w]) }; }));
     $('#almN').textContent = _tf("{0} / {1} découverts", [L.filter(x => x.own).length, L.length]);
@@ -5970,6 +6052,7 @@ function renderQuick() {
   }
 }
 function renderMenu() {
+  try { renderBaseCard(); renderNrg(); } catch (e) {}
   try { const nw = meta.nw || {}, b = $('#bGarage'); if (b) b.classList.toggle('ndot2', meta.inv.some(i => nw[i.u]) || meta.runes.some(r => nw[r.u])); } catch (e) {}
   try { renderQuick(); renderDgCard(); } catch (e) {}
   try { seenTick(); } catch (e) {}
@@ -7153,6 +7236,7 @@ function showOver(win, quit) {
   meta.jet += G.jet;
   const bulbGot = G.demo || nogain ? 0 : quit ? Math.floor((G.bulb || 0) * 0.1) : (G.bulb || 0); if (bulbGot) meta.bulb = (meta.bulb || 0) + bulbGot;
   const keyGot = G.demo || quit ? 0 : (G.keys || 0) + (win && !Wd.quick && !Wd.duel && !G.chal ? 1 : 0); if (keyGot) meta.keys = (meta.keys || 0) + keyGot;
+  const nrgGot = Wd.dg && win && !G.demo && !nogain ? 5 : 0; if (nrgGot) { const N = nrg(); N.v += nrgGot; }   // Backrooms terminées : +5 énergie (peut dépasser le max)
   let clarkNew = false; if (Wd.dg && !G.demo && !nogain) { meta.dgRuns = (meta.dgRuns || 0) + 1; if (meta.dgRuns >= 100 && !meta.themes.backrooms) { meta.themes.backrooms = 1; clarkNew = true; } }
   const cxp = quit || G.demo || G.chal || nogain || G.duel ? null : clsGainXp(win);
   const before = WORLDS.filter(wOpen).map(w => w.id);
@@ -7200,6 +7284,7 @@ function showOver(win, quit) {
     if (G.scr > 0) card('📜', '+' + G.scr + _t(' parchemins'), scrGot, null, '#ffc43d', null, _t('Les parchemins servent à améliorer les emplacements d’équipement (Coque, Arme…) au GARAGE.'));
     if (pxp) card('🐾', pxp.p.n, '+' + pxp.xp + ' XP' + (pxp.lv > pxp.lv0 ? ' · ' + _tf("NIVEAU {0} !", [pxp.lv]) : ''), null, C[pxp.p.col] || '#5fe08a', pxp.lv > pxp.lv0 ? 'LV UP' : null, _tf('{0} est ton familier : il t’aide en partie et gagne de l’XP à chaque fois. En montant de niveau, il devient plus fort. GARAGE → onglet Familier.', [pxp.p.n]));
     if (bulbGot) card('💡', '+' + fmt(bulbGot), _t('ampoules'), null, '#ffe680', null, _t('La monnaie des Backrooms : on ne la trouve que là-bas. Elle sert à acheter les châssis et à les faire évoluer (étoiles) au GARAGE.'));
+    if (nrgGot) card('⚡', '+' + nrgGot, _t('énergie'), null, '#ffd23f', null, _t('Tu as terminé les Backrooms : +5 ⚡ pour jouer dans les mondes.'));
     if (keyGot) card('🔑', '+' + keyGot, keyGot > 1 ? _t('clés') : _t('clé'), null, '#ffd23f', null, _t('Les clés ouvrent les coffres de la Boutique. 10 clés = tirage ×10 avec un coffre offert.'));
     if (cxp) card(preview(cxp.c, skinById(meta.skin), 'none', 64), cxp.c.n, '+' + fmt(cxp.xp) + ' XP' + (cxp.lv > cxp.lv0 ? ' · ' + _tf("NIVEAU {0} !", [cxp.lv]) : ''), null, rcol(clsRar(cxp.c.id)), cxp.lv > cxp.lv0 ? 'LV UP' : '★' + clsP(cxp.c.id).st, _t('Ton châssis gagne de l’XP à chaque partie. Au niveau max de son palier, fais-le évoluer au GARAGE avec des ampoules des Backrooms : une étoile de plus, plus de stats et un nouveau look.'));
     if (clarkNew) card('🔦', 'Captain Clark', _t('Titre + thème Backrooms'), 'lg', null, null, _t('100 parties dans les Backrooms ! Le titre légendaire Captain Clark et le thème Backrooms sont à toi (Réglages > Thème).'));
@@ -7976,9 +8061,9 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) pause
 window.addEventListener('resize', () => { resize(); if (state === 'menu') measureMenu(); if (!el.layout.hidden) renderLayout(); });
 window.addEventListener('orientationchange', () => setTimeout(() => { resize(); if (state === 'menu') measureMenu(); if (!el.layout.hidden) renderLayout(); }, 300));
 
-$('#bPlay').addEventListener('click', startRun);
+$('#bPlay').addEventListener('click', playWorld);
 $('#bDg').addEventListener('click', () => openDgMenu());
-$('#bAgain').addEventListener('click', () => { if (G && G.mp && MP.room) { toMenu(); openMp(); return; } if (G && G.world && G.world.dg) { startDg(); return; } if (G && G.chal) { startChal(); return; } if (G && G.ghost) { ghStart(G.ghost, G.world.id); return; } if (G && G.world && G.world.quick) { startQuick(G.world.id); return; } if (nextW) { meta.world = nextW.id; save(); } startRun(); });
+$('#bAgain').addEventListener('click', () => { if (G && G.mp && MP.room) { toMenu(); openMp(); return; } if (G && G.world && G.world.dg) { startDg(); return; } if (G && G.chal) { startChal(); return; } if (G && G.ghost) { ghStart(G.ghost, G.world.id); return; } if (G && G.world && G.world.quick) { startQuick(G.world.id); return; } if (nextW) { meta.world = nextW.id; save(); } if (G && G.mp) { startRun(); return; } toMenu(); playWorld(); });
 $('#bGarage').addEventListener('click', openGarage);
 $('#bGarBack').addEventListener('click', closeGarage);
 for (const b of document.querySelectorAll('#garage .tabs button')) b.addEventListener('click', () => { gTab = b.dataset.tab; el.garage.scrollTop = 0; renderGarage(); });
@@ -8995,7 +9080,7 @@ function openFriendsIn() { el.friends.hidden = false; el.friends.scrollTop = 0; 
 var frPoll = 0;
 setTimeout(pingLoop, 2500);
 /* Bouton retour en haut à droite de chaque menu (flèche dans un carré) ; l'en-tête reste visible en défilant. */
-for (const [sc, bk] of [['quests', 'bQBack'], ['shop', 'bShopBack'], ['garage', 'bGarBack'], ['store', 'bStBack'], ['chests', 'bChBack'], ['alm', 'bAlmBack'], ['prof', 'bPrBack'], ['friends', 'bFrBack'], ['admin', 'bAdBack'], ['lb', 'bLbBack'], ['opts', 'bOptsBack'], ['mp', 'bMpBack']]) {
+for (const [sc, bk] of [['quests', 'bQBack'], ['shop', 'bShopBack'], ['garage', 'bGarBack'], ['store', 'bStBack'], ['chests', 'bChBack'], ['alm', 'bAlmBack'], ['prof', 'bPrBack'], ['friends', 'bFrBack'], ['admin', 'bAdBack'], ['lb', 'bLbBack'], ['opts', 'bOptsBack'], ['mp', 'bMpBack'], ['base', 'bBaseBack']]) {
   const ph = document.querySelector('#' + sc + ' .phead'), ob = $('#' + bk); if (!ph || !ob) continue;
   const b = document.createElement('button'); b.type = 'button'; b.className = 'xback'; b.setAttribute('aria-label', _t('Retour'));
   b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -9820,6 +9905,7 @@ function ghSave() {
   if (AUTH) rpcA('save_ghost', { p_world: w, p_score: g.s, p_wave: g.w, p_path: JSON.stringify({ p: g.p, wv: g.wv }) }).catch(() => {});
 }
 function ghStart(g, w) {
+  if (!nrgPay()) return;
   const w0 = meta.world, nm0 = meta.nm; meta.world = w; meta.nm = false; el.mp.hidden = true; startRun(); meta.world = w0; meta.nm = nm0;
   G.ghost = g; banner(_t('COURSE CONTRE UN FANTÔME'), _tf("{0} · record {1}", [g.n, fmt(g.s)]), C.ion, 2.4);
 }
@@ -10342,19 +10428,20 @@ $('#fuAll').addEventListener('click', fuAll);
 /* ================= Familiers et drones ================= */
 /* Familier : une mini tourelle qui flotte près du tank et tire seule (choisie au Garage, onglet FAMILIER, améliorable).
    Drones : cartes de perks (escorte dès le Monde 1, puis glace M3, feu M4, électro et poison M5, bombardier M6) qui suivent le tank en orbite. */
-const PETJ = { frost: 90, blaze: 180, venom: 280, mortar: 400, prism: 550, tide: 800, magmo: 800, nova: 1200 };   // les familiers coûtent aussi des diams
+const PETJ = { frost: 120, blaze: 240, venom: 380, mortar: 550, prism: 750, tide: 1100, magmo: 1100, nova: 1600 };   // les familiers coûtent aussi des diams
+const PETB = { frost: 10, blaze: 20, venom: 35, mortar: 50, prism: 75, tide: 120, magmo: 120, nova: 180 };   // … et des ampoules des Backrooms
 const PETLV = { frost: 5, blaze: 10, venom: 15, mortar: 22, prism: 30, tide: 35, magmo: 35, nova: 45 };   // niveau joueur pour les débloquer
 const PETS = [
   { id: 'spark', n: _t('Étincelle'), d: _t('Mini tourelle de base : tire sur l’ennemi le plus proche.'), col: 'volt', fx: null, cost: null, rate: 0.55, pct: 0.1 },
-  { id: 'frost', n: _t('Givrette'), d: _t('Ses tirs gèlent : les ennemis touchés sont ralentis.'), col: 'ion', fx: 'slow', cost: ['sh', 3500], rate: 0.7, pct: 0.08 },
-  { id: 'blaze', n: _t('Braise'), d: _t('Ses tirs enflamment les ennemis.'), col: 'ember', fx: 'burn', cost: ['sh', 7000], rate: 0.65, pct: 0.09 },
-  { id: 'venom', n: _t('Venin'), d: _t('Ses tirs empoisonnent les ennemis.'), col: 'ok', fx: 'poison', cost: ['sh', 11000], rate: 0.65, pct: 0.09 },
-  { id: 'mortar', n: _t('Mortier'), d: _t('Lance un obus qui explose en zone.'), col: 'hot', fx: 'bomb', cost: ['sh', 16000], rate: 1.6, pct: 0.32 },
-  { id: 'prism', n: _t('Prisme'), d: _t('Tir double perforant, très rapide.'), col: 'plasma', fx: 'pierce', cost: ['sh', 22000], rate: 0.32, pct: 0.08 },
+  { id: 'frost', n: _t('Givrette'), d: _t('Ses tirs gèlent : les ennemis touchés sont ralentis.'), col: 'ion', fx: 'slow', cost: ['sh', 6000], rate: 0.7, pct: 0.08 },
+  { id: 'blaze', n: _t('Braise'), d: _t('Ses tirs enflamment les ennemis.'), col: 'ember', fx: 'burn', cost: ['sh', 12000], rate: 0.65, pct: 0.09 },
+  { id: 'venom', n: _t('Venin'), d: _t('Ses tirs empoisonnent les ennemis.'), col: 'ok', fx: 'poison', cost: ['sh', 19000], rate: 0.65, pct: 0.09 },
+  { id: 'mortar', n: _t('Mortier'), d: _t('Lance un obus qui explose en zone.'), col: 'hot', fx: 'bomb', cost: ['sh', 28000], rate: 1.6, pct: 0.32 },
+  { id: 'prism', n: _t('Prisme'), d: _t('Tir double perforant, très rapide.'), col: 'plasma', fx: 'pierce', cost: ['sh', 38000], rate: 0.32, pct: 0.08 },
   // v3 : familiers puissants, liés aux sets légendaires et à l'espace
-  { id: 'tide', n: _t('Néréide'), set: 'ocean', d: _t('Familier des abysses : lance des orbes d’eau qui éclatent en flaque. La flaque ralentit et noie les ennemis. +30 % de dégâts avec 2 pièces du set Léviathan océanique.'), col: 'ion', fx: 'water', cost: ['sh', 30000], rate: 1.3, pct: 0.22 },
-  { id: 'magmo', n: _t('Magmaton'), set: 'volcan', d: _t('Familier de lave : crache des bombes de magma qui laissent une mare de lave brûlante. +30 % de dégâts avec 2 pièces du set Titan volcanique.'), col: 'ember', fx: 'lava', cost: ['sh', 30000], rate: 1.4, pct: 0.26 },
-  { id: 'nova', n: _t('Supernova'), d: _t('Familier de l’espace : crée des mini trous noirs de 0,5 s qui attirent les ennemis autour, puis explosent en zone.'), col: 'plasma', fx: 'hole', cost: ['sh', 45000], rate: 2.4, pct: 0.55 }
+  { id: 'tide', n: _t('Néréide'), set: 'ocean', d: _t('Familier des abysses : lance des orbes d’eau qui éclatent en flaque. La flaque ralentit et noie les ennemis. +30 % de dégâts avec 2 pièces du set Léviathan océanique.'), col: 'ion', fx: 'water', cost: ['sh', 55000], rate: 1.3, pct: 0.22 },
+  { id: 'magmo', n: _t('Magmaton'), set: 'volcan', d: _t('Familier de lave : crache des bombes de magma qui laissent une mare de lave brûlante. +30 % de dégâts avec 2 pièces du set Titan volcanique.'), col: 'ember', fx: 'lava', cost: ['sh', 55000], rate: 1.4, pct: 0.26 },
+  { id: 'nova', n: _t('Supernova'), d: _t('Familier de l’espace : crée des mini trous noirs de 0,5 s qui attirent les ennemis autour, puis explosent en zone.'), col: 'plasma', fx: 'hole', cost: ['sh', 80000], rate: 2.4, pct: 0.55 }
 ];
 const petLock = p => PETLV[p.id] && ((meta.pl && meta.pl.lv) || 1) < PETLV[p.id];
 function petSyn(p) { if (!p.set) return 1; if (P && P._syn !== undefined && P._synId === p.id) return P._syn; const n = equipped().filter(i => i.t === 'gear' && i.id.split('.')[0] === p.set).length, k = n >= 2 ? 1.3 : 1; if (P) { P._syn = k; P._synId = p.id; } return k; }
@@ -10475,7 +10562,7 @@ function renderPets() {
   for (const p of PETS) {
     const own = !!meta.pets[p.id], lv = petLv(p.id), on = meta.pet === p.id, card = document.createElement('div'); card.className = 'petc' + (on ? ' on' : '') + (own ? '' : ' lock') + (petSel === p.id ? ' sel' : ''); card.style.setProperty('--pc', C[p.col]);
     const cv = document.createElement('canvas'); cv.width = cv.height = 120; cv.className = 'petcv'; cv.dataset.pet = p.id; card.appendChild(cv);
-    const nm = document.createElement('b'); nm.textContent = p.n; const sm = document.createElement('small'); sm.textContent = own ? (on ? _t('ACTIF') + ' · ' : '') + _t('Niv. ') + lv : petLock(p) ? '🔒 ' + _tf('NIV. JOUEUR {0}', [PETLV[p.id]]) : (p.cost[0] === 'sh' ? '◆ ' + fmt(p.cost[1]) : '✦ ' + fmt(p.cost[1])) + (PETJ[p.id] ? ' + ✦ ' + PETJ[p.id] : '');
+    const nm = document.createElement('b'); nm.textContent = p.n; const sm = document.createElement('small'); sm.textContent = own ? (on ? _t('ACTIF') + ' · ' : '') + _t('Niv. ') + lv : petLock(p) ? '🔒 ' + _tf('NIV. JOUEUR {0}', [PETLV[p.id]]) : (p.cost[0] === 'sh' ? '◆ ' + fmt(p.cost[1]) : '✦ ' + fmt(p.cost[1])) + (PETJ[p.id] ? ' + ✦ ' + PETJ[p.id] : '') + (PETB[p.id] ? ' + 💡 ' + PETB[p.id] : '');
     card.append(nm, sm);
     if (own) { const xb = document.createElement('div'); xb.className = 'petxb'; const fi = document.createElement('i'); fi.style.width = (lv >= PETMAX ? 100 : Math.min(100, petXp(p.id) / petNeed(lv) * 100)) + '%'; xb.appendChild(fi); card.appendChild(xb); if (lv >= 20) card.classList.add('awk'); } card.addEventListener('click', () => { if (!own && petSel === p.id && !petLock(p)) { const cv2 = document.createElement('canvas'); cv2.width = cv2.height = 120; drawPetShape(cv2.getContext('2d'), 60, 62, -Math.PI / 4, p.col, 26, false, true); askBuy(p.n, null, p.cost[1], p.cost[0] === 'sh' ? '◆' : '✦', () => { meta.pets[p.id] = 1; meta.petLv[p.id] = 1; meta.pet = p.id; }, renderPets, cv2); return; } petSel = p.id; renderPets(); }); box.appendChild(card);
   }
@@ -10489,7 +10576,7 @@ function renderPets() {
   for (const [l, t] of PETMS) { const li = document.createElement('li'); if (own && lv >= l) li.className = 'on'; li.textContent = _t('Niv. ') + l + ' · ' + t + (l === 10 ? ' (' + PETFX10[p.id] + ')' : ''); ms.appendChild(li); }
   const bt = document.createElement('div'); bt.className = 'ebtns';
   if (!own && petLock(p)) { const lk = document.createElement('p'); lk.className = 'sub'; lk.textContent = _tf('🔒 Se débloque au niveau joueur {0} (tu es niveau {1}).', [PETLV[p.id], (meta.pl && meta.pl.lv) || 1]); bt.appendChild(lk); }
-  else if (!own) bt.appendChild(buyBtn(p.cost[1], p.cost[0] === 'sh' ? '◆' : '✦', () => { meta.pets[p.id] = 1; meta.petLv[p.id] = 1; meta.pet = p.id; }, renderPets, null, PETJ[p.id] || 0));
+  else if (!own) bt.appendChild(multiBuyBtn({ sh: p.cost[0] === 'sh' ? p.cost[1] : 0, jet: (p.cost[0] === 'jet' ? p.cost[1] : 0) + (PETJ[p.id] || 0), bulb: PETB[p.id] || 0 }, () => { meta.pets[p.id] = 1; meta.petLv[p.id] = 1; meta.pet = p.id; }, renderPets));
   else {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'btn ok' + (meta.pet === p.id ? ' on' : ''); b.textContent = meta.pet === p.id ? _t('✕ RANGER') : _t('✓ CHOISIR');
     b.addEventListener('click', () => { meta.pet = meta.pet === p.id ? '' : p.id; save(); renderPets(); }); bt.appendChild(b);
@@ -10523,10 +10610,177 @@ function frame(now) {
   if (G) { if (G.banner) { G.banner.t -= rdt; if (G.banner.t <= 0) G.banner = null; } if (G.hurtFlash > 0) G.hurtFlash -= rdt; if (G.flash > 0) G.flash -= rdt; }
   render();
 }
+/* ================= MAJ 7 : énergie des mondes =================
+   Chaque partie dans un monde (ou en Infini) coûte 5 énergies. Max 50 au niveau 1, +1 tous les 5 niveaux joueur. 1 énergie toutes les 3 min.
+   Les Backrooms, les parties rapides, le multi et les défis restent gratuits. */
+const NRG_COST = 5, NRG_MS = 180000, NRG_REFILL = 30;
+const nrgMax = () => 50 + Math.floor(plLv() / 5);
+function nrg() {
+  const m = nrgMax(), now = Date.now(); let N = meta.nrg; if (!N || !Number.isFinite(N.v)) N = meta.nrg = { v: m, t: now };
+  if (N.t > now) N.t = now;   // horloge du téléphone reculée
+  if (N.v >= m) N.t = now; else { const k = Math.floor((now - N.t) / NRG_MS); if (k > 0) { N.v = Math.min(m, N.v + k); N.t = N.v >= m ? now : N.t + k * NRG_MS; } }
+  return N;
+}
+const nrgNext = () => { const N = nrg(); return N.v >= nrgMax() ? 0 : Math.max(0, NRG_MS - (Date.now() - N.t)); };
+function nrgPay() {
+  const N = nrg(); if (N.v < NRG_COST) { openNrg(); return false; }
+  N.v -= NRG_COST; if (N.v < nrgMax() && N.v + NRG_COST >= nrgMax()) N.t = Date.now(); save(); renderNrg(); return true;
+}
+function playWorld() { const w = worldById(RUNW || meta.world); if (w && (w.dg || w.quick)) { startRun(); return; } if (nrgPay()) startRun(); }
+function renderNrg() {
+  const b = $('#nrgBar'); if (!b) return; const N = nrg(), m = nrgMax(), nx = nrgNext();
+  $('#nrgV').textContent = N.v + '/' + m; $('#nrgF').style.width = Math.min(100, N.v / m * 100) + '%';
+  $('#nrgT').textContent = N.v >= m ? _t('PLEIN') : '+1 ' + mmss(Math.ceil(nx / 1000));
+  b.classList.toggle('low', N.v < NRG_COST);
+  const pb = $('#bPlay'); if (pb) pb.classList.toggle('nonrg', N.v < NRG_COST);
+}
+$('#nrgBar').addEventListener('click', () => openNrg(true));
+setInterval(() => { try { if (!el.menu.hidden) renderNrg(); const m = $('#nrgM'); if (m && !m.hidden) nrgModalTxt(); } catch (e) {} }, 1000);
+function nrgModalTxt() { const N = nrg(), need = Math.max(0, NRG_COST - N.v), wait = need ? nrgNext() + (need - 1) * NRG_MS : 0;
+  $('#nrgMt').textContent = _tf('Tu as {0} ⚡ sur {1}. Une partie dans un monde coûte 5 ⚡.', [N.v, nrgMax()]);
+  $('#nrgMw').textContent = need ? _tf('Prochaine partie possible dans {0}.', [mmss(Math.ceil(wait / 1000))]) : N.v >= nrgMax() ? _t('Énergie pleine !') : _tf('Tu peux jouer ! +1 ⚡ dans {0}.', [mmss(Math.ceil(nrgNext() / 1000))]); }
+function openNrg(info) {
+  let m = $('#nrgM'); if (!m) { m = document.createElement('div'); m.id = 'nrgM'; m.className = 'news';
+    m.innerHTML = '<div class="newsin panel nrgmod"><div class="nrgbig">⚡</div><h2 class="h1"></h2><p id="nrgMt"></p><p id="nrgMw" class="nrgw"></p><div class="bpa"><button class="btn primary" id="nrgFill" type="button"></button><button class="btn" id="nrgDg" type="button"></button><button class="btn" id="nrgNo" type="button"></button></div><p class="sub" id="nrgMs"></p></div>';
+    (document.getElementById('stage') || document.body).appendChild(m);
+    m.querySelector('h2').textContent = _t('PLUS ASSEZ D’ÉNERGIE'); $('#nrgDg').textContent = _t('🚪 BACKROOMS (gratuit, +5 ⚡ si tu les finis)'); $('#nrgNo').textContent = _t('ATTENDRE');
+    $('#nrgMs').textContent = _t('1 ⚡ revient toutes les 3 minutes, et +1 ⚡ max tous les 5 niveaux joueur. Les Backrooms, les parties rapides et le multi ne coûtent rien, et terminer les Backrooms rapporte +5 ⚡.');
+    $('#nrgFill').addEventListener('click', () => { if (meta.jet < NRG_REFILL) { $('#nrgFill').innerHTML = _t('IL MANQUE ') + costHTML('✦', NRG_REFILL - meta.jet); return; } meta.jet -= NRG_REFILL; const N = nrg(); N.v = Math.max(N.v, nrgMax()); N.t = Date.now(); save(); initAudio(); uis(() => sfx.buy()); m.hidden = true; renderNrg(); });
+    $('#nrgDg').addEventListener('click', () => { m.hidden = true; openDgMenu(); });
+    $('#nrgNo').addEventListener('click', () => { m.hidden = true; });
+    m.addEventListener('click', e => { if (e.target === m) m.hidden = true; }); }
+  $('#nrgFill').innerHTML = _t('⚡ RECHARGER À FOND') + ' · ' + costHTML('✦', NRG_REFILL); m.querySelector('h2').textContent = info ? _t('ÉNERGIE') : _t('PLUS ASSEZ D’ÉNERGIE'); $('#nrgNo').textContent = info ? _t('OK') : _t('ATTENDRE'); nrgModalTxt(); m.hidden = false;
+}
+/* ================= MAJ 6 : Ma base (mode AFK façon Clash of Clans) =================
+   Les bâtiments produisent des nuggets et des diams en temps réel, même jeu fermé. On récolte, on améliore (temps réel), on accélère avec des diams. */
+const BASEB = {
+  qg: { n: _t('QG'), ic: '🏰', max: 8, x: 500, y: 345, d: _t('Le cœur de ta base. Son niveau limite celui des autres bâtiments et débloque les nouveaux.'), c0: { sh: 2000, bulb: 8 }, t0: 5 },
+  mine: { n: _t('Extracteur de nuggets'), ic: '◆', max: 10, x: 190, y: 200, prod: 'sh', d: _t('Creuse des nuggets en continu.'), c0: { sh: 700 }, t0: 3 },
+  raf: { n: _t('Condensateur de diams'), ic: '✦', max: 10, x: 810, y: 200, prod: 'jet', qg: 2, d: _t('Condense lentement des diams à partir de l’électricité de la base.'), c0: { sh: 2500, bulb: 5 }, t0: 10 },
+  bat: { n: _t('Batterie'), ic: '🔋', max: 8, x: 190, y: 520, d: _t('Stocke la production : plus elle est grande, plus tu peux rester longtemps sans récolter.'), c0: { sh: 1200 }, t0: 4 },
+  lab: { n: _t('Laboratoire'), ic: '⚗️', max: 8, x: 810, y: 520, qg: 3, d: _t('Optimise toute la base : +6 % de production par niveau.'), c0: { sh: 4000, bulb: 15 }, t0: 15 }
+};
+const BASE_IDS = Object.keys(BASEB);
+function baseInit() { if (!meta.base) meta.base = { b: { qg: 1, mine: 1, raf: 0, bat: 1, lab: 0 }, st: { mine: 0, raf: 0 }, t: Date.now(), jobs: [], bld: 1 }; return meta.base; }
+const baseRate = (id, B) => { const L = B.b[id] || 0; if (!L) return 0; const k = 1 + 0.06 * (B.b.lab || 0); return id === 'mine' ? 60 * Math.pow(1.38, L - 1) * k : id === 'raf' ? 0.2 * Math.pow(1.3, L - 1) * k : 0; };   // par heure
+const baseHours = B => 4 + 2 * (B.b.bat || 1);
+const baseCap = (id, B) => baseRate(id, B) * baseHours(B);
+const baseCost = (id, L) => { const c = BASEB[id].c0; return { sh: Math.round(c.sh * Math.pow(1.8, L - 1) / 50) * 50, bulb: c.bulb ? Math.round(c.bulb * Math.pow(1.6, L - 1)) : 0 }; };
+const baseTime = (id, L) => Math.min(1440, Math.round(BASEB[id].t0 * Math.pow(2.1, L - 1))) * 60000;   // ms
+const baseLvMax = (id, B) => id === 'qg' ? BASEB.qg.max : Math.min(BASEB[id].max, B.b.qg + 2);
+const fmtDur = ms => { const m = Math.ceil(ms / 60000); return m >= 60 ? Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0') : Math.max(0, m) + ' min'; };
+function baseTick() {   // fait avancer la production et termine les chantiers
+  const B = baseInit(), now = Date.now(); let dt = (now - B.t) / 3600000; if (!(dt > 0)) dt = 0; B.t = now;
+  for (const j of B.jobs.slice()) if (now >= j.end) { B.b[j.id] = (B.b[j.id] || 0) + 1; B.jobs.splice(B.jobs.indexOf(j), 1); B.done = (B.done || 0) + 1; }
+  for (const id of ['mine', 'raf']) B.st[id] = Math.min(baseCap(id, B), (B.st[id] || 0) + baseRate(id, B) * dt);
+  return B;
+}
+function baseCollect(id, quiet) {
+  const B = baseTick(), v = Math.floor(B.st[id] || 0); if (v < 1) return 0; B.st[id] -= v;
+  if (id === 'mine') meta.shards += v; else meta.jet += v; if (!quiet) { save(); initAudio(); uis(() => sfx.pick()); } return v;
+}
+let baseSel = 'qg', baseRAF = 0, baseHit = [];
+function baseSummary() { const B = baseTick(), sh = Math.floor(B.st.mine || 0), j = Math.floor(B.st.raf || 0), full = ['mine', 'raf'].some(id => B.b[id] && B.st[id] >= baseCap(id, B) - 0.01), idle = B.jobs.length < B.bld, ready = B.done;
+  return { sh, j, full, idle, ready }; }
+function renderBaseCard() {
+  const sub = $('#baseSub'), dot = $('#baseDot'); if (!sub) return; const S = baseSummary();
+  sub.textContent = S.sh || S.j ? _tf('Prêt à récolter : ◆ {0} · ✦ {1}', [fmt(S.sh), S.j]) + (S.full ? ' · ' + _t('STOCK PLEIN') : '') : _t('Elle produit des nuggets et des diams, même quand tu ne joues pas');
+  dot.hidden = !(S.full || S.ready || (S.idle && S.sh > 200));
+}
+function openBase() { baseInit(); baseTick(); meta.base.done = 0; save(); el.menu.hidden = true; $('#base').hidden = false; $('#base').scrollTop = 0; renderBase(); cancelAnimationFrame(baseRAF); baseRAF = requestAnimationFrame(baseLoop); }
+function closeBase() { $('#base').hidden = true; cancelAnimationFrame(baseRAF); el.menu.hidden = false; renderMenu(); }
+function renderBase() {
+  const B = baseTick(); $('#baseBal').innerHTML = `<span class="sh">${fmt(meta.shards)}</span> &nbsp; <span class="jt">${fmt(meta.jet)}</span> &nbsp; <span class="cb">💡 ${fmt(meta.bulb || 0)}</span>`;
+  $('#baseBld').textContent = _tf('👷 Ouvriers : {0}/{1} libres · stockage {2} h', [B.bld - B.jobs.length, B.bld, baseHours(B)]);
+  const P0 = $('#basePanel'); P0.innerHTML = ''; const id = baseSel, D = BASEB[id], L = B.b[id] || 0, job = B.jobs.find(j => j.id === id);
+  const h = document.createElement('div'); h.className = 'bph'; h.innerHTML = '<i></i><div><b></b><small></small></div>'; h.querySelector('i').textContent = D.ic; h.querySelector('b').textContent = D.n;
+  h.querySelector('small').textContent = L ? _tf('Niveau {0} / {1}', [L, D.max]) : _t('Pas encore construit'); P0.appendChild(h);
+  const p = document.createElement('p'); p.className = 'bpd'; p.textContent = D.d; P0.appendChild(p);
+  const st = document.createElement('ul'); st.className = 'bps'; const li = t => { const x = document.createElement('li'); x.textContent = t; st.appendChild(x); };
+  if (D.prod) { const r = baseRate(id, B); if (L) { li(_tf('Production : {0} par heure', [(D.prod === 'sh' ? '◆ ' + fmt(Math.round(r)) : '✦ ' + r.toFixed(2))])); li(_tf('Stock : {0} / {1}', [Math.floor(B.st[id] || 0), Math.floor(baseCap(id, B))])); }
+    if (L < D.max) { const B2 = { b: Object.assign({}, B.b, { [id]: L + 1 }) }; li(_tf('Au niveau {0} : {1} par heure', [L + 1, D.prod === 'sh' ? '◆ ' + fmt(Math.round(baseRate(id, B2))) : '✦ ' + baseRate(id, B2).toFixed(2)])); } }
+  if (id === 'bat') { li(_tf('Stockage : {0} h de production', [baseHours(B)])); if (L < D.max) li(_tf('Au niveau {0} : {1} h', [L + 1, 4 + 2 * (L + 1)])); }
+  if (id === 'lab') li(_tf('Bonus de production : +{0} %', [6 * L]));
+  if (id === 'qg') li(_tf('Niveau max des autres bâtiments : {0}', [Math.min(10, B.b.qg + 2)]));
+  P0.appendChild(st);
+  const row = document.createElement('div'); row.className = 'bpa';
+  if (D.prod && L && (B.st[id] || 0) >= 1) { const c = document.createElement('button'); c.type = 'button'; c.className = 'btn primary'; c.textContent = _tf('RÉCOLTER {0}', [(D.prod === 'sh' ? '◆ ' : '✦ ') + fmt(Math.floor(B.st[id]))]); c.onclick = () => { baseCollect(id); renderBase(); }; row.appendChild(c); }
+  if (job) { const left = job.end - Date.now(), dc = Math.max(1, Math.ceil(left / 300000)), b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.innerHTML = _tf('⏱ {0} · FINIR', [fmtDur(left)]) + ' ' + costHTML('✦', dc);
+    b.onclick = () => { const c2 = Math.max(1, Math.ceil((job.end - Date.now()) / 300000)); if (meta.jet < c2) { b.innerHTML = _t('IL MANQUE ') + costHTML('✦', c2 - meta.jet); return; } meta.jet -= c2; job.end = Date.now(); baseTick(); save(); uis(() => sfx.buy()); renderBase(); }; row.appendChild(b); }
+  else if (L < D.max) {
+    const need = D.qg && !L && B.b.qg < D.qg ? D.qg : (L + 1 > baseLvMax(id, B) ? (id === 'qg' ? 0 : L - 1) : 0), C2 = baseCost(id, L + 1);
+    if (need) { const q = document.createElement('p'); q.className = 'sub'; q.textContent = _tf('🔒 Il faut le QG niveau {0}.', [Math.max(need, D.qg || 0)]); row.appendChild(q); }
+    else if (B.jobs.length >= B.bld) { const q = document.createElement('p'); q.className = 'sub'; q.textContent = _t('Tous tes ouvriers sont occupés.'); row.appendChild(q); }
+    else { const lab = (L ? _t('AMÉLIORER') : _t('CONSTRUIRE')) + ' · ' + fmtDur(baseTime(id, L + 1)); row.appendChild(multiBuyBtn({ sh: C2.sh, bulb: C2.bulb }, () => { baseTick(); meta.base.jobs.push({ id, end: Date.now() + baseTime(id, L + 1) }); }, renderBase, lab)); }
+  }
+  if (B.bld < 2) { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.innerHTML = _t('👷 2e OUVRIER') + ' ' + costHTML('✦', 300); b.onclick = () => { if (meta.jet < 300) { b.innerHTML = _t('IL MANQUE ') + costHTML('✦', 300 - meta.jet); return; } meta.jet -= 300; meta.base.bld = 2; save(); uis(() => sfx.buy()); renderBase(); }; row.appendChild(b); }
+  P0.appendChild(row);
+}
+$('#bBase').addEventListener('click', openBase); $('#bBaseBack').addEventListener('click', closeBase);
+$('#bBaseAll').addEventListener('click', () => { const a = baseCollect('mine', true), b = baseCollect('raf', true); if (a || b) { save(); initAudio(); uis(() => sfx.buy()); toast(_tf('Récolté : ◆ {0} · ✦ {1}', [fmt(a), b])); } else toast(_t('Rien à récolter pour l’instant.')); renderBase(); });
+$('#baseCv').addEventListener('click', e => { const cv = e.currentTarget, r = cv.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 1000, y = (e.clientY - r.top) / r.height * 700;
+  for (const h of baseHit) if (Math.abs(x - h.x) < h.w && Math.abs(y - h.y) < h.h) { if (h.col) { baseCollect(h.id); } baseSel = h.id; renderBase(); return; } });
+function baseLoop() {
+  if ($('#base').hidden) return; baseRAF = requestAnimationFrame(baseLoop);
+  const cv = $('#baseCv'), w = cv.clientWidth, hh = cv.clientHeight, d = Math.min(2, window.devicePixelRatio || 1); if (!w) return;
+  if (cv.width !== Math.round(w * d)) { cv.width = Math.round(w * d); cv.height = Math.round(hh * d); }
+  const g = cv.getContext('2d'), B = baseTick(), t = performance.now() / 1000, sx = cv.width / 1000, sy = cv.height / 700; g.setTransform(sx, 0, 0, sy, 0, 0); baseHit = [];
+  if (((t * 2) | 0) !== baseLoop._s) { baseLoop._s = (t * 2) | 0; if (B.done) { B.done = 0; save(); renderBase(); uis(() => sfx.level()); } else if (B.jobs.length) renderBase(); }
+  // sol
+  const bg = g.createRadialGradient(500, 350, 50, 500, 350, 640); bg.addColorStop(0, '#1d2a3a'); bg.addColorStop(1, '#0a0e18'); g.fillStyle = bg; g.fillRect(0, 0, 1000, 700);
+  g.strokeStyle = 'rgba(120,180,255,.07)'; g.lineWidth = 1; for (let x = 0; x <= 1000; x += 50) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 700); g.stroke(); } for (let y = 0; y <= 700; y += 50) { g.beginPath(); g.moveTo(0, y); g.lineTo(1000, y); g.stroke(); }
+  g.strokeStyle = 'rgba(255,210,63,.18)'; g.lineWidth = 18; g.lineCap = 'round'; for (const id of BASE_IDS) if (id !== 'qg') { g.beginPath(); g.moveTo(500, 345); g.lineTo(BASEB[id].x, BASEB[id].y); g.stroke(); }
+  g.strokeStyle = 'rgba(255,210,63,.55)'; g.lineWidth = 2; g.setLineDash([10, 14]); g.lineDashOffset = -t * 30; for (const id of BASE_IDS) if (id !== 'qg') { g.beginPath(); g.moveTo(500, 345); g.lineTo(BASEB[id].x, BASEB[id].y); g.stroke(); } g.setLineDash([]);
+  // petit tank qui patrouille
+  { const a = t * 0.35, px = 500 + Math.cos(a) * 330, py = 350 + Math.sin(a) * 230; try { const st = baseStats(); drawTank(g, px, py, a + Math.PI / 2, st, 16, 0, false, skinById(meta.skin)); } catch (e) {} }
+  for (const id of BASE_IDS) baseDrawB(g, id, B, t);
+}
+function baseDrawB(g, id, B, t) {
+  const D = BASEB[id], L = B.b[id] || 0, x = D.x, y = D.y, job = B.jobs.find(j => j.id === id), sel = baseSel === id, R = id === 'qg' ? 92 : 74;
+  baseHit.push({ id, x, y, w: R + 10, h: R + 10 });
+  g.save(); g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); g.ellipse(x + 8, y + R * 0.75, R * 1.05, R * 0.35, 0, 0, TAU); g.fill();
+  if (sel) { g.strokeStyle = '#ffd23f'; g.lineWidth = 3; g.setLineDash([8, 6]); g.lineDashOffset = -t * 20; g.beginPath(); g.arc(x, y, R + 16, 0, TAU); g.stroke(); g.setLineDash([]); }
+  if (!L && !job) { g.globalAlpha = 0.55; g.strokeStyle = '#8a86b0'; g.lineWidth = 3; g.setLineDash([8, 8]); g.strokeRect(x - R * 0.8, y - R * 0.8, R * 1.6, R * 1.6); g.setLineDash([]); g.globalAlpha = 1;
+    g.fillStyle = '#c9c6e8'; g.font = '800 32px sans-serif'; g.textAlign = 'center'; g.fillText(D.qg && B.b.qg < D.qg ? '🔒 QG ' + D.qg : _t('CONSTRUIRE'), x, y + 11); g.fillStyle = '#a8a4d0'; g.font = '700 26px sans-serif'; g.fillText(D.n.split(' ')[0], x, y + R + 34); g.restore(); return; }
+  const lv = Math.max(1, L);
+  if (id === 'qg') { g.fillStyle = '#1a1640'; g.strokeStyle = '#ffd23f'; g.lineWidth = 5; poly(g, x, y, R, 6, Math.PI / 6); g.fill(); g.stroke(); g.strokeStyle = 'rgba(255,210,63,.5)'; g.lineWidth = 2; for (let i = 1; i <= Math.min(4, lv); i++) { poly(g, x, y, R * (1 - i * 0.14), 6, Math.PI / 6); g.stroke(); }
+    g.fillStyle = '#ffd23f'; g.beginPath(); g.arc(x, y, R * 0.25, 0, TAU); g.fill(); g.strokeStyle = '#ffd23f'; g.lineWidth = 4; g.beginPath(); g.moveTo(x, y - R * 0.25); g.lineTo(x, y - R * 1.1); g.stroke();
+    g.fillStyle = Math.sin(t * 4) > 0 ? '#ff3d81' : '#5a2040'; g.beginPath(); g.arc(x, y - R * 1.15, 7, 0, TAU); g.fill(); }
+  else if (id === 'mine') { g.fillStyle = '#2a2410'; g.strokeStyle = '#ffd23f'; g.lineWidth = 4; g.fillRect(x - R * 0.75, y - R * 0.5, R * 1.5, R * 1.1); g.strokeRect(x - R * 0.75, y - R * 0.5, R * 1.5, R * 1.1);
+    g.save(); g.translate(x, y - R * 0.55); g.rotate(Math.sin(t * 3) * 0.25); g.fillStyle = '#5a4a1a'; g.fillRect(-6, -R * 0.7, 12, R * 0.7); g.restore();
+    g.save(); g.translate(x, y + R * 0.05); g.rotate(t * 3); g.fillStyle = '#ffd23f'; for (let i = 0; i < 3; i++) { g.rotate(TAU / 3); g.beginPath(); g.moveTo(0, 0); g.lineTo(R * 0.4, -8); g.lineTo(R * 0.4, 8); g.closePath(); g.fill(); } g.restore(); }
+  else if (id === 'raf') { g.fillStyle = 'rgba(61,232,255,.12)'; g.strokeStyle = '#3de8ff'; g.lineWidth = 4; g.beginPath(); g.arc(x, y, R * 0.8, 0, TAU); g.fill(); g.stroke();
+    g.save(); g.translate(x, y); g.rotate(t * 0.8); g.fillStyle = '#bff3ff'; g.shadowColor = '#3de8ff'; g.shadowBlur = 18; g.beginPath(); g.moveTo(0, -R * 0.45); g.lineTo(R * 0.32, 0); g.lineTo(0, R * 0.45); g.lineTo(-R * 0.32, 0); g.closePath(); g.fill(); g.restore(); }
+  else if (id === 'bat') { const n = Math.min(4, 1 + Math.floor(lv / 2)); for (let i = 0; i < n; i++) { const bx = x - (n - 1) * 20 + i * 40, fill = 0.4 + 0.6 * ((Math.sin(t + i) + 1) / 2);
+      g.fillStyle = '#10241a'; g.strokeStyle = '#5fe08a'; g.lineWidth = 3; g.fillRect(bx - 15, y - R * 0.7, 30, R * 1.4); g.strokeRect(bx - 15, y - R * 0.7, 30, R * 1.4); g.fillStyle = '#5fe08a'; g.fillRect(bx - 11, y + R * 0.66 - R * 1.3 * fill, 22, R * 1.3 * fill); g.fillRect(bx - 6, y - R * 0.7 - 8, 12, 8); } }
+  else if (id === 'lab') { g.fillStyle = '#1d1238'; g.strokeStyle = '#b56bff'; g.lineWidth = 4; g.beginPath(); g.arc(x, y + R * 0.2, R * 0.8, Math.PI, 0); g.lineTo(x + R * 0.8, y + R * 0.5); g.lineTo(x - R * 0.8, y + R * 0.5); g.closePath(); g.fill(); g.stroke();
+    g.fillStyle = '#d6b0ff'; for (let i = 0; i < 4; i++) { const k = (t * 0.6 + i / 4) % 1; g.globalAlpha = 1 - k; g.beginPath(); g.arc(x - 20 + i * 13, y + R * 0.1 - k * R, 4 + 3 * k, 0, TAU); g.fill(); } g.globalAlpha = 1; }
+  if (job) { g.fillStyle = 'rgba(0,0,0,.45)'; g.fillRect(x - R, y - R * 0.3, R * 2, 46); g.save(); g.beginPath(); g.rect(x - R, y - R * 0.3, R * 2, 46); g.clip(); g.strokeStyle = '#ffd23f'; g.lineWidth = 8; for (let k = -R * 2; k < R * 2; k += 22) { g.beginPath(); g.moveTo(x + k + (t * 20) % 22, y - R * 0.3); g.lineTo(x + k + 20 + (t * 20) % 22, y - R * 0.3 + 46); g.stroke(); } g.restore();
+    g.fillStyle = '#fff'; g.font = '900 30px sans-serif'; g.textAlign = 'center'; g.fillText('⏱ ' + fmtDur(job.end - Date.now()), x, y - R * 0.3 + 34); }
+  // badge de niveau + nom
+  g.fillStyle = '#0b0a1a'; g.strokeStyle = '#ffd23f'; g.lineWidth = 4; g.beginPath(); g.arc(x + R * 0.8, y + R * 0.65, 24, 0, TAU); g.fill(); g.stroke(); g.fillStyle = '#ffd23f'; g.font = '900 28px sans-serif'; g.textAlign = 'center'; g.fillText(L, x + R * 0.8, y + R * 0.65 + 10);
+  g.fillStyle = '#e8e6ff'; g.font = '800 26px sans-serif'; g.fillText(id === 'qg' ? 'QG' : D.n.split(' ')[0], x, y + R + 36);
+  // bulle de récolte
+  if (D.prod && L) { const v = Math.floor(B.st[id] || 0), full = B.st[id] >= baseCap(id, B) - 0.01; if (v >= 1) { const by = y - R - 34 + Math.sin(t * 3 + x) * 5;
+      g.fillStyle = full ? '#ff3d81' : '#ffffff'; g.beginPath(); g.roundRect ? g.roundRect(x - 62, by - 26, 124, 52, 26) : g.rect(x - 62, by - 26, 124, 52); g.fill(); g.beginPath(); g.moveTo(x - 10, by + 24); g.lineTo(x, by + 40); g.lineTo(x + 10, by + 24); g.fill();
+      g.fillStyle = full ? '#fff' : (D.prod === 'sh' ? '#b8860b' : '#0aa3c2'); g.font = '900 28px sans-serif'; g.fillText((D.prod === 'sh' ? '◆' : '✦') + ' ' + (v >= 10000 ? Math.round(v / 1000) + 'k' : v), x, by + 10);
+      baseHit.unshift({ id, x, y: by, w: 64, h: 30, col: true }); } }
+  g.restore();
+}
 /* ================= Nouveautés : s'affiche au lancement après chaque grosse mise à jour, avec tout l'historique ================= */
-const UPD_VER = 5;
+const UPD_VER = 7;
 document.addEventListener('news', () => showNews(true));
 const UPDATES = [
+  { v: 7, n: _t('MAJ 7 · Énergie'), ic: '⚡', items: [
+    ['⚡', _t('Énergie des mondes'), _t('Chaque partie dans un monde ou en Infini coûte 5 ⚡. Tu en as 50 au niveau 1, +1 tous les 5 niveaux joueur, et 1 ⚡ revient toutes les 3 minutes.')],
+    ['🚪', _t('Toujours gratuit'), _t('Les Backrooms, les parties rapides, le multi et les défis ne coûtent pas d’énergie. Et terminer les Backrooms rapporte +5 ⚡.')],
+    ['💎', _t('Plus d’énergie ?'), _t('Tu peux recharger à fond pour 30 diams quand tu n’en as plus.')] ] },
+  { v: 6, n: _t('MAJ 6 · Ma base et morts-vivants'), ic: '🏰', items: [
+    ['🏰', _t('Nouveau mode : Ma base'), _t('Une base façon Clash of Clans qui produit des nuggets et des diams même jeu fermé. QG, Extracteur, Condensateur de diams, Batterie, Laboratoire, ouvriers et améliorations en temps réel.')],
+    ['🧟', _t('Infestation revue (épique)'), _t('1, 2 puis 3 sbires sortent des ennemis infestés, +5 % par niveau. Elle peut sauter sur 2 ennemis proches. Suprême Fléau des morts : 5 sbires +40 %.')],
+    ['💀', _t('Nécromancien'), _t('En plus des sbires ×2, 15 % des ennemis éliminés reviennent dans ton camp sous leur vraie forme.')],
+    ['🐾', _t('Familiers'), _t('Bien plus chers, et ils coûtent aussi des ampoules 💡.')],
+    ['📖', _t('Almanach et aide'), _t('Toutes les nouveautés y sont expliquées.')] ] },
   { v: 5, n: _t('MAJ 5 · Perks et transformations'), ic: '⚡', items: [
     ['🫧', _t('Balle sous bulle (mythique, Monde 5+)'), _t('Une bulle peut entourer ta balle et arrêter un tir ennemi. 4 niveaux, puis la Méga-bulle suprême.')],
     ['🎯', _t('Visée (épique)'), _t('Pointillés devant le canon et une croix à la portée max. 3 niveaux.')],

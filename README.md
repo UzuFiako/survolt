@@ -16,6 +16,27 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 7 · Énergie
+
+- Chaque partie dans un **monde** ou en **Infini** coûte **5 ⚡**.
+- **50 ⚡** au niveau 1, puis **+1 ⚡ max tous les 5 niveaux** joueur.
+- **1 ⚡ revient toutes les 3 minutes**, même jeu fermé.
+- Les **Backrooms**, les parties rapides, le multi et les défis restent **gratuits**.
+- Plus d’énergie ? Recharge à fond pour **30 diams**.
+
+### MAJ 6 · Ma base et morts-vivants
+
+- **Nouveau mode : Ma base** (bouton sous les Backrooms). Une base façon Clash of Clans qui produit des **nuggets** et des **diams** en temps réel, même jeu fermé :
+  - **QG** : limite le niveau des autres bâtiments et débloque les nouveaux.
+  - **Extracteur de nuggets** et **Condensateur de diams** (QG 2) : la production.
+  - **Batterie** : combien d’heures de production tu peux stocker.
+  - **Laboratoire** (QG 3) : +6 % de production par niveau.
+  - Améliorations en temps réel, à finir tout de suite avec des diams ; un 2e ouvrier pour 300 diams.
+- **Infestation** (épique, 3 niveaux) : 1, 2 puis 3 sbires sortent des ennemis infestés (+5 % par niveau), et elle peut sauter sur 2 ennemis proches. Suprême **Fléau des morts** : 5 sbires +40 %.
+- **Nécromancien** (légendaire) : sbires ×2, et 15 % des ennemis éliminés reviennent dans ton camp sous leur vraie forme (50 % de leur vie, 75 % de leurs dégâts).
+- **Familiers** bien plus chers, payés aussi en ampoules 💡.
+- **Almanach et Comment jouer** mis à jour (Backrooms, transformations, base, perks du Monde 6).
+
 ### MAJ 5 · Perks et transformations
 
 - **Balle sous bulle** (mythique, Monde 5+) : une bulle peut entourer ta balle et arrêter un tir ennemi, puis ta balle continue. 4 niveaux, puis la Méga-bulle suprême.
