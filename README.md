@@ -17,14 +17,40 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 ## Le jeu en bref
 
 - **8 mondes** de 20 à 50 vagues, de plus en plus durs, avec mini-boss, boss et boss final. Le mode **Infini**, les **parties rapides** (3 à 15 min) et le **multi** (défi de la semaine, co-op, course 1v1, fantôme, duels).
-- **Nightmare** après le Monde 8, **Backrooms** (ampoules 💡) et **Ma base** (production même hors ligne).
+- **Nightmare** après le Monde 8, **Backrooms** (3 mondes de 3 étages, ampoules 💡) et **Ma base** (bâtiments déplaçables, décorations, expéditions de familiers, production même hors ligne).
 - **Prestige** (50 niveaux) après le Monde 8, avec un **arbre de talents** jusqu'à l'Évolution Oméga.
-- **Garage** : équipements et sets légendaires, fusion, runes, châssis à niveaux et étoiles, familiers, look (skins, couleurs, balles, accessoires), ULT.
+- **Garage** : équipements et sets légendaires, fusion, runes, châssis à niveaux, étoiles et maîtrises, familiers (avec maîtrises), look (skins, couleurs, balles, accessoires), ULT.
 - **Atelier** (100 niveaux par amélioration), **coffres** et **clés**, **Boutique** (offres du jour, packs exclusifs).
 - **Profil** : niveau joueur, prestige, titres, succès, statistiques, cosmétiques de profil. **Social** : amis, messages, chat global.
 - **Almanach** : monstres, objets, perks, familiers… avec des bonus de collection.
 
 ## Mises à jour
+
+### MAJ 12 · Base, Backrooms et maîtrises
+
+**Ma base façon Clash of Clans**
+- Grille de 20 × 14 cases : avec **✥ DÉPLACER**, on glisse chaque bâtiment et chaque décoration où on veut (vert = libre, rouge = occupé).
+- 3 nouveaux bâtiments : **Forge à parchemins** (📜, QG 2), **Serre à ampoules** (💡, QG 3), **Hangar d'expédition** (QG 2). « Tout récolter » ramasse les 4 productions.
+- 9 **décorations** à acheter en nuggets (arbre néon, lampadaire, drapeau, cristal, banc, fontaine, statue de tank, héliport, tour Tesla), qu'on peut ranger contre la moitié du prix.
+- **Niveau de base** (somme des niveaux des bâtiments) avec des paliers à 10, 20, 30, 40, 50 et 60 : diams et clés.
+
+**Expéditions de familiers**
+- Depuis le Hangar : 1 place, puis jusqu'à 4 selon son niveau. On envoie un familier (sauf celui équipé) pour 2, 8 ou 24 h.
+- Au retour : nuggets, parchemins et XP du familier, plus des clés et des diams sur les longues expéditions. Plus le familier est haut niveau et maîtrisé, plus il rapporte. On peut finir une expédition avec des diams.
+
+**Maîtrises**
+- Chaque **châssis** et chaque **familier** gagne de la maîtrise avec les éliminations faites avec lui. 11 rangs, de Novice à Mythique (150 000 éliminations).
+- Bonus permanents : +2 % de dégâts et de PV par rang pour le châssis, +4 % de dégâts par rang pour le familier. Chaque nouveau rang donne aussi des nuggets et des diams (dans la boîte de réception).
+- Les maîtrises ne sont jamais remises à zéro, même au prestige. Elles s'affichent dans la fiche du châssis et du familier.
+
+**Menu**
+- Boutons Atelier, Garage, Coffres, Almanach, Classement et Boutique plus gros : grande icône au-dessus du nom.
+
+**Backrooms : 3 mondes × 3 étages**
+- Les Backrooms, les Bureaux vides (après le Monde 8) et les Poolrooms (après les 8 Nightmare) sont maintenant 3 mondes de 3 étages chacun.
+- Chaque étage est ×1,2 plus dur que celui du dessus, avec 2 salles de plus et plus d'élites. Les Bureaux sont plus durs que le 3e étage des Backrooms, les Poolrooms plus durs que le 3e étage des Bureaux.
+- Chaque salle de boss donne un équipement, un coffre, des diams et +1 perk à choisir. Le boss du 3e étage termine le monde.
+- Chaque monde des Backrooms terminé donne +1 emplacement de perk. Le titre Évadé des Backrooms demande les 3 mondes.
 
 ### MAJ 11 · Prestige
 
