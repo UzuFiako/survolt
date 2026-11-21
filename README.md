@@ -14,7 +14,84 @@ La progression est enregistrée sur le téléphone, et en ligne si tu es connect
 
 Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancement. On peut le rouvrir dans Réglages > Nouveautés.
 
+## Le jeu en bref
+
+- **8 mondes** de 20 à 50 vagues, de plus en plus durs, avec mini-boss, boss et boss final. Le mode **Infini**, les **parties rapides** (3 à 15 min) et le **multi** (défi de la semaine, co-op, course 1v1, fantôme, duels).
+- **Nightmare** après le Monde 8, **Backrooms** (ampoules 💡) et **Ma base** (production même hors ligne).
+- **Prestige** (50 niveaux) après le Monde 8, avec un **arbre de talents** jusqu'à l'Évolution Oméga.
+- **Garage** : équipements et sets légendaires, fusion, runes, châssis à niveaux et étoiles, familiers, look (skins, couleurs, balles, accessoires), ULT.
+- **Atelier** (100 niveaux par amélioration), **coffres** et **clés**, **Boutique** (offres du jour, packs exclusifs).
+- **Profil** : niveau joueur, prestige, titres, succès, statistiques, cosmétiques de profil. **Social** : amis, messages, chat global.
+- **Almanach** : monstres, objets, perks, familiers… avec des bonus de collection.
+
 ## Mises à jour
+
+### MAJ 11 · Prestige
+
+**Mondes**
+- 2 mondes de plus. La Singularité devient le **Monde 8** (50 vagues, très dur, butin ×1,6 en plus). Nouveau **Monde 6 « Nébuleuse noire »** avec la difficulté de l'ancien Monde 6, et **Monde 7 « Horizon des événements »**, plus dur (45 vagues, butin ×1,3 en plus). Chacun a son arène et sa musique.
+- Chaque monde terminé donne toujours +1 emplacement de perk (jusqu'à +8).
+- **Nightmare** se débloque après le Monde 8 et devient plus dur selon le monde : +7 % de PV et de dégâts par monde (×1,49 au Monde 8). Les 8 mondes comptent pour le titre et pour les Backrooms.
+
+**Prestige (50 niveaux)**
+- Disponible après le Monde 8, depuis le profil (ou la case Prestige du menu).
+- Avant de confirmer, un écran détaille ce qu'on perd, ce qu'on garde, ce qu'on gagne et le risque. Il faut appuyer deux fois.
+- **Perdu** : mondes, Nightmare et Backrooms, atelier, niveau joueur (et ce qu'il débloque), familiers non exclusifs et leurs niveaux, almanach et ses bonus, records de score.
+- **Gardé** : tout le Garage (équipements, runes, châssis, cosmétiques), la Boutique et les packs (avec leurs familiers), les monnaies, les titres, la base, le passe et les amis.
+- **Gagné** : +3 points de talent (+1 bonus tous les 10 prestiges), gains ×(1 + 0,1 × prestige) sur les nuggets, diams et XP, et une compensation de l'almanach dans la boîte de réception (nuggets, diams, parchemins, clés selon le nombre de découvertes).
+- **Risque** : les ennemis font +18 % de dégâts par prestige, dans tous les modes (×10 au prestige 50).
+- 11 titres de prestige : Renaissant (P1), Revenant (P5), Phénix (P10), Survolté éternel (P15), Transcendant (P20), Avatar de l'orage (P25), Briseur de mondes (P30), Seigneur du voltage (P35), Immortel du prestige (P40), Légende vivante (P45), OMÉGA (P50).
+- Le prestige et le niveau s'affichent dans le profil, sur les cartes de joueur, dans la liste d'amis et dans le chat global.
+
+**Arbre de talents**
+- 4 branches de 6 talents : Puissance, Blindage, Technologie, Vitesse. Chaque rang s'ouvre en mettant des points dans sa branche (0, 3, 6, 10, 15, 22).
+- Talents exclusifs : canon de prestige (+1 canon), seconde vie, essaim de satellites, lames orbitales, orage, têtes chercheuses, canons de flanc…
+- 4 ultimes : Annihilateur (tirs explosifs, éclairs en chaîne), Forteresse vivante (bouclier, vol de vie), Singularité portable (onde de choc, Surcharge plus forte), Vitesse lumière.
+- **Évolution Oméga** une fois les 4 ultimes appris : halo Oméga autour du tank, +50 % de dégâts et de PV, onde Oméga dévastatrice toutes les 7 s.
+- Les 150 points de l'arbre s'atteignent vers le prestige 48. Redistribution possible pour 300 diams.
+
+**Almanach et succès**
+- Bonus de collection permanents à 20, 50, 90, 140, 200, 270, 350 et 450 découvertes (dégâts, PV, XP, critique, nuggets et diams), avec une barre de progression en haut de l'almanach.
+- 22 succès longs, comptés sur toute la vie du compte (le prestige ne les efface pas) : ennemis, boss, parties, mondes gagnés, Nightmare, vague 150 en Infini, score de 5 millions, prestiges 10/25/50, Évolution Oméga, 100 jours de connexion, 500 h de jeu, Backrooms, skins, châssis. Récompenses en diams, nuggets et clés, à récupérer dans le profil.
+
+### MAJ 10 · Familiers et Boutique
+
+**Familiers**
+- Chaque familier a sa propre créature animée avec des yeux qui suivent la cible.
+- Nouveau familier exclusif Dragonnet céleste (Pack Céleste) : éclair qui rebondit sur 2 ennemis, 4 au niveau 10.
+- Néréide (Pack Océanique), Magmaton (Pack Volcanique), Dragonnet céleste et Supernova (Pack Spacelord) ne s'obtiennent qu'avec leur pack. Ceux qui ont déjà acheté un pack reçoivent son familier automatiquement.
+- Fiche du familier refaite : grand aperçu, étiquettes (exclusif, possédé), cases dégâts / cadence / effet / niveau / bonus de set, paliers, et « comment l'avoir ».
+
+**Boutique**
+- Sections de couleur : packs (rose), offres du jour (orange), clés (bronze), coffres (violet), nuggets (jaune foncé), diams (bleu foncé).
+- Contenu des packs en icônes sur la carte et dans la fenêtre d'achat (set, ULT, skin, familier, châssis, thème, balle, coffres, diams, nuggets). Le Pack Céleste mentionne maintenant son familier.
+- Nuggets plus chers : 400 / 1 000 / 2 800 / 6 500, plus 2 nouveaux paliers 50 000 (5 500 diams) et 115 000 (12 000 diams).
+- Diams : 2 nouveaux paliers 8 000 diams à 69,99 € et 12 000 diams à 99,99 €. Il faut créer leurs liens Stripe (`d9000`, `d14000` dans `PAY`), sinon ils s'affichent « À venir ».
+
+**Garage**
+- Onglet ULT : chaque ULT a une animation d'aperçu en boucle (jauge qui se remplit puis l'ULT en action) : Surcharge, Coulée de lave, Typhon, Souffle céleste.
+- La case « Équipement » disparaît des Couleurs : porter 2 pièces d'un set ne change plus l'apparence du tank. Les skins Titan volcanique et Léviathan océanique se choisissent uniquement dans Cosmétiques, et les couleurs restent libres.
+
+**Visuels**
+- Dragon céleste et Pack Céleste en vert.
+- Menu principal : chaque bouton a son icône dessinée et sa couleur (Atelier orange, Garage cyan, Coffres or, Almanach violet, Classement vert, Boutique rose).
+
+### MAJ 9 · Skins exclusifs et diams
+
+**Rareté Exclusif**
+- Nouvelle rareté *Exclusif* (EX, rose), affichée juste sous Légendaire. Ces skins ne tombent jamais des coffres et ne s'achètent pas : il faut débloquer leur pack.
+- Léviathan océanique (Pack Océanique, bleu avec des touches de rouge) et Titan volcanique (Pack Volcanique, rouge et noir avec deux grosses mains griffues) arrivent dans la liste des cosmétiques. Le Dragon céleste (Pack Céleste) passe en Exclusif.
+- Mêmes noms et mêmes skins partout : Look, ULT, Boutique, avatars, sets et nouveautés. L'ULT Souffle céleste montre le Dragon céleste.
+
+**Garage**
+- Les skins légendaires et exclusifs ont maintenant leur aperçu et leur bouton d'essai.
+- En ouvrant le Garage ou en changeant d'onglet, toutes les sections du Look sont repliées.
+
+**Diams beaucoup plus rares**
+- Diams gagnés en partie ×0,4 (tous les modes), mini-boss 35 % de chance d'1 diam, boss 1, victoire +3, boss secret 10.
+- Coffres, roulette de fin de monde, passe gratuit, quêtes quotidiennes, hebdo et multi, niveaux joueur : environ 2 à 3 fois moins de diams.
+- Connexion quotidienne ×0,55 seulement, et condensateur de la base divisé par 2 : revenir chaque jour et grinder reste la voie gratuite.
+- Échange nuggets → diams : 4 500 nuggets pour 15 diams (avant 2 000).
 
 ### MAJ 8 · Cosmétiques, atelier et confort
 
@@ -76,6 +153,10 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - **Son** : le jeu se mélange avec ta musique (Spotify…) au lieu de la couper, il repart normalement après un vocal ou un appel, et le clic des boutons fait partie des Bruitages.
 
 **Interface**
+- **3 sets d’équipement** sauvegardés dans le Garage (SET 1 / 2 / 3, avec leur puissance) : on passe de l’un à l’autre en un geste.
+- **Boîte de réception refaite** : onglets À récupérer / Historique, la raison du cadeau mise en avant, et la liste exacte de ce que tu reçois (ou as reçu).
+- **Amis en ligne** : le point vert et « vu il y a … » reviennent dans les amis, les profils et le multi.
+- **Panel admin plus clair** : statut en ligne et niveau dans la liste, nombre de joueurs en ligne, fiche joueur avec chiffres clés (niveau, puissance, record, mondes, diams, nuggets, dépenses, amis) et sections repliables.
 - **Look premium** : écran Multijoueur avec les modes en grille et le défi de la semaine en bandeau, ATH en verre (vie, XP, vague, boutons), menus plus soignés.
 - **Paysage** : dans le Garage (Équipement et Runes), deux volets qui défilent chacun de leur côté ; ULT en cartes compactes ; nom de l’arme sous le panneau de vie ; barre d’XP jusqu’au bord ; rien sous l’encoche.
 - **Almanach** : filtre des perks par monde (Monde 1 à 6).
