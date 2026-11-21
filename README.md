@@ -19,13 +19,86 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - **8 mondes** de 20 à 50 vagues, de plus en plus durs, avec mini-boss, boss et boss final. Le mode **Infini**, les **parties rapides** (3 à 15 min) et le **multi** (défi de la semaine, co-op, course 1v1, fantôme, duels).
 - **Nightmare** après le Monde 8, **Backrooms** (3 mondes de 3 étages, ampoules 💡) et **Ma base**, un village médiéval à aménager (bâtiments déplaçables, décorations, expéditions de familiers, production même hors ligne).
 - **Prestige** (50 niveaux) après le Monde 8, avec un **arbre de talents** jusqu'à l'Évolution Oméga.
-- **Garage** : équipements et sets légendaires, fusion, runes, châssis à niveaux, étoiles et maîtrises, familiers (avec maîtrises), look (skins, couleurs, balles, accessoires), ULT.
+- **Garage** : équipements et sets légendaires, fusion, runes, châssis à niveaux, étoiles et maîtrises, familiers (avec maîtrises), look (skins, dont 3 skins divins, couleurs, balles, accessoires), ULT.
 - **Atelier** (100 niveaux par amélioration), **coffres** et **clés**, **Boutique** (offres du jour, packs exclusifs).
-- **Profil** : niveau joueur, prestige, titres, succès, statistiques, cosmétiques de profil. **Social** : amis, messages, chat global.
+- **Profil** : niveau joueur, prestige, titres, succès, statistiques, et une photo de profil animée (30 bordures, 23 fonds, 25 animations). **Social** : amis, messages, chat global.
 - **Aide** : tutoriel animé, visite guidée du menu avec un doigt qui montre l'essentiel, bulles d'info sur chaque monnaie et chaque stat.
 - **Almanach** : monstres, objets, perks, familiers… avec des bonus de collection.
 
 ## Mises à jour
+
+### Correctif admin (v119)
+- Panneau Admin → Modération → « 🧹 RETIRER MES PACKS ET CADEAUX » : retire de ton compte (demora.mathias@gmail.com uniquement) les packs Océanique, Volcanique, Céleste, Spacelord et Testeur : sets LG, skins, familiers, thèmes, châssis, balles, couleurs et titres. Les diams, nuggets et coffres ne sont pas touchés.
+
+## MAJ 15 · Premium partout
+
+**Photo de profil vraiment animée**
+- Les fonds, bordures et animations sont maintenant dessinés en direct sur deux calques, un derrière et un devant la photo.
+  - Ils bougent toujours, même quand l'iPhone a « Réduire les animations » activé : c'est ce réglage qui figeait tout avant.
+  - Les petites vignettes tournent à 30 images/s, et seules les photos visibles à l'écran sont animées.
+- Toutes les animations sont refaites :
+  - ailes de phénix avec de vraies plumes qui battent, plus une queue et une crête de feu ;
+  - galaxie de 500 étoiles en 3D qui passe devant et derrière la photo ;
+  - hologramme projeté, tempête avec éclairs ramifiés, glitch RVB, prisme et Couronne Oméga.
+- **30 bordures, 23 fonds et 25 animations**, avec des nouvelles à bas niveau (CO, R, SR), pour qu'il y ait une récompense presque à chaque palier.
+- **Bordures « civilisations »** :
+  - Olympe (270) et Soleil aztèque (320) ;
+  - Sanctuaire japonais (420), Rosace de cathédrale (470) et Pharaon (560) ;
+  - Mandala (640) ;
+  - Temple impérial (730) : laque rouge et frise d'or, deux dragons dorés qui poursuivent la perle de feu, lanternes qui se balancent.
+- Un 👁 sur chaque vignette ouvre l'aperçu en grand, avec la rareté et la description.
+
+**Rangé par rareté**
+- Titres, bordures, fonds, animations et photos de profil sont sur des lignes par rareté, comme dans le Garage.
+- 12 nouveaux titres faciles (4 CO, 4 R, 4 SR) : Débutant, Premier sang, Curieux, Pilote, Tireur d'élite, Briseur de boss, Rescapé, Collectionneur, Explorateur, Plongeur des Backrooms, Fléau des boss, Marqueur.
+
+**Skins**
+- **3 skins divins** (Ultra Premium Légendaire), jamais dans les coffres. Il faut un niveau joueur minimum, puis payer en diams, nuggets et ampoules :
+  - **Séraphin** (niveau 300) : six ailes de lumière, rayons divins, auréole. ✦ 3 000 + ◆ 1 500 000 + 💡 1 500.
+  - **Solaris** (niveau 450) : soleil vivant, couronnes de rayons, protubérances de plasma. ✦ 4 500 + ◆ 2 500 000 + 💡 2 500.
+  - **Olympien** (niveau 600) : nuées d'orage, foudre, laurier d'or, marbre gravé. ✦ 6 500 + ◆ 4 000 000 + 💡 4 000.
+  - Chacun a ses tirs, sa traînée en partie et sa photo de profil.
+- **12 nouvelles formes** :
+  - CO : Pentagone, Triangle, Goutte, Octogone ;
+  - R : Losange, Bouclier, Croissant de lune, Trèfle ;
+  - SR animées : Turbine, Carapace, Radar, Fusée.
+- Toutes les formes ont un reflet brillant.
+- **12 nouvelles couleurs** :
+  - CO : Brique, Olive, Bleu ciel, Prune ;
+  - R : Saumon, Lagon, Lavande, Pistache ;
+  - SR : Jade, Cobalt, Framboise, Ambre.
+- Skins légendaires et de pack retravaillés :
+  - Supernova : disque d'accrétion lisse avec effet Doppler et filaments ;
+  - Léviathan : tourbillon d'eau, points bioluminescents ;
+  - Titan : chaleur, roches en fusion en orbite, couronne de flammes ;
+  - Dragon céleste : rubans de jade et d'or, nuages doux.
+
+**ULT et attaques**
+- SURCHARGE : explosion avec rayons de lumière et éclairs, puis une aura (anneaux qui tournent, étincelles, arcs électriques) tant qu'elle dure.
+- Toutes les ondes de choc ont 3 couches : halo, anneau et liseré blanc.
+- Tes tirs laissent une traînée, et les tirs ennemis ont un halo.
+- Coulée de lave : du magma coule dans le rayon. Typhon : de l'écume tourbillonne autour de la boule d'eau.
+
+**Corrections**
+- Almanach : le texte « Collection : X découvertes » ne se superpose plus à la ligne du dessous.
+
+### MAJ 14 · Niveau 750
+
+**Niveau joueur**
+- Le niveau max passe de 500 à **750**. Le bonus de niveau est réparti sur les 750 niveaux (au max : +105 % de PV, +75 % de dégâts) et la rareté des coffres de niveau suit la nouvelle échelle.
+- Tout ce qui se débloque avec le niveau arrive environ 1,5× plus tard :
+  - bordures, fonds et animations de profil ;
+  - titres : Vétéran 75, Élite 150, Légende 300, Mythe 450, Immortel 600, Survolté 750 ;
+  - familiers : Givrette 25, Braise 45, Venin 65, Mortier 85, Prisme 110, Supernova 150 (les familiers de pack n'ont pas de niveau requis).
+
+**Animations de profil**
+- 7 nouvelles animations premium : Aurore boréale (360), Tempête électrique (420), Hologramme (480), Galaxie spirale (540), Ailes de phénix (600), Prisme cosmique (680) et Couronne Oméga (750, le niveau max).
+- Les anciennes ont été refaites pour bien se voir : rayon de scan, étincelles, anneau de flammes, glitch avec décalage de couleurs, orbite à 3 points, pulsation plus marquée.
+
+**Skins de pack**
+- Léviathan océanique : crête dorsale rouge qui ondule, ouïes, reflet nacré qui glisse et lumière des abysses.
+- Titan volcanique : deux cornes de roche et des yeux de lave qui brillent.
+- Dragon céleste : écailles de lumière qui gravitent et halo vert autour de la perle.
 
 ### MAJ 13 · Village, interface et confort
 
