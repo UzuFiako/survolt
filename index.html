@@ -326,7 +326,7 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .land #over .grid{grid-template-columns:repeat(3,1fr)}
 .land .obtns,.land .pbtns{grid-template-columns:2fr 1fr 1fr}
 .land .obtns .primary,.land .pbtns .primary{grid-column:auto}
-.land .shoplist,.land .optlist{grid-template-columns:1fr 1fr}
+.land .shoplist,.land .optlist{grid-template-columns:1fr} .land .shbody,.land .optbody{grid-template-columns:1fr 1fr}
 .land #shop .sub{display:none}
 .land .item{padding:8px 10px}
 .land .chips{max-height:92px;overflow-y:auto}
@@ -436,6 +436,15 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .mst{--mc:#8a86b0;display:grid;gap:4px;margin:8px 0;padding:9px 10px;border-radius:11px;background:color-mix(in srgb,var(--mc) 10%,var(--panel));border:1px solid color-mix(in srgb,var(--mc) 45%,transparent)}
 .mst .mh{display:flex;align-items:center;gap:8px;flex-wrap:wrap} .mst .mb{font:800 11px/1 var(--body);padding:4px 6px;border-radius:6px;background:var(--mc);color:#0b0a1a} .mst b{font:800 13px var(--body);color:var(--mc)} .mst small{font:600 11.5px var(--body);color:var(--ink)}
 .mst .mbar{height:6px;border-radius:4px;background:rgba(var(--irgb),.1);overflow:hidden} .mst .mbar i{display:block;height:100%;background:var(--mc)} .mst em{font:600 10.5px/1.3 var(--body);font-style:normal;color:var(--dim)}
+.shfold{--cc:#fff;border-radius:14px;background:linear-gradient(160deg,color-mix(in srgb,var(--cc) 12%,var(--panel)),var(--panel) 60%);border:1px solid color-mix(in srgb,var(--cc) 35%,transparent);overflow:hidden}
+.shfold>summary{list-style:none;display:grid;grid-template-columns:1fr auto auto;gap:4px 10px;align-items:center;padding:13px 14px;cursor:pointer} .shfold>summary::-webkit-details-marker{display:none}
+.shfold>summary b{font:900 14px/1 var(--body);letter-spacing:.18em;color:var(--cc)} .shfold>summary small{grid-column:1;font:600 11.5px var(--body);color:var(--dim)} .shfold>summary em{grid-row:1;grid-column:2;font:800 11px var(--body);font-style:normal;color:var(--ok)}
+.shfold>summary .chv{grid-row:1/4;grid-column:3;font-style:normal;color:var(--cc);transition:transform .2s} .shfold[open]>summary .chv{transform:rotate(180deg)}
+.shfb{grid-column:1/3;height:5px;border-radius:3px;background:rgba(var(--irgb),.1);overflow:hidden} .shfb i{display:block;height:100%;background:var(--cc)}
+.shbody{display:grid;gap:8px;padding:0 8px 8px}
+.optfold{background:var(--panel);border-radius:12px;margin:0 0 8px;overflow:hidden;border:1px solid rgba(var(--irgb),.08)} .optfold>summary{list-style:none;display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:13px 14px;cursor:pointer} .optfold>summary::-webkit-details-marker{display:none}
+.optfold>summary b{font:800 14px/1.2 var(--body);color:var(--ink)} .optfold>summary small{grid-column:1;font:600 11.5px/1.3 var(--body);color:var(--dim)} .optfold>summary i{grid-row:1/3;grid-column:2;align-self:center;font-style:normal;color:var(--volt);transition:transform .2s} .optfold[open]>summary i{transform:rotate(180deg)}
+.optfold .optbody{display:grid;gap:8px;padding:0 10px 10px} .optfold .padhelp{margin:0}
 .achl{display:grid;gap:6px} .achi{display:flex;gap:10px;align-items:flex-start;padding:9px;border-radius:11px;background:rgba(var(--irgb),.05)} .achi .ai{font-size:22px;line-height:1;width:30px;text-align:center;flex:none} .achi>div{flex:1;display:grid;gap:3px}
 .achi b{font:800 13px var(--body);color:var(--ink)} .achi small{font:600 11.5px/1.3 var(--body);color:var(--dim)} .achi .ab{height:6px;border-radius:4px;background:rgba(var(--irgb),.1);overflow:hidden} .achi .ab i{display:block;height:100%;background:var(--volt)} .achi em{font:700 10.5px var(--body);font-style:normal;color:var(--dim)}
 .achi.rdy{background:rgba(255,210,63,.12);box-shadow:inset 0 0 0 1px rgba(255,210,63,.5)} .achi.got{opacity:.6} .achi.got .ab i{background:var(--ok)}
@@ -1336,12 +1345,14 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 @media (max-width:440px){.mtop{gap:5px} .mtop .ibtn{padding:0 6px;min-width:34px} .mtop .ibtn svg{width:19px;height:19px} .nrgchip{padding:0 8px!important;gap:4px!important} .nrgchip .eico.tile{background:none;box-shadow:none;width:18px;height:18px} .nrgchip .eico.tile svg{width:100%;height:100%} #bUser{padding:0 8px 0 6px!important;gap:5px} .nrgc small{font-size:9px} #bUser{min-width:0;flex:0 1 auto} #uTag{max-width:none;min-width:0;font-size:11px}}
 /* portrait : la barre prend toute la largeur, l'énergie collée en haut à droite */
 #stage:not(.land) .mtop{right:calc(var(--ir,0px) + 12px);align-items:stretch}
-#stage:not(.land) #nrgBar{margin-left:auto;flex:0 0 auto}
-#stage:not(.land) .mtop>.ibtn:not(#bUser):not(#nrgBar){flex:0 0 auto}
+#stage:not(.land) #mPrC{margin-left:auto;flex:0 0 auto} #stage:not(.land) #nrgBar{flex:0 0 auto}
+#stage:not(.land) .mtop>.ibtn:not(#bUser):not(#nrgBar):not(#mPrC){flex:0 0 auto}
 /* paysage : l'énergie passe sous le réglage + le nom */
 .land .mtop{flex-wrap:wrap;row-gap:0}
 .land .mtop::before{content:'';flex-basis:100%;height:0;order:8}
-.land #nrgBar{order:9;margin-top:8px}
+.land #nrgBar{order:9;margin-top:8px} .land #mPrC{order:9;margin-top:8px}
+.prchip{--pc:#9fc3e0;gap:5px!important;padding:0 9px!important;border-color:color-mix(in srgb,var(--pc) 60%,transparent)!important} .prchip .pri{font-style:normal;font-size:15px} .prchip b{font:400 15px/1 var(--display);color:var(--pc)} .prchip.ready{box-shadow:0 0 12px -2px var(--pc);animation:pulse3 1.4s ease-in-out infinite alternate}
+@media (max-width:440px){.prchip{padding:0 6px!important;gap:3px!important} .prchip b{font-size:13px}}
 @media (max-width:350px){.nrgchip .nrgc small{display:none}}
 .eico{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.2em;font-style:normal;line-height:0;flex:none}
 .eico svg{width:100%;height:100%;fill:none;stroke:var(--ec,currentColor);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -1635,6 +1646,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
     <button id="bInbox" class="ibtn qbtn" type="button" aria-label="Boîte de réception"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.6 2H4.4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><i class="qdot" hidden>0</i></button>
     <button id="bQuests" class="ibtn qbtn" type="button" aria-label="Quêtes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8h6M9 11.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>QUÊTES</span><i class="qdot" hidden>!</i></button>
     <button id="bGChat" class="ibtn" type="button" aria-label="Social"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 9.5h8M8 12.5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>SOCIAL</span></button>
+    <button id="mPrC" class="ibtn prchip" type="button" aria-label="Prestige"><i class="pri">💠</i><b id="mPr">0</b></button>
     <button id="nrgBar" class="ibtn nrgchip" type="button" aria-label="Énergie"><i>⚡</i><span class="nrgc"><b id="nrgV">50/50</b><small id="nrgT"></small></span><span class="nrgtr"><span id="nrgF"></span></span></button>
   </div>
   <div class="sheet">
@@ -1648,7 +1660,6 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
         <div id="mPowC" class="mpowc" role="button" tabindex="0" aria-label="Voir le détail de la puissance"><dt>⚡ Puissance · touche pour le détail ›</dt><dd id="mPow" class="pw">0</dd></div>
         <div><dt>Record</dt><dd id="mBest">0</dd></div>
         <div><dt>Mondes</dt><dd id="mWorlds">0/8</dd></div>
-        <div id="mPrC" role="button" tabindex="0"><dt>💠 Prestige</dt><dd id="mPr">0</dd></div>
         <div><dt>🔑 Clés</dt><dd id="mKeys" class="ky">0</dd></div>
         <div><dt>Nuggets</dt><dd id="mShards" class="sh">0</dd></div>
         <div><dt>Diams</dt><dd id="mJet" class="jt">0</dd></div>
@@ -1678,6 +1689,7 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
       <div class="dgwrap solo"><button id="bDg" class="dgcard" type="button"><span class="dgfx" aria-hidden="true"></span><span class="dgi" aria-hidden="true">🚪</span><span class="dgt"><b>BACKROOMS</b><small id="dgSub">Mode exploration · 3 étages · salles aléatoires</small></span><em class="dgnew">NOUVEAU</em><i class="dgp" aria-hidden="true">▶</i></button>
       </div>
       <button id="bBase" class="basecard" type="button"><span class="bsi" aria-hidden="true">🏰</span><span class="bst"><b>MA BASE</b><small id="baseSub">Elle produit des nuggets et des diams, même quand tu ne joues pas</small></span><i class="bsdot" id="baseDot" hidden></i><span class="bsgo">›</span></button>
+      </div>
       <div class="cta">
         <div class="row4">
           <button id="bShop" class="btn mb" type="button" style="--mc:#ff8a3d"><i class="mbic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h12M5 20l1.5-4h6l1.5 4" fill="currentColor" fill-opacity=".35" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14.5 3.5l6 6-2.2 2.2-6-6z" fill="currentColor"/><path d="M13.8 9.6L8.5 15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M19 15.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" fill="#fff"/></svg></i><span>ATELIER</span></button>
@@ -1687,7 +1699,6 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
           <button id="bLb" class="btn mb" type="button" style="--mc:#6dffb0"><i class="mbic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="6" height="11" fill="currentColor"/><rect x="3" y="13" width="6" height="7" fill="currentColor" fill-opacity=".45"/><rect x="15" y="15" width="6" height="5" fill="currentColor" fill-opacity=".3"/><path d="M12 2.5l1.3 2.7 2.9.4-2.1 2 .5 2.9-2.6-1.4-2.6 1.4.5-2.9-2.1-2 2.9-.4z" fill="#ffd23f"/></svg></i><span>CLASSEMENT</span></button>
           <button id="bStore" class="btn mb" type="button" style="--mc:#ff5ad1"><i class="mbic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z" fill="currentColor" fill-opacity=".35" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 10V7a3 3 0 0 1 6 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 12.5l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3z" fill="#fff"/></svg></i><span>BOUTIQUE</span></button>
         </div>
-      </div>
       <p class="hint" id="mHint" hidden></p>
     </div>
   </div>
@@ -6674,7 +6685,7 @@ function setOpt(k, v) {
   renderOpts();
 }
 function renderOpts() {
-  const box = $('#optList'); box.innerHTML = '';
+  const box = $('#optList'); { const ph = document.querySelector('.padhelp'); if (ph && box.contains(ph)) box.after(ph); } box.innerHTML = '';
   for (const o of OPTS) {
     if (o.only && !meta.opt[o.only]) continue;
     const row = document.createElement('div'); row.className = 'opt'; row.dataset.k = o.k;
@@ -6723,12 +6734,18 @@ function renderOpts() {
   row.append(nm, b, h); box.appendChild(row);
   // rangement en 3 rubriques : commandes, affichage, son
   const rows = {}; for (const r of [...box.children]) rows[r.dataset.k] = r; box.innerHTML = '';
-  for (const [title, ks] of [[_t('🎮 COMMANDES'), ['sens', 'lock', 'layout']], [_t('🖥️ AFFICHAGE'), ['lang', 'side', 'uiz', 'zoom', 'theme']], [_t('🔊 SON'), ['mus', 'track', 'snd', 'musVol', 'sfxVol']]]) {
-    const h3 = document.createElement('h3'); h3.className = 'optsec'; h3.textContent = title; box.appendChild(h3);
-    for (const k of ks) if (rows[k]) { box.appendChild(rows[k]); delete rows[k]; }
+  const G0 = [['cmd', _t('🎮 COMMANDES ET TOUCHES'), _t('Sensibilité, visée, disposition des boutons, manette'), ['sens', 'lock', 'layout']], ['aff', _t('🖥️ AFFICHAGE'), _t('Langue, côté, taille de l’interface, zoom, thème'), ['lang', 'side', 'uiz', 'zoom', 'theme']],
+    ['son', _t('🔊 MUSIQUE ET SON'), _t('Musique, bruitages, volumes, morceau joué'), ['mus', 'track', 'snd', 'musVol', 'sfxVol']], ['aut', _t('⚙️ AUTRES'), _t('Le reste des réglages'), null]];
+  for (const [id, title, sub, ks] of G0) {
+    const list = ks ? ks.filter(k => rows[k]) : Object.keys(rows); if (!list.length && id !== 'cmd') continue;
+    const d = document.createElement('details'); d.className = 'optfold'; d.open = optOpen.has(id); d.addEventListener('toggle', () => { if (d.open) optOpen.add(id); else optOpen.delete(id); });
+    const sm = document.createElement('summary'); sm.innerHTML = '<b></b><small></small><i>▾</i>'; sm.querySelector('b').textContent = title; sm.querySelector('small').textContent = sub; d.appendChild(sm);
+    const body = document.createElement('div'); body.className = 'optbody'; for (const k of list) { body.appendChild(rows[k]); delete rows[k]; }
+    if (id === 'cmd') { const ph = document.querySelector('.padhelp'); if (ph) body.appendChild(ph); }
+    d.appendChild(body); box.appendChild(d);
   }
-  for (const k in rows) box.appendChild(rows[k]);
 }
+const optOpen = new Set();
 /* ---- Éditeur de disposition ---- */
 let lSel = null, ld = null;
 function openLayout() { el.opts.hidden = true; el.layout.hidden = false; lSel = null; renderLayout(); }
@@ -6845,7 +6862,7 @@ function renderMenu() {
   { const d = document.querySelector('#bQuests .qdot'); if (d) d.hidden = !questsReady(); } inboxDot();
   $('#mBest').textContent = fmt(meta.best); $('#mShards').textContent = fmt(meta.shards); $('#mJet').textContent = fmt(meta.jet); $('#mBulb').textContent = fmt(meta.bulb || 0); $('#mKeys').textContent = fmt(meta.keys || 0); try { $('#mPow').textContent = fmt(myPower()); } catch (e) {}
   $('#mWorlds').textContent = WORLDS.filter(w => w.waves && meta.wdone[w.id]).length + '/' + NW;
-  { const e = $('#mPr'); if (e) { e.textContent = prLv() + '/' + PR_MAX + (prReady() ? ' ✦' : ''); e.style.color = prCol(prLv()); } }
+  { const e = $('#mPr'), c = $('#mPrC'); if (e) { e.textContent = 'P' + prLv(); c.style.setProperty('--pc', prCol(prLv())); c.classList.toggle('ready', prReady()); c.setAttribute('aria-label', _tf('Prestige {0} sur {1}', [prLv(), PR_MAX])); } }
   $('#mHint').textContent = COARSE
     ? (meta.opt.lock ? _t('Stick gauche pour bouger, stick droit pour viser et tirer. ') : _t('Premier doigt pour bouger, deuxième doigt pour viser et tirer. ')) + _t('Le bonus TIR AUTO fait tirer le tank tout seul pendant 15 s.')
     : _t('ZQSD ou flèches pour bouger, clic maintenu pour tirer, Espace pour le dash, E pour la surcharge, Q pour l’ULT de la tenue.');
@@ -8084,6 +8101,7 @@ function closeChest() { el.chOpen.hidden = true; CH = null; if (chFrom === 'stor
 
 let shopFrom = 'menu';
 const SHOPIC = {"m_dmg": "<path d=\"M5 19 19 5M14 5h5v5M5 14l5 5\"/>", "m_hp": "<path d=\"M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z\"/>", "m_spd": "<path d=\"M3 17a9 9 0 1 1 18 0M12 17l4-6\"/>", "m_xp": "<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z\"/>", "m_luck": "<path d=\"m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z\"/>", "m_reroll": "<path d=\"M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7\"/>", "m_regen": "<path d=\"M12 21s-8-5-8-11a5 5 0 0 1 8-3.5A5 5 0 0 1 20 10c0 6-8 11-8 11zM12 9v6M9 12h6\"/>", "m_crit": "<circle cx=\"12\" cy=\"12\" r=\"8\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 1v4M12 19v4M1 12h4M19 12h4\"/>", "m_mag": "<path d=\"M6 3v9a6 6 0 0 0 12 0V3h-4v9a2 2 0 0 1-4 0V3zM6 7h4M14 7h4\"/>", "m_dash": "<path d=\"M13 5l7 7-7 7M4 12h15M4 7h5M4 17h5\"/>", "m_ult": "<rect x=\"3\" y=\"7\" width=\"16\" height=\"10\" rx=\"2\"/><path d=\"M21 10v4M11 8.5 8.5 12h4l-2.5 3.5\"/>", "m_gold": "<path d=\"M12 3 21 9l-9 12L3 9z\"/><path d=\"M3 9h18M9 9l3 12 3-12\"/>", "m_rng": "<path d=\"M2 12h14M12 7l5 5-5 5M20 6v12\"/>", "m_dashx": "<path d=\"M3 12h18M17 8l4 4-4 4M7 8l-4 4 4 4\"/>", "m_ovr": "<path d=\"M13 2 4 14h7l-1 8 9-12h-7z\"/>", "m_start": "<path d=\"M5 21V4M5 4h11l-2 4 2 4H5\"/>", "m_pet": "<circle cx=\"12\" cy=\"12\" r=\"3.5\"/><circle cx=\"12\" cy=\"12\" r=\"9\" stroke-dasharray=\"3 3\"/><circle cx=\"21\" cy=\"12\" r=\"1.6\"/>"};
+const shOpen = new Set();
 function renderShop() {
   $('#sShards').textContent = fmt(meta.shards); const list = $('#shopList'); list.innerHTML = '';
   { const tot = SHOP.reduce((a, it) => a + (meta.shop[it.id] || 0), 0), all = SHOP.reduce((a, it) => a + it.max, 0), hd = document.createElement('div'); hd.className = 'shhead';
@@ -8091,7 +8109,11 @@ function renderShop() {
     hd.querySelector('.shpow small').textContent = _t('PUISSANCE'); hd.querySelector('.shpow b').textContent = '⚡ ' + fmt(powNow());
     hd.querySelector('.shall small').textContent = _t('ATELIER COMPLÉTÉ'); hd.querySelector('.shall em').textContent = Math.floor(tot / all * 100) + ' %  ·  ' + tot + '/' + all; list.appendChild(hd); }
   for (const [ck, cn, cc, ids] of SHCAT) {
-    const sec = document.createElement('div'); sec.className = 'shsec'; sec.style.setProperty('--cc', cc); sec.textContent = cn; list.appendChild(sec);
+    const its = ids.map(i => SHOP.find(x => x.id === i)).filter(Boolean), lvS = its.reduce((a, it) => a + (meta.shop[it.id] || 0), 0), mxS = its.reduce((a, it) => a + it.max, 0), canN = its.filter(it => { const c = shopCost(it, meta.shop[it.id] || 0); return c !== null && meta.shards >= c; }).length;
+    const fold = document.createElement('details'); fold.className = 'shfold'; fold.style.setProperty('--cc', cc); fold.open = shOpen.has(ck); fold.addEventListener('toggle', () => { if (fold.open) shOpen.add(ck); else shOpen.delete(ck); });
+    const sm = document.createElement('summary'); sm.innerHTML = '<b></b><small></small><span class="shfb"><i></i></span><em></em><i class="chv">▾</i>'; sm.querySelector('b').textContent = cn;
+    sm.querySelector('small').textContent = _tf('{0} amélioration(s) · niv. {1} / {2}', [its.length, lvS, mxS]); sm.querySelector('.shfb i').style.width = (lvS / mxS * 100).toFixed(1) + '%'; sm.querySelector('em').textContent = canN ? _tf('{0} achetable(s)', [canN]) : '';
+    const sec = document.createElement('div'); sec.className = 'shbody'; fold.append(sm, sec); list.appendChild(fold);
     for (const id of ids) { const it = SHOP.find(x => x.id === id); if (!it) continue;
       const lv = meta.shop[it.id] || 0, cost = shopCost(it, lv), tr = shTier(lv, it.max), [tn, tc] = SHTIER[tr], mx = cost === null, row = document.createElement('div');
       row.className = 'item shc' + (mx ? ' max' : '') + (!mx && meta.shards >= cost ? ' afford' : ''); row.style.setProperty('--cc', cc); row.style.setProperty('--tc', tc);
@@ -8110,7 +8132,7 @@ function renderShop() {
       b.setAttribute('aria-label', mx ? it.n + _t(' au maximum') : _tf("Acheter {0} pour {1} nuggets", [it.n, cost]));
       b.addEventListener('click', () => { if (mx || meta.shards < cost) return; meta.shards -= cost; meta.shop[it.id] = lv + 1; save(); initAudio(); uis(() => sfx.buy());
         const nt = shTier(lv + 1, it.max) > tr; renderShop(); const nr = [...list.querySelectorAll('.shc')].find(x => x.dataset.id === it.id); if (nr) { nr.classList.add('bought'); if (nt) { nr.classList.add('tierup'); toast(_tf('{0} passe au rang {1} !', [it.n, SHTIER[shTier(lv + 1, it.max)][0]])); } } });
-      side.appendChild(b); row.dataset.id = it.id; row.appendChild(side); list.appendChild(row); }
+      side.appendChild(b); row.dataset.id = it.id; row.appendChild(side); sec.appendChild(row); }
   }
 }
 function openShop(from) { shopFrom = from; (from === 'over' ? el.over : el.menu).hidden = true; el.shop.hidden = false; renderShop(); }

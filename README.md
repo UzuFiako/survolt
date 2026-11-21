@@ -44,7 +44,10 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - Les maîtrises ne sont jamais remises à zéro, même au prestige. Elles s'affichent dans la fiche du châssis et du familier.
 
 **Menu**
-- Boutons Atelier, Garage, Coffres, Almanach, Classement et Boutique plus gros : grande icône au-dessus du nom.
+- Boutons Atelier, Garage, Coffres, Almanach, Classement et Boutique plus gros (grande icône au-dessus du nom), à leur place habituelle sous Ma base.
+- Le prestige est une pastille « P0 » à côté de l'énergie (sous le rouage en paysage), qui brille quand le prestige suivant est prêt. Elle ouvre le profil.
+- Réglages rangés en volets dépliables : Commandes et touches (avec l'aide manette), Affichage, Musique et son, Autres.
+- Atelier rangé en volets dépliables par catégorie (Attaque, Défense, Mobilité, Surcharge, Progression), avec le niveau total, une barre de progression et le nombre d'améliorations achetables.
 
 **Backrooms : 3 mondes × 3 étages**
 - Les Backrooms, les Bureaux vides (après le Monde 8) et les Poolrooms (après les 8 Nightmare) sont maintenant 3 mondes de 3 étages chacun.
