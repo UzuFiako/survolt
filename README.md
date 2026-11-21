@@ -40,6 +40,8 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - Le bandeau Ma base du menu montre un vrai village (coucher de soleil, château, maisons, collines) avec le titre « Ma base » façon parchemin.
 - Quand on choisit un bâtiment, un familier, une rune ou un châssis, l'écran défile tout seul jusqu'au début de sa fiche.
 - Correction : le menu en paysage était cassé (colonne de droite coupée, boutons du mauvais côté).
+- Profil : titre principal, aura, photo, bordure, fond et animation sont rangés dans un seul volet « Personnalisation », avec chacun son sous-volet.
+- Animations de profil refaites pour bien se voir : rayon de scan qui balaie la photo, étincelles qui clignotent, anneau de flammes qui tourne, glitch avec décalage de couleurs, orbite avec 3 points, pulsation plus marquée.
 - Ma base : quand on choisit un bâtiment, sa fiche arrive tout en haut de l'écran. Les ouvriers sont rangés dans un volet replié, sous la fiche.
 - Son : fondu d'entrée au lancement (plus de claquement), et le son est complètement coupé puis recréé quand on quitte et revient dans l'appli (plus de bip strident au retour).
 - Boutons Atelier, Garage, Coffres, Almanach, Classement et Boutique plus gros (grande icône au-dessus du nom), à leur place habituelle sous Ma base.

@@ -384,7 +384,8 @@ dd{font:400 19px/1.25 var(--display);font-variant-numeric:tabular-nums;margin-to
 .mtop{position:absolute;z-index:5;top:calc(var(--it,0px) + 10px);left:calc(var(--il,0px) + 12px);display:flex;gap:8px}
 .ibtn{height:44px;min-width:44px;display:flex;align-items:center;gap:8px;padding:0 11px;background:rgba(var(--nrgb),.94);border:1.5px solid rgba(var(--irgb),.22);color:var(--ink);border-radius:var(--rad,0);clip-path:var(--cut);font:600 12px/1 var(--body);letter-spacing:.06em;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .ibtn svg{width:22px;height:22px;flex:none}
-.rufu .btn,.pcard.sanbox .btn.primary,.prlogin{font:800 14px/1.15 var(--body)!important;letter-spacing:.06em;min-height:46px} .ruevu{display:block;margin-top:3px;font:600 11px var(--body);color:var(--dim);text-align:center} .rustep b{font-size:11px!important;white-space:nowrap}
+.rufu .btn,.pcard.sanbox .btn.primary,.pfold.pgrp>.pfbody{display:grid;gap:8px} .pfold.psub{margin:0;background:rgba(var(--irgb),.04);border-radius:12px} .pfold.psub>summary{padding:10px 12px} .pfold.psub>summary b{font-size:13px}
+.prlogin{font:800 14px/1.15 var(--body)!important;letter-spacing:.06em;min-height:46px} .ruevu{display:block;margin-top:3px;font:600 11px var(--body);color:var(--dim);text-align:center} .rustep b{font-size:11px!important;white-space:nowrap}
 [data-base] #base .sheet{background:linear-gradient(180deg,#2a1d12 0%,#1c140d 100%)!important;border-color:#8a6a3a!important;box-shadow:0 0 0 1px rgba(255,210,140,.15),0 20px 60px rgba(0,0,0,.6)}
 [data-base] #base .phead{background:linear-gradient(180deg,#3a2716,#2a1d12)!important;border-bottom:2px solid #8a6a3a} [data-base] #base .h1{color:#f3d27a;text-shadow:0 2px 0 #6a3e12,0 0 18px rgba(255,190,90,.35);font-family:Georgia,'Times New Roman',serif!important;letter-spacing:.06em}
 .bhero{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-radius:14px;background:linear-gradient(120deg,#4a3218,#2c1e10);border:1px solid #8a6a3a;box-shadow:inset 0 1px 0 rgba(255,230,180,.15)}
@@ -915,6 +916,20 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .pfa.fx-scan .pfa-fx{overflow:hidden;background:linear-gradient(180deg,transparent 40%,rgba(61,232,255,.55) 50%,transparent 60%);background-size:100% 220%;animation:pfscan 2s linear infinite} @keyframes pfscan{from{background-position:0 120%}to{background-position:0 -120%}}
 .pfa.fx-flame .pfa-fx{inset:calc(var(--z)*-.06);background:radial-gradient(ellipse at 50% 100%,rgba(255,138,61,.75),transparent 60%);filter:blur(2px);animation:pfflk .25s steps(2) infinite alternate} @keyframes pfflk{to{transform:scaleY(1.08) translateY(-2%);opacity:.8}}
 .pfa.fx-glitch .pfa-cv{animation:pfgl 2.2s steps(1) infinite} @keyframes pfgl{0%,88%,100%{transform:none;filter:none}90%{transform:translate(3%,-2%);filter:hue-rotate(90deg)}93%{transform:translate(-3%,2%);filter:hue-rotate(-90deg) saturate(2)}96%{transform:translate(2%,0)}}
+/* MAJ 13b : animations de profil bien visibles (transformations sur des calques dédiés) */
+.pfa.fx-orbit .pfa-fx{inset:calc(var(--z)*-.1)!important;border:2px dashed rgba(255,255,255,.25);background:radial-gradient(circle at 50% 2%,#fff 0 5%,transparent 6.5%),radial-gradient(circle at 50% 98%,var(--volt) 0 5%,transparent 6.5%),radial-gradient(circle at 2% 50%,#3de8ff 0 4%,transparent 5.5%)!important;animation:pfspin 2.2s linear infinite!important}
+.pfa.fx-spark .pfa-fx{inset:calc(var(--z)*-.12)!important;background:none!important;animation:none!important}
+.pfa.fx-spark .pfa-fx::before,.pfa.fx-spark .pfa-fx::after{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 15% 25%,#fff 0 3%,transparent 4.5%),radial-gradient(circle at 85% 20%,#ffe14a 0 3.5%,transparent 5%),radial-gradient(circle at 78% 82%,#fff 0 3%,transparent 4.5%),radial-gradient(circle at 22% 80%,#3de8ff 0 3%,transparent 4.5%),radial-gradient(circle at 50% 4%,#fff 0 2.5%,transparent 4%);animation:pfsp 1.1s ease-in-out infinite}
+.pfa.fx-spark .pfa-fx::after{transform:rotate(45deg);animation-delay:.55s} @keyframes pfsp{0%,100%{opacity:0;scale:.85}50%{opacity:1;scale:1.06}}
+.pfa.fx-scan .pfa-fx{background:none!important;animation:none!important;overflow:hidden}
+.pfa.fx-scan .pfa-fx::before{content:'';position:absolute;left:-10%;right:-10%;top:0;height:16%;background:linear-gradient(180deg,transparent,rgba(61,232,255,.35) 35%,#bff7ff 50%,rgba(61,232,255,.35) 65%,transparent);box-shadow:0 0 calc(var(--z)*.12) #3de8ff;animation:pfsc 1.8s ease-in-out infinite alternate}
+@keyframes pfsc{from{transform:translateY(-20%)}to{transform:translateY(calc(var(--z) * .92))}}
+.pfa.fx-flame .pfa-fx{inset:calc(var(--z)*-.14)!important;background:none!important;filter:none!important;animation:none!important}
+.pfa.fx-flame .pfa-fx::before,.pfa.fx-flame .pfa-fx::after{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,90,31,0),rgba(255,138,61,.9),rgba(255,210,63,.6),rgba(255,90,31,0) 25%,rgba(255,138,61,.85) 40%,rgba(255,90,31,0) 55%,rgba(255,210,63,.8) 70%,rgba(255,90,31,0) 85%);-webkit-mask:radial-gradient(circle,transparent 58%,#000 64%,#000 72%,transparent 80%);mask:radial-gradient(circle,transparent 58%,#000 64%,#000 72%,transparent 80%);filter:blur(1px);animation:pfspin 2.6s linear infinite}
+.pfa.fx-flame .pfa-fx::after{animation:pfspin 1.7s linear infinite reverse,pfflk2 .18s steps(2) infinite alternate;opacity:.8} @keyframes pfflk2{to{opacity:.45}}
+.pfa.fx-glitch .pfa-cv{animation:pfgl2 1.6s steps(1) infinite!important} @keyframes pfgl2{0%,70%,100%{transform:none;filter:none}72%{transform:translate(6%,-3%) skewX(8deg);filter:drop-shadow(3px 0 0 #ff3d81) drop-shadow(-3px 0 0 #3de8ff)}76%{transform:translate(-6%,3%);filter:drop-shadow(-4px 0 0 #ff3d81) drop-shadow(4px 0 0 #6dffb0) hue-rotate(90deg)}80%{transform:translate(3%,0) scaleY(.9);filter:none}84%{transform:translate(-2%,1%) skewX(-6deg);filter:drop-shadow(2px 0 0 #ff3d81)}}
+.pfa.fx-glitch .pfa-fx{background:repeating-linear-gradient(180deg,rgba(255,255,255,.08) 0 2px,transparent 2px 5px);animation:pfgl3 1.6s steps(1) infinite} @keyframes pfgl3{0%,70%,88%,100%{opacity:0}72%,84%{opacity:1}}
+.pfa.fx-pulse .pfa-cv{animation:pfbeat 1.1s ease-in-out infinite!important}
 /* titres animés */
 .ttl.an{position:relative;overflow:hidden;background-size:200% 100%;animation:ttlsh 2.6s linear infinite}
 .ttl.an-gold{background-image:linear-gradient(90deg,rgba(255,210,63,.18),rgba(255,243,176,.5),rgba(255,210,63,.18));box-shadow:0 0 8px rgba(255,210,63,.45)}
@@ -9615,6 +9630,8 @@ function renderProf() {
   { const d = pfold('bd', '⭕', _t('Bordure'), PBORD.filter(c => plLv() >= c.lv).length + ' / ' + PBORD.length); d.querySelector('.pfbody').appendChild(cosGrid(PBORD, 'bd', 'bd')); S.appendChild(d); }
   { const d = pfold('bg', '🌌', _t('Fond'), PBG.filter(c => plLv() >= c.lv).length + ' / ' + PBG.length); d.querySelector('.pfbody').appendChild(cosGrid(PBG, 'bg', 'bg')); S.appendChild(d); }
   { const d = pfold('fx', '💫', _t('Animation'), PFX.filter(c => plLv() >= c.lv).length + ' / ' + PFX.length); d.querySelector('.pfbody').appendChild(cosGrid(PFX, 'fx', 'fx')); S.appendChild(d); }
+  { const ks = ['tt', 't2', 'av', 'bd', 'bg', 'fx'], kids = ks.map(k => S.querySelector(':scope > .pfold[data-k="' + k + '"]')).filter(Boolean);   // un seul volet « Personnalisation » avec des sous-volets
+    if (kids.length) { const P = pfold('perso', '🎨', _t('Personnalisation'), _t('Titres, aura, photo, bordure, fond, animation')); P.classList.add('pgrp'); kids[0].before(P); const b = P.querySelector('.pfbody'); for (const k of kids) { k.classList.add('psub'); b.appendChild(k); } } }
   renderAcc();
 }
 /* ================= Niveau joueur (1 à 500) + profil premium ================= */
