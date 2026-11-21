@@ -17,19 +17,46 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 ## Le jeu en bref
 
 - **8 mondes** de 20 à 50 vagues, de plus en plus durs, avec mini-boss, boss et boss final. Le mode **Infini**, les **parties rapides** (3 à 15 min) et le **multi** (défi de la semaine, co-op, course 1v1, fantôme, duels).
-- **Nightmare** après le Monde 8, **Backrooms** (3 mondes de 3 étages, ampoules 💡) et **Ma base** (bâtiments déplaçables, décorations, expéditions de familiers, production même hors ligne).
+- **Nightmare** après le Monde 8, **Backrooms** (3 mondes de 3 étages, ampoules 💡) et **Ma base**, un village médiéval à aménager (bâtiments déplaçables, décorations, expéditions de familiers, production même hors ligne).
 - **Prestige** (50 niveaux) après le Monde 8, avec un **arbre de talents** jusqu'à l'Évolution Oméga.
 - **Garage** : équipements et sets légendaires, fusion, runes, châssis à niveaux, étoiles et maîtrises, familiers (avec maîtrises), look (skins, couleurs, balles, accessoires), ULT.
 - **Atelier** (100 niveaux par amélioration), **coffres** et **clés**, **Boutique** (offres du jour, packs exclusifs).
 - **Profil** : niveau joueur, prestige, titres, succès, statistiques, cosmétiques de profil. **Social** : amis, messages, chat global.
+- **Aide** : tutoriel animé, visite guidée du menu avec un doigt qui montre l'essentiel, bulles d'info sur chaque monnaie et chaque stat.
 - **Almanach** : monstres, objets, perks, familiers… avec des bonus de collection.
 
 ## Mises à jour
 
+### MAJ 13 · Village, interface et confort
+
+**Ma base devient un village**
+- Ambiance à part, comme les Backrooms : écran en bois et or, titre façon parchemin, et une **musique médiévale** (luth, bourdon, flûte, tambourin) qui se lance quand on entre dans la base.
+- Le village : prairie avec herbe, fleurs et cailloux, bâtiments posés sur des dalles de pierre, lucioles, et des **chemins pavés qui partent du QG et le suivent quand on le déplace**.
+- En haut : les 4 productions (◆ ✦ 📜 💡) avec stock, production par heure et jauge. On touche une case pour récolter, ou pour voir le bâtiment s'il n'est pas construit.
+- Sous le village : tous les bâtiments en raccourci (niveau, chantier en cours, stock plein, verrouillé). Juste dessous, la fiche du bâtiment choisi, puis les ouvriers.
+- **🔨 AMÉNAGER** : un encadré explique quoi faire, la grille s'affiche, l'élément sélectionné a des flèches. On glisse un bâtiment ou une décoration (case verte = libre, rouge = occupée). On peut remettre un bâtiment à sa place d'origine, ranger une décoration contre la moitié du prix, et acheter les décorations dans une bande avec leur aperçu.
+
+**Menu et profil**
+- Le bandeau Ma base du menu montre un vrai village (coucher de soleil, château, maisons, collines) avec le titre « Ma base » façon parchemin.
+- Quand on choisit un bâtiment, un familier, une rune ou un châssis, l'écran défile tout seul jusqu'au début de sa fiche.
+- Correction : le menu en paysage était cassé (colonne de droite coupée, boutons du mauvais côté).
+- Ma base : quand on choisit un bâtiment, sa fiche arrive tout en haut de l'écran. Les ouvriers sont rangés dans un volet replié, sous la fiche.
+- Son : fondu d'entrée au lancement (plus de claquement), et le son est complètement coupé puis recréé quand on quitte et revient dans l'appli (plus de bip strident au retour).
+- Boutons Atelier, Garage, Coffres, Almanach, Classement et Boutique plus gros (grande icône au-dessus du nom), à leur place habituelle sous Ma base.
+- Le bouton du profil montre le pseudo, le niveau joueur et le prestige (qui brille quand le prestige suivant est prêt).
+- **Visite guidée du menu** : au tout premier lancement d'un nouveau joueur (après le tutoriel), un doigt animé montre l'essentiel en 12 étapes (Jouer, mondes, parties rapides, châssis, Garage, Atelier, Coffres, énergie, quêtes, profil, réglages, Boutique). On peut la passer, et la relancer depuis Réglages > Visite guidée du menu. Les joueurs déjà avancés ne la voient pas automatiquement.
+- **Bulles d'info** : touche une stat du menu (Record, Mondes, Clés, Nuggets, Diams, Ampoules) ou une monnaie en haut d'un écran pour savoir à quoi elle sert et comment en avoir, avec un bouton qui mène à la bonne section de la Boutique.
+- **Profil** : tout est replié à l'ouverture sauf le volet « Niveau et prestige » (niveau joueur et prestige réunis). Le compte est tout en haut : un gros bouton « Se connecter ou créer un compte » si tu n'es pas connecté, sinon un volet Compte.
+
+**Garage, atelier et réglages**
+- **Runes** façon premium : autel des runes avec le résumé des bonus équipés et les fusions possibles, emplacements lumineux à la couleur de la rareté, échelle d'évolution de CO à UPL pour chaque rune (ta rareté en surbrillance, la suivante en pointillé), progression de fusion (x/3) avec un bouton pour fusionner directement, et collection rangée par type de rune.
+- Atelier rangé en volets dépliables par catégorie (Attaque, Défense, Mobilité, Surcharge, Progression), avec le niveau total, une barre de progression et le nombre d'améliorations achetables.
+- Réglages rangés en volets dépliables : Commandes et touches (avec l'aide manette), Affichage, Musique et son, Autres.
+
 ### MAJ 12 · Base, Backrooms et maîtrises
 
 **Ma base façon Clash of Clans**
-- Grille de 20 × 14 cases : avec **✥ DÉPLACER**, on glisse chaque bâtiment et chaque décoration où on veut (vert = libre, rouge = occupé).
+- Grille de 20 × 14 cases : avec **🔨 AMÉNAGER**, on glisse chaque bâtiment et chaque décoration où on veut (vert = libre, rouge = occupé).
 - 3 nouveaux bâtiments : **Forge à parchemins** (📜, QG 2), **Serre à ampoules** (💡, QG 3), **Hangar d'expédition** (QG 2). « Tout récolter » ramasse les 4 productions.
 - 9 **décorations** à acheter en nuggets (arbre néon, lampadaire, drapeau, cristal, banc, fontaine, statue de tank, héliport, tour Tesla), qu'on peut ranger contre la moitié du prix.
 - **Niveau de base** (somme des niveaux des bâtiments) avec des paliers à 10, 20, 30, 40, 50 et 60 : diams et clés.
@@ -42,12 +69,6 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - Chaque **châssis** et chaque **familier** gagne de la maîtrise avec les éliminations faites avec lui. 11 rangs, de Novice à Mythique (150 000 éliminations).
 - Bonus permanents : +2 % de dégâts et de PV par rang pour le châssis, +4 % de dégâts par rang pour le familier. Chaque nouveau rang donne aussi des nuggets et des diams (dans la boîte de réception).
 - Les maîtrises ne sont jamais remises à zéro, même au prestige. Elles s'affichent dans la fiche du châssis et du familier.
-
-**Menu**
-- Boutons Atelier, Garage, Coffres, Almanach, Classement et Boutique plus gros (grande icône au-dessus du nom), à leur place habituelle sous Ma base.
-- Le prestige est une pastille « P0 » à côté de l'énergie (sous le rouage en paysage), qui brille quand le prestige suivant est prêt. Elle ouvre le profil.
-- Réglages rangés en volets dépliables : Commandes et touches (avec l'aide manette), Affichage, Musique et son, Autres.
-- Atelier rangé en volets dépliables par catégorie (Attaque, Défense, Mobilité, Surcharge, Progression), avec le niveau total, une barre de progression et le nombre d'améliorations achetables.
 
 **Backrooms : 3 mondes × 3 étages**
 - Les Backrooms, les Bureaux vides (après le Monde 8) et les Poolrooms (après les 8 Nightmare) sont maintenant 3 mondes de 3 étages chacun.
