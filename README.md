@@ -27,6 +27,26 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 21 · dimension Oméga (v129)
+
+- **6 perks exclusifs à la dimension Oméga** :
+  - Faille dimensionnelle (mythique) : un trou noir toutes les 6 s, dégâts ×6 ;
+  - Écho temporel (épique, 3 niveaux) : la salve repart 0,15 s plus tard ;
+  - Glitch (épique, 3 niveaux) : l'ennemi bugue 2 s et prend +60 % de dégâts ;
+  - Kaléidoscope (mythique, 2 niveaux) : 6 rayons arc-en-ciel qui traversent tout, dégâts ×3 ;
+  - Étoile Oméga (légendaire) : grande étoile Ω en orbite, dégâts ×3, casse les tirs ennemis et les blocs ;
+  - Décalage (épique, 2 niveaux) : chaque dash laisse un double glitché qui explose.
+- **4 bonus au sol Oméga** :
+  - Arrêt du temps : 6 s, les tirs ennemis sont figés ;
+  - Prisme : 12 s, dégâts +80 % et +2 perforations ;
+  - Trou noir : dégâts ×12 ;
+  - Chaos : deux bonus au hasard.
+- **Ennemis Oméga glitchés** : décalages de couleurs et lignes de scan.
+- **Almanach** :
+  - perks rangés en lignes par monde (1 à 8), puis lot élémentaire, transformations et dimension Oméga, avec le compteur de chaque ligne ;
+  - filtre par monde jusqu'au Monde 8, plus Oméga.
+- **Thème Oméga** : toujours actif dans la dimension Oméga. Une fois la dimension Oméga, NightmAlpha (8 mondes) et les BetaRooms (3) terminés, il se choisit dans les réglages et reste actif partout.
+
 ### MAJ 20 · mondes, éléments et exclusifs (v128)
 
 - **Mondes** :
