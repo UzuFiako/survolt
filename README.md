@@ -27,6 +27,55 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 23 · HUD, dégâts et comètes (v131)
+
+- **HUD** :
+  - temps, score, vague, vie et butin plus gros ; cadres plus discrets ;
+  - barres des effets de perks, sets et évolutions à gauche (Adrénaline ×N, Invisible, Barrière, Bouclier en recharge), couleur de la rareté de la perk ;
+  - bonus au sol à gauche (Furie, Hâte, Égide, Gel, Tir auto, Radiations, Tonnerre, Prisme), puis un trait, puis les effets de perks en dessous.
+- **Dégâts** :
+  - nombres plus gros, avec contour noir et effet « pop », visibles 1,25 s ;
+  - critiques en jaune avec « ! » ;
+  - PV restants / PV max sous la barre des ennemis costauds.
+- **Pause** : toucher un perk ouvre une bulle avec ses vrais chiffres par rapport à ton tank (dégâts par tir, cadence, dégâts des satellites, sauts, poison, brûlure, comètes…).
+- **Comètes** :
+  - nouvelle Comète de poison : nuage toxique, goutte géante, flaque qui ralentit ;
+  - comète de glace avec une tête en flocon et une traînée ;
+  - le lot du niveau 5 tire 3 comètes parmi 4.
+- **Puissance** :
+  - châssis et familiers affichent la puissance avant → après, et le gain du niveau suivant ;
+  - un niveau de châssis donne +0,6 % (au lieu de +0,35 %) de dégâts et PV et +8 de puissance ; une étoile donne +45.
+
+### MAJ 22 · villages, favoris et confort (v130)
+
+- **Villages** :
+  - 4 nouveaux villages : Toundra (prestige 1, 600 ✦), Plage (prestige 2, 1 200 ✦), Montagne (prestige 3, 2 000 ✦), Néo-Tokyo synthwave (prestige 5, 4 000 ✦, le palier max avec animations) ;
+  - décorations : agrandir ×2/×3, tourner, ranger dans un inventaire avec compteur (on les repose gratuitement) ;
+  - contour noir autour des décorations ;
+  - bouton plein écran ⛶.
+- **Admin** :
+  - menus maison à la place des menus natifs (recherche, volets par rareté, aperçus) ;
+  - cadeau « cosmétique de profil » (bordure, fond, animation, photo) ;
+  - contenu des packs affiché ;
+  - section « Retirer un objet » (titre, skin, bordure, fond, animation, photo), appliquée chez le joueur à sa prochaine connexion, y compris sur ton compte.
+- **Bonus de bienvenue** : 1 500 nuggets, 100 diams et un cosmétique au hasard (en dessous d'Épique) à la création du compte.
+- **Notifications** (option, avec accord) : énergie pleine et récompense du jour quand le jeu est en arrière-plan ; le jeu complètement fermé demanderait un serveur de notifications.
+- **Favoris** ⭐ (objets et runes) : impossible à vendre, en tête de l'inventaire.
+- **Revente** : 50 / 120 / 300 / 750 / 1 800 / 4 500 / 10 000 nuggets selon la rareté (objets et runes).
+- **Runes** :
+  - on choisit la rune de l'autel à remplacer ;
+  - re-toucher une rune la désélectionne ;
+  - la fiche s'ouvre sous la rune ;
+  - double-touche = équiper / retirer / remplacer ;
+  - l'échelle d'évolution est corrigée.
+- **Garage** : un seul détail ouvert à la fois (sous l'objet touché).
+- **Cartes/perks** : « Après ce choix » montre les vraies stats qui changent.
+- **Retour** : on revient à l'écran d'avant (Multi → Classement → retour = Multi, etc.).
+- **Équilibrage** :
+  - boss et mini-boss −15 % de dégâts ;
+  - écran de fin moins rapide (roulette 7,5 s, butin 9 s avant passage auto, cartes qui arrivent plus lentement).
+- Divers : 1 pour 2 « … ou des amitiés », réglages centrés.
+
 ### MAJ 21 · dimension Oméga (v129)
 
 - **6 perks exclusifs à la dimension Oméga** :
