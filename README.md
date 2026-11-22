@@ -27,11 +27,50 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 19 · confort et 1 pour 2 fluide (v127)
+
+- **1 pour 2 sans lag** :
+  - le pilote invité bouge en local, sans attendre l'hôte (l'hôte suit sa position, recalage seulement en cas de grosse différence) ;
+  - le dash part tout de suite ;
+  - le tireur invité voit ses tirs partir instantanément (les dégâts restent calculés chez l'hôte) ;
+  - l'invité envoie ses commandes 20 fois par seconde.
+- **Châssis et tourelle séparés** (1 pour 2) : la coque, avec ses chenilles et son nez, roule dans le sens du déplacement, et la tourelle tourne vers là où on tire.
+- **Abandon sécurisé** : fenêtre de confirmation qui liste ce qu'on perd (énergie, 90 % du butin, objets trouvés). Visite guidée, Comment jouer et Nouveautés ne sont plus dans les réglages du menu pause.
+- **Puissance avec une décimale** partout (menu, garage, boutique, sets).
+- **Runes** :
+  - quand les emplacements sont pleins, la fiche montre le gain si la rune remplace la moins bonne ;
+  - boutons VENDRE et FORGER (3 identiques) ;
+  - point rouge sur l'onglet fusion et sur le garage quand quelque chose peut être forgé.
+- **Tout marquer vu** : bouton dans le garage (équipements et runes) qui enlève les NEW et le point rouge. Ouvrir un message le marque comme lu. Point rouge sur l'almanach quand il y a de nouvelles entrées.
+- **Garage** :
+  - toucher un objet ne fait plus remonter l'écran (l'objet reste sous le doigt) ;
+  - le retoucher le désélectionne, un double tap l'équipe.
+- **Familiers** : prix affichés en nuggets, diams et ampoules ; les améliorations sont au-dessus de la liste.
+- **Atelier** : évolutions 15 % moins chères.
+- **Menu** :
+  - sections « Modes de jeu » et « Sac à dos » ;
+  - Châssis et Monde avec un sous-titre (« ton tank », « où tu vas jouer »).
+- **Chat global** : photo de profil, bordure et fond des joueurs, aussi dans la fiche d'un joueur.
+- **Fin de partie** : barres d'XP du familier et du châssis.
+- **Admin** : temps de jeu dans la fiche d'un joueur.
+- **Correctifs** :
+  - bande violette en bas quand le jeu s'ouvre en paysage ;
+  - boutons recentrés (Atelier, SUPER !, RÉCUPÉRER, VOIR LE PROFIL…) ;
+  - icône d'aura centrée sur le profil ;
+  - infos de pause en pastilles lisibles ;
+  - profil en paysage (re-rendu forcé de l'écran).
+- Traduction anglaise à jour.
+
+### MAJ 18 · traduction anglaise et « cartes/perks » (v126)
+
+- **« Cartes/perks »** partout dans le jeu (menus, aide, cartes en partie, mode 1 pour 2) pour que ce soit clair.
+- **Traduction anglaise complète** : environ 1 550 textes ajoutés depuis les dernières mises à jour sont traduits (Oméga, Seigneurs, village, inbox, prestige, 1 pour 2, aide, nouveautés…).
+
 ### MAJ 18 · 1 pour 2, le mode amoureux (v125)
 
 - **Nouveau mode multijoueur « 1 pour 2 »** : un seul tank pour deux. Un joueur pilote (déplacement + dash), l’autre tient le canon (visée, tir, surcharge, ultime d’équipement). Les rôles se choisissent dans la salle.
 - **Le tank est celui de l’hôte** : ses stats, son canon, ses améliorations et son look.
-- **Cartes à l’aveugle** : 15 s, chacun choisit en secret. Même carte = validée. Cartes différentes = pile ou face 50/50 avec un écran de verdict. Un seul a choisi = il l’emporte. Personne = hasard.
+- **Cartes/perks à l’aveugle** : 15 s, chacun choisit en secret. Même carte/perk = validée. Cartes/perks différentes = pile ou face 50/50 avec un écran de verdict. Un seul a choisi = il l’emporte. Personne = hasard.
 - **Contrôles** : sur téléphone, tout l’écran sert à ton poste. Le bouton de l’autre poste est grisé.
 - **Quêtes multi** : « Joue 3 parties en 1 pour 2 » et « Termine un monde en 1 pour 2 ».
 - **Correctif** : le chrono des cartes en multi n’affiche plus un énorme sablier.
