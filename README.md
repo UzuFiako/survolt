@@ -27,6 +27,33 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 20 · mondes, éléments et exclusifs (v128)
+
+- **Mondes** :
+  - Surtension passe au jaune ; Nébuleuse noire passe au noir avec des touches jaunes et orange (sur les thèmes sombres) ;
+  - chaque monde a ses détails au sol : pistes de circuit (M1), bobines qui crépitent (M2), ventilations du réacteur (M3), fissures jaunes (M4), nuages d'ions (M5), poussière et étoiles (M6), petits trous noirs (M7), runes (Infini) ;
+  - correctif : les mondes 7 et 8 n'avaient pas de couleur de fond sur certains thèmes.
+- **Blocs** : un nouveau design tous les deux mondes (cristal, cube de cuivre, obsidienne à veines orange, géode prisme). Les satellites, satellites élémentaires et lames les cassent aussi.
+- **Bonus au sol dessinés** (plus d'émojis), et 5 nouveaux bonus :
+  - Monde 4+ : flaque toxique, qui empoisonne et ralentit ; tonnerre, avec la foudre qui tombe 6 s autour de toi ;
+  - Monde 6+ : flaque de lave, qui brûle fort ; verglas, qui ralentit à 70 % et peut geler ;
+  - Nightmare : nuage irradié géant de 9 s, qui ne touche pas le joueur.
+- **Éléments** :
+  - glace (Cryo) : ralentit de 21 % au niveau 1, +7 % par niveau ; le suprême ne change pas ;
+  - feu : brûlure la plus forte (×0,38 par tick, +35 % par niveau) ;
+  - poison : moins fort que le feu, mais ralentit de 10 % ;
+  - foudre : arc électrique à 62 % (au lieu de 50 %) avec plus de portée, éclairs du ciel +25 %.
+- **Lot élémentaire du niveau 5** : choix entre Comète de feu, Comète de glace et Boule de foudre (3 niveaux chacune).
+- **Onde de recul** : perk épique à partir du Monde 6, 5 niveaux, +45 % de recul par niveau.
+- **Rune vampire** : 9e rune, vol de vie de 0,4 à 4 % des dégâts infligés (maximum 5 % des PV par seconde).
+- **« Après ce choix »** sur toutes les cartes/perks : total du perk et stats réelles avant → après (dégâts, cadence, PV, vitesse, critique…), dans un encadré vert.
+- **Auras refaites en animation** : chaque titre mythique, légendaire et UPL a la sienne (éclairs, éclats, pièces d'or, néon des Backrooms, couronne de laurier, marée, flammes, infini, lampe torche, radiations, ailes, soleil, galaxie, étoiles filantes, tesla, Oméga, planètes, feu de l'enfer, glitch…). Les communs, rares, super rares et épiques ont aussi des styles différents.
+- **Exclusifs EX (Créateur et Testeurs)** :
+  - titres Créateur et Testeur passés en rareté Exclusif, avec un style de titre à eux ;
+  - aura « dieu » (rayons, 3 anneaux célestes, couronne, glyphes) et aura « labo » ;
+  - photo de profil, bordure, fond et animation dédiés ;
+  - le set Créateur est réservé à l'admin, le set Testeur aux joueurs qui ont le titre Testeur.
+
 ### MAJ 19 · confort et 1 pour 2 fluide (v127)
 
 - **1 pour 2 sans lag** :
