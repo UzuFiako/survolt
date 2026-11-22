@@ -27,7 +27,56 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
-### Correctif admin (v119)
+### MAJ 18 · 1 pour 2, le mode amoureux (v125)
+
+- **Nouveau mode multijoueur « 1 pour 2 »** : un seul tank pour deux. Un joueur pilote (déplacement + dash), l’autre tient le canon (visée, tir, surcharge, ultime d’équipement). Les rôles se choisissent dans la salle.
+- **Le tank est celui de l’hôte** : ses stats, son canon, ses améliorations et son look.
+- **Cartes à l’aveugle** : 15 s, chacun choisit en secret. Même carte = validée. Cartes différentes = pile ou face 50/50 avec un écran de verdict. Un seul a choisi = il l’emporte. Personne = hasard.
+- **Contrôles** : sur téléphone, tout l’écran sert à ton poste. Le bouton de l’autre poste est grisé.
+- **Quêtes multi** : « Joue 3 parties en 1 pour 2 » et « Termine un monde en 1 pour 2 ».
+- **Correctif** : le chrono des cartes en multi n’affiche plus un énorme sablier.
+
+### Correctif créateur (v124)
+
+- **Titre et aura « Créateur »** remis sur le compte du créateur (une seule fois), et toujours possédés même avant la vérification admin.
+
+### MAJ 17 · retouche des Seigneurs (v123)
+- Les 3 Seigneurs redessinés en créatures : le Dévoreur de mondes (planète éventrée en gueule à 3 rangées de dents, lèvres de chair, 9 yeux à pupille fendue, tentacules à serres, mondes aspirés en spirale), l'Apocalypse (crâne couronné de fer, cornes de bélier lisses, 4 ailes déchirées en feu, lave qui coule des orbites, cœur de lave dans la cage thoracique, sceau runique au sol), le Seigneur-Dieu Ω (séraphin biblique : 6 ailes couvertes d'yeux, 3 roues d'ophanim couvertes d'yeux, vide noir autour d'un œil unique aveuglant, faille entre les dimensions). Tous les yeux suivent le joueur et clignent.
+
+## MAJ 17 · Dimension Oméga (v122)
+- **Dimension Oméga** : s'ouvre avec l'Évolution Oméga (talent `om`). Bouton dans le menu (au-dessus du choix du monde). Thème « omega » forcé (psychédélique, teinte du jeu qui tourne, rayons kaléidoscopiques). Progression séparée (`meta.wdone` clés `o…`, gardées au prestige). Ennemis ×6 PV, ×3,5 dégâts, ×1,18 vitesse, butin ×4, XP ×2,5. **NightmAlpha** (Nightmare en Oméga, +×1,6 PV / ×1,4 dégâts) et **BetaRooms** (Backrooms en Oméga). Pas de classement pour les parties Oméga.
+- **Prestige rééquilibré** : XP ×6 (`runXp`), +25 % d'XP par prestige (`prXpGain`). Estimation (6 h/jour) : 1er prestige ~10 jours, Évolution Oméga (prestige 44) ~9 mois. Niveau requis plafonné à 750.
+- **3 Seigneurs (boss géants secrets)** : chance de surgir juste après la mort du boss final d'un monde 1 à 8 (`eggRoll`). Seigneur des mondes 0,1→1 % (Nightmare 0,2→2 %), Seigneur de l'Apocalypse en Nightmare 0,2→2 %, Seigneur-Dieu Oméga des dimensions 0,01→0,1 % (Nightmare 0,1→0,5 %), et 1→10 % chacun dans la dimension Oméga. Écran d'alerte « DANGER IMMINENT », musique cataclysme, écran qui tremble et glitche. Force : au moins le boss final du Monde 8 en Nightmare (×2 / ×5 / ×12 PV), renforts d'élites. Butin à chaque victoire (10k/50k/100k nuggets, 500/2 500/5 000 diams, parchemins, ampoules, clés, coffres LG/UPL) + objets uniques à la première victoire (titre, skin, photo, bordure, fond, animation, couleur), glitchés tant qu'on ne les a pas. Almanach : ligne « ??? » glitchée, le visuel se débloque à la rencontre. Test admin : `meta.eggForce = 'mondes' | 'apoc' | 'dims'` (compte admin) force le prochain.
+- Carte d'un ami : boutons en haut, stats en volets par catégorie. Fenêtres : croix en haut à droite, plus de FERMER en bas.
+- Bug corrigé : ouvrir les accessoires du garage gelait le jeu (`accPrice` s'appelait lui-même).
+- Village en paysage : carte en bas et plus petite, le volet défile.
+
+## MAJ 16 · partie 2 (v121)
+- Village 2 fois plus grand (40 × 28 cases) : rivière, pont, étang, champs, forêt, clôture ; glisser pour se déplacer, pincer / molette / boutons pour zoomer. L'ancien village est recentré automatiquement.
+- Bug corrigé : positions, décorations, expéditions et niveaux de Forge / Serre / Hangar n'étaient pas gardés au rechargement.
+- 22 nouvelles décorations (sapin, chêne, cerisier, palmier, moulin, kiosque, tente, feu de camp, puits, ruche, arche néon…).
+- Niveau du village expliqué clairement, avec barre jusqu'à la prochaine récompense.
+- Visite des villages des amis (bouton dans Ma base + sur la carte d'un ami). Le village est partagé via le profil (stats.vil).
+- Fenêtre de récompenses (connexion, quêtes, passe, cadeaux, achats) : chaque objet se touche pour l'expliquer.
+- Boîte de réception : Messages (amis + jeu) / Cadeaux, lu / non lu, suppression.
+- Prestige : niveau 300 requis (+10 par prestige) ; talents renforcés et +3 % dégâts / PV par point.
+- Garage : onglets avec icône et couleur. Réglages : section « Autres » (sons de clic) retirée.
+- Croquis : feuille froissée + dessins d'enfant espacés, textes détourés.
+- Visite guidée : bulle toujours visible (paysage, rotation). Remesure après rotation (bande vide en bas), barres de défilement masquées, défilement en butée.
+- Menu portrait : « Quêtes » et « Social » écrits à côté de l'icône.
+
+## MAJ 16 · partie 1 (v120)
+- Packs retirés automatiquement du compte demora.mathias@gmail.com au premier lancement (sets LG, skins, familiers, thèmes, châssis, balles, couleurs, coffres LG, entrées d'almanach des packs). Titre Créateur et titres gardés.
+- Photo de profil : le tank bouge (animation du skin), il est plus petit et centré dans le rond.
+- Menu : énergie sous le rouage en portrait ; Quêtes et Social en icône seule en paysage.
+- Titres communs plus durs : 10 parties, 1 500 ennemis, 45 entrées d'almanach, Monde 2.
+- Photos de profil : mêmes tuiles que les bordures, avec l'œil d'aperçu.
+- Garage : le détail (stats, équiper, vendre, forge) s'ouvre aussi juste sous l'objet touché dans l'inventaire.
+- Puissance : calculée sans arrondis intermédiaires, les « +1 » ne sautent plus d'un emplacement à l'autre ; petits gains affichés avec une décimale.
+- Pièces de set légendaire : uniquement dans les coffres UPL ou en pack.
+- Village : toucher un bâtiment sur la carte l'ouvre comme les icônes ; en paysage, deux volets qui défilent chacun ; la bulle de récolte reste collée au bâtiment déplacé.
+
+## Correctif admin (v119)
 - Panneau Admin → Modération → « 🧹 RETIRER MES PACKS ET CADEAUX » : retire de ton compte (demora.mathias@gmail.com uniquement) les packs Océanique, Volcanique, Céleste, Spacelord et Testeur : sets LG, skins, familiers, thèmes, châssis, balles, couleurs et titres. Les diams, nuggets et coffres ne sont pas touchés.
 
 ## MAJ 15 · Premium partout
