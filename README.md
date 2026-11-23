@@ -27,6 +27,18 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 26 · le pacte du diable (v134)
+
+- **Pacte avec le diable** : après un boss (sauf le final), la roue devient un pacte garanti. 3 perks épiques ou mieux (artefacts de boss compris) contre 15 % (épique), 25 % (mythique) ou 35 % (légendaire) des PV max, ou refuser. Compteur perks + artefacts.
+- **Saignement** : dégâts dans la durée qui soignent. Marques améliorables à l'atelier (2 au niveau 40, 3 au niveau 75). Nouvelles sources : Aura démoniaque (mythique, 3 niveaux), Satellite vampire, Calice de sang.
+- **Perks** : Nova (Monde 1, 3 niveaux, ralentit et affaiblit), Titan (+150 PV, dégâts ×2, tank plus gros), Canon suprême (ex-Canon à rail, balle-laser explosive au niveau max), Pacte avec le diable (épique, Monde 3), Carte (mini-carte), 4 artefacts réservés aux boss.
+- **Atelier** : Saignement et Vol de vie (0,01 PV/s par niveau).
+- **Comètes** : un visuel unique, icône commune avec le symbole de l'élément, à partir du Monde 3 dans tous les modes.
+- **Réorganisation par monde** : tirs multiples, canons latéraux/arrière, tête chercheuse et dash au Monde 2, Écho au Monde 3, perks les plus fortes aux Mondes 4–5. Ricochet épique, Batterie super rare.
+- **Bulles de la pause** : vraies infos (Fléaux, Nova, Aura…), tous les stades, suprême débloqué ; bulle plus compacte.
+- **Pause automatique** : volet des notifications iPhone, appli quittée.
+- **Corrections** : retour du Profil vers le Classement, volets du profil vides/gris sur iPhone, menu paysage (puce d'énergie qui chevauchait le titre, stats en bas à gauche, JOUER toujours visible).
+
 ### MAJ 25 · corrections et confort (v133)
 
 - **Chrono de speedrun** : il ne s'arrête plus en pause ni pendant les cartes/perks ; reprise en 1,5 s après une pause.
