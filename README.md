@@ -27,6 +27,39 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 25 · corrections et confort (v133)
+
+- **Chrono de speedrun** : il ne s'arrête plus en pause ni pendant les cartes/perks ; reprise en 1,5 s après une pause.
+- **Butin** : 2 diams par boss (4 pour le boss final, non réduits), 1 chance sur 2 pour les mini-boss ; nuggets +15 %, diams ×0,5 au lieu de ×0,4.
+- **Boss** : les plus forts (rang 3+, boss finaux, Nightmare) se téléportent près du joueur, avec un cercle d'annonce et un anneau de tirs.
+- **Cartes/perks** : lot élémentaire du niveau 5 retiré (comètes = épiques normales dès le Monde 3), épique garanti tous les 10 niveaux seulement s'il reste de la place, dernières perks à améliorer avant la vie et la prime, Réparation express = 20 PV.
+- **Dash** : plus de recul de base (perk Dash bélier) ; recul fort au contact seulement pendant la Surcharge.
+- **Corrections** : joystick bloqué, 1 pour 2 bloqué sur l'écran des cartes (renvoi du choix et du verdict), Monde 1 par défaut en multi, boucle Profil → Amis.
+- **Navigation** : bouton Maison dans chaque menu, toucher à côté d'une fenêtre = retour.
+- **ATH** : compteur d'éliminations, vie perdue qui reste visible, dégâts subis plus gros et plus longs, flèches vers les bonus bien plus visibles, boutons Dash et Surcharge plus bas en paysage, bruitages plus forts.
+- **Cadeau du jour** : un seul son, propre.
+- **Garage** : l'écran se cale sur le haut des châssis après un choix.
+- **Emplacements et rareté** : le bonus d'un emplacement est multiplié par la rareté de l'objet posé (Commun ×1, Rare ×1,15, Super rare ×1,3, Épique ×1,5, Mythique ×1,75, Légendaire ×2 (+0,1 par LG 2/3/4), UPL ×2,4), expliqué sous chaque emplacement.
+- **Runes** : emplacements aux Mondes 2, 4, 6 et 8.
+- **Almanach** : nouveautés marquées, diam de découverte à récupérer en touchant l'entrée, point rouge jusqu'à ce que tout soit vu.
+
+### MAJ 24 · Battle royale, forge et relevé (v132)
+
+- **Battle royale** (2 à 12 joueurs) :
+  - tous contre tous dans une arène géante, avec le tank de base (atelier + niveau joueur, sans équipement) ;
+  - on casse des blocs pour monter de niveau et prendre des cartes/perks ;
+  - la zone rétrécit au bout d'1 min ; le dernier debout gagne ;
+  - nuggets selon la place et les éliminations, diams pour le top 3 ;
+  - fil des éliminations, flèches vers les joueurs proches, dôme pendant le choix d'une carte.
+- **Trouver quelqu'un** : bouton dans chaque mode multi (1 pour 2, co-op, course, duel). Le jeu trouve un autre joueur et lance la partie tout seul. En battle royale : partie publique, départ automatique 25 s après le 2e joueur.
+- **Forge premium** : enclume animée (marteau, étincelles, braises), lingot à la couleur de la meilleure fusion, barre de progression sur chaque fusion, étincelles à la fusion, règles derrière le bouton « ? ».
+- **Équipement premium** : vitrine éclairée avec grille, socle qui tourne sous le tank, emplacements encadrés à la couleur de leur palier, fiche d'objet à la couleur de sa rareté.
+- **Relevé des monnaies** : dans la bulle des nuggets, diams et ampoules, « Voir le relevé » liste chaque entrée et sortie, jour par jour, avec sa raison, le solde après, et les totaux des 7 derniers jours.
+- **Défi de la semaine premium** : 5 ampoules par essai, 3 paliers par semaine (vague 10 : 3 000 ◆ + 1 🔑 ; vague 20 : 8 000 ◆ + 2 🔑 + 10 ✦ ; vague 30 : 15 000 ◆ + 3 🔑 + 25 ✦).
+- **Créateur** : nouvelle animation de profil « Dualité » (anneau mi-lumière mi-ténèbres, éclairs noirs, rouges et violets).
+- **Almanach** : catégories en tuiles avec icône, compteur et barre ; phrase d'aide ; filtres des monstres jusqu'au dernier monde qui a des variantes.
+- **Menu en paysage** : plus de vide en haut, logo et stats remontés, colonne des boutons plus large et collée à gauche.
+
 ### MAJ 23 · HUD, dégâts et comètes (v131)
 
 - **HUD** :
