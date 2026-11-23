@@ -27,6 +27,17 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 34 · relevé et 1 pour 2 (v142)
+
+- **Relevé** : une seule fenêtre `ldgSheet(k)` avec un sélecteur de monnaie (`.ldgcur`) : nuggets `s`, diams `j`, ampoules `b`, clés `k`, énergie `e`. `ldgTrack` suit maintenant 5 soldes (`meta.ldgB` à 5 valeurs, compatible avec l'ancien format). Énergie : « Partie lancée · monde » (`nrgPay`), « Recharge d’énergie » (diams), « Backrooms terminées » (+5), et la recharge naturelle regroupée en une ligne par jour. Bouton « VOIR LE RELEVÉ » dans la fenêtre d'énergie et sur les clés.
+- **Menu** : `#nrgBar` est déplacé dans `.mhead`, entre le titre et les stats (portrait et paysage). En paysage, `measureMenu` place le titre juste sous la barre d'icônes.
+- **1 pour 2** :
+  - realtime : un `phx_close`/`phx_error` d'un ancien abonnement (ref ≠ `jref`) est ignoré (avant, ça relançait une boucle de ré-abonnement qui faisait perdre des messages) ;
+  - reconnexion : on ne ré-abonne que si le canal est tombé, et au 3e essai on repart sur une connexion neuve ;
+  - tolérance avant « partenaire déconnecté » : 30 s en co-op et 1 pour 2 (15 s ailleurs) ;
+  - envois moins fréquents (hôte 12/s, invité 14/s) ;
+  - cartes : l'hôte renvoie les cartes (`m.dcMsg`) toutes les 1,2 s tant que l'invité n'a pas répondu, garde l'historique des verdicts (`m.drH`) et répond `dx` (annulation) à un choix qu'il n'attend plus ; l'invité ignore les cartes déjà reçues, et si l'hôte joue alors qu'il est encore sur les cartes, il redemande puis ferme les cartes (`duoAbort`).
+
 ### MAJ 33 · raretés des familiers (v141)
 
 - **Familiers** : rareté par familier (`meta.petT`, 0 = Commun … 6 = UPL). Multiplicateur de dégâts par rareté `PETTK = [1, 1.6, 2.5, 3.9, 6, 9.2, 14]`. Au niveau 20, bouton « PASSER {rareté} » (diams + ampoules, `PETASC` : 60 ✦/8 💡 → 2 800 ✦/360 💡) : retour au niveau 1 avec la nouvelle rareté. XP et prix des niveaux ×(1 + 0,3 × rareté) et ×(1 + rareté). Badge de rareté sur les cartes.
