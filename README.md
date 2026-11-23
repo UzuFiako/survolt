@@ -27,6 +27,12 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 33 · raretés des familiers (v141)
+
+- **Familiers** : rareté par familier (`meta.petT`, 0 = Commun … 6 = UPL). Multiplicateur de dégâts par rareté `PETTK = [1, 1.6, 2.5, 3.9, 6, 9.2, 14]`. Au niveau 20, bouton « PASSER {rareté} » (diams + ampoules, `PETASC` : 60 ✦/8 💡 → 2 800 ✦/360 💡) : retour au niveau 1 avec la nouvelle rareté. XP et prix des niveaux ×(1 + 0,3 × rareté) et ×(1 + rareté). Badge de rareté sur les cartes.
+- **Difficulté** : mondes normaux (hors Nightmare, Oméga, multi) : ennemis −6 % PV / −7 % dégâts, boss −5 % / −6 %.
+- **Seigneurs** : stuffs cachés (`lordHid`) dans l'almanach (tuiles glitchées, noms « ??? », pas de filtre), la liste des ULT du garage et la liste des objets manquants tant que le Seigneur n'a pas été battu.
+
 ### MAJ 32 · stuffs des Seigneurs (v140)
 
 - 3 nouveaux sets légendaires (`GSETS`, `lord: …`), jamais en coffre UPL, en boutique ni au duel ; donnés en entier (4 pièces LG) à la première victoire contre le Seigneur (`eggReward`), et rattrapés au menu pour ceux qui l'ont déjà battu (`meta.lordSet`).
