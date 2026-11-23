@@ -27,6 +27,13 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 30 · nouveaux visuels (v138)
+
+- **Boss et mini-boss** : 22 designs dessinés (`BLOOK`, par nom) à la place des polygones : Transfo, Dynamo, Arc-Roi, Alternateur, Condensateur, Singularité, Omega, Réacteur fondu, Matriarche mutante, Noyau zéro, Hurleur, Directeur, Chose du bassin, et les 9 mini-boss (Sentinelle, Broyeur, Essaim-mère, Tisseuse, Viseur, Carapace, Goule irradiée, Spore-mère, Rad-sentinelle). Les yeux suivent le joueur ; couleur et attaques inchangées.
+- **Couleurs** : Monde 1, tous les monstres en `hot` (hors types `keep`) ; les mondes suivants gardent leur couleur de variante sur tous les thèmes.
+- **Fonds de profil** : fonds animés UR minimum, Nuit étoilée/Backrooms MT, Grille/Couchant/Ville néon LG, niveaux de déblocage revus ; 15 fonds fixes en CSS (Ciel, Pêche, Lilas, Jade, Ardoise, Rubis, Doré, Crépuscule, Lagon, Barbe à papa, Encre, Carbone, Royal, Prisme, Obsidienne). Migration `bgMig` : les fonds déjà débloqués restent acquis.
+- **Thèmes** : halos (`makeGlows`) réglables par thème (`glow` : Croquis 0, Pastel 0,16, Métal 0,3). Croquis : papier par monde (jeu et menus, variable `--paper`), plus de détourage de texte, couleurs de texte foncées, dessins de fond plus discrets. Pastel/Croquis : « Après ce choix », puissance, clés et ampoules lisibles. Métal : bouton JOUER doré bien contrasté.
+
 ### MAJ 29 · épée et économie (v137)
 
 - **Profil (écran gris / plantage)** : chaque ouverture du profil créait ~430 canvas (aperçus de toutes les bordures, fonds, photos, animations), jamais libérés à temps ; au 2e passage la mémoire des images de l'iPhone saturait (volets gris/vides, voire plantage). Les aperçus sont maintenant construits à l'ouverture de leur volet et libérés à la fermeture ou en quittant le profil (3 canvas par ouverture au lieu de 430).

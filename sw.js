@@ -2,7 +2,7 @@
 // v133 (MAJ 25) : corrections et confort.
 // v132 (MAJ 24) : battle royale, trouver quelqu’un, forge et équipement premium, relevé des monnaies, défi premium.
 // v95 (MAJ 8) : cosmétiques animés, atelier et garage premium, reprise de partie, zoom, perks Super rare, paliers d’emplacement.
-const CACHE = 'survolt-v137';
+const CACHE = 'survolt-v138';
 const FILES = ['./', './index.html', './comptes.html', './manifest.webmanifest', './sv-icon-192.png', './sv-icon-512.png', './sv-icon-maskable.png', './sv-apple-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => Promise.all(FILES.map(f => c.add(f).catch(() => {})))).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(k => Promise.all(k.filter(n => n !== CACHE).map(n => caches.delete(n)))).then(() => self.clients.claim())); });
