@@ -27,6 +27,24 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 37 · almanach complet (v145)
+
+- **Onglet Profil** (`prof`, `almProfL()`) : bordures (`PBORD`), fonds (`PBG`, fixes et animés), animations (`PFX`), titres (`TITLES`) et photos (`AVATARS`), groupés par type comme les perks par monde. On voit la rareté, si c'est animé et comment l'avoir. Possédé = `cosOk` / `t.ok()` / `a.ok()`. Les objets des Seigneurs restent en « ??? » tant qu'ils ne sont pas battus. Cet onglet ne compte pas dans la collection (bonus).
+- **Familiers** : la rareté (`petTier`) s'affiche dans la fiche, avec une phrase sur le passage de rareté au niveau 20.
+- **Épée** : description mise à jour (frappe vers la visée, même sans ennemi).
+- Vérifié : les monstres et les 22 boss et mini-boss, les 122 perks, les bonus, les armes (Laser, Épée), les sets (avec les Seigneurs cachés), les skins, les accessoires, les couleurs, les balles, les châssis, les runes, les familiers, les thèmes et les musiques viennent tous des listes du jeu : ils sont donc à jour automatiquement.
+
+### MAJ 36 · collection de l'almanach (v144)
+
+- **Paliers de collection** (`ALMCOLD`) : 17 paliers au lieu de 8. Ils vont de 10 à 230 découvertes, plus un dernier palier pour l'almanach complet (`almTot()` = monstres + perks + bonus, environ 240). Les anciens paliers montaient jusqu'à 450, impossible à atteindre. Chaque palier donne un petit bonus : dégâts, PV, XP, critique ou gains de nuggets et diams. Au total, avec l'almanach complet : environ +23 % de dégâts, +22 % de PV, +6 % d’XP, +5 % de critique et +20 % de gains.
+- **Fiche Collection** (`almColSheet`) : le bandeau est cliquable. La fiche montre :
+  - la progression totale ;
+  - le détail monstres / perks / bonus ;
+  - le résumé des bonus actifs ;
+  - la liste de tous les paliers (actif, prochain, encore X découvertes).
+- **Titre du menu** : les mesures passent par `offsetTop` (`offY`) au lieu de `getBoundingClientRect`. Avec l'écran pivoté (mode de côté), les rectangles étaient tournés et le titre passait sous les icônes.
+  - En portrait, le titre est en position absolue juste sous la barre d'icônes, et le `padding-top` de `#menu` laisse la place au tank entre le titre et l'énergie.
+
 ### MAJ 35 · multi plus stable (v143)
 
 - **Coupure après ~5 min** : la taille des paquets d'état grossit avec les vagues (ennemis + tirs) et dépassait la limite de débit de Supabase Realtime, qui coupait la salle. Maintenant `mpSendSnap` règle sa cadence sur un budget d'environ 22 Ko/s (`m.tx = max(m.tx, taille / 22000)`, 4 envois/s minimum). Les paquets d'état (`s`, `g`, `r`) sont sautés quand `ws.bufferedAmount` dépasse 40 Ko. `rtSend` renvoie la taille envoyée. Tirs alliés envoyés en 1 pour 2 : 45 au lieu de 70.
