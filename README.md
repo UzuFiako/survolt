@@ -27,6 +27,22 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 32 · stuffs des Seigneurs (v140)
+
+- 3 nouveaux sets légendaires (`GSETS`, `lord: …`), jamais en coffre UPL, en boutique ni au duel ; donnés en entier (4 pièces LG) à la première victoire contre le Seigneur (`eggReward`), et rattrapés au menu pour ceux qui l'ont déjà battu (`meta.lordSet`).
+- **Seigneur des mondes (invocateur)** : 2 pièces = invocations ×1,6 et +1 drone d'escorte ; 4 pièces = encore ×1,5, drones feu + électro, skin du Seigneur, ULT Armée des mondes (6 planètes en orbite qui foudroient, 8 s). Le bonus `s.sumK` multiplie les dégâts du familier et de tous les drones.
+- **Seigneur de l'Apocalypse** : 2 pièces = +15 % dégâts, 20 % de saignement, tirs enflammés ; 4 pièces = critiques +0,5, impacts explosifs, +0,3 PV par tir qui touche, ULT Apocalypse (météores sur 520 px pendant 4,5 s).
+- **Seigneur-Dieu Oméga** : 2 pièces = +20 % de tirs dédoublés (écho), +10 % de vitesse ; 4 pièces = +15 % d'écho, dash −30 %, invisibilité après dash, ULT Arrêt du temps (gel 5 s, dégâts ×1,5).
+- Skins de set = skins des Seigneurs (`STUFFSK.l_*`), noms d'ULT centralisés (`ULTN`).
+
+### MAJ 31 · Tournoi hebdomadaire (v139)
+
+- **Tournoi hebdomadaire** (ex-Défi de la semaine) : mêmes règles (monde, châssis de base et 2 modificateurs tirés au sort par semaine), paliers de vagues conservés.
+- **Récompenses de classement** : à la première ouverture de la semaine suivante, le jeu lit le classement de la semaine passée (`scores`, mode `wkAASS`, top 300) et dépose la récompense dans la boîte de réception (onglet Cadeaux, bouton Récupérer) : 1er (40 000 ◆, 150 ✦, 6 🔑, coffre LG), 2e (25 000, 100, 4, MT), 3e (16 000, 70, 3, UR), bronze 4e–5e (9 000, 35, 2, SR), fer 6e–10e (4 500, 15, 1, R), participation (900 ◆, 3 ✦). Une seule fois par semaine (`meta.wkPz`).
+- **Tickets** : 1 ticket gratuit par jour (`meta.tkDay`), tickets supplémentaires à 5 💡 (`meta.tix`), boutons JOUER et +1 🎟 dans la carte du tournoi.
+- **Reprise** : les parties de tournoi sont sauvegardées comme les autres (`meta.resume.chal`) et se reprennent sans ticket.
+- **Croquis** : 17 dessins générés avec des traits tremblés, aussi en fond des pages Mondes / Multi / Classement / Almanach ; puce d'énergie, boutons du haut et MULTI lisibles.
+
 ### MAJ 30 · nouveaux visuels (v138)
 
 - **Boss et mini-boss** : 22 designs dessinés (`BLOOK`, par nom) à la place des polygones : Transfo, Dynamo, Arc-Roi, Alternateur, Condensateur, Singularité, Omega, Réacteur fondu, Matriarche mutante, Noyau zéro, Hurleur, Directeur, Chose du bassin, et les 9 mini-boss (Sentinelle, Broyeur, Essaim-mère, Tisseuse, Viseur, Carapace, Goule irradiée, Spore-mère, Rad-sentinelle). Les yeux suivent le joueur ; couleur et attaques inchangées.
