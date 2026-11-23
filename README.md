@@ -27,6 +27,22 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 29 · épée et économie (v137)
+
+- **Profil (écran gris / plantage)** : chaque ouverture du profil créait ~430 canvas (aperçus de toutes les bordures, fonds, photos, animations), jamais libérés à temps ; au 2e passage la mémoire des images de l'iPhone saturait (volets gris/vides, voire plantage). Les aperçus sont maintenant construits à l'ouverture de leur volet et libérés à la fermeture ou en quittant le profil (3 canvas par ouverture au lieu de 430).
+- **1 pour 2** : un verdict de perk arrivé avant l'écran des cartes chez l'invité (deux montées de niveau d'affilée) était jeté → invité bloqué. Il est gardé et appliqué à l'ouverture ; l'hôte répète aussi son verdict pendant 12 s.
+- **Épée** : frappe continue vers la visée (joystick de tir / visée auto), même sans ennemi ; cadence ×0,4, dégâts ×3,6 ; coup en arc de 165° avec traînée en croissant et lame qui balaye (0,28 s) ; plus de son ni de recul de tir, nouveau son de lame (bruit filtré en balayage). Percée vers la visée.
+- **Perks par monde** : une perk du Monde N est jouable dans le Monde N et au-delà, et partout (infini, Backrooms, mondes plus bas) une fois le Monde N terminé. Comètes passées en `w: 3`.
+- **Pacte avec le diable** : 10 % après un boss (hors final, en solo), sinon la roue.
+- **Économie** : nuggets de fin de partie ×3 (1,15 → 3,4) ; cadeaux de connexion ×0,35 ; expéditions 220 → 70 nuggets/h ; extracteur du village 60×1,38ⁿ → 25×1,32ⁿ par heure ; prix des cosmétiques en nuggets ×3,3 à ×5 (LG 30 000 → 150 000), en diams ×1,6–1,8.
+
+### MAJ 28 · atelier et stats en direct (v136)
+
+- **Stats en direct** (Réglages > Stats en direct, OUI/NON, éteint par défaut) : panneau en partie avec DPS réel (moyenne glissante sur 4 s), DPS max théorique, dégâts par tir, cadence, critiques, soins par seconde réels, vitesse, portée, blindage.
+- **Atelier** : nouveaux upgrades Gâchette rapide (+0,4 % de cadence/niv., max 80), Pointes perforantes (+0,01 au multiplicateur critique/niv., max 60), Blindage (−0,25 % de dégâts subis/niv., max 60, plafond 50 %). Coefficient global 0,85 → 0,78 ; bases en baisse : Munitions lourdes 80 → 62, Viseur 85 → 70, Supercondensateur 170 → 135, Bonne étoile 100 → 85, Relance 450 → 380, Ressorts de dash 90 → 75, Servo-tourelles 90 → 76, Départ lancé 2500 → 2000.
+- **Blocs** : dégâts affichés (regroupés toutes les 0,3 s), comptés dans le DPS, bulle d'explication au premier coup.
+- **Menu** : la photo de profil complète (bordure, fond, animation) remplace la petite icône du bouton profil.
+
 ### MAJ 27 · l'épée (v135)
 
 - **Épée** (nouvelle arme, une épée en bois CO offerte à tout le monde) : frappe automatique au corps à corps dans la direction du déplacement (vers la cible à l'arrêt), coups gauche/droite avec recul. Visuel selon la rareté : bois, bronze, argent, or et argent, diamant/or/rubis, divine animée avec aura, démoniaque.
