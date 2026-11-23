@@ -27,6 +27,18 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 39 · drones et multi (v147)
+
+- **Drones** (`drnRate`, `drnPct`) : par niveau, +10 % de dégâts (multiplicatif sur `pct`) et seulement +0,5 % de cadence. L'atelier `m_drn` (« Drones renforcés ») donne +0,5 % de dégâts et +0,1 % de cadence par niveau (avant : +0,6 % de cadence par niveau, et −10 % d'intervalle par niveau de perk).
+- **Visuel partagé en multi** : `mpVf()` est ajouté au paquet d'état de l'hôte (`s.vf`) et au paquet de l'invité en co-op (`g.vf`). Il contient :
+  - le nombre de satellites, satellites élémentaires, satellites de défense et lames, avec leurs angles (le receveur les fait tourner à la même vitesse) ;
+  - les compagnons (familier et drones) et leurs tirs ;
+  - les nouveaux effets `G.fx2` (laser, mines, trous noirs, comètes, météores…), rejoués en mode « affichage seul » (`f.rm`, aucun dégât) ;
+  - les éclairs (`bolt` enregistré dans `MPFX.bo`) ;
+  - en 1 pour 2, l'état de l'épée.
+- **Tirs** (`mpBulRows`) : chaque tir envoie sa taille, son type (aiguille, roquette, disque, flamme) et sa couleur (une couleur principale `hc` par paquet). `drawPeerBul` les dessine comme chez le tireur.
+- En 1 pour 2, l'invité n'a plus de familier ni de drones à lui : ce sont ceux du tank commun, gérés chez l'hôte.
+
 ### MAJ 38 · succès et nouveaux mini-boss (v146)
 
 - **Succès** : 139 succès générés en séries (`achS`, `achA`), répartis en 5 catégories (`ACHC` : combat, mondes, progression, collection, multi). La difficulté `t` va de 1 à 7 et fixe la récompense (`ACHR`) : 200 nuggets pour les plus faciles, 60 000 nuggets + 180 diams + 10 clés pour les ultimes.
