@@ -27,6 +27,12 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 35 · multi plus stable (v143)
+
+- **Coupure après ~5 min** : la taille des paquets d'état grossit avec les vagues (ennemis + tirs) et dépassait la limite de débit de Supabase Realtime, qui coupait la salle. Maintenant `mpSendSnap` règle sa cadence sur un budget d'environ 22 Ko/s (`m.tx = max(m.tx, taille / 22000)`, 4 envois/s minimum). Les paquets d'état (`s`, `g`, `r`) sont sautés quand `ws.bufferedAmount` dépasse 40 Ko. `rtSend` renvoie la taille envoyée. Tirs alliés envoyés en 1 pour 2 : 45 au lieu de 70.
+- **Tirs ennemis chez l'invité** : chaque tir a un identifiant (`b.nid`) ; l'invité garde les tirs déjà affichés et ne les recale que s'ils dérivent de plus de 150 px ; les tirs détruits chez lui ne réapparaissent pas (`m.ebX`).
+- **Menu** : le titre se place sous la barre d'icônes (mesuré depuis `.mhead`, recalculé avec un `ResizeObserver` sur `.mtop`). L'énergie redevient une petite puce compacte au-dessus des stats.
+
 ### MAJ 34 · relevé et 1 pour 2 (v142)
 
 - **Relevé** : une seule fenêtre `ldgSheet(k)` avec un sélecteur de monnaie (`.ldgcur`) : nuggets `s`, diams `j`, ampoules `b`, clés `k`, énergie `e`. `ldgTrack` suit maintenant 5 soldes (`meta.ldgB` à 5 valeurs, compatible avec l'ancien format). Énergie : « Partie lancée · monde » (`nrgPay`), « Recharge d’énergie » (diams), « Backrooms terminées » (+5), et la recharge naturelle regroupée en une ligne par jour. Bouton « VOIR LE RELEVÉ » dans la fenêtre d'énergie et sur les clés.
