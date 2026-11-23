@@ -27,6 +27,21 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 38 · succès et nouveaux mini-boss (v146)
+
+- **Succès** : 139 succès générés en séries (`achS`, `achA`), répartis en 5 catégories (`ACHC` : combat, mondes, progression, collection, multi). La difficulté `t` va de 1 à 7 et fixe la récompense (`ACHR`) : 200 nuggets pour les plus faciles, 60 000 nuggets + 180 diams + 10 clés pour les ultimes.
+  - Les anciens identifiants sont gardés (k1, k2, b1, …), donc ce qui était déjà récupéré reste récupéré.
+  - Le profil a des filtres (catégories, à récupérer, obtenus) et un bouton « TOUT RÉCUPÉRER ». Un badge de rareté s'affiche sur chaque succès.
+  - Deux succès secrets (Seigneurs) restent en « ??? ».
+  - Ils sont aussi dans l'almanach, onglet `succ`, groupés par catégorie.
+- **Compteurs** : le chargement ne relisait que `tot.k/r/b` ; maintenant `w`, `nmw`, `iw`, `sc` et le nouveau `ch` (coffres ouverts, compté dans `openChest`) sont gardés.
+- **Mini-boss** : FOREUSE, PRISME, ARTILLEUR, HYDRE et COLOSSE (`MINIB` 9 à 13, pool normal `MINN`). Chacun a son design (`BLOOK`), sa fiche d'almanach et son aperçu animé.
+  - 3 nouvelles attaques dans `bossAI` :
+    - `cross` : croix de tirs qui tourne ;
+    - `wall` : mur de balles avec un trou ;
+    - `shot` : chevrotine.
+  - `PATN` les nomme.
+
 ### MAJ 37 · almanach complet (v145)
 
 - **Onglet Profil** (`prof`, `almProfL()`) : bordures (`PBORD`), fonds (`PBG`, fixes et animés), animations (`PFX`), titres (`TITLES`) et photos (`AVATARS`), groupés par type comme les perks par monde. On voit la rareté, si c'est animé et comment l'avoir. Possédé = `cosOk` / `t.ok()` / `a.ok()`. Les objets des Seigneurs restent en « ??? » tant qu'ils ne sont pas battus. Cet onglet ne compte pas dans la collection (bonus).
