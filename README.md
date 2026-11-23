@@ -27,6 +27,18 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 27 · l'épée (v135)
+
+- **Épée** (nouvelle arme, une épée en bois CO offerte à tout le monde) : frappe automatique au corps à corps dans la direction du déplacement (vers la cible à l'arrêt), coups gauche/droite avec recul. Visuel selon la rareté : bois, bronze, argent, or et argent, diamant/or/rubis, divine animée avec aura, démoniaque.
+- **Percée** (SR+) : deuxième dash vers l'avant qui transperce (dégâts ×2,6, recharge 4 s). **Toupie** (MT+) : 3 s de rotation (dégâts ×0,9 toutes les 0,2 s, recharge 12 s). Deux boutons dédiés, grisés avec cadenas si la rareté n'est pas atteinte, placés dans l'éditeur de disposition.
+- **Laser** (nouvelle arme) : rayon instantané qui traverse tout, dégâts ×3,1, cadence ×0,3.
+- **ULT d'arme UPL** (bouton ULT, recharge 60 s, en plus de l'ULT de tenue) : Bombardement (canon), Salve orbitale (rail), Déluge (roquettes), Tempête (tesla), Disque géant (saignement max), Soleil vivant (lance-flammes), Rayon divin (laser), Lame démoniaque (épée).
+- **Puissance** : le type d'arme ne fausse plus la puissance ; chaque arme ajoute 30 + 45 × rareté.
+- **Disque** : cadence ×0,45 au lieu de ×0,6. **Drone d'escorte** : 1 tir / 0,85 s, 12 % des dégâts. Nouvel upgrade atelier **Drones rapides** (−0,6 % de délai par niveau, max 60), stats des drones dans la bulle de la pause.
+- **Garage paysage** : la scène des emplacements ne s'écrase plus et passe sous la puissance ; « ÉQUIPÉ » devient une pastille ✓.
+- **Almanach** : lot élémentaire retiré, section « Artefacts de boss », comètes au Monde 3.
+- **Menu paysage** : position du titre recalculée à chaque affichage, au chargement des polices et à la rotation.
+
 ### MAJ 26 · le pacte du diable (v134)
 
 - **Pacte avec le diable** : après un boss (sauf le final), la roue devient un pacte garanti. 3 perks épiques ou mieux (artefacts de boss compris) contre 15 % (épique), 25 % (mythique) ou 35 % (légendaire) des PV max, ou refuser. Compteur perks + artefacts.
