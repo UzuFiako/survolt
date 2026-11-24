@@ -27,6 +27,16 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 46 · épées multiples et parade (v154)
+
+- **Plusieurs épées** : `swCount()` = `s.multi` (4 max), donc Hydre et les châssis à plusieurs tirs ajoutent des épées. Après le coup principal, `swordSwing(i)` est mis en file dans `G.swJ` toutes les 0,07 s. Chaque épée en plus a son état `P.swX[i] {T, A}` et se dessine avec `swExtra` (en miroir de la lame principale ; à partir de la 3ᵉ, un peu décalée). En duo, l'invité les reçoit par `vf.sn`.
+- **Parade** : `swBlockZone()` / `swBlocks()` dans la boucle des tirs ennemis. Les tirs dans le cône d'un coup en cours, dans la Toupie ou autour du boomerang sont détruits. Avec Balle sous bulle (`s.bub`), `swReflect()` les renvoie vers l'ennemi le plus proche (60 % des dégâts).
+- **Gros calibre** : `swBig()` = 1 + 0,35 × (bsize/5,5 − 1), 1,7 max. Il multiplie la portée (`swReach`) et l'épaisseur de la lame.
+- **Coups fantômes** : 75 % sur les côtés et derrière. +1 canon : 50 % → 85 % selon le niveau.
+- **Critiques** : les nombres de dégâts critiques ont `crit: 1` et se dessinent en rouge, avec un clignotement rouge / jaune (14 Hz), une lueur et une petite secousse au début.
+- **Relevé** : `ldgChart()` dessine sur un canvas la courbe du solde (bézier lissée, dégradé et lueur de la couleur de la monnaie, point final qui pulse, apparition animée). Les entrées et sorties sont en barres par tranche. On choisit 24 h, 7 j ou 30 j, et un doigt posé affiche la valeur (`offsetX`, donc juste même quand l'écran est tourné).
+- **Garage** : la règle `.eqcol .it.tiered` ne s'applique plus qu'aux emplacements vides, donc un emplacement équipé garde la couleur de rareté de l'objet. En paysage, le panneau fait toute la hauteur (`min-height: 100dvh`) et les colonnes vont jusqu'en bas.
+
 ### MAJ 45 · perks de l'épée (v153)
 
 - **Ricochet** (`s.bounce`) : `swordSwing` garde la liste des ennemis touchés. Pour les 3 premiers, une chaîne part dans `G.swJ` : toutes les 0,07 s, `updSwJ` frappe l'ennemi le plus proche pas encore touché (230 px max, ligne de vue `dgLos` dans les Backrooms). 60 % des dégâts, ×0,85 à chaque saut, `s.bounce` sauts (8 max). Visuel : une traînée et une entaille en croissant (`drawSwFx`), pas d'éclair.
