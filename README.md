@@ -29,6 +29,8 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ### MAJ 46 · épées multiples et parade (v154)
 
+- **v155 · Stats en direct** : `#lstat` passe dans la colonne `.hudl`, sous l'arme et les bonus (TIR AUTO…), donc il ne les chevauche plus. Police plus grosse (13,5 px, 12,5 px en paysage) et valeurs en blanc.
+
 - **Plusieurs épées** : `swCount()` = `s.multi` (4 max), donc Hydre et les châssis à plusieurs tirs ajoutent des épées. Après le coup principal, `swordSwing(i)` est mis en file dans `G.swJ` toutes les 0,07 s. Chaque épée en plus a son état `P.swX[i] {T, A}` et se dessine avec `swExtra` (en miroir de la lame principale ; à partir de la 3ᵉ, un peu décalée). En duo, l'invité les reçoit par `vf.sn`.
 - **Parade** : `swBlockZone()` / `swBlocks()` dans la boucle des tirs ennemis. Les tirs dans le cône d'un coup en cours, dans la Toupie ou autour du boomerang sont détruits. Avec Balle sous bulle (`s.bub`), `swReflect()` les renvoie vers l'ennemi le plus proche (60 % des dégâts).
 - **Gros calibre** : `swBig()` = 1 + 0,35 × (bsize/5,5 − 1), 1,7 max. Il multiplie la portée (`swReach`) et l'épaisseur de la lame.

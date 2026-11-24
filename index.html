@@ -2058,6 +2058,8 @@ html.nm .logo{color:#9dff3d;text-shadow:.05em .05em 0 #2f6b10,.1em .1em 0 rgba(1
 .lstat{position:absolute;left:calc(8px + var(--il,0px));top:calc(var(--it,0px) + 150px);z-index:3;display:grid;gap:1px;padding:6px 8px;border-radius:10px;background:rgba(10,8,28,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);pointer-events:none;font:700 10.5px/1.25 var(--body);color:var(--ink);min-width:118px}
 .lstat div{display:grid;grid-template-columns:14px 1fr auto;gap:5px;align-items:center} .lstat i{font-style:normal;text-align:center} .lstat span{color:var(--dim);font-weight:600} .lstat b{font-variant-numeric:tabular-nums}
 .land .lstat{top:calc(var(--it,0px) + 96px)}
+.hudl .lstat{position:static;margin-top:4px;padding:8px 11px;gap:3px;font:700 13.5px/1.3 var(--body);min-width:170px;border-radius:12px} .hudl .lstat div{grid-template-columns:18px 1fr auto;gap:8px} .hudl .lstat b{font-weight:800;color:#fff} .hudl .lstat span{color:rgba(225,228,255,.82)}   /* v154 : sous l'arme et les bonus, plus gros */
+.land .hudl .lstat{font-size:12.5px;min-width:158px}
 
 /* F5 : fonds fixes */
 .pfa.bg-sky .pfa-bg{background:linear-gradient(180deg,#bfe6ff,#5aa9f0)} .pfa.bg-peach .pfa-bg{background:radial-gradient(circle at 50% 35%,#ffe1c4,#ff9e6e)} .pfa.bg-lilac .pfa-bg{background:#b9a3ec}
@@ -2169,8 +2171,7 @@ button.acl{width:100%;text-align:left;cursor:pointer;color:inherit;border:0;font
     <button id="bPause" type="button" aria-label="Pause"></button>
   </div>
   <div id="autoChip" class="autochip" hidden style="display:none!important">TIR AUTO <i><b id="autoF"></b></i></div>
-  <div id="lstat" class="lstat" hidden></div>
-  <div class="hudl"><div id="wpnChip" class="wpnchip" hidden><canvas width="64" height="64"></canvas><span></span></div><div id="bufs" class="bufs"></div><i id="bufSep" class="bufsep" hidden></i><div id="pbufs" class="bufs pbufs"></div><div id="trProg" class="trprog" hidden></div><div id="mpHud" class="mphud" hidden></div></div>
+  <div class="hudl"><div id="wpnChip" class="wpnchip" hidden><canvas width="64" height="64"></canvas><span></span></div><div id="bufs" class="bufs"></div><i id="bufSep" class="bufsep" hidden></i><div id="pbufs" class="bufs pbufs"></div><div id="trProg" class="trprog" hidden></div><div id="mpHud" class="mphud" hidden></div><div id="lstat" class="lstat" hidden></div></div>
   <div id="pkInfo" class="pkinfo" hidden><i></i><div><b></b><span></span></div></div>
   <div id="boss" hidden><span id="bossN"></span><div class="bar"><i id="bossF"></i></div></div>
   <button id="bDash" class="act" type="button">DASH</button>
