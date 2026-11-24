@@ -29,6 +29,7 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ### MAJ 46 · épées multiples et parade (v154)
 
+- **v156 · Stats en direct, calculs justes** : `lstatTick` utilise les bonus actifs. Cadence × Surcharge (2,2), Furie (1,6) et Adrénaline ; dégâts × Furie (1,5), Dernier souffle, Berserker, Prisme et dims légendaires ; vitesse × Surcharge et Hâte. Le DPS max se calcule sur une cible : dégâts × crit moyen × cadence × coups par salve (somme des `dm` de `gunLayout`, plombs du Fracas, épées + coup fantôme du +1 canon, Écho). Les valeurs boostées passent en jaune avec ▲ et les bonus actifs s'affichent en pastilles. Le DPS mesuré est maintenant compté après le ×1,5 de Furie. Les icônes sont des SVG (`LSI`, plus de diamant pour les dégâts). `hudLay()` : en paysage, l'icône de l'arme et les bonus actifs vont à droite des PV et les stats juste dessous ; en portrait, les bonus sont sous les PV et les stats en dessous.
 - **v155 · Stats en direct** : `#lstat` passe dans la colonne `.hudl`, sous l'arme et les bonus (TIR AUTO…), donc il ne les chevauche plus. Police plus grosse (13,5 px, 12,5 px en paysage) et valeurs en blanc.
 
 - **Plusieurs épées** : `swCount()` = `s.multi` (4 max), donc Hydre et les châssis à plusieurs tirs ajoutent des épées. Après le coup principal, `swordSwing(i)` est mis en file dans `G.swJ` toutes les 0,07 s. Chaque épée en plus a son état `P.swX[i] {T, A}` et se dessine avec `swExtra` (en miroir de la lame principale ; à partir de la 3ᵉ, un peu décalée). En duo, l'invité les reçoit par `vf.sn`.
