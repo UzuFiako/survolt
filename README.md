@@ -27,6 +27,29 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 43 · perk Carte (v151)
+
+- **Mini-carte** : elle était dessinée en bas au centre, sous les sticks et les boutons du téléphone, et trop transparente. Elle est maintenant en haut : au centre en paysage, sous le panneau `#hud .info` en portrait (position mesurée en `offsetTop`/`offsetLeft` jusqu'à `#stage`). Le fond est plus opaque, le contour plus net, le bord de l'arène est tracé et les points sont plus gros. Elle n'apparaît toujours pas dans les Backrooms, qui ont leur propre plan.
+
+### MAJ 42 · icônes maison (v150)
+
+- **Icônes** : 19 nouvelles icônes `EICO` (ticket, arbre, diable, loupe, balai, crayon, panier, sauvegarde, cœur brisé, comète, carte, maison, boussole, rafraîchir, chapeau, visage, monstre, goutte, lecture) et environ 70 emojis de plus branchés dans `EMOJI`. Le remplacement automatique `emojiFix` les transforme partout dans l'interface.
+  - Le compteur d'éliminations du HUD (zone `data-raw`) utilise l'icône tête de mort.
+  - Le butin de la pause passe aussi par `emojiFix`.
+  - Sur le canvas, `cIco(g, clé, x, y, taille, couleur)` dessine la même icône à partir d'un SVG en cache. Ça couvre : la carte des Backrooms, le poison des ennemis, le nom du rival, « signal perdu », les fantômes, la main du tutoriel, le village (cadenas, familiers, parchemins, ampoules).
+  - Les symboles typographiques (✦ ✓ ★ ✕ ➜) restent : ils font partie du style.
+- **Forge** : le marteau pivote autour de (560, 110) avec un angle de 0,03 à 0,58 rad. Il se lève vers le haut et frappe vers le bas (avant, il montait depuis le bas).
+
+### MAJ 41 · épée et titre (v149)
+
+- **Son de l'épée** : `sfx.swish` lançait le bruit blanc à un décalage aléatoire jusqu'à 1 s, dans un tampon `NB` de 0,5 s : une fois sur deux, le son tombait en dehors et on n'entendait rien. Le décalage est maintenant de 0 à 0,15 s, avec une petite note grave en plus pour le « swoosh ». L'anti-répétition passe de 60 à 40 ms.
+- **Frappes en retard** : la file `P.omQ` (écho Oméga) ne relance plus de coup d'épée quand on ne tire plus.
+- **Titre en portrait** : il est placé 22 px sous la barre d'icônes, calculé depuis sa vraie position (on le met à `top:0`, on mesure, puis on corrige), quel que soit le parent positionné.
+
+### MAJ 40 · épée (v148)
+
+- **Épée** : elle ne frappe plus en continu. `firing` vaut vrai seulement si le stick de tir est touché (`aimJ.on`), si la manette tire (`PAD.fire`), si le clic est maintenu (`mouse.down`), ou si l'invité appuie sur tirer quand l'hôte pilote en 1 pour 2 (`duoGi.f`). Le bonus TIR AUTO ne déclenche plus l'épée.
+
 ### MAJ 39 · drones et multi (v147)
 
 - **Drones** (`drnRate`, `drnPct`) : par niveau, +10 % de dégâts (multiplicatif sur `pct`) et seulement +0,5 % de cadence. L'atelier `m_drn` (« Drones renforcés ») donne +0,5 % de dégâts et +0,1 % de cadence par niveau (avant : +0,6 % de cadence par niveau, et −10 % d'intervalle par niveau de perk).
