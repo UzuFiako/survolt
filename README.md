@@ -27,6 +27,18 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 52 · canons en alternance (v164)
+
+- **Tirs en alternance** : dans la boucle de tir, quand `gunLayout(s)` a plusieurs canons (sauf Fracas/scatter, Tesla, laser, épée), chaque « tir » ne lance qu'un canon (`lay[P.barI % n]`) et le délai devient `1 / (cadence × n)`. Même DPS, mais les balles partent les unes après les autres. Les effets par salve (arrière, côtés, foudre, Oméga) ne partent qu'avec le 1er canon. L'Écho rejoue chaque canon avec le même décalage (`P.echQ`).
+- **Pastel / Croquis** : textes accentués (Partie rapide, niveau du profil, énergie, offre, vague, combo) en orange foncé `#b4580c`.
+- **Nettoyage (sans rien changer au jeu)** : 10 fonctions et constantes jamais appelées supprimées (`renderDecoShop`, `statPanelOld`, `gemIcon`, `pfxPunch`, `ghWave`, `bSpikes`, `swDir`, `openGChat`, `LB_MODES`, `ALMMINI_N`). 264 traductions anglaises dont le texte n'existe plus. 68 règles CSS dont les classes ne sont plus utilisées. Environ 34 Ko en moins.
+
+### MAJ 51 · correctifs (v163)
+
+- **JOUER en portrait** : `.playw` n'est plus déplacé ; `playwPlace()` met seulement la classe `pfix` (sticky en bas) en portrait. Il reste collé en bas tant qu'on ne l'a pas atteint, puis il défile avec la page, comme en paysage.
+- **Forge en paysage** : le panneau du garage (`.land #garage .panel`) se faisait écraser à la hauteur de l'écran par la colonne flex (avec `overflow: clip`), donc la page ne défilait plus. Ajout de `flex: none`.
+- **Pastel / Croquis** : icônes `.eico svg` plus foncées et saturées (filtre) ; bulles et cartes (notes de mise à jour, boîte de réception, relevé, maîtrise…) sur un fond violet sombre translucide avec un contour ; panneau Pastel un peu plus foncé ; voile plus sombre derrière les fenêtres ; titres orange plus foncés.
+
 ### MAJ 50 · confort (v162)
 
 - **Maîtrises** : `mstAdd` ne donne plus directement nuggets et diams. Chaque palier va dans `meta.mstG` (`{k, id, r, sh, jet, at}`). `mstCards` affiche une carte par palier dans l'onglet CADEAUX ; RÉCUPÉRER appelle `mstClaim` (via `grantRw`, donc ça passe dans le relevé). « Tout récupérer » les prend aussi, et `inboxNew` les compte pour la pastille de la cloche.
