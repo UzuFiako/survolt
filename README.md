@@ -27,6 +27,13 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 48 · boss plus lisibles (v158)
+
+- `mkBoss` : PV × 0,8 pour les boss, × 0,85 pour les mini-boss (v159 ; en v158 c'était 0,72 et 0,8, trop fort).
+- Barre du boss : `#bossH` affiche `PV / max` (via `fmtK`) dans la barre, qui fait maintenant 18 px de haut.
+- Les PV chiffrés au-dessus des ennemis ne s'affichent que pour les élites et les mini-boss (avant : tout ennemi à 40 PV ou plus). Moins de texte dessiné à chaque image.
+- Mini-carte (perk Carte) : en paysage, elle est collée en haut, à gauche du panneau `.info`. `hudLay` place la barre du boss entre le panneau des stats et la carte, sous la ligne des bonus, et réduit la largeur des bonus quand la carte est là.
+
 ### MAJ 47 · boss au hasard (v157)
 
 - **Nouveau boss** : `L’HYDRE ROYALE` (`BOSS[13]`, ajouté à la fin pour ne pas décaler les index). Dessin `BLOOK` à cinq têtes, celle du milieu avec une couronne. Fiche dans l'almanach.
