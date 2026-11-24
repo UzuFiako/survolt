@@ -27,6 +27,14 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 50 · confort (v162)
+
+- **Maîtrises** : `mstAdd` ne donne plus directement nuggets et diams. Chaque palier va dans `meta.mstG` (`{k, id, r, sh, jet, at}`). `mstCards` affiche une carte par palier dans l'onglet CADEAUX ; RÉCUPÉRER appelle `mstClaim` (via `grantRw`, donc ça passe dans le relevé). « Tout récupérer » les prend aussi, et `inboxNew` les compte pour la pastille de la cloche.
+- **JOUER en portrait** : `playwPlace()` (appelée par `measureMenu`) déplace `.playw` à la fin de `#menu` en portrait, avec la classe `pfix` (sticky en bas, fond en dégradé), et le remet à sa place en paysage.
+- **Thèmes clairs** : gemmes d'XP plus grandes avec contour `#1d1838` ; tirs « needle » (fusil à rail) avec un trait sombre dessous et la couleur du tir dessus ; textes de `.lstat.v2` foncés sur Pastel et Croquis.
+- **Nébuleuse noire** : `col: 'plasma'`, fond `#050207`, sol bordeaux ; décor en nuages bordeaux et violets, étoiles rose pâle et lilas ; couleurs claires adaptées (Pastel, Croquis).
+- **Boss** : PV × 0,88 (boss) et × 0,8925 (mini-boss), soit +10 % et +5 % par rapport à la v159.
+
 ### MAJ 49 · succès (v160)
 
 - `ACHR` (récompense par palier 1 → 7) : 300/2, 800/5, 2 000/13, 5 000/32 + 1 clé, 15 000/75 + 3, 45 000/180 + 8, 120 000/420 + 15 (v161 : plus de diams) (nuggets / diams + clés).
