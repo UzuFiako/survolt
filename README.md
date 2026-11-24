@@ -27,6 +27,12 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 49 · succès (v160)
+
+- `ACHR` (récompense par palier 1 → 7) : 300/2, 800/5, 2 000/13, 5 000/32 + 1 clé, 15 000/75 + 3, 45 000/180 + 8, 120 000/420 + 15 (v161 : plus de diams) (nuggets / diams + clés).
+- `achCheck` appelle `achPop(a)` au lieu d'un toast. C'est une carte en haut de l'écran, couleur de la rareté du palier, avec icône animée, reflet, récompense, son et vibration. Elles passent une par une (3 max, puis une carte « +N autres succès »). Jamais pendant une partie : elles attendent la fin. Un appui ouvre le profil sur « Succès », filtre « À récupérer ».
+- `achCheck` tourne aussi toutes les 6 s dans le menu et n'enregistre la sauvegarde que s'il y a du nouveau.
+
 ### MAJ 48 · boss plus lisibles (v158)
 
 - `mkBoss` : PV × 0,8 pour les boss, × 0,85 pour les mini-boss (v159 ; en v158 c'était 0,72 et 0,8, trop fort).
