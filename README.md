@@ -27,6 +27,23 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 45 · perks de l'épée (v153)
+
+- **Ricochet** (`s.bounce`) : `swordSwing` garde la liste des ennemis touchés. Pour les 3 premiers, une chaîne part dans `G.swJ` : toutes les 0,07 s, `updSwJ` frappe l'ennemi le plus proche pas encore touché (230 px max, ligne de vue `dgLos` dans les Backrooms). 60 % des dégâts, ×0,85 à chaque saut, `s.bounce` sauts (8 max). Visuel : une traînée et une entaille en croissant (`drawSwFx`), pas d'éclair.
+- **+1 canon** (`s.gun`) : un coup fantôme (`swordGhost`) 0,1 s après le coup, à 35 % des dégâts, +10 % par niveau.
+- **Canons latéraux / arrière** : dans `volley`, sans `lay`, l'épée donne un coup fantôme dans cette direction à 50 %.
+- **Perforant** : `swReach` × (1 + 0,05 × niveau), 6 niveaux max.
+- **Multi** : les arcs et les sauts passent par `swFxPush` → `MPFX.sx` → `vf.sx`, et sont redessinés chez le partenaire.
+
+### MAJ 44 · épée, familier et HUD (v152)
+
+- **Compagnons** : le familier, les drones (`updComps`), les satellites (`satTick`) et le calcul de puissance n'utilisent plus le bonus de dégâts propre à l'arme (`s.dmg / s.wDK`). Avec l'épée (×3,6), ils faisaient 3,6 fois trop mal. Le familier et les drones font aussi 20 % de moins (`× 0.8`). Le popup des drones affiche le même calcul.
+- **Épée** :
+  - `swSee` vérifie la ligne de vue `dgLos` dans les Backrooms, pour le coup, la Percée et la Toupie ;
+  - `swReach` suit la portée presque linéairement (`66 × (1 + 0,85 × (range/1,2 − 1))`) au lieu de la racine carrée ;
+  - **boomerang** : avec le Canon suprême au niveau max (`s.railBoom`), `swThrow` lance la lame jusqu'à 3,2 × la portée (elle revient plus tôt si elle touche un mur ou le bord). Elle touche chaque ennemi une fois à l'aller et une fois au retour, à ×1,1 dégâts. Tant qu'elle vole, pas d'autre coup. Elle est envoyée au partenaire en multi (`vf.bm`).
+- **HUD** : `#hud .vit`, `#hud .info` et `.lstat` n'utilisent plus `backdrop-filter`, qui se mettait à jour en saccades sur téléphone au-dessus du canvas. L'effet verre est fait avec un dégradé transparent, un liseré lumineux et une ombre de texte.
+
 ### MAJ 43 · perk Carte (v151)
 
 - **Mini-carte** : elle était dessinée en bas au centre, sous les sticks et les boutons du téléphone, et trop transparente. Elle est maintenant en haut : au centre en paysage, sous le panneau `#hud .info` en portrait (position mesurée en `offsetTop`/`offsetLeft` jusqu'à `#stage`). Le fond est plus opaque, le contour plus net, le bord de l'arène est tracé et les points sont plus gros. Elle n'apparaît toujours pas dans les Backrooms, qui ont leur propre plan.
