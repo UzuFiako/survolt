@@ -27,6 +27,12 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 47 · boss au hasard (v157)
+
+- **Nouveau boss** : `L’HYDRE ROYALE` (`BOSS[13]`, ajouté à la fin pour ne pas décaler les index). Dessin `BLOOK` à cinq têtes, celle du milieu avec une couronne. Fiche dans l'almanach.
+- **Tirage des boss** : `BHOME` donne le monde d'arrivée de chaque boss : Transfo, Dynamo et Hydre royale au Monde 1, Arc-Roi au 2, Alternateur au 3, Condensateur au 5, Singularité au 6. `wBossPool(W)` = tous les boss arrivés au plus tard dans ce monde. `pickBossW` tire au hasard dans ce groupe, jamais deux fois le même d'affilée. Le boss final est le plus récent du groupe (au hasard parmi les 3 au Monde 1). Infini, parties rapides et Nightmare gardent leurs listes.
+- La carte du monde affiche le nombre de boss du groupe.
+
 ### MAJ 46 · épées multiples et parade (v154)
 
 - **v156 · Stats en direct, calculs justes** : `lstatTick` utilise les bonus actifs. Cadence × Surcharge (2,2), Furie (1,6) et Adrénaline ; dégâts × Furie (1,5), Dernier souffle, Berserker, Prisme et dims légendaires ; vitesse × Surcharge et Hâte. Le DPS max se calcule sur une cible : dégâts × crit moyen × cadence × coups par salve (somme des `dm` de `gunLayout`, plombs du Fracas, épées + coup fantôme du +1 canon, Écho). Les valeurs boostées passent en jaune avec ▲ et les bonus actifs s'affichent en pastilles. Le DPS mesuré est maintenant compté après le ×1,5 de Furie. Les icônes sont des SVG (`LSI`, plus de diamant pour les dégâts). `hudLay()` : en paysage, l'icône de l'arme et les bonus actifs vont à droite des PV et les stats juste dessous ; en portrait, les bonus sont sous les PV et les stats en dessous.
