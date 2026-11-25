@@ -27,6 +27,11 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 62 · mondes plus faciles (v174)
+
+- `PSPLIT` : nouveau max = min(15, arrondi supérieur de 1,5 × l'ancien) au lieu de ×2 / 20 ; k = 1,2 × ancien / nouveau, donc le max reste +20 %.
+- Dans `mkEnemy` et `mkBoss` : PV et dégâts × 0,9 pour les mondes 1 à 8 (pas Nightmare, Oméga, Backrooms, parties rapides ni Infini), en multi aussi.
+
 ### MAJ 61 · option des canons (v173)
 
 - `meta.opt.stag` (`true` par défaut, sauvegardé) : option « Canons en alternance » dans les Réglages. Sur NON, la boucle de tir lance tous les canons en même temps, comme avant la v164.
