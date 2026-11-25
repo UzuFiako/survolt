@@ -27,6 +27,31 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 58 · énergie des Backrooms (v170)
+
+- `nrgPay(cost, why)` accepte un coût (par défaut `NRG_COST` = 5). `startDg` paie `DG_NRG[dgSel]` : 10 (Backrooms), 15 (Bureaux vides), 20 (Poolrooms). Le bouton ENTRER affiche le coût. La fenêtre « pas assez d'énergie » calcule l'attente avec le bon coût (`nrgAsk`). Abandonner une partie des Backrooms indique les énergies non rendues (`nrgLast`). `resumeRun` ne passe pas par `startDg`, donc une reprise est gratuite.
+
+### MAJ 57 · Backrooms (v169)
+
+- `drawDgMap` place la carte avec `dgMapXY` : en paysage à gauche du panneau `.info` (en haut), en portrait sous ce panneau, à droite. En paysage, le nom de l'étage est aligné à droite. `hudLay` réserve sa place (largeur des bonus, barre du boss).
+- `worldPerkOk` : la perk `map` ne sort pas quand `G.dg` est actif.
+- Reprise de partie : déjà possible dans les Backrooms (`runSnap` / `resumeRun`, reprise au début de l'étage en cours) ; vérifié.
+
+### MAJ 56 · atelier revu (v168)
+
+- **Relance** : `max: 20`, prix « normal » (base 70, plus de `mul`). `rerollsOf(l) = 1 + floor(l / 5)` donne les relances par partie : 1 de base, puis 2 au niv. 5, 3 au 10, 4 au 15, 5 au 20. Utilisé au début de partie (`rerolls`) et dans le texte de l'effet, qui indique le niveau de la prochaine relance.
+- **Prix** : Ressorts de dash, Supercondensateur et Servo-tourelles n'ont plus de `mul`. Avec ×1,22 par niveau après le 10e, le dernier niveau coûtait jusqu'à 6 milliards ; ils suivent maintenant la même courbe que les autres (≈ 0,5 à 1,5 M pour le dernier niveau).
+- **Équilibrage** : `SHK.spd` 0,0056 → 0,0045 (vitesse max +31,5 % au lieu de +39 %), `SHK.rng` 0,0175 → 0,0125 (portée max +100 % au lieu de +140 %). Le reste est inchangé.
+
+### MAJ 55 · Bonne étoile (v167)
+
+- `SHK.luck` 0,105 → 0,04 par niveau d'atelier. Dans `rollCards`, les poids deviennent : Légendaire × (1 + 1 % par niveau), Mythique + 0,8 %, Épique + 0,48 %, Super rare + 0,4 %, Rare + 0,32 %. Au niveau 60 : Légendaires +60 % (avant +158 %). L'effet affiché garde une décimale.
+
+### MAJ 54 · flèches plus visibles (v166)
+
+- Flèches hors écran (`draw`, bloc « flèches vers le boss ») : le boss et les mini-boss passent en flèche « bonus » (cercle qui pulse, ×1,25 pour le boss et la roue), avec leur nom traduit (👑 pour le boss). Pour le boss, la roue et les bonus, le nom est écrit SOUS la flèche (au-dessus si on est en bas de l'écran), avec un contour sombre, et clignote entre sa couleur et le blanc (4 Hz).
+- Les flèches ne remontent plus sous le HUD du haut : `hudLay` calcule `HUDB` (bas des panneaux PV / temps), qui sert de limite haute.
+
 ### MAJ 53 · mini-boss costauds (v165)
 
 - `mkBoss` : base des mini-boss 300 → 560 PV (sans réduction) ; les boss ne changent pas. Mesuré au Monde 2 : mini-boss vague 5 ≈ 5 000 PV, boss vague 10 ≈ 12 500, mini-boss vague 15 ≈ 16 000, boss vague 20 ≈ 31 500.
