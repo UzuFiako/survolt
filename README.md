@@ -27,6 +27,11 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 63 · 5 runes (v175)
+
+- `RUNEN = 5` emplacements (`RUNEI`). `runeOpen(i)` : le 0 est toujours ouvert, puis Monde 2, 4, 6 terminés, et le 5e quand le Monde 8 est terminé (pour le mode Nightmare, v176). `meta.rsl` a 5 cases (les anciennes sauvegardes sont complétées au chargement).
+- Le compteur « x/y équipées » et le détail de puissance ne comptent plus les runes rangées dans un emplacement fermé (après un prestige, on voyait « 2/0 »).
+
 ### MAJ 62 · mondes plus faciles (v174)
 
 - `PSPLIT` : nouveau max = min(15, arrondi supérieur de 1,5 × l'ancien) au lieu de ×2 / 20 ; k = 1,2 × ancien / nouveau, donc le max reste +20 %.
