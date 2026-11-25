@@ -27,6 +27,15 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 64 · vidéos récompensées, bientôt (v177)
+
+- **Énergie** : `NRG_MS` = 10 min (au lieu de 6). Textes mis à jour, avec le coût des Backrooms. Dans la fenêtre d'énergie, le bouton « Backrooms » devient « Partie rapide (gratuite) ».
+- **Vidéos récompensées** : module `ADS` (`on: false` pour l'instant, donc tous les boutons sont grisés « À VENIR »). `adBtn(k, label, onReward)` crée le bouton ; `showAd` passe par l'API Google H5 Games Ads (`adBreak` de type `reward`) une fois `ADS.on = true` et `ADS.client = 'ca-pub-…'`. Limites par jour dans `ADLIM`, comptées dans `meta.ads`. Les boutons :
+  - fenêtre d'énergie : +10 ⚡ (5 par jour) ;
+  - Boutique, section « Vidéos récompensées » : +100 nuggets (5 par jour) et +2 diams (3 par jour) ;
+  - revivre une fois par partie en solo : `revOk` / `revAsk` à la mort, 50 % des PV, ennemis repoussés, tirs effacés. Tant que les vidéos sont coupées, un bouton grisé s'affiche sur l'écran de défaite.
+- **Mondes 1 à 8** : le multiplicateur de la v174 passe de 0,9 à 0,945 (difficulté +5 %).
+
 ### MAJ 63 · 5 runes (v175)
 
 - `RUNEN = 5` emplacements (`RUNEI`). `runeOpen(i)` : le 0 est toujours ouvert, puis Monde 2, 4, 6 terminés, et le 5e quand le Monde 8 est terminé (pour le mode Nightmare, v176). `meta.rsl` a 5 cases (les anciennes sauvegardes sont complétées au chargement).
