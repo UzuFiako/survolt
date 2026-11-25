@@ -27,6 +27,11 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 60 · tous les perks (v172)
+
+- **Niveaux** : `PSPLIT` (dmg, rate, hp, spd, mag, vel, regen, big, crit, critd, turbo, xp, range, plate, dashl, oc) : `max` × 2 (20 au plus). `u.f` est enveloppé : on applique l'effet d'origine sur une copie, puis seulement une fraction k = 1,2 × ancien max / nouveau max (puissance k pour les stats multiplicatives listées dans `PSMUL`, × k pour les additives). Au niveau max, le bonus total est 20 % plus fort qu'avant. Le texte du perk est recalculé (« +12 % » → « +7 % »). `u._omax` garde l'ancien max : `supOk` et les textes « débloque le SUPRÊME » l'utilisent, donc les suprêmes arrivent au même niveau qu'avant.
+- **Icônes** : `PIC2` donne à chaque perk un symbole principal + une pastille (`icoMix`), avec de nouveaux symboles `NEWG` (épée, flèche haut, flèche, drone). Plus aucune icône en double (vérifié sur les 122 perks). Le badge d'élément (v171) reste par-dessus.
+
 ### MAJ 59 · perks plus clairs (v171)
 
 - **Drones** : `max` 3 → 6 (escorte, feu, glace, toxique, électro), 2 → 4 (bombardier). `drnPct` +7 % par niveau (niv. 6 = ×1,35 ; l'ancien niv. 3 faisait ×1,2), `drnRate` +1 % de cadence par niveau.
