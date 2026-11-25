@@ -27,6 +27,11 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 53 · mini-boss costauds (v165)
+
+- `mkBoss` : base des mini-boss 300 → 560 PV (sans réduction) ; les boss ne changent pas. Mesuré au Monde 2 : mini-boss vague 5 ≈ 5 000 PV, boss vague 10 ≈ 12 500, mini-boss vague 15 ≈ 16 000, boss vague 20 ≈ 31 500.
+- PV chiffrés au-dessus des ennemis : élites, mini-boss, et tout ennemi dont les PV max dépassent 1 000 × n° du monde.
+
 ### MAJ 52 · canons en alternance (v164)
 
 - **Tirs en alternance** : dans la boucle de tir, quand `gunLayout(s)` a plusieurs canons (sauf Fracas/scatter, Tesla, laser, épée), chaque « tir » ne lance qu'un canon (`lay[P.barI % n]`) et le délai devient `1 / (cadence × n)`. Même DPS, mais les balles partent les unes après les autres. Les effets par salve (arrière, côtés, foudre, Oméga) ne partent qu'avec le 1er canon. L'Écho rejoue chaque canon avec le même décalage (`P.echQ`).
