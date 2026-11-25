@@ -27,6 +27,10 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 61 · option des canons (v173)
+
+- `meta.opt.stag` (`true` par défaut, sauvegardé) : option « Canons en alternance » dans les Réglages. Sur NON, la boucle de tir lance tous les canons en même temps, comme avant la v164.
+
 ### MAJ 60 · tous les perks (v172)
 
 - **Niveaux** : `PSPLIT` (dmg, rate, hp, spd, mag, vel, regen, big, crit, critd, turbo, xp, range, plate, dashl, oc) : `max` × 2 (20 au plus). `u.f` est enveloppé : on applique l'effet d'origine sur une copie, puis seulement une fraction k = 1,2 × ancien max / nouveau max (puissance k pour les stats multiplicatives listées dans `PSMUL`, × k pour les additives). Au niveau max, le bonus total est 20 % plus fort qu'avant. Le texte du perk est recalculé (« +12 % » → « +7 % »). `u._omax` garde l'ancien max : `supOk` et les textes « débloque le SUPRÊME » l'utilisent, donc les suprêmes arrivent au même niveau qu'avant.
