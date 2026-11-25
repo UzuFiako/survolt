@@ -27,6 +27,12 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 65 · achats inutiles bloqués (v178)
+
+- **Recharge d'énergie** : le bouton est grisé (« ÉNERGIE DÉJÀ PLEINE ») et le clic est refusé quand l'énergie est au max. `fixNrgRefund()` (5 s après le lancement) repère dans le relevé les −30 diams « Recharge » sans gain d'énergie juste après, les rembourse et les marque (`x[5] = 'rf'`) pour ne pas rembourser deux fois.
+- **Ma base** : « FINIR » sur un chantier ou une expédition déjà terminé ne coûte plus rien (avant, ça coûtait toujours au moins 1 ou 2 diams).
+- Vérifié ailleurs : l'atelier au niveau max, la boutique (nuggets, clés), le passe et l'offre de bienvenue étaient déjà protégés.
+
 ### MAJ 64 · vidéos récompensées, bientôt (v177)
 
 - **Énergie** : `NRG_MS` = 10 min (au lieu de 6). Textes mis à jour, avec le coût des Backrooms. Dans la fenêtre d'énergie, le bouton « Backrooms » devient « Partie rapide (gratuite) ».
