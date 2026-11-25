@@ -27,6 +27,13 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 59 · perks plus clairs (v171)
+
+- **Drones** : `max` 3 → 6 (escorte, feu, glace, toxique, électro), 2 → 4 (bombardier). `drnPct` +7 % par niveau (niv. 6 = ×1,35 ; l'ancien niv. 3 faisait ×1,2), `drnRate` +1 % de cadence par niveau.
+- **Après ce choix** : `perkAfterX` calcule des lignes avant → après pour les perks dont les stats ne sont pas dans `P.s` : Cryo (ralentissement 14 + 7 × niveau %), drones (dégâts par tir comme en jeu : `dmg / wDK × drnPct × 0,8`, tirs/s, niveau).
+- **Icônes des dash** : `DASHSUB` + `dashIco()` : les flèches du dash plus une pastille avec l'effet (dTox tête de mort, dFire flamme, cryodash flocon, dCut lame, dBump explosion, dMirror bouclier, dSumT aura, dSumA portail).
+- **Badges d'élément** : `perkIcon` ajoute `elemBadge(id)` : une pastille ronde de la couleur de la transformation (`TRANS[...].ids`), avec son icône (`TRIC`). Visible partout où l'icône du perk apparaît (cartes, almanach, liste des perks).
+
 ### MAJ 58 · énergie des Backrooms (v170)
 
 - `nrgPay(cost, why)` accepte un coût (par défaut `NRG_COST` = 5). `startDg` paie `DG_NRG[dgSel]` : 10 (Backrooms), 15 (Bureaux vides), 20 (Poolrooms). Le bouton ENTRER affiche le coût. La fenêtre « pas assez d'énergie » calcule l'attente avec le bon coût (`nrgAsk`). Abandonner une partie des Backrooms indique les énergies non rendues (`nrgLast`). `resumeRun` ne passe pas par `startDg`, donc une reprise est gratuite.
