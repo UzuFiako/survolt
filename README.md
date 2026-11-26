@@ -27,6 +27,31 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 70 · salle au trésor (v183)
+
+- **Salle au trésor** (`type: 'tres'`, une par étage, en cul-de-sac si possible) : coffre au centre (`r.chest`), dessiné dans le rendu des Backrooms, icône 🎁 sur la mini-carte. `dgChestGive()` applique tout de suite une perk tirée par `rollCards` ; si aucune n'est possible (emplacements pleins et perks au max), `G.relicT` ouvre le choix d'artefact. Pas en 1 pour 2 (artefact à la place).
+- **Roulette maudite** : `dgPrize()` = lot principal (`dgPrize0`, ×1,5) + 3 bonus (`more`) : ampoules, nuggets, diams, donnés avec `applyLoot`.
+- **Vagues** : salles de combat et élites = `étage + 1` vagues (1, 2, 3). Salles spéciales inchangées.
+- **Succès** : pastille rouge chiffrée (`.andot`) sur le bouton Profil et sur le titre « Succès » du profil quand `achReady()` n'est pas vide.
+- **Coffres** : `openChest` sauvegarde après l'ouverture de l'écran et `curFx` ne montre rien tant que la roulette tourne ; la bulle de gain arrive avec la liste du butin. Coffre mystère : carte en lave animée (`.chmys`, `chestMysSvg`) et coffre couleur lave avec trois « ? » violets pendant la secousse.
+
+### MAJ 69 · bonus qui durent (v182)
+
+- **Bonus au sol** : 10 s de base pour Furie, Hâte, Égide, Gel, Tonnerre, Arrêt du temps (Oméga) et les flaques (toxique, lave, verglas, nuage irradié). `pkAdd(v, +10, 30)` : reprendre le même bonus ajoute sa durée, plafonnée à 30 s (prisme : +12 s, 36 s max). Le tir auto ne change pas (+15 s, 30 s max). Jauges `BUFS` sur 30 s.
+- **Adrénaline** : durée `2 + niveau` (3, 4, puis 5 s) au lieu de 3 s fixes. Textes, panneau de stats et « Après ce choix » mis à jour.
+
+### MAJ 68 · Backrooms plus malins (v181)
+
+- **IA des Backrooms** : `dgFlow()` construit une grille de 32 (cases praticables via `dgIn`, recalculée toutes les 4 s ou quand une salle se verrouille) et une carte de distances depuis ta case (parcours en largeur, 8 directions, sans couper les coins), mise à jour quand tu changes de case. `dgSteer()` : sans ligne de vue (vérifiée toutes les 0,2 à 0,3 s), le monstre suit la pente de cette carte ; avec ligne de vue, 2 monstres sur 3 arrivent de biais (jusqu'à ±0,45 rad) pour t'encercler. Pas pour les fantômes, les alliés, ni le boss en pleine charge. Test : 14 monstres sans ligne de vue, 13 te rejoignent en 14 s (6 avant).
+- **Familiers en Backrooms** : `nearestLos()` (ils ne visent que ce qu'ils voient) et leurs tirs (`b.wall`) s'arrêtent sur les murs. Les drones ne sont pas concernés.
+- **Nouveau familier Fantôme** (`ghost`, 45 000 nuggets) : `fx: 'phase'`, tirs qui traversent les murs et 1 ennemi (2 au niveau 10), corps de petit drap spectral. Ajouté à la liste de chargement des familiers (avec `drake`, qui manquait pour garder son niveau).
+- **Icônes** : `frost`, `ignite`, `poison`, `chain` = balle + élément.
+- **PV** : l'affichage est plafonné à `Math.round(maxHp)` et `P.hp` ne dépasse plus `maxHp`.
+
+### MAJ 67 · mini-boss repérables dans les Backrooms (v180)
+
+- `dgBossVeil()` : pour tout ennemi `type === 'boss'` (mini-boss et boss) dans `dgCreep`, un voile animé par-dessus la silhouette noire : dégradé qui passe du violet au rouge, 9 flammes alternées violet / rouge qui tournent, anneau en pointillés qui pulse. Dans `dgDark`, un halo violet / rouge reste visible dans l'obscurité.
+
 ### MAJ 66 · almanach qui rapporte (v179)
 
 - **Almanach** : `almSync()` (à l'ouverture de l'almanach et au menu) liste toutes les entrées possédées avec `almKeys()` et les compare à `meta.almGot`. Chaque nouvelle entrée passe dans `meta.almNew` avec la valeur 2 (« +1 ✦ », récupéré au toucher par `almClaim`). Clés : `p:`/`tr:` (perks), `k:`/`o:` (bonus), `A:<onglet>|<id>` pour les autres onglets. La 1re synchro (`meta.almBase`) enregistre ce qu'on a déjà sans rien donner. Les succès sont exclus (ils ont leur récompense). `almK`, `almNewIn` gèrent tous les onglets ; badges et récupération ajoutés dans `renderAlmX`, `renderAlmEq` et `renderAlmCos`.
