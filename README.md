@@ -27,6 +27,13 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### MAJ 66 · almanach qui rapporte (v179)
+
+- **Almanach** : `almSync()` (à l'ouverture de l'almanach et au menu) liste toutes les entrées possédées avec `almKeys()` et les compare à `meta.almGot`. Chaque nouvelle entrée passe dans `meta.almNew` avec la valeur 2 (« +1 ✦ », récupéré au toucher par `almClaim`). Clés : `p:`/`tr:` (perks), `k:`/`o:` (bonus), `A:<onglet>|<id>` pour les autres onglets. La 1re synchro (`meta.almBase`) enregistre ce qu'on a déjà sans rien donner. Les succès sont exclus (ils ont leur récompense). `almK`, `almNewIn` gèrent tous les onglets ; badges et récupération ajoutés dans `renderAlmX`, `renderAlmEq` et `renderAlmCos`.
+- **Têtes chercheuses** : nouveau glyphe `NEWG.homing` (trajectoire qui serpente + flèche + ennemi), `PIC2.homing = ['homing']`. `laserShot` : avec `s.homing`, le laser vise l'ennemi le plus proche de la visée (cône de ±0,5 rad, à portée, ligne de vue en Backrooms).
+- **Disque** : `s.dmg *= 1.15` (au lieu de 0,95).
+- **« Après ce choix »** : table `PAFT` (valeurs avant → après en %, s ou nombre) pour toutes les perks qui affichaient « Niveau x / y » ou « Nouveau pouvoir » ; sinon on prend le texte `u.dl` du niveau suivant. Drones : dégâts en % de tes dégâts, plus de ligne « Niveau ». Panneau de stats : l'explosion affiche ses % au lieu du niveau.
+
 ### MAJ 65 · achats inutiles bloqués (v178)
 
 - **Recharge d'énergie** : le bouton est grisé (« ÉNERGIE DÉJÀ PLEINE ») et le clic est refusé quand l'énergie est au max. `fixNrgRefund()` (5 s après le lancement) repère dans le relevé les −30 diams « Recharge » sans gain d'énergie juste après, les rembourse et les marque (`x[5] = 'rf'`) pour ne pas rembourser deux fois.
