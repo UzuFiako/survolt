@@ -27,6 +27,27 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### v186 · MAJ 72 · collection cosmique
+- Nouveaux skins : Nébuleuse (MT), Phénix (LG, ✦ 2 200), Géante aux anneaux (LG, ✦ 2 000), Cosmos (UPL divin, niveau 250, ✦ 6 000).
+- Nouveaux accessoires : Lune orbitale (MT, ◆ 55 000), Anneaux planétaires (LG, ✦ 1 400), Couronne de constellations (LG, ✦ 1 600), Halo galactique (UPL, ✦ 4 500).
+- Nouvelles balles : Croissant de lune (MT), Trou noir (LG), Nova (LG), Big Bang (UPL, ✦ 3 000).
+- Skins et accessoires Légendaires/UPL payés en diams (skins LG ✦ 1 800 par défaut, accessoires LG ✦ 1 300, UPL ✦ 3 200 ; Couronne astrale 1 500, Crinière de braise 1 600, Crinière prismatique 3 500, Esprit de la tempête 3 000).
+- Pastilles rouges « nouveau » : Garage, onglets Look/Châssis/Familier, carte du châssis, profil (titres et thèmes), avec bandeau « NOUVEAU » dans l'onglet.
+- Passer un niveau en partie : +80 × niveau points, affiché au-dessus du tank.
+
+### MAJ 71 · perks plus clairs (v184)
+
+- **Perks en chiffres** : `perkNow(u, n)` (pause, fiche du perk, « Mes perks ») utilise d'abord `PAFT`, puis les drones, `PNOW` (plaques, lunette, grand saut), puis `PTOT`. `PAFT` complété (statique, incendiaire, recul, arc, mines, comètes, Oméga, lien, exécuteur, tempête, bouclier, résurrection, satellites, canons, écho, lames) ; les `PTOT` « niveau X » (siphon, pointes, explosion, poison, éclats) sont devenus des valeurs. Les lignes `PDIF` à niveaux bruts (`burnLvl`, `mine`, `chain`, comètes…) sont retirées.
+- **Auras** : `drawAuras()` (appelé depuis `drawFx2`) dessine un disque dégradé + un bord animé pour le champ statique (bleu, bord électrique) et le Miasme (vert, bord ondulé). Dégâts dégressifs : statique ×1,5 au centre → ×0,6 au bord ; Miasme inflige maintenant des dégâts directs chaque seconde (×1,6 → ×0,6), avec un éclat sur chaque cible.
+- **Shrapnel** : nouvelle description ; effet `fx2 'shr'` avec 10 éclats qui partent en étoile + un éclat vers chaque ennemi touché.
+- **Perks des mondes** : `worldPerkOk` — en dehors de son monde, un perk à `w` n'apparaît que si `meta.alm['p:'+id]` (déjà pris une fois), au lieu de « monde terminé ».
+- **Nouveautés** : `checkUnl` détaille chaque perk (icône, rareté, effet) par section ; `meta.unlHist` (300 max) garde l'historique, visible avec `showUnlHist()` (bouton dans la fenêtre et dans « Quoi de neuf »).
+- **Choix de carte** : bouton `#bMyB` → `showMyBuild()` (perks + artefacts avec leurs valeurs et leur élément).
+- **Aimant** : `pkPool` ajoute `magnet` dès le Monde 2 (et en Backrooms).
+- **Score** : gemme ramassée = XP × 2 × (1 / 1,5 / 2,5 / 4 / 6 selon la gemme), bonus ramassé +250 (soin +75), montée de niveau +40 × niveau.
+- **Classement** : onglets M7 et M8 (`LB_W`), `lbModeOk` accepte `w7`/`w8`.
+- **Cubes d'XP** : `cubeDz()` renvoie toujours 0 (look d'origine partout).
+
 ### MAJ 70 · salle au trésor (v183)
 
 - **Salle au trésor** (`type: 'tres'`, une par étage, en cul-de-sac si possible) : coffre au centre (`r.chest`), dessiné dans le rendu des Backrooms, icône 🎁 sur la mini-carte. `dgChestGive()` applique tout de suite une perk tirée par `rollCards` ; si aucune n'est possible (emplacements pleins et perks au max), `G.relicT` ouvre le choix d'artefact. Pas en 1 pour 2 (artefact à la place).
