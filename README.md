@@ -27,6 +27,12 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### v190 · MAJ 76 · détail du score et satellites
+- `scAdd(k, v)` remplace tous les `G.score +=` et range les points dans `G.scB` ; `showScoreDetail()` (touche le score en fin de partie).
+- Satellites : +15 %/niveau (simple : niveau de la perk Satellite ; élémentaires : nombre du même type), vampire +1 PV/niveau, givre/feu/toxique/foudre/défense renforcés.
+- Gemmes : `orbTier()` = max(tier du monde, tiers dont le monde est fini) ; drop rare 7 % (avant 3,5 %), tier max favorisé ; halo plus gros pour dorée/prisme.
+- `worldPerkOk` : hors de son monde, il faut monde fini ET perk découverte dans l'almanach.
+
 ### v189 · MAJ 75 · Points ×2 et Mort instantanée
 - Points d'ULT : surcharge (`ulti`) et ULT d'équipement/arme (`gearUlt`) incrémentent `G.ultId` ; chaque ennemi touché pendant la fenêtre donne +30 (élite 60, boss 150) une fois ; total affiché à la fin.
 - Élites : `eliteBack` (aura, 6 lames d'armure) + coque dorée brillante + `eliteFx` (gemme, arcs, étincelles, couronne), stats inchangées.
