@@ -27,6 +27,20 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### v189 · MAJ 75 · Points ×2 et Mort instantanée
+- Points d'ULT : surcharge (`ulti`) et ULT d'équipement/arme (`gearUlt`) incrémentent `G.ultId` ; chaque ennemi touché pendant la fenêtre donne +30 (élite 60, boss 150) une fois ; total affiché à la fin.
+- Élites : `eliteBack` (aura, 6 lames d'armure) + coque dorée brillante + `eliteFx` (gemme, arcs, étincelles, couronne), stats inchangées.
+- Almanach : `ALMEL`, une fiche élite par monstre (clé `el:<type>`, découverte en tuant un élite), filtre ÉLITES.
+- Nouveau bonus au sol « Mort instantanée » (dès le Monde 1) : 3 s, ne se cumule pas (reprend à 3 s), tout dégât tue net sauf élites, mini-boss, boss, Seigneurs et boss finaux.
+- Nouveau bonus au sol « Points ×2 » (dès le Monde 1, aussi dans les Backrooms) : 10 s, cumulable jusqu'à 30 s, chip dans la barre des bonus. Tout gain de score pendant la durée est doublé.
+
+### v188 · MAJ 74 · lance-roquettes rééquilibré
+- « Mes perks et artefacts » : un seul défilement (la fenêtre), dernière perk visible en entier ; badge d'élément masqué dans la liste.
+- Dégâts directs ×0,95 → ×0,93 ; zone 0,3 + 0,035/rareté (max 58 % au lieu de 66 %) ; rayon 46 + 2,75/rareté (max 68 au lieu de 70) ; explosion en bout de course 0,3 + zone (au lieu de 0,4 + zone).
+
+### v187 · MAJ 73 · roulette réparée
+- Roulette de fin de partie : la position se calcule sur la vraie case gagnante (offsetLeft), donc la flèche tombe toujours dessus, quelle que soit la taille de l'interface. Recalage automatique si l'écran change pendant le tirage.
+
 ### v186 · MAJ 72 · collection cosmique
 - Nouveaux skins : Nébuleuse (MT), Phénix (LG, ✦ 2 200), Géante aux anneaux (LG, ✦ 2 000), Cosmos (UPL divin, niveau 250, ✦ 6 000).
 - Nouveaux accessoires : Lune orbitale (MT, ◆ 55 000), Anneaux planétaires (LG, ✦ 1 400), Couronne de constellations (LG, ✦ 1 600), Halo galactique (UPL, ✦ 4 500).
