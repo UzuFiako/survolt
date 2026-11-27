@@ -27,6 +27,13 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### v191 · MAJ 77 · nouvelles musiques
+- `SONGS` : w3 lo-fi (78 BPM), w4 synthwave (106), w5 house (ex-w4), w6 tek acide (ex-w3), w8 métal hardcore (176), inf épique (152).
+- Nouveaux styles dans `musStyled2` (lofi, synth, metal, epic) ; saturation partagée `mDistBus` pour la guitare ; `mCrack`, `mTom`, `mCrash`.
+- Seigneurs (egg) : nouveau style « divine » (`mChoir`, `mOrgan`, `musDivine`), 132 BPM, réverb 0,55.
+- Menu « dream », w1/w2 « chip » (w2 variante nerveuse), w7 « trance » ; `rv`/`dl` par morceau (réverb et écho appliqués par `revApply`).
+- Almanach > Musiques : le style s'affiche à côté du BPM.
+
 ### v190 · MAJ 76 · détail du score et satellites
 - `scAdd(k, v)` remplace tous les `G.score +=` et range les points dans `G.scB` ; `showScoreDetail()` (touche le score en fin de partie).
 - Satellites : +15 %/niveau (simple : niveau de la perk Satellite ; élémentaires : nombre du même type), vampire +1 PV/niveau, givre/feu/toxique/foudre/défense renforcés.
