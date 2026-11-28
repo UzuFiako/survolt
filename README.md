@@ -27,6 +27,10 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### v198 · MAJ 83 · Mondes 7 et 8
+- Classement : les regex de chargement (`lbRun`, `lbSent`, `lbTime`, `lbTSent`) et le tri par temps acceptent w7/w8 (avant, les records M7/M8 étaient effacés au rechargement).
+- Almanach : `ALMW78`, fiches `type@w7` / `type@w8` découvertes en tuant les monstres de ces mondes.
+
 ### v197 · correctif
 - Laser et Tesla en alternance (option « Canons en alternance ») ; nouveau cache du service worker pour forcer la mise à jour sur les téléphones.
 
