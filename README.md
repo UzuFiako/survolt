@@ -27,6 +27,9 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### v197 · correctif
+- Laser et Tesla en alternance (option « Canons en alternance ») ; nouveau cache du service worker pour forcer la mise à jour sur les téléphones.
+
 ### v196 · MAJ 82 · perks adaptés à toutes les armes
 - Laser : Ricochet (rebonds depuis le dernier ennemi touché, ×0,75 par rebond, 8 max), Perforant +10 %/niveau.
 - Tesla : portée selon Lunette/Vélocité (220–520), Gros calibre renforce la boule, canons latéraux/arrière via `lay`.
