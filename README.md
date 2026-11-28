@@ -22,10 +22,19 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - **Garage** : équipements et sets légendaires, fusion, runes, châssis à niveaux, étoiles et maîtrises, familiers (avec maîtrises), look (skins, dont 3 skins divins, couleurs, balles, accessoires), ULT.
 - **Atelier** (100 niveaux par amélioration), **coffres** et **clés**, **Boutique** (offres du jour, packs exclusifs).
 - **Profil** : niveau joueur, prestige, titres, succès, statistiques, et une photo de profil animée (30 bordures, 23 fonds, 25 animations). **Social** : amis, messages, chat global.
-- **Aide** : tutoriel animé, visite guidée du menu avec un doigt qui montre l'essentiel, bulles d'info sur chaque monnaie et chaque stat.
+- **Aide** : Académie (tuto jouable en 5 chapitres), entraînement guidé dans la première partie, visite guidée du menu avec un doigt qui montre l'essentiel, bulles d'info sur chaque monnaie et chaque stat.
 - **Almanach** : monstres, objets, perks, familiers… avec des bonus de collection.
 
 ## Mises à jour
+
+### v199 · MAJ 84 · l’Académie
+- **Académie** (`ONBS`, `ONBC`) : 24 étapes en 5 chapitres (Les bases, En partie, Progression, Modes de jeu, Fin de jeu), avec une puce par chapitre (`onbChips`) et une étiquette d’étape (`#onbKind`). Les anciennes scènes sont gardées dans `onbDemo(dt, i)` (`ONBD`), les nouvelles sont dans `ONBX` : raretés et emplacements, éléments et transformation, pacte du diable, élites et téléportation, Garage et Forge, runes/familier/ULT, base et quêtes, carte des 8 mondes, modes de jeu, Backrooms (lampe torche), Nightmare, prestige, arbre de talents, dimension Oméga, « Les murmures » (allusion aux Seigneurs sans rien montrer) et écran final.
+- **Étapes jouables** (`play: { g, n }`) : déplacement (4 gemmes), tir (6 ennemis), DASH (3 esquives), SURCHARGE, choix de carte. Commandes au doigt sur `#onbCv` (`ONB.inp`, sticks fixes, boutons DASH/SURCHARGE, cartes au toucher), objectif dessiné en haut (`onbGoal`), réussite avec `onbOk` (SUIVANT en vert). Tant qu’on n’a pas touché l’écran, la démo avec le doigt fantôme continue. Le glissement pour changer d’étape est désactivé sur le canvas des étapes jouables.
+- **Entraînement guidé** (`COACH`, `coachStart`, `coachTick`) : dans une vraie partie du Monde 1, une bulle (`#coach`, sous le HUD grâce à `HUDB`, en bas pendant les cartes) et un anneau sur la commande à utiliser : bouger (700 px), tirer (5 éliminations), 2 DASH, monter de niveau (XP offerte après 14 s), bonus TIR AUTO posé à côté, SURCHARGE remplie. Invincible pendant l’entraînement. Lancé tout seul à la toute première partie (`coachAuto`, jamais pour un joueur qui a déjà joué), ou par le bouton « S’ENTRAÎNER » de l’Académie et « ENTRAÎNEMENT GUIDÉ » des Réglages (`coachLaunch`, coûte l’énergie normale). Une seule récompense (`meta.coachRw`) : 500 nuggets, 10 diams, 1 clé.
+- **Guide complet** : rubriques Artefacts et pacte, Nightmare, Prestige, Arbre de talents, Dimension Oméga, Multi et tournoi, Les murmures.
+- **ATH** : liseré lumineux en haut des panneaux vie et infos, reflet, barre de vie graduée tous les 10 %, reflet animé sur l’XP, puce de niveau en dégradé, reflet sur les boutons DASH/SURCHARGE (pas de reflet en Croquis).
+- **Menus** : retour au toucher sur les gros boutons et les icônes, ligne dégradée après les titres de section et sous l’en-tête des écrans.
+- Traductions anglaises ajoutées.
 
 ### v198 · MAJ 83 · Mondes 7 et 8
 - Classement : les regex de chargement (`lbRun`, `lbSent`, `lbTime`, `lbTSent`) et le tri par temps acceptent w7/w8 (avant, les records M7/M8 étaient effacés au rechargement).
