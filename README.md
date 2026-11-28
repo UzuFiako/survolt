@@ -31,6 +31,7 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 - Laser : Ricochet (rebonds depuis le dernier ennemi touché, ×0,75 par rebond, 8 max), Perforant +10 %/niveau.
 - Tesla : portée selon Lunette/Vélocité (220–520), Gros calibre renforce la boule, canons latéraux/arrière via `lay`.
 - Rail : perte par ennemi traversé ×0,88 (au lieu de ×0,85), +0,03 par niveau de Perforant (aucune perte au niveau 4).
+- Option « Canons en alternance » : s'applique aussi au laser et à la Tesla.
 - Épée : Têtes chercheuses (visée auto), Vélocité allonge la lame (jusqu'à +30 %).
 
 ### v195 · MAJ 81 · laser multiple
