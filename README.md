@@ -27,6 +27,9 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### v194 · MAJ 80 · Bobine Tesla renforcée
+- Tesla : dégâts ×0,55 → ×0,72, sauts 0,35 → 0,5 × dégâts, portée 270 → 300.
+
 ### v193 · MAJ 79 · barres de vie et récompenses
 - `enemyBar()` : barre de vie sous tous les ennemis (y compris morts-vivants), couleur selon le %, traînée blanche ; pas dans l'almanach (`alm: 1`).
 - Murs : côté de glissement mémorisé (`e.wsd`, `e.wfT`), détection de blocage (`e.stkT`), recalage sur une case libre du flow field dans les Backrooms.
