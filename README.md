@@ -27,6 +27,9 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### v192 · MAJ 78 · anneaux par-dessus
+- `drawTankA` + `tkFlush` : pour `ringp` et `deco: 'hole'`, l'avant de l'anneau/du disque est dessiné après l'accessoire (`drawAcc` → `drawAcc0` puis `tkFlush`).
+
 ### v191 · MAJ 77 · nouvelles musiques
 - `SONGS` : w3 lo-fi (78 BPM), w4 synthwave (106), w5 house (ex-w4), w6 tek acide (ex-w3), w8 métal hardcore (176), inf épique (152).
 - Nouveaux styles dans `musStyled2` (lofi, synth, metal, epic) ; saturation partagée `mDistBus` pour la guitare ; `mCrack`, `mTom`, `mCrash`.
