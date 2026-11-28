@@ -27,6 +27,9 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### v200 · correctif
+- Académie en paysage : la scène et le texte tiennent dans l’écran (grille `minmax(0,1fr)`, volet de texte qui défile, puces, titres et boutons plus compacts, marges de l’encoche).
+
 ### v199 · MAJ 84 · l’Académie
 - **Académie** (`ONBS`, `ONBC`) : 24 étapes en 5 chapitres (Les bases, En partie, Progression, Modes de jeu, Fin de jeu), avec une puce par chapitre (`onbChips`) et une étiquette d’étape (`#onbKind`). Les anciennes scènes sont gardées dans `onbDemo(dt, i)` (`ONBD`), les nouvelles sont dans `ONBX` : raretés et emplacements, éléments et transformation, pacte du diable, élites et téléportation, Garage et Forge, runes/familier/ULT, base et quêtes, carte des 8 mondes, modes de jeu, Backrooms (lampe torche), Nightmare, prestige, arbre de talents, dimension Oméga, « Les murmures » (allusion aux Seigneurs sans rien montrer) et écran final.
 - **Étapes jouables** (`play: { g, n }`) : déplacement (4 gemmes), tir (6 ennemis), DASH (3 esquives), SURCHARGE, choix de carte. Commandes au doigt sur `#onbCv` (`ONB.inp`, sticks fixes, boutons DASH/SURCHARGE, cartes au toucher), objectif dessiné en haut (`onbGoal`), réussite avec `onbOk` (SUIVANT en vert). Tant qu’on n’a pas touché l’écran, la démo avec le doigt fantôme continue. Le glissement pour changer d’étape est désactivé sur le canvas des étapes jouables.
