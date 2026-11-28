@@ -27,6 +27,13 @@ Après chaque mise à jour, un écran « Quoi de neuf ? » s’affiche au lancem
 
 ## Mises à jour
 
+### v193 · MAJ 79 · barres de vie et récompenses
+- `enemyBar()` : barre de vie sous tous les ennemis (y compris morts-vivants), couleur selon le %, traînée blanche ; pas dans l'almanach (`alm: 1`).
+- Murs : côté de glissement mémorisé (`e.wsd`, `e.wfT`), détection de blocage (`e.stkT`), recalage sur une case libre du flow field dans les Backrooms.
+- Auras (statique, miasme, blizzard) : `hurtCrystal` sur les blocs.
+- QMD/QMW augmentés, nuggets au dernier palier.
+- Passe : `BP_T` 60, `BP_XP` 350 (21 000 XP), récompenses `bpRw` sur 60 paliers.
+
 ### v192 · MAJ 78 · anneaux par-dessus
 - `drawTankA` + `tkFlush` : pour `ringp` et `deco: 'hole'`, l'avant de l'anneau/du disque est dessiné après l'accessoire (`drawAcc` → `drawAcc0` puis `tkFlush`).
 
